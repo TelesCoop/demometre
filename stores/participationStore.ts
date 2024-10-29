@@ -39,18 +39,18 @@ export const useParticipationStore = defineStore("participation", {
       {
         [key: number]: QuestionResponse
       }
-      >{},
+    >{},
     responseByQuestionnaireQuestionId: <
       {
         [key: number]: QuestionResponse
       }
-      >{},
+    >{},
     newParticipation: <Participation>{},
     participations: <
       {
         [key: number]: Participation
       }
-      >{},
+    >{},
     showCancelParticipationModal: <boolean>false,
     showSaveParticipationModal: <boolean>false,
     totalAndAnsweredQuestionsByPillarName: <Record<string, Status>>{},
@@ -232,7 +232,7 @@ export const useParticipationStore = defineStore("participation", {
         question.id,
         this.id!,
         useAssessmentStore().currentAssessmentId!,
-        isAnswered,
+        !isAnswered,
         response,
       )
 
