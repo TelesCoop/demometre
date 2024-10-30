@@ -65,6 +65,7 @@ import { usePageStore } from "~/stores/pageStore"
 import { MEDIA_BASE_URL } from "~/composables/api"
 import { useAssessmentStore } from "~/stores/assessmentStore"
 import { Assessment } from "~/composables/types"
+import vSelect from "vue-select"
 
 definePageMeta({
   title: "Résultats",
