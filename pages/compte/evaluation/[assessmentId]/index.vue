@@ -350,6 +350,10 @@ const assessmentIdStr: string = (route.params.assessmentId as string)
 const assessmentId = parseInt(assessmentIdStr as string)
 await useAssessmentIsReady()
 
+onMounted(() => {
+  participationStore.setTotalAndAnsweredQuestionsByPillarName()
+})
+
 assessmentStore.currentAssessmentId = assessmentId
 const assessment = computed<Assessment>(
   () => assessmentStore.assessmentById[assessmentId],

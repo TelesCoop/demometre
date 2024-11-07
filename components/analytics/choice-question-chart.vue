@@ -129,7 +129,9 @@ const gapSize = 2
 const percentageSize = 80
 
 const rolesGradiants = computed(
-  () => getColorGradients(props.color)[props.question.roleIds.length],
+  () => {
+    return getColorGradients(props.color)[props.question.roleIds.length]
+  },
 )
 
 const roleIdsSelected = ref<number[]>([])

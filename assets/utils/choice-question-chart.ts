@@ -8,6 +8,7 @@ function getLeftValue(
     ((1 - percentageOfSpaceAlreadyTaken) * index) / (totalLine - 1)
   )
 }
+
 export function getLeftStyle(
   index: number,
   percentageOfSpaceAlreadyTaken: number,
@@ -25,7 +26,7 @@ export function getLeftStyle(
 }
 
 export function getColorGradients(color: string) {
-  return {
+  const toReturn = {
     1: [[`${color}-dark`, "white"]],
     2: [
       [`${color}-light-active`, `${color}-dark`],
@@ -58,4 +59,11 @@ export function getColorGradients(color: string) {
       [`${color}-light-active`, `${color}-dark`],
     ],
   }
+  toReturn[7] = [...toReturn[6], ...toReturn[6].slice(0, 1)]
+  toReturn[8] = [...toReturn[6], ...toReturn[6].slice(0, 2)]
+  toReturn[9] = [...toReturn[6], ...toReturn[6].slice(0, 3)]
+  toReturn[10] = [...toReturn[6], ...toReturn[6].slice(0, 4)]
+  toReturn[11] = [...toReturn[6], ...toReturn[6].slice(0, 5)]
+  toReturn[12] = [...toReturn[6], ...toReturn[6].slice(0, 6)]
+  return toReturn
 }
