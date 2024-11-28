@@ -151,7 +151,7 @@
                       class="tag"
                     >{{ $t("Redevance payée") }}</span>
                     <span
-                      v-else
+                      v-else-if="assessment.details.role === 'expert'"
                       class="tag is-danger"
                     >{{ $t("Redevance impayée") }}</span>
                   </template>

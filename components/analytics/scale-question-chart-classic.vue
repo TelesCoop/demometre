@@ -81,7 +81,16 @@ const rolesGradiants = computed(
   () => getColorGradients(props.color)[props.question.roleIds.length],
 )
 const getValueByRoleId = (choice, roleId) => {
-  const roleName = profilingStore.roleById[roleId].name
+  let roleName = profilingStore.roleById[roleId].name
+  if (props.question.objectivity === "objective") {
+    // for an objective question, there is only one role
+    // for historical reasons, the data is stored in the choice
+    // with the assessment response id as key instead of the role name
+    const possibleAssessmentResponseIds = Object.keys(choice).filter(key => !["label", "value"].includes(key))
+    if (possibleAssessmentResponseIds.length) {
+      roleName = possibleAssessmentResponseIds[0]
+    }
+  }
   return choice[roleName] ? choice[roleName].value : 0
 }
 </script>
