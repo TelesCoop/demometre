@@ -79,7 +79,8 @@ const router = useRouter()
 if (!pageStore.resultsPage.title) {
   pageStore.getResultsPage()
 }
-if (!assessmentStore.assessmentsWithResultsLoaded) {
+if (process.client) {
+  assessmentStore.assessmentsLoaded = false
   assessmentStore.getAssesmentsWithPublicatedResults()
 }
 
