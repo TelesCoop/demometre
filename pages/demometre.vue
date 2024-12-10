@@ -31,7 +31,7 @@
         <div class="column is-5-desktop is-offset-1">
           <QuestionnaireRosette
             class="rosette-menu"
-            center-button-name="Découvrir"
+            :center-button-name="$t('Découvrir')"
             @center-button-click="onDiscoverButtonClick()"
             @pillar-click="onRosettePillarClicked($event)"
             @marker-click="onRosetteMarkerClicked($event)"
@@ -66,7 +66,7 @@
               "
               alt="image des piliers"
               :style="`max-height: 250px`"
-            />
+            >
           </div>
         </div>
       </PageSection>
@@ -270,7 +270,7 @@ watch(activeQuestionId, () => {
 })
 
 const colorClass = computed(() =>
-  activePillar.value ? PillarParams[activePillar.value.name].color : ""
+  activePillar.value ? PillarParams[activePillar.value.name].color : "",
 )
 
 const pillarsRef = ref(null)
@@ -283,7 +283,7 @@ onMounted(() => {
 const onSelectPillar = (pillar) => {
   activePillar.value = pillar
   markers.value = activePillar.value?.markerIds.map(
-    (markerId) => questionnaireStore.markerById[markerId]
+    (markerId) => questionnaireStore.markerById[markerId],
   )
   router.push({ query: { ...route.query, pillar: pillar.name } })
 }

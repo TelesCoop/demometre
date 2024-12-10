@@ -74,7 +74,7 @@
         >
           <div
             v-for="pillar of questionnaireStore.pillarsOfSurvey(
-              assessment.surveyId,
+              assessment?.surveyId,
             )"
             :key="pillar.name"
             class="column"
@@ -138,7 +138,7 @@ const rosetteButtonText = computed(() => {
   if (total.completed === 4) {
     return ""
   }
-  return total.hasStarted ? "Continuer" : "Commencer"
+  return total.hasStarted ? $t("Continuer") : $t("Commencer")
 })
 
 const pillarsCompleted = computed(() =>
@@ -174,7 +174,7 @@ const startPillar = (pillarName: string) => {
 
 const onStartQuestionnaire = () => {
   const pillarsOfSurvey = questionnaireStore.pillarsOfSurvey(
-    assessment.surveyId,
+    assessment?.surveyId,
   )
   const pillar =
     pillarsOfSurvey.find(

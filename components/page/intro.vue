@@ -33,7 +33,7 @@
             allowfullscreen
           />
         </div>
-        <figure v-else-if="props.imageUrl" class="image is-128x128">
+        <figure v-else-if="props.imageUrl" class="image">
           <img
             :src="MEDIA_BASE_URL + props.imageUrl"
             alt
@@ -76,6 +76,7 @@ const props = defineProps({
 
 .columns.is-variable.is-16
   --columnGap: 4rem
+
 .video-container
   width: 100%
   height: 100%

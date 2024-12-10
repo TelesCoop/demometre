@@ -51,7 +51,7 @@
               />
               <span
                 class="pillar-title is-size-7 has-text-weight-bold is-capitalized"
-              >{{ pillar.name }}</span>
+              >{{ $t(pillar.name) }}</span>
             </div>
           </div>
 
@@ -83,6 +83,18 @@
 <script setup lang="ts">
 import { useQuestionnaireStore } from "~/stores/questionnaireStore"
 import { PillarParams } from "~/composables/types"
+import { useI18n } from "vue-i18n"
+
+const i18n = useI18n()
+const $t = i18n.t
+
+// only here to be picked up by i18n for translations
+const vars = ([ // eslint-disable-line
+  $t("coopération"),
+  $t("transparence"),
+  $t("participation"),
+  $t("représentation"),
+] as string[])
 
 const props = defineProps({
   centerButtonName: { type: String, required: true },

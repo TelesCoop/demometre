@@ -32,6 +32,10 @@
                   getValueByRoleId(choice, roleId),
                   data.count
                 )}%`"
+                :title="profilingStore.roleById[roleId].name + ' - ' + getPercentage(
+                  getValueByRoleId(choice, roleId),
+                  data.count
+                ) + '%'"
               />
             </div>
             <template v-for="index in totalSeparator" :key="index">

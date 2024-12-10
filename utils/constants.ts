@@ -3,9 +3,9 @@ import { i18n } from "~/utils/i18n-util"
 const $t = i18n.global.t
 
 export const PARTICIPANT_TYPE = {
-  initiator: "initiateur",
-  expert: "expert",
-  participant: "participant",
+  initiator: $t("initiateur"),
+  expert: $t("expert"),
+  participant: $t("participant"),
 }
 export type ASSESSMENT_CONTEXT_FIELD_TYPE =
   "context" | "objectives" | "stakeholders" | "calendar"

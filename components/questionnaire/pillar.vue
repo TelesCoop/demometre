@@ -38,6 +38,10 @@
 import { computed } from "vue"
 import { PillarParams } from "~/composables/types"
 import { isNullOrUndefined } from "assets/utils"
+import { useI18n } from "vue-i18n"
+
+const i18n = useI18n()
+const $t = i18n.t
 
 const props = defineProps({
   name: { type: String, required: true },
@@ -49,7 +53,7 @@ const isHovered = ref(false)
 
 const colorClass = computed(() => PillarParams[props.name].color)
 const textTitle = computed(
-  () => props.name[0].toUpperCase() + props.name.slice(1),
+  () => $t(props.name[0].toUpperCase() + props.name.slice(1)),
 )
 const circleClass = computed(() => {
   const toReturn = `pillar-circle has-border-${colorClass.value} `
@@ -86,6 +90,7 @@ const circleClass = computed(() => {
   left: 50%
   transform: translateX(-50%)
   bottom: 23px
+
   &.little
     display: none
 
@@ -104,6 +109,7 @@ const circleClass = computed(() => {
     width: auto
     margin: 0 0.5rem
     position: relative
+
     p
       margin-right: 23px
   .icon
@@ -125,15 +131,19 @@ const circleClass = computed(() => {
     position: relative
   .picto
     bottom: 0
+
     &.big
       display: none
+
     &.little
       display: block
+
 @include until(430px)
   .pillar-card
     padding: 0.75rem
     margin: 0
     column-gap: 0.3rem
+
     p
       margin-right: 2px
       font-size: 1rem !important

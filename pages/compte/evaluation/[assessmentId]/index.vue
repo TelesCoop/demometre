@@ -75,28 +75,28 @@
             :value="AssessmentType[assessment.assessmentType?.toUpperCase() || ''].value"
           />
           <InformationDetail
-            title="lancée le"
+            :title="$t('lancée le')"
             :value="new Date(assessment.created).toLocaleDateString()"
           />
           <InformationDetail
             v-if="assessment.initializedToTheNameOf"
-            title="par"
+            :title="$t('par')"
             :value="assessment.initializedToTheNameOf"
           />
           <InformationDetail
-            title="localité"
+            :title="$t('localité')"
             :value="assessment.collectivityName"
           />
           <InformationDetail
-            title="Mon rôle"
+            :title="$t('Mon rôle')"
             :value="PARTICIPANT_TYPE[assessment.details.role]"
           />
           <InformationDetail
-            title="participants hors ateliers"
+            :title="$t('participants hors ateliers')"
             :value="assessment.participationCount"
           />
           <InformationDetail
-            title="ateliers"
+            :title="$t('ateliers')"
             :value="assessment.workshopCount"
           />
           <InformationDetail
@@ -112,13 +112,13 @@
           <div class="columns">
             <div class="column is-6-tablet">
               <InformationRichDetail
-                title="Contexte"
+                :title="$t('Contexte')"
                 :value="assessment.context"
               />
             </div>
             <div class="column is-6-tablet">
               <InformationRichDetail
-                title="Objectifs"
+                :title="$t('Objectifs')"
                 :value="assessment.objectives"
               />
             </div>
@@ -126,13 +126,13 @@
           <div class="columns">
             <div class="column is-6-tablet">
               <InformationRichDetail
-                title="Parties prenantes"
+                :title="$t('Parties prenantes')"
                 :value="assessment.stakeholders"
               />
             </div>
             <div class="column is-6-tablet">
               <InformationRichDetail
-                title="Calendrier"
+                :title="$t('Calendrier')"
                 :value="assessment.calendar"
               />
             </div>
@@ -219,8 +219,8 @@
             >
               <span>{{
                 participationStore.status.participated
-                  ? "Reprendre l'évaluation"
-                  : "Participer à l'évaluation"
+                  ? $t("Reprendre l'évaluation")
+                  : $t("Participer à l'évaluation")
               }}</span>
               <span class="icon"><icon
                 size="20"

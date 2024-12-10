@@ -1,9 +1,9 @@
 <template>
   <div>
     <PageSection
-      title="Mes ateliers"
+      :title="$t('Mes ateliers')"
       :buttons="assessment.isCurrent ? [{text: 'Ajouter un atelier', icon: 'add-line'}] : []"
-      @button-click="showAddWorkshopModal = true"
+      @button-click="showAddWorkshorModal = true"
     >
       <div v-if="workshops.length">
         <table class="table is-striped is-fullwidth">

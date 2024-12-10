@@ -200,7 +200,10 @@ const showEditUserInfoModal = ref(false)
 // there might be only one assessment fetched,
 // there might be a new assessment since we last visited the page,
 // we want to make sure we fetch all of them
-assessmentStore.getAssessmentsForUser()
+onMounted(async () => {
+  await assessmentStore.getAssessmentsForUser()
+})
+
 const currentAssessments = computed(() =>
   assessmentStore.myAssessments.filter((ass) => ass.isCurrent),
 )
