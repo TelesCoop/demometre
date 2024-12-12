@@ -1,0 +1,112 @@
+{{ ansible_managed | comment }}
+
+upstream app_servers_{{ project_slug }} {
+  server 127.0.0.1:{{ backend_application_port }};
+}
+
+upstream app_frontend_{{ project_slug }} {
+  server 127.0.0.1:{{ frontend_application_port }};
+}
+
+server {
+    listen 443 ssl; # managed by Certbot
+
+    ssl_certificate /etc/letsencrypt/live/preprod.demometre.tlscp.fr/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/preprod.demometre.tlscp.fr/privkey.pem; # managed by Certbot
+
+
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+    server_name {{ " ".join(public_hostnames) }};
+
+    access_log /var/log/nginx/access_{{ public_hostnames[0].replace('.', '_') }}.log;
+    error_log /var/log/nginx/error_{{ public_hostnames[0].replace('.', '_') }}.log;
+
+    client_header_buffer_size 5120k;
+    large_client_header_buffers 16 5120k;
+
+    # http://stackoverflow.com/questions/15238506/djangos-suspiciousoperation-invalid-http-host-header
+    # Deny illegal Host headers
+    if ($host !~* ^({{ "|".join(public_hostnames) }})$ ) {
+        return 444;
+    }
+
+    # backend static stuff
+    location /static  {
+        gzip on;
+        gzip_vary on;
+        gzip_proxied expired no-cache no-store private auth;
+        gzip_types image/svg+xml text/plain text/css text/xml application/javascript text/javascript application/x-javascript application/xml application/octet-stream;
+        gzip_disable "MSIE [1-6]\.";
+        expires 30d;
+        add_header Vary Accept-Encoding;
+        access_log off;
+        autoindex off;
+        alias {{ backend_static_path }};
+    }
+
+    location = /favico.ico  {
+        root /app/favico.ico;
+    }
+
+     location /media  {
+        gzip on;
+        gzip_vary on;
+        gzip_proxied expired no-cache no-store private auth;
+        gzip_types image/svg+xml text/plain text/css text/xml application/javascript text/javascript application/x-javascript application/xml application/octet-stream;
+        gzip_disable "MSIE [1-6]\.";
+        expires 30d;
+        add_header Vary Accept-Encoding;
+        access_log off;
+        autoindex off;
+        alias {{ media_static_path }};
+    }
+
+    {% for uri in server_uris_passed_to_backend %}
+        location /{{ uri }}/ {
+            proxy_pass         http://app_servers_{{ project_slug }};
+            proxy_redirect     off;
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+            proxy_set_header   X-Forwarded-Proto $scheme;
+        }
+    {% endfor %}
+
+    # send all the rest to the frontend
+    {% if frontend_mode == "SSR"%}
+        location / {
+            proxy_pass         http://app_frontend_{{ project_slug }}/;
+            proxy_redirect     off;
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+        }
+    {% elif frontend_mode == "static" %}
+        location / {
+            gzip on;
+            gzip_vary on;
+            gzip_proxied expired no-cache no-store private auth;
+            gzip_types image/svg+xml text/plain text/css text/xml application/javascript text/javascript application/x-javascript application/xml application/json;
+            gzip_disable "MSIE [1-6]\.";
+            expires 30d;
+            add_header Vary Accept-Encoding;
+            access_log off;
+            autoindex off;
+
+            try_files $uri /index.html =404;
+            root {{ frontend_static_path }};
+        }
+    {% endif %}
+}
+
+server {
+    listen 80;
+
+    server_name {{ " ".join(public_hostnames) }};
+
+    return 301 https://$host$request_uri;
+}

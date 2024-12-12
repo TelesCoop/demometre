@@ -1,0 +1,80 @@
+<div>
+    <div>
+        {{ rule_form.conditional_question.error }}
+        {{ rule_form.conditional_question.label_tag }}
+        {{ rule_form.conditional_question }}
+    </div>
+
+    <div id="id_display_response_choices" style="display: none;">
+        {{ rule_form.response_choices.error }}
+        {{ rule_form.response_choices.label_tag }}
+        {{ rule_form.response_choices }}
+    </div>
+    <div id="id_display_percentage_response" style="display: none;">
+        {{ rule_form.numerical_operator.error }}
+        {{ rule_form.numerical_operator.label_tag }}
+        {{ rule_form.numerical_operator }}
+        {{ rule_form.numerical_value.error }}
+        {{ rule_form.numerical_value.label_tag }}
+        {{ rule_form.numerical_value }}
+    </div>
+    <div id="id_display_number_response" style="display: none;">
+        {{ rule_form.numerical_operator.error }}
+        {{ rule_form.numerical_operator.label_tag }}
+        {{ rule_form.numerical_operator }}
+        {{ rule_form.float_value.error }}
+        {{ rule_form.float_value.label_tag }}
+        {{ rule_form.float_value }}
+    </div>
+    <div id="id_display_boolean_response" style="display: none;">
+        {{ rule_form.boolean_response.error }}
+        {{ rule_form.boolean_response.label_tag }}
+        {{ rule_form.boolean_response }}
+    </div>
+</div>
+
+<script type="text/javascript">
+    const QUESTIONS_RESPONSE_BY_QUESTION_ID = JSON.parse("{{ data.questions_response_by_question_id | escapejs }}");
+
+    var new_rule = document.getElementById("id_conditional_question");
+    var display_response_choices = document.getElementById("id_display_response_choices");
+    var display_percentage_response = document.getElementById("id_display_percentage_response");
+    var display_number_response = document.getElementById("id_display_number_response");
+    var display_boolean_response = document.getElementById("id_display_boolean_response");
+
+    new_rule.addEventListener("change", function() {
+        const new_rule_type = QUESTIONS_RESPONSE_BY_QUESTION_ID[new_rule.value].type
+        if (new_rule_type === "unique_choice" || new_rule_type === "multiple_choice"){
+            var str = ""
+            for (const [response_choice_id, response_choice] of Object.entries(QUESTIONS_RESPONSE_BY_QUESTION_ID[new_rule.value].responses)) {
+                var id = "id_response_choices_" + response_choice_id
+                str += "<li><label for='" + id + "'>"
+                    + "<input type='checkbox' name='response_choices' value='" + response_choice_id + "' id='" + id + "'></input>"
+                    + response_choice
+                    + "</label></li>"
+            }
+            document.getElementById("id_response_choices").innerHTML = str;
+            display_response_choices.style.display =  "block";
+        } else {
+            display_response_choices.style.display =  "none";
+        }
+
+        if ("percentage" === new_rule_type) {
+            display_percentage_response.style.display =  "block";
+        } else {
+            display_percentage_response.style.display =  "none";
+        }
+
+        if ("number" === new_rule_type) {
+            display_number_response.style.display =  "block";
+        } else {
+            display_number_response.style.display =  "none";
+        }
+
+        if (new_rule_type == "boolean") {
+            display_boolean_response.style.display =  "block";
+        } else {
+            display_boolean_response.style.display =  "none";
+        }
+    });
+</script>

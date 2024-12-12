@@ -1,0 +1,54 @@
+{% extends "wagtailadmin/base.html" %}
+
+{% block content %}
+    {% include "wagtailadmin/shared/header.html" with title="Affinage du critère de représentativité" icon="password" %}
+
+    <div class="nice-padding">
+        <h1>Affiner le critère de représentativité : <i>{{ data.name }}</i></h1>
+        {% for rule_form in rule_forms %}
+            <form action="{% url 'representativity-criteria-refining' data.representativity_criteria.id %}" method="post">
+                {% csrf_token %}
+                {{ rule_form.representativity_criteria.as_hidden }}
+                {{ rule_form.response_choice.as_hidden }}
+                <div>
+                    <h2>{{ rule_form.instance }}</h2>
+                    <div class="label-container">
+                        {{ rule_form.ignore_for_acceptability_threshold.error }}
+                        {{ rule_form.ignore_for_acceptability_threshold.label_tag }}
+                        {{ rule_form.ignore_for_acceptability_threshold }}
+                    </div>
+                    <div class="label-container">
+                        {{ rule_form.totally_ignore.error }}
+                        {{ rule_form.totally_ignore.label_tag }}
+                        {{ rule_form.totally_ignore }}
+                    </div>
+                    <br/>
+                    <div class="actions">
+                        <input type="submit" class="button button-small button-secondary" value="Valider">
+                    </div>
+                    <br/>
+                </div>
+            </form>
+        {% endfor %}
+        <a type="button" class="button button-small button-secondary" style="margin-top: 1rem;"
+            href="/admin/open_democracy_back/representativitycriteria/"
+            >Terminer</a>
+    </div>
+
+{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <style>
+        .label-container {
+            display: flex;
+        }
+        label {
+            width: fit-content;
+        }
+        input {
+            margin: auto 0;
+        }
+
+    </style>
+{% endblock %}

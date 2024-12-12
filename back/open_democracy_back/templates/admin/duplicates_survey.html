@@ -1,0 +1,41 @@
+{% extends "wagtailadmin/base.html" %}
+
+{% block content %}
+    {% include "wagtailadmin/shared/header.html" with title="Dupliquer le questionnaire" icon="password" %}
+
+    <div class="nice-padding">
+        <h1>Dupliquer le questionnaire : <i>{{ survey.name }}</i></h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+
+
+            <div class="actions">
+                <input type="submit" class="button submit-button" value="Dupliquer">
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <style>
+       .helptext {
+           font-style: italic;
+           color: #666;
+
+       }
+       label {
+           display: block;
+           margin-top: 1rem;
+           margin-bottom: 0.25rem;
+       }
+
+       .submit-button {
+           margin-top: 16px;
+       }
+
+
+    </style>
+{% endblock %}

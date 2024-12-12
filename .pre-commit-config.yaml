@@ -1,4 +1,4 @@
-exclude: ^(.*\/migrations|backend\/compressed-assets|backend\/assets|.*package.json|.*package-lock.json|backend\/templates\/bootstrap4|.*\/fixtures\/.*.json)
+exclude: ^(.*\/migrations|.*package.json|.*package-lock.json|Pipfile*)
 repos:
   - hooks:
       - id: check-added-large-files
@@ -32,6 +32,41 @@ repos:
     repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.2.0
   - hooks:
+      - id: check-ast
+        language_version: python3.10
+      - id: check-builtin-literals
+        language_version: python3.10
+      - id: check-docstring-first
+        language_version: python3.10
+      - id: debug-statements
+        language_version: python3.10
+      - args:
+          - --remove
+        id: fix-encoding-pragma
+      - id: requirements-txt-fixer
+    repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+  - hooks:
+      - id: pyupgrade
+    repo: https://github.com/asottile/pyupgrade
+    rev: v2.7.2
+  - hooks:
+      - id: black
+        language_version: python3.10
+    repo: https://github.com/psf/black
+    rev: 23.12.1
+  - hooks:
+      - args:
+          - --config=.flake8
+        id: flake8
+        language_version: python3.10
+    repo: https://github.com/pycqa/flake8
+    rev: 3.8.3
+  - hooks:
+      - id: python-safety-dependencies-check
+    repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+    rev: v1.3.0
+  - hooks:
       - id: beautysh
     repo: https://github.com/bemeurer/beautysh.git
     rev: 6.0.1
@@ -39,6 +74,10 @@ repos:
       - id: script-must-have-extension
     repo: https://github.com/jumanjihouse/pre-commit-hooks
     rev: 2.1.4
+  - hooks:
+      - id: check-xml
+    repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
   - hooks:
       - args:
           - "-d {rules: {line-length: {max: 999}}}"
@@ -54,26 +93,34 @@ repos:
       - id: gitlab-ci-linter
     repo: https://gitlab.com/devopshq/gitlab-ci-linter
     rev: v1.0.1
-  - hooks:
-      - additional_dependencies:
-          - eslint@latest
-          - "@nuxtjs/eslint-config-typescript"
-          - eslint-plugin-eslint-plugin@latest
-          - prettier@latest
-          - eslint-config-prettier@latest
-          - eslint-plugin-prettier@latest
-          - babel-eslint
-          - typescript
-        args:
-          - -c=.eslintrc.js
-          - --fix
-        files: ^
-        id: eslint
-        name: js-eslint
+
+  - repo: local
+    hooks:
+      - id: local eslint
+        name: local eslint
+        entry: bash -c "cd front && python3 manage.py test"
         types: [file]
         types_or: [javascript, jsx, ts, tsx, vue]
-    repo: https://github.com/pre-commit/mirrors-eslint
-    rev: v8.43.0
+        pass_filenames: false
+        language: system
+  - repo: local
+    hooks:
+      - id: django-test
+        name: django-test
+        # https://github.com/pre-commit/pre-commit/issues/1417
+        entry: bash -c "cd back && python3 manage.py test"
+        types: [python]
+        pass_filenames: false
+        language: system
+  - repo: local
+    hooks:
+      - id: check-django-migrations
+        name: Check django migrations
+        entry: python3 back/manage.py makemigrations --dry-run --check
+        language: system
+        types: [python] # hook only runs if a python file is staged
+        pass_filenames: false
+
   - hooks:
       - id: commitizen
         stages:

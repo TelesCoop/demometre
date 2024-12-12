@@ -1,0 +1,40 @@
+$label-color: $shade-400
+$label-weight: normal
+$input-border-color: $shade-350
+
+input.is-normal-width
+  max-width: 360px
+
+.label
+  text-transform: uppercase
+
+.help
+  color: $label-color
+
+input[type=checkbox], input[type=radio]
+  &.custom-hidden
+    height: 0
+    opacity: 0
+    width: 0
+    position: absolute
+
+
+.arrow-button-fixed
+  position: fixed
+  top: 50%
+  transform: translateY(-50%)
+
+  &.is-left
+    left: 2rem
+
+    @include touch
+      left: 3px
+
+  &.is-right
+    right: 2rem
+
+    svg
+      transform: rotate(180deg)
+
+    @include touch
+      right: 3px

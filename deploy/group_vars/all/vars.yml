@@ -1,0 +1,22 @@
+---
+
+organization_slug: telescoop
+base_project_slug: demometre
+main_user: demometre
+main_user_uid: 1044
+django_project_name: open_democracy_back
+backend_repo: git@github.com:TelesCoop/demometre-backend.git
+frontend_repo: git@github.com:TelesCoop/demometre-frontend.git
+backend_identity_file_path: /home/{{ main_user }}/.ssh/id_ed25519_backend
+frontend_identity_file_path: /home/{{ main_user }}/.ssh/id_ed25519_frontend
+var_log_path: /var/log/{{ organization_slug }}/{{ project_slug }}
+project_base_dir: /{{ organization_slug }}/{{ base_project_slug }}
+supervisor_conf: /etc/supervisor/conf.d
+
+# if using postgresql database, you will need to
+# - define the var `database_password`
+# - install an additional Ansible module `ansible-galaxy collection install community.postgresql`
+database_provider: postgresql  # sqlite or postgresql
+
+# can be SSR or static
+frontend_mode: SSR

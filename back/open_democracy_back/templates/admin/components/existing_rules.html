@@ -1,0 +1,47 @@
+<ul class="multiple">
+    {% for rule in rules %}
+        <li>
+            <ul class="controls">
+                <li>
+                    <form action="{% url url id rule.id %}" method="post">
+                        {% csrf_token %}
+                        <button
+                            type="submit"
+                            class="button button-small button--icon text-replace white hover-no"
+                            title="Supprimer"
+                            onclick="document.getElementById('confirm-delete-{{ rule.id }}').style.display='block'"
+                        >
+                            <svg class="icon icon-bin icon" aria-hidden="true" focusable="false"><use href="#icon-bin"></use></svg>Supprimer
+                        </button>
+                    </form>
+                </li>
+            </ul>
+            <fieldset class="chooser">
+                <div class="chosen">
+                    <svg class="icon icon-snippet icon" aria-hidden="true" focusable="false">
+                        {% if rule.conditional_question.profiling_question %}
+                        <use href="#icon-user"></use>
+                        {% else %}
+                        <use href="#icon-list-ol"></use>
+                        {% endif %}
+                    </svg>
+                    <b class="title">
+                        {{rule.conditional_question}}
+                    </b>
+                </div>
+                <div>
+                    {% if rule.response_choices.count > 0 %}
+                        réponse =
+                        {% for response_choice in rule.response_choices.all %}
+                            {{ response_choice }} {% if forloop.counter < rule.response_choices.count %} OU{% endif %}
+                        {% endfor %}
+                    {% elif rule.numerical_operator %}
+                        réponse {{ rule.numerical_operator }} {{ rule.numerical_value }}
+                    {% elif rule.boolean_response %}
+                        réponse = {{ rule.boolean_response }}
+                    {% endif %}
+                </div>
+            </fieldset>
+        </li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,67 @@
+
+@import "colors-tools"
+
+// FONTS
+$family-sans-serif: Inter, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !default
+$family-serif: "IBM Plex Serif", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !default
+$family-primary: $family-sans-serif
+$family-secondary: $family-serif
+/* ibm-plex-serif-regular - latin */
+@font-face
+  font-family: 'IBM Plex Serif'
+  font-style: normal
+  font-weight: 400
+  src: url('~/assets/fonts/ibm-plex-serif/ibm-plex-serif-v14-latin-regular.eot') /* IE9 Compat Modes */
+  src: local(''), url('~/assets/fonts/ibm-plex-serif/ibm-plex-serif-v14-latin-regular.eot?#iefix') format('embedded-opentype'), url('~/assets/fonts/ibm-plex-serif/ibm-plex-serif-v14-latin-regular.woff2') format('woff2'), url('~/assets/fonts/ibm-plex-serif/ibm-plex-serif-v14-latin-regular.woff') format('woff'), url('~/assets/fonts/ibm-plex-serif/ibm-plex-serif-v14-latin-regular.ttf') format('truetype'), url('~/assets/fonts/ibm-plex-serif/ibm-plex-serif-v14-latin-regular.svg#IBMPlexSerif') format('svg')
+
+@font-face
+  font-family: 'IBM Plex Serif'
+  font-style: normal
+  font-weight: 700
+  src: url('~/assets/fonts/ibm-plex-serif/ibm-plex-serif-v14-latin-700.eot') /* IE9 Compat Modes */
+  src: local(''), url('~/assets/fonts/ibm-plex-serif/ibm-plex-serif-v14-latin-700.eot?#iefix') format('embedded-opentype'), url('~/assets/fonts/ibm-plex-serif/ibm-plex-serif-v14-latin-700.woff2') format('woff2'), url('~/assets/fonts/ibm-plex-serif/ibm-plex-serif-v14-latin-700.woff') format('woff'), url('~/assets/fonts/ibm-plex-serif/ibm-plex-serif-v14-latin-700.ttf') format('truetype'), url('~/assets/fonts/ibm-plex-serif/ibm-plex-serif-v14-latin-700.svg#IBMPlexSerif') format('svg')
+
+@font-face
+  font-family: 'Inter'
+  font-style: normal
+  font-weight: 400
+  src: url('~/assets/fonts/inter/inter-v8-latin-regular.eot') /* IE9 Compat Modes */
+  src: local(''), url('~/assets/fonts/inter/inter-v8-latin-regular.eot?#iefix') format('embedded-opentype'), url('~/assets/fonts/inter/inter-v8-latin-regular.woff2') format('woff2'), url('~/assets/fonts/inter/inter-v8-latin-regular.woff') format('woff'), url('~/assets/fonts/inter/inter-v8-latin-regular.ttf') format('truetype'), url('~/assets/fonts/inter/inter-v8-latin-regular.svg#IBMPlexSerif') format('svg')
+
+@font-face
+  font-family: 'Inter'
+  font-style: normal
+  font-weight: 700
+  src: url('~/assets/fonts/inter/inter-v8-latin-700.eot') /* IE9 Compat Modes */
+  src: local(''), url('~/assets/fonts/inter/inter-v8-latin-700.eot?#iefix') format('embedded-opentype'), url('~/assets/fonts/inter/inter-v8-latin-700.woff2') format('woff2'), url('~/assets/fonts/inter/inter-v8-latin-700.woff') format('woff'), url('~/assets/fonts/inter/inter-v8-latin-700.ttf') format('truetype'), url('~/assets/fonts/inter/inter-v8-latin-700.svg#Inter') format('svg')
+
+// we use svg icons and have to adjust the height inside buttons
+.button
+  .icon
+    &,
+    &.is-small,
+    &.is-medium,
+    &.is-large
+      height: 1.2em !important
+
+  span
+    // Text in button go to the line when no space
+    white-space: normal
+
+$section-padding-desktop: 3rem 0
+
+// Import only what you need from Bulma
+@import "../node_modules/bulma/sass/utilities/_all.sass"
+
+// Spacing
+$spacing-values: ("0": 0, "0_5": 0.5rem, "0_75": 0.75rem, "1": 1rem, "1_5": 1.5rem, "2": 2rem, "3": 3rem, "4": 4rem, "8": 8rem, "auto": auto)
+
+// Breadcrumb
+$breadcrumb-item-color: $shade-700
+$breadcrumb-item-active-color: $shade-400
+$breadcrumb-item-hover-color: $link
+
+// Card
+$card-radius: 6px
+$card-shadow: none
+$card-content-padding: 2rem

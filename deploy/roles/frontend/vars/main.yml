@@ -1,0 +1,11 @@
+---
+
+frontend_static_path: "{{ project_dir }}/frontend_static"
+frontend_path: "{{ project_dir }}/frontend"
+server_uris_passed_to_backend:
+  - api
+  - admin
+  - django-admin
+  - documents
+  - backup
+  - hijack
