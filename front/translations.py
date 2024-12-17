@@ -12,11 +12,6 @@ def read_po_file(locale) -> Catalog:
         return read_po(f)
 
 
-def read_json_file(locale) -> dict:
-    with open(f"./language/{locale}/{locale}.json", "r") as f:
-        return json.load(f)
-
-
 def write_po_file(locale, catalog: Catalog):
     with open(f"./language/{locale}/app.po", "wb") as f:
         write_po(f, catalog, width=None)
@@ -52,14 +47,12 @@ def read_extraction():
 def update():
     for locale in LOCALES:
         catalog = read_po_file(locale)
-        translations: dict = read_json_file(locale)
 
         # keep order
         po_file_messages = list(dict.fromkeys(message.id for message in catalog))
-        singular_form_of_plural_po_file_messages = set(
+        singular_form_of_plural_po_file_messages = {
             message.id[0] for message in catalog if message.pluralizable
-        )
-        json_file_messages = set(translations)
+        }
         location_per_message_id = read_extraction()
 
         # first existing po files messages, then new ones from location_per_message_id

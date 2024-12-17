@@ -19,6 +19,7 @@
               type="email"
               placeholder="jean@laposte.fr"
               :class="isMailValid ? '' : 'is-danger'"
+              data-cy="login-email"
               @change="onEmailUpdate"
             >
             <span class="icon is-small is-left has-text-shade-600">
@@ -52,6 +53,7 @@
               type="password"
               :placeholder="$t('mot de passe')"
               :class="isPasswordValid ? '' : 'is-danger'"
+              data-cy="login-password"
               @change="onPasswordUpdate"
             >
             <span class="icon is-small is-left has-text-shade-600">
@@ -88,6 +90,7 @@
           </div>
           <button
             class="button is-shade-600 is-small"
+            data-cy="login-submit"
             :disabled="disabled"
           >
             <span>{{ $t("Connexion") }}</span>

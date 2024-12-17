@@ -12,13 +12,11 @@ MIDDLEWARE.append(  # noqa: F405
     "rollbar.contrib.django.middleware.RollbarNotifierMiddleware"
 )
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": config.getstr("database.name"),  # noqa: F405
-        "USER": config.getstr("database.user"),  # noqa: F405
-        "PASSWORD": config.getstr("database.password"),  # noqa: F405
-    }
+DATABASES["default"] = {  # noqa: F405
+    "ENGINE": "django.db.backends.postgresql",
+    "NAME": config.getstr("database.name"),  # noqa: F405
+    "USER": config.getstr("database.user"),  # noqa: F405
+    "PASSWORD": config.getstr("database.password"),  # noqa: F405
 }
 
 ROLLBAR = {

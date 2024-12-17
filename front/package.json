@@ -9,9 +9,10 @@
     "do-vue-i18n-extract": "yarn vue-i18n-extract report --vueFiles './?(composables|pages|components|utils)/**/*.?(ts|vue)' --languageFiles './language/empty.json' --separator ';;;;' > language/extraction.md"
   },
   "devDependencies": {
-    "@nuxt/eslint-config": "^0.3.6",
+    "@nuxt/eslint-config": "^0.7.3",
     "@nuxtjs/i18n": "^8.5.1",
     "bulma": "^0.9.3",
+    "cypress": "^13.16.1",
     "easygettext": "^2.17.0",
     "eslint": "^8.44.0",
     "nuxt": "3.5.3",
@@ -38,5 +39,6 @@
   "resolutions": {
     "string-width": "4.2.3"
   },
-  "packageManager": "yarn@1.22.19"
+  "packageManager": "yarn@1.22.19",
+  "type": "module"
 }

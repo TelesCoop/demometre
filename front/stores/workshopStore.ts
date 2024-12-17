@@ -100,7 +100,6 @@ export const useWorkshopStore = defineStore("workshop", {
       workshopId: number,
       question: Question,
     ) {
-      const i18n = useI18n()
       let errorOccured = false
       if (question.objectivity === Objectivity.OBJECTIVE) {
         const apiResponse = await useApiPost<QuestionResponse>(

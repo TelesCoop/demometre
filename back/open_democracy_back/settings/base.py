@@ -114,17 +114,21 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-    }
+    },
+    "test": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "tests_db.sqlite3",
+    },
 }
 if config.getstr("database.engine") == "postgresql":
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": config.getstr("database.name"),  # noqa: F405
-            "USER": config.getstr("database.user"),  # noqa: F405
-            "PASSWORD": config.getstr("database.password"),  # noqa: F405
-        }
+    DATABASES["default"] = {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": config.getstr("database.name"),  # noqa: F405
+        "USER": config.getstr("database.user"),  # noqa: F405
+        "PASSWORD": config.getstr("database.password"),  # noqa: F405
     }
+if os.environ.get("E2E_TESTS"):
+    DATABASES["default"] = DATABASES["test"]
 
 
 # Password validation

@@ -57,7 +57,7 @@ repos:
     rev: 23.12.1
   - hooks:
       - args:
-          - --config=.flake8
+          - --config=back/.flake8
         id: flake8
         language_version: python3.10
     repo: https://github.com/pycqa/flake8
@@ -98,7 +98,7 @@ repos:
     hooks:
       - id: local eslint
         name: local eslint
-        entry: bash -c "cd front && python3 manage.py test"
+        entry: bash -c "cd front && yarn lint:fix"
         types: [file]
         types_or: [javascript, jsx, ts, tsx, vue]
         pass_filenames: false

@@ -41,6 +41,7 @@ from open_democracy_back.utils import (
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = User
+        django_get_or_create = ("email",)
 
     password: Optional[str] = factory.Faker("password")
     first_name: str = factory.Faker("first_name")
@@ -79,6 +80,7 @@ class PillarFactory(factory.django.DjangoModelFactory):
 class MarkerFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Marker
+        django_get_or_create = ("pillar", "code")
 
     code: str = factory.LazyAttribute(lambda a: str(random.randint(1, 20)))
     name: str = factory.Faker("name")
@@ -89,6 +91,7 @@ class MarkerFactory(factory.django.DjangoModelFactory):
 class CriteriaFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Criteria
+        django_get_or_create = ("marker", "code")
 
     code: str = factory.LazyAttribute(lambda a: str(random.randint(1, 20)))
     name: str = factory.Faker("name")
@@ -99,6 +102,7 @@ class CriteriaFactory(factory.django.DjangoModelFactory):
 class QuestionFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Question
+        django_get_or_create = ("criteria", "code")
 
     code: str = factory.LazyAttribute(lambda a: str(random.randint(1, 20)))
     name: str = factory.Faker("name")
@@ -133,7 +137,7 @@ class RegionFactory(factory.django.DjangoModelFactory):
         model = Region
 
     name: str = factory.Faker("name")
-    code: str = factory.LazyAttribute(lambda _: str(random.randint(0, 1000)))
+    code: str = factory.LazyAttribute(lambda _: str(random.randint(0, 999)))
 
 
 class DepartmentFactory(factory.django.DjangoModelFactory):
@@ -141,7 +145,7 @@ class DepartmentFactory(factory.django.DjangoModelFactory):
         model = Department
 
     name: str = factory.Faker("name")
-    code: str = factory.LazyAttribute(lambda _: str(random.randint(0, 1000)))
+    code: str = factory.LazyAttribute(lambda _: str(random.randint(0, 999)))
     region = factory.SubFactory(RegionFactory)
 
 
@@ -150,7 +154,7 @@ class MunicipalityFactory(factory.django.DjangoModelFactory):
         model = Municipality
 
     name: str = factory.Faker("name")
-    code: str = factory.LazyAttribute(lambda _: str(random.randint(0, 1000)))
+    code: str = factory.LazyAttribute(lambda _: str(random.randint(0, 999)))
     department: str = factory.SubFactory(DepartmentFactory)
 
     population: int = factory.Faker("random_int")

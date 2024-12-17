@@ -49,7 +49,7 @@ export const usePageStore = defineStore("page", {
   actions: {
     setBlogPosts(blogPostsList: Article[]) {
       const blogPosts: Record<string, Article> = {}
-      for (const post: Article of blogPostsList) {
+      for (const post of blogPostsList) {
         blogPosts[post.slug] = post
       }
       this.blogPostsBySlug = blogPosts

@@ -3,7 +3,7 @@ import { defineNuxtConfig } from "nuxt/config"
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
   css: ["@/css/app.sass"],
-  modules: ["@pinia/nuxt", "@nuxtjs/plausible", "@nuxtjs/i18n"],
+  modules: ["@pinia/nuxt", "@nuxtjs/plausible", "@nuxtjs/i18n", "@nuxt/test-utils/module"],
   vite: {
     css: {
       preprocessorOptions: {

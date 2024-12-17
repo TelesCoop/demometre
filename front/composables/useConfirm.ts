@@ -5,7 +5,6 @@ const $t = i18n.global.t
 
 export const useConfirm = () => {
   const mainStore = useMainStore()
-  const $t = i18n.t
 
   return (
     text: string,
