@@ -63,6 +63,7 @@
         <button
           class="button is-shade-600 is-rounded"
           :disabled="disabled"
+          data-cy="start-participation"
         >
           <span>
             {{ $t("lancement d'une évaluation") }}

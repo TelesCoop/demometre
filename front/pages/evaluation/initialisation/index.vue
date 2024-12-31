@@ -90,6 +90,7 @@
           class="button is-shade-600 is-rounded mt-4"
           :disabled="disabled"
           type="button"
+          data-cy="consent-submit"
           @click.prevent="goToNextStep"
         >
           <span>{{ $t("Valider") }}</span>
@@ -122,6 +123,7 @@
               v-model="initiatorName"
               class="input is-normal-width"
               type="text"
+              data-cy="initiator-name"
               placeholder="Mairie de ..."
             >
           </div>
@@ -144,6 +146,7 @@
             >
             <label
               :for="initiatorType.key"
+              :data-cy="`initiator-type-${initiatorType.key}`"
               class="button is-shade-600 is-outlined locality"
             >{{ initiatorType.value }}</label>
           </div>
@@ -152,6 +155,7 @@
           <button
             class="button is-shade-600 is-rounded"
             :disabled="disabled"
+            data-cy="initiator-submit"
           >
             <span>{{ $t("Valider") }}</span>
             <span class="icon">

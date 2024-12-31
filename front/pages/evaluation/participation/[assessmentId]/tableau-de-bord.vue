@@ -16,6 +16,7 @@
         <NuxtLink
           :to="`/evaluation/participation/${assessmentStore.currentAssessmentId}/role`"
           class="button is-shade-600 is-rounded"
+          data-cy="participation-board-continue"
         >
           <span>{{ $t("Poursuivre l'évaluation") }}</span>
           <span class="icon">

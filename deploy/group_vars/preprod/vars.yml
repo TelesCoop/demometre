@@ -6,8 +6,8 @@ project_dir: /{{project_base_dir}}{{ environment_suffix }}
 backend_static_path: "{{ project_dir }}/backend_static"
 media_static_path: "{{ project_dir }}/backend/media"
 
-frontend_branch: dev
-backend_branch: dev
+frontend_branch: monorepo
+backend_branch: monorepo
 n_workers: 1
 
 node_version: 18.18.0

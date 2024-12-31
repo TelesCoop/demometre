@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from open_democracy_back.factories import (
+from open_democracy_back.factories.factories import (
     SurveyFactory,
     PillarFactory,
     MarkerFactory,

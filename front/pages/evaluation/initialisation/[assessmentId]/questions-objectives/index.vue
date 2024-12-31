@@ -9,6 +9,7 @@
     <div class="nav-questionnaire-container">
       <button
         class="button is-shade-600 is-rounded mt-4"
+        data-cy="start-objective-questions"
         @click.prevent="goToFirstObjectiveQuestion"
       >
         <span>{{

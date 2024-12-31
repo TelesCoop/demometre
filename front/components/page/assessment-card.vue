@@ -44,6 +44,7 @@
         </a>
         <br>
         <button
+          :data-cy="props.assessmentType.assessmentType + '-choose'"
           class="button is-shade-600 has-text-white is-rounded is-responsive"
           @click.prevent="letsGo"
         >

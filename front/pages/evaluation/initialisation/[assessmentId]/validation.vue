@@ -21,6 +21,7 @@
 
         <button
           class="button is-shade-600 is-rounded mt-4"
+          data-cy="confirm-objective-questions"
           @click.prevent="submit"
         >
           <span>{{

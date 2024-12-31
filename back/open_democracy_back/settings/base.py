@@ -18,6 +18,7 @@ import sys
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 IS_TEST = sys.argv[1:2] == ["test"]
+IS_MIGRATING = "migrat" in sys.argv[1]
 
 config = getconf.ConfigGetter(
     "demometre",

@@ -2,7 +2,7 @@ from statistics import mean
 
 from django.test import TestCase
 
-from open_democracy_back.factories import (
+from open_democracy_back.factories.factories import (
     QuestionFactory,
     ParticipationResponseFactory,
     AssessmentFactory,

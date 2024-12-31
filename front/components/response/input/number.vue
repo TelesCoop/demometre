@@ -4,6 +4,7 @@
       :id="`$question-${props.questionId}-number`"
       v-model="answer"
       :readonly="readOnly"
+      data-cy="number-input"
       type="number"
       :min="min"
       :max="max"

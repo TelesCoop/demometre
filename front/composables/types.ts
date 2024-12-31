@@ -209,6 +209,7 @@ export const AssessmentType = {
 export type Locality = {
   id: number
   name: string
+  code: string
   population: number
   zip_codes: number[]
   localityType: LocalityTypes

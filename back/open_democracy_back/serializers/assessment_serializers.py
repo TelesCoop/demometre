@@ -43,6 +43,7 @@ class MunicipalitySerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "name",
+            "code",
             "population",
             "zip_codes",
             "locality_type",
@@ -89,6 +90,7 @@ class EpciSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "name",
+            "code",
             "population",
             "zip_codes",
             "locality_type",

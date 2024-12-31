@@ -61,7 +61,8 @@
           v-model="zipCode"
           class="input is-normal-width"
           type="text"
-          placeholder="Code postal"
+          data-cy="zip-code"
+          :placeholder="$t('Code postal')"
           required
           @keyup.enter.stop="searchLocalities"
         >
@@ -69,6 +70,7 @@
           type="button"
           class="pagination-next button is-outlined is-shade-600"
           style="border-color: transparent"
+          data-cy="search"
           :disabled="!zipCode"
           @click="searchLocalities"
         >
@@ -105,6 +107,7 @@
           >
           <label
             :for="locality.name"
+            :data-cy="`locality-${locality.localityType}-${locality.code}`"
             class="button is-shade-600 is-outlined locality"
           >{{ locality.name }}</label>
         </div>
@@ -116,6 +119,7 @@
         class="button is-shade-600 is-rounded"
         :disabled="disabled"
         type="submit"
+        data-cy="submit"
       >
         <span>{{ $t("Valider") }}</span>
         <span class="icon">

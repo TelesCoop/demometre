@@ -7,7 +7,7 @@ from django.core import mail
 from django.test import TestCase
 from django.urls import reverse
 
-from open_democracy_back.factories import (
+from open_democracy_back.factories.factories import (
     AssessmentFactory,
     ParticipationFactory,
     UserFactory,

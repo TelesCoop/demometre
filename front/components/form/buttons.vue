@@ -11,6 +11,7 @@
         class="button is-rounded mr-0_75"
         :disabled="!isAnswered"
         type="submit"
+        data-cy="submit-button"
       >
         <span>{{ $t("Valider") }}</span>
         <i class="icon">

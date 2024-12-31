@@ -3,6 +3,7 @@
     <h1
       class="title is-size-3-tablet is-size-4-mobile"
       :class="`has-text-${props.color}-dark`"
+      data-cy="question-statement"
     >
       {{ question.questionStatement }}
     </h1>

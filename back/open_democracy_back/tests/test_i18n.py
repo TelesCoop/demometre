@@ -2,7 +2,7 @@ from django.test import TestCase
 from rest_framework.reverse import reverse
 from wagtail.models import Locale
 
-from open_democracy_back.factories import PillarFactory
+from open_democracy_back.factories.factories import PillarFactory
 from open_democracy_back.models import BlogPost, HomePage, Resource
 
 

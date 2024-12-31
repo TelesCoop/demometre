@@ -6,6 +6,7 @@
       type="number"
       min="0"
       max="100"
+      data-cy="percentage-input"
       class="input"
       :class="`has-background-${props.color}-light has-border-${props.color}-dark has-text-${props.color}-dark`"
       :placeholder="placeholder"

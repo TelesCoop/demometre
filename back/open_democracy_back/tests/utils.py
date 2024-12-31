@@ -1,6 +1,6 @@
 import functools
 
-from open_democracy_back.factories import UserFactory
+from open_democracy_back.factories.factories import UserFactory
 
 
 def authenticate(func):

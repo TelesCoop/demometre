@@ -1,5 +1,4 @@
-import os
-
+from django.conf import settings
 from django.utils import translation
 from rest_framework import mixins, viewsets
 from wagtail.models import Locale
@@ -31,7 +30,7 @@ from open_democracy_back.serializers.page_serializers import (
 
 
 def refresh_locale_pk_per_locale():
-    if os.environ.get("E2E_TESTS"):
+    if settings.IS_MIGRATING:
         return
     global locale_pk_per_locale
     locale_pk_per_locale = {

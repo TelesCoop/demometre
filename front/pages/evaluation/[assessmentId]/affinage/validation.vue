@@ -20,6 +20,7 @@
 
         <button
           class="button is-shade-600 is-rounded mt-4"
+          data-cy="affinage-continue"
           @click.prevent="submit"
         >
           <span>{{

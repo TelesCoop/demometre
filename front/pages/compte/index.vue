@@ -55,11 +55,13 @@
           class="is-flex is-flex-wrap-wrap"
           style="row-gap: 1.5rem; column-gap: 3rem"
         >
+          <pre>{{ userStore.user }}</pre>
           <InformationDetail
             title="Nom"
             :value="userStore.user.username"
           />
           <InformationDetail
+            data-cy="account-email"
             title="mail"
             :value="userStore.user.email"
           />

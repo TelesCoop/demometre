@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
 
-from open_democracy_back.factories import QuestionFactory, CriteriaFactory
+from open_democracy_back.factories.factories import QuestionFactory, CriteriaFactory
 
 
 class TestQuestionnaireViews(TestCase):

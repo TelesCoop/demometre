@@ -16,8 +16,9 @@
             :max="props.bounds.max"
             :tooltips="false"
             :lazy="false"
+            :data-cy="`response-choice-${responseChoice.responseChoice}`"
           />
-          <div class="value-display is-size-5">
+          <div :data-cy="`response-choice-${responseChoice.responseChoice}-selected`" class="value-display is-size-5">
             {{ props.selected ? answer : "?" }}
           </div>
         </div>

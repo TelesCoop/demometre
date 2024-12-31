@@ -13,7 +13,7 @@ type QuestionDataFilter = {
 }
 const QUESTION_FILTERS = {
   role({ question, participation }: QuestionDataFilter): boolean {
-    return question.roleIds.includes(participation.roleId)
+    return !question.roleIds.length || question.roleIds.includes(participation.roleId)
   },
   population({ question, assessment }: QuestionDataFilter) {
     const population =
@@ -228,6 +228,7 @@ export function useQuestionnaireJourney(pillarName: string) {
   }
 
   const goToNextQuestion = (currentQuestionId: number) => {
+    console.log("### goToNextQuestion", { currentQuestionId, isLast: isLastQuestion(currentQuestionId) })
     if (isLastQuestion(currentQuestionId)) {
       useRouter().push(`/evaluation/${assessmentStore.currentAssessmentId}/questionnaire`)
     } else {
@@ -253,6 +254,7 @@ export function useQuestionnaireJourney(pillarName: string) {
 
   const isLastQuestion = (currentQuestionId: number): boolean => {
     const myJourney = journey.value
+    console.log("#### isLastQuestion", {journey: myJourney, currentQuestionId})
     const index = myJourney.indexOf(currentQuestionId)
     return index + 1 === myJourney.length
   }

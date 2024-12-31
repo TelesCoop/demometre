@@ -6,6 +6,7 @@
           <button
             v-if="props.centerButtonName"
             class="button is-rounded is-responsive is-outlined is-shade-600"
+            data-cy="rosette-start"
             @click.prevent="onCenterButtonClick()"
           >
             {{ props.centerButtonName }}
@@ -29,6 +30,7 @@
                   ? `has-background-${PillarParams[pillar.name].color}`
                   : `has-background-${PillarParams[pillar.name].color}-light`)
             "
+            :data-cy="'pillar-' + pillar.name"
             @mouseenter="hoverPillarId = pillar.id"
             @mouseleave="hoverPillarId = null"
             @click="onPillarClick(pillar.name)"

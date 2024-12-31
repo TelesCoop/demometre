@@ -83,6 +83,7 @@
               :name="pillar.name"
               :is-completed="pillarsCompleted.includes(pillar.name)"
               style="cursor: pointer"
+              :data-cy="'pillar-' + pillar.name"
               @click="onRosettePillarClicked(pillar.name)"
             />
           </div>
@@ -99,6 +100,10 @@ import { usePageStore } from "~/stores/pageStore"
 import { useParticipationStore } from "~/stores/participationStore"
 import { useUserStore } from "~/stores/userStore"
 import { useAssessmentStore } from "~/stores/assessmentStore"
+import { useI18n } from "vue-i18n"
+
+const i18n = useI18n()
+const $t = i18n.t
 
 definePageMeta({
   title: "Questionnaire",
@@ -185,6 +190,7 @@ const onStartQuestionnaire = () => {
   startPillar(pillarName)
 }
 const onRosettePillarClicked = (pillarName) => {
+  console.log("### onRosettePillarClicked", pillarName)
   startPillar(pillarName)
 }
 const onRosetteMarkerClicked = (markerId) => {
