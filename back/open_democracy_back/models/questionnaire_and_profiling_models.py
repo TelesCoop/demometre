@@ -341,7 +341,7 @@ class Criteria(index.Indexed, ClusterableModel):
         help_text=_("Correspond au numéro de ce critère dans son marqueur"),
         validators=[MaxValueValidator(100), MinValueValidator(1)],
     )
-    concatenated_code = models.CharField(max_length=12, default="")
+    concatenated_code = models.CharField(max_length=15, default="")
     thematic_tags = models.ManyToManyField(
         ThematicTag, blank=True, verbose_name=_("Thématiques")
     )
@@ -482,7 +482,7 @@ class Question(index.Indexed, TimeStampedModel, ClusterableModel):
 
     code = models.CharField(
         verbose_name=_("Code"),
-        max_length=2,
+        max_length=3,
         help_text=_(
             "Correspond au numéro (ou lettre) de cette question, détermine son ordre"
         ),

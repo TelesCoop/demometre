@@ -26,6 +26,10 @@
             >
               <div
                 v-if="roles.includes(roleId)"
+                data-cy="chart-bar"
+                :data-role="profilingStore.roleById[roleId].name"
+                :data-choice="choice.label"
+                :data-category="category.label"
                 class="scale-question-chart-bar"
                 :class="`has-background-${rolesGradiants[index][0]} has-border-${color}-dark`"
                 :style="`width: ${getPercentage(

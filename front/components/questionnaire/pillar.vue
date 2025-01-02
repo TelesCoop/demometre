@@ -21,6 +21,7 @@
       :score="props.score"
       :color="props.active ? `${colorClass}-active` : colorClass"
       :size-circles="12"
+      :data-cy="`${props.name}-score`"
       size-number-class="is-size-5"
     />
     <span

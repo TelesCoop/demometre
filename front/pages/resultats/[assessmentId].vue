@@ -68,6 +68,7 @@
               :color="colorClass"
               :question="questionnaireStore.questionById[questionId]"
               class="mb-4"
+              data-cy="question-result"
             >
               <div
                 v-if="

@@ -3,10 +3,10 @@
     <div class="boolean-chart-title is-size-5 mb-0_5">
       <span :class="`has-text-${color}-hover`">
         {{ data.true.label }}
-        <strong :class="`has-text-${color}-hover`">{{ truePercentage }}%</strong>
+        <strong data-cy="boolean-true" :class="`has-text-${color}-hover`">{{ truePercentage }}%</strong>
       </span>
       <span :class="`has-text-${color}`">
-        <strong :class="`has-text-${color}`">{{ falsePercentage }}%</strong>
+        <strong data-cy="boolean-false" :class="`has-text-${color}`">{{ falsePercentage }}%</strong>
         {{ data.false.label }}
       </span>
     </div>

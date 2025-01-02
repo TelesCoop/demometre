@@ -6,6 +6,7 @@
         id="workshop_type"
         v-model="selectedExpertId"
         name="workshop_type"
+        data-cy="expert-select"
       >
         <option
           v-for="expert of assessmentStore.experts"

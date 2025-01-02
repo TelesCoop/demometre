@@ -26,6 +26,8 @@
           <button
             v-for="(roleId, index) of question.roleIds"
             :key="roleId"
+            data-cy="role-button"
+            :data-role="profilingStore.roleById[roleId].name"
             class="button is-outlined"
             :class="
               `has-border-${color}-dark ` +

@@ -1,5 +1,5 @@
 <template>
-  <div class="score">
+  <div class="score" :data-score="score">
     <b
       v-if="props.showNumber"
       class="score-number"

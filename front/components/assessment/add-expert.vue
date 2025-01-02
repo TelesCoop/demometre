@@ -7,7 +7,7 @@
         >
           {{ props.initiationPage.chooseExpertText }}
         </p>
-        <v-select v-model="expertSelected" label="name" :options="assessmentStore.experts" />
+        <v-select v-model="expertSelected" label="name" :options="assessmentStore.experts" data-cy="expert-select" />
       </div>
       <div class="column is-half">
         <p

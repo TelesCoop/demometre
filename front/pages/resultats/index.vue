@@ -19,11 +19,13 @@
             <v-select
               v-model="assessmentSelected"
               label="name"
+              data-cy="results-select"
               :options="assessmentStore.canSeeResultsAssessments"
             />
             <button
               class="button is-rounded is-shade-600 is-outlined mt-2"
               type="button"
+              data-cy="go-to-results"
               :disabled="!assessmentSelected"
               @click.prevent="seeResults()"
             >
@@ -39,6 +41,7 @@
           <div
             v-else
             class="notification"
+            data-cy="no-results"
           >
             <template v-if="assessmentStore.assessmentsLoaded">
               {{ $t("Aucun résultat n'est actuellement visible") }}

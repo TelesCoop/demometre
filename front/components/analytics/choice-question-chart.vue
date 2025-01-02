@@ -14,6 +14,8 @@
           <button
             v-for="(roleId, index) of question.roleIds"
             :key="roleId"
+            data-cy="role-button"
+            :data-role="profilingStore.roleById[roleId].name"
             class="button is-outlined"
             :class="
               `has-border-${color}-dark ` +
@@ -53,6 +55,9 @@
             <div
               v-if="roleIdsSelected.includes(roleId)"
               class="choice-question-chart-bar mb-0_5"
+              data-cy="chart-bar"
+              :data-role="profilingStore.roleById[roleId].name"
+              :data-choice="choice.label"
               :class="`has-background-${rolesGradiants[index][0]} has-border-${color}-dark`"
               :style="`width: ${getPercentage(
                 getValueByRoleId(choice, roleId),
@@ -65,6 +70,8 @@
         <div
           :class="`has-background-${color}-light`"
           class="choice-question-chart-cell"
+          data-cy="chart-total"
+          :data-choice="choice.label"
         >
           <strong>
             {{

@@ -111,7 +111,7 @@ def get_chart_data_of_choice_question(question, assessment_id, choice_type):
             "value": response_choice.count,
         }
     for response_choice in response_choices_role_count:
-        if response_choice.role_name not in question_roles:
+        if len(question_roles) and response_choice.role_name not in question_roles:
             # we don't want to show roles that are not attached to the question
             # because they are not displayed to the frontend, so the totals would
             # be wrong (less than 100%)

@@ -59,6 +59,7 @@
                 "
                 :size-circles="9"
                 :show-number="false"
+                :data-cy="`${marker.name}-score`"
               />
             </div>
           </a>
@@ -118,6 +119,7 @@
                       "
                       :size-circles="9"
                       :show-number="false"
+                      :data-cy="`${criteria.name}-score`"
                     />
                   </div>
                 </a>

@@ -78,6 +78,7 @@
         class="button is-outlined text-color-hover is-rounded"
         title="Voir les résultats"
         target="_blank"
+        data-cy="results-button"
       >
         <span class="is-hidden-mobile">{{ $t("Voir les résultats") }}</span>
         <span class="is-hidden-tablet">Résultats</span>

@@ -4,6 +4,6 @@ describe('login works', () => {
     cy.wait(400)
     cy.visit("/compte")
     cy.wait(800)
-    cy.getBySel('account-email').should('contain', 'user@telescoop.fr')
+    cy.getEl('account-email').should('contain', 'user@telescoop.fr')
   })
 })

@@ -3,7 +3,7 @@
     <p :class="`is-uppercase is-size-6bis mb-0_5`">
       {{ $t("Question") }}
     </p>
-    <p :class="`is-size-4 has-text-weight-bold mb-2`">
+    <p :class="`is-size-4 has-text-weight-bold mb-2`" data-cy="question-statement">
       {{ props.question.questionStatement }}
     </p>
     <slot />

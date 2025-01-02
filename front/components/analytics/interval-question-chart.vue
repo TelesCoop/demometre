@@ -71,6 +71,7 @@
       />
       <span
         class="interval-chart-bar-result-value"
+        data-cy="result-value"
         :class="`has-text-${color}-dark is-size-4${
           valuePosition < 20 ? ' has-text-right' : ''
         }`"

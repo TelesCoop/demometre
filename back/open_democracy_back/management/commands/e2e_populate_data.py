@@ -1,5 +1,7 @@
 import collections
+import os
 
+from django.contrib.auth.models import Group
 from django.core.management import BaseCommand
 from wagtail.models import Locale, Page
 
@@ -27,8 +29,18 @@ from open_democracy_back.models import (
     MunicipalityOrderByEPCI,
     ZipCode,
     Role,
+    ProfileType,
+    ProfileDefinition,
+    Question,
+    RepresentativityCriteria,
+    AssessmentType,
 )
-from open_democracy_back.utils import QuestionType, SurveyLocality
+from open_democracy_back.utils import (
+    QuestionType,
+    SurveyLocality,
+    QuestionObjectivity,
+    ManagedAssessmentType,
+)
 
 
 class Command(BaseCommand):
@@ -39,10 +51,39 @@ class Command(BaseCommand):
         self.code_per_criteria = collections.Counter()
         self.scores = [1, 2, 3, 4]
 
-    def create_users(self):
-        UserFactory.create(
-            email="user@telescoop.fr",
+    def handle(self, *args, **options):
+        if not os.environ.get("E2E_TESTS"):
+            raise NotImplementedError("This command is only for e2e tests")
+
+        self.create_locales()
+        self.create_users()
+        self.create_pages()
+        self.create_cities()
+
+        self.create_questionnaire()
+        self.create_objective_questions()
+        self.create_roles()
+        self.create_profiling_questions()
+        self.create_profile_types()
+        self.create_conditional_questions()
+        self.create_representativity_criterias()
+
+        self.create_experts()
+
+        models_to_count = [QuestionnaireQuestion, User, Page]
+        count = {}
+        for model in models_to_count:
+            count[model._meta.verbose_name] = model.objects.count()
+        formatted_count = ", ".join([f"{k}: {v} items" for k, v in count.items()])
+        self.stdout.write(
+            self.style.SUCCESS(f"Data populated successfully, {formatted_count}")
         )
+
+    def create_users(self):
+        for i in range(5):
+            UserFactory.create(
+                email=f"user{i+1}@telescoop.fr",
+            )
         UserFactory.create(
             email="superuser@telescoop.fr",
             is_staff=True,
@@ -50,29 +91,110 @@ class Command(BaseCommand):
         )
 
     def create_profile_types(self):
-        pass
+        profile_type_1, _ = ProfileType.objects.update_or_create(
+            name="Profile 1-1",
+            defaults=dict(name_fr="Profile 1-1", rules_intersection_operator="and"),
+        )
+        question = Question.objects.get(code="Profile-1")
+        definition, _ = ProfileDefinition.objects.update_or_create(
+            profile_type=profile_type_1,
+            defaults=dict(
+                conditional_question=question,
+            ),
+        )
+        definition.response_choices.set(
+            ResponseChoice.objects.filter(question=question, associated_score=1)
+        )
+
+        profile_type_2, _ = ProfileType.objects.update_or_create(
+            name="Profile 2-high",
+            defaults=dict(name_fr="Profile 2-high", rules_intersection_operator="and"),
+        )
+        question = Question.objects.get(code="Profile-2")
+        definition, _ = ProfileDefinition.objects.update_or_create(
+            profile_type=profile_type_2,
+            defaults=dict(
+                conditional_question=question,
+                numerical_operator=">",
+                float_value=30,
+            ),
+        )
+        definition.response_choices.set(
+            ResponseChoice.objects.filter(question=question, associated_score=1)
+        )
+
+    def create_conditional_questions(self):
+        marker = MarkerFactory.create(
+            pillar=Pillar.objects.get_or_create(name="transparence")[0],
+            code="1",
+            name="Marker T.1",
+        )
+        criteria = CriteriaFactory.create(
+            marker=marker, code="1", name="Criteria T.1.1"
+        )
+
+        question = self.create_question(criteria, QuestionType.UNIQUE_CHOICE)
+        question.profiles.add(ProfileType.objects.get(name="Profile 1-1"))
+        question = self.create_question(criteria, QuestionType.MULTIPLE_CHOICE)
+        question.profiles.add(ProfileType.objects.get(name="Profile 2-high"))
+
+        question = self.create_question(criteria, QuestionType.BOOLEAN)
+        question.roles.set([Role.objects.get(name="Élu")])
 
     def create_profiling_questions(self):
-        self.create_question(None, QuestionType.UNIQUE_CHOICE, profiling_question=True)
-        self.create_question(None, QuestionType.NUMBER, profiling_question=True)
+        surveys = Survey.objects.all()
+        question = self.create_question(
+            None,
+            QuestionType.UNIQUE_CHOICE,
+            profiling_question=True,
+            code="Profile-1",
+            n_choices=3,
+        )
+        question.surveys.set(surveys)
+        question = self.create_question(
+            None, QuestionType.NUMBER, profiling_question=True, code="Profile-2"
+        )
+        question.surveys.set(surveys)
 
-    def create_question(self, criteria, question_type, profiling_question=False):
+    def create_question(
+        self,
+        criteria,
+        question_type,
+        profiling_question=False,
+        code=None,
+        statement=None,
+        objective=False,
+        n_choices=None,
+    ):
         self.code_per_criteria[criteria] += 1
-        code = self.code_per_criteria[criteria]
+        if code is None:
+            code = self.code_per_criteria[criteria]
+        statement_prefix = "Profiling " if profiling_question else ""
+        question_statement = (
+            statement or f"{statement_prefix}Question {code} {question_type} statement"
+        )
+        objectivity = (
+            QuestionObjectivity.OBJECTIVE
+            if objective
+            else QuestionObjectivity.SUBJECTIVE
+        )
+
         question = QuestionFactory.create(
             type=question_type,
             criteria=criteria,
             code=code,
             name_fr=f"Question {code} {question_type}",
-            question_statement_fr=f"Question {code} statement",
+            question_statement_fr=question_statement,
             profiling_question=profiling_question,
+            objectivity=objectivity,
         )
         if question_type in [
             QuestionType.UNIQUE_CHOICE,
             QuestionType.MULTIPLE_CHOICE,
             QuestionType.CLOSED_WITH_SCALE,
         ]:
-            for choice, score in zip(range(1, 5), self.scores):
+            n_choices = n_choices or 4
+            for choice, score in zip(range(1, n_choices + 1), self.scores):
                 ResponseChoice.objects.get_or_create(
                     question=question,
                     response_choice_fr=f"choice {choice}",
@@ -106,6 +228,7 @@ class Command(BaseCommand):
                         upper_bound=bounds[1],
                     ),
                 )
+        return question
 
     def create_questionnaire(self):
         survey, _ = Survey.objects.update_or_create(
@@ -118,9 +241,13 @@ class Command(BaseCommand):
         Pillar.objects.get_or_create(name="participation", defaults=dict(survey=survey))
         Pillar.objects.get_or_create(name="coopération", defaults=dict(survey=survey))
 
-        marker = MarkerFactory.create(pillar=representation, code="1")
+        marker = MarkerFactory.create(
+            pillar=representation, code="1", name="Marker R.1"
+        )
 
-        criteria = CriteriaFactory.create(marker=marker, code="1")
+        criteria = CriteriaFactory.create(
+            marker=marker, code="1", name="Criteria R.1.1"
+        )
 
         self.create_question(criteria, QuestionType.UNIQUE_CHOICE)
         self.create_question(criteria, QuestionType.MULTIPLE_CHOICE)
@@ -131,6 +258,24 @@ class Command(BaseCommand):
 
         for pillar in Pillar.objects.all():
             pillar.save()
+
+        AssessmentType.objects.update_or_create(
+            assessment_type=ManagedAssessmentType.QUICK,
+            defaults=dict(publish_results_regardless_of_representativities=True),
+        )
+
+    def create_objective_questions(self):
+        pillar = Pillar.objects.get(name="participation", survey__code="M")
+        marker = MarkerFactory.create(pillar=pillar, code="1", name="Marker P.1")
+        criteria = CriteriaFactory.create(
+            marker=marker, code="1", name="Criteria P.1.1"
+        )
+        self.create_question(
+            criteria,
+            QuestionType.NUMBER,
+            statement="Nombre de doigts dans une main ?",
+            objective=True,
+        )
 
     @staticmethod
     def create_locales():
@@ -207,19 +352,24 @@ class Command(BaseCommand):
         departement, _ = Department.objects.get_or_create(
             code="999", defaults=dict(name="Département test", region=region)
         )
-        epci, _ = EPCI.objects.get_or_create(
-            code="99901", defaults=dict(name="EPCI test")
-        )
-        municipality, _ = Municipality.objects.get_or_create(
-            code="99901",
-            defaults=dict(name="Ville test", population=1000, department=departement),
-        )
-        MunicipalityOrderByEPCI.objects.get_or_create(
-            epci=epci, municipality=municipality
-        )
-        ZipCode.objects.get_or_create(
-            code="99901", defaults=dict(municipality=municipality)
-        )
+
+        for index in range(1, 6):
+            code = f"9990{index}"
+            epci, _ = EPCI.objects.get_or_create(
+                code=code, defaults=dict(name=f"EPCI test {index}")
+            )
+            municipality, _ = Municipality.objects.update_or_create(
+                code=code,
+                defaults=dict(
+                    name=f"Ville test {index}", population=1000, department=departement
+                ),
+            )
+            MunicipalityOrderByEPCI.objects.get_or_create(
+                epci=epci, municipality=municipality
+            )
+            ZipCode.objects.get_or_create(
+                code=code, defaults=dict(municipality=municipality)
+            )
 
     @staticmethod
     def create_roles():
@@ -245,18 +395,21 @@ class Command(BaseCommand):
             ),
         )
 
-    def handle(self, *args, **options):
-        self.create_locales()
-        self.create_users()
-        self.create_questionnaire()
-        self.create_pages()
-        self.create_cities()
-        self.create_roles()
-        n_questions = QuestionnaireQuestion.objects.count()
-        n_users = User.objects.count()
-        n_pages = Page.objects.count()
-        self.stdout.write(
-            self.style.SUCCESS(
-                f"Data populated successfully, {n_questions} questions {n_users} users and {n_pages} pages in the DB."
-            )
+    def create_representativity_criterias(self):
+        repr_criteria, _ = RepresentativityCriteria.objects.update_or_create(
+            name="Représentativité 1",
+            defaults=dict(
+                survey_locality=SurveyLocality.CITY,
+                profiling_question=Question.objects.get(code="Profile-1"),
+                min_rate=25,
+                name_fr="Représentativité 1",
+                explanation_fr="Représentativité 1 explication",
+            ),
         )
+
+    def create_experts(self):
+        group, _ = Group.objects.get_or_create(name="Experts")
+        user = UserFactory.create(
+            email="expert@telescoop.fr", first_name="Expert", last_name="1"
+        )
+        user.groups.set([group])

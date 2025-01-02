@@ -59,6 +59,7 @@ class UserFactory(factory.django.DjangoModelFactory):
 
 class SurveyFactory(factory.django.DjangoModelFactory):
     name: str = factory.Faker("name")
+    name_fr: str = factory.LazyAttribute(lambda a: a.name)
     description: str = factory.Faker("text")
     survey_locality: str = SurveyLocality.CITY
 
@@ -71,7 +72,7 @@ class PillarFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Pillar
 
-    code: str = factory.LazyAttribute(lambda a: str(random.randint(1, 20)))
+    code: str = factory.LazyAttribute(lambda a: str(random.randint(1, 999)))
     name: str = factory.Faker("name")
     description: str = factory.Faker("text")
     survey = factory.SubFactory(SurveyFactory)
@@ -82,8 +83,9 @@ class MarkerFactory(factory.django.DjangoModelFactory):
         model = Marker
         django_get_or_create = ("pillar", "code")
 
-    code: str = factory.LazyAttribute(lambda a: str(random.randint(1, 20)))
+    code: str = factory.LazyAttribute(lambda a: str(random.randint(1, 999)))
     name: str = factory.Faker("name")
+    name_fr: str = factory.LazyAttribute(lambda a: a.name)
     description: str = factory.Faker("text")
     pillar = factory.SubFactory(PillarFactory)
 
@@ -93,8 +95,9 @@ class CriteriaFactory(factory.django.DjangoModelFactory):
         model = Criteria
         django_get_or_create = ("marker", "code")
 
-    code: str = factory.LazyAttribute(lambda a: str(random.randint(1, 20)))
+    code: str = factory.LazyAttribute(lambda a: str(random.randint(1, 999)))
     name: str = factory.Faker("name")
+    name_fr: str = factory.LazyAttribute(lambda a: a.name)
     description: str = factory.Faker("text")
     marker = factory.SubFactory(MarkerFactory)
 
@@ -104,9 +107,11 @@ class QuestionFactory(factory.django.DjangoModelFactory):
         model = Question
         django_get_or_create = ("criteria", "code")
 
-    code: str = factory.LazyAttribute(lambda a: str(random.randint(1, 20)))
+    code: str = factory.LazyAttribute(lambda a: str(random.randint(1, 999)))
     name: str = factory.Faker("name")
+    name_fr: str = factory.LazyAttribute(lambda a: a.name)
     question_statement: str = factory.Faker("text")
+    question_statement_fr: str = factory.LazyAttribute(lambda a: a.question_statement)
     mandatory: bool = False
     description: str = factory.Faker("text")
     comments: str = factory.Faker("text")

@@ -164,7 +164,7 @@
 - name: get latest code
   git:
     repo: '{{ backend_repo }}'
-    dest: "{{ backend_path/.. }}"
+    dest: "{{ backend_path }}/.."
     key_file: "{{ identity_file_path }}"
     force: true
     version: "{{ backend_branch }}"

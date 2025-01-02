@@ -154,6 +154,9 @@ export const useAssessmentStore = defineStore("assessment", {
         return false
       }
       this.assessmentsLoaded = true
+      if (!data.value) {
+        return true
+      }
       for (const assessment of data.value) {
         this.assessmentById[assessment.id] = assessment
       }
