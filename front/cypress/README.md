@@ -37,6 +37,7 @@ avec 3 réponses possibles et une valeur de 25% minimum pour chaque question.
 
 - parcours du questionnaire dans un cas simple (aucune question conditionnelle)
   - vérification que les résultats sont disponibles
+  - vérification des résultats : valeurs et graphiques
 - parcours du questionnaire dans avec les deux questions conditionnelles de profilage
 - parcours du questionnaire dans avec la question de profilage
 
