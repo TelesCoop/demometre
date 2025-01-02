@@ -44,7 +44,5 @@ describe('go through participative questionnaire', () => {
     cy.fillRepresentationPillar()
     cy.checkQuestionnaireIsDone()
     cy.checkResultsAreAvailable('Ville test 2', true)
-    go-to-results
-
   })
 })
