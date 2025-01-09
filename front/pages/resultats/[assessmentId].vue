@@ -49,6 +49,7 @@
       </section>
       <section v-if="activePillar">
         <QuestionnairePillarReferential
+          :assessment-type="assessmentType"
           :pillar="activePillar"
           :color="colorClass"
           :markers="markers"
@@ -207,6 +208,10 @@ const pillars = computed(() => {
   ].pillars
 })
 
+const assessmentType = computed(() => {
+  return assessmentStore.assessmentById[assessmentId]?.assessmentType
+})
+
 if (!assessmentStore.assessmentById[assessmentId]?.name) {
   assessmentStore.getAssessment(assessmentId)
 }
@@ -245,7 +250,7 @@ const onSelectPillar = (pillar, cleanUrl = false) => {
   activePillar.value = pillar
   markers.value = activePillar.value?.markerIds.map(
     (markerId) => questionnaireStore.markerById[markerId],
-  )
+  ).filter(marker => questionnaireStore.isMarkerRelevantForAssessmentType(assessmentType.value, marker.id))
   const query = cleanUrl
     ? { pillar: pillar.name }
     : { ...route.query, pillar: pillar.name }

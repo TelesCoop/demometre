@@ -31,6 +31,8 @@ class SurveyView(
         .prefetch_related("pillars__markers")
         .prefetch_related("pillars__markers__criterias")
         .prefetch_related("pillars__markers__criterias__questions")
+        .prefetch_related("pillars__markers__criterias__questions__response_choices")
+        .prefetch_related("pillars__markers__criterias__questions__percentage_ranges")
         .prefetch_related("pillars__markers__criterias__thematic_tags")
         .prefetch_related("pillars__markers__criterias__related_definition_ordered")
         .prefetch_related("pillars__markers__criterias")

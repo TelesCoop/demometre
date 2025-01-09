@@ -98,7 +98,10 @@
                           )
                         }}
                       </p>
-                      <p>{{ criteria.name }}</p>
+                      <p>
+                        {{ criteria.name }}
+                        <span v-if="!criteria.hasQuestionsWithScore" class="no-score-tag">{{ $t('non noté') }}</span>
+                      </p>
                     </div>
                     <AnalyticsScore
                       v-if="
@@ -224,6 +227,7 @@ import { isNullOrUndefined } from "assets/utils"
 const questionnaireStore = useQuestionnaireStore()
 
 const props = defineProps({
+  assessmentType: { type: String, required: false },
   pillar: { type: Object, required: true },
   color: { type: String, required: true },
   markers: {
@@ -248,9 +252,9 @@ const props = defineProps({
   },
 })
 const getCriteriasOfActiveMarker = () => {
-  return activeMarker.value?.criteriaIds.map(
-    (criteriaId) => questionnaireStore.criteriaById[criteriaId],
-  )
+  return activeMarker.value?.criteriaIds
+    .filter((criteriaId) => questionnaireStore.isCriteriaRelevantForAssessmentType(props.assessmentType, criteriaId))
+    .map((criteriaId) => questionnaireStore.criteriaById[criteriaId])
 }
 
 const getCriteriaOfQuestionId = () => {
@@ -339,4 +343,11 @@ const onReturnToMarkerButtonClick = () => {
 
 .menu-list li ul
   border-left-color: var(--color) !important
+.no-score-tag
+  background: lightgray
+  color: #585858
+  font-size: 0.75em
+  padding: 0.25rem 0.5rem
+  border-radius: 0.5rem
+  white-space: nowrap
 </style>

@@ -19,6 +19,7 @@ from open_democracy_back.models.questionnaire_and_profiling_models import (
     ProfileDefinition,
 )
 from open_democracy_back.serializers_utils import SerializerWithTranslatedFields
+from open_democracy_back.utils import QuestionType
 
 QUESTION_FIELDS = [
     "id",
@@ -235,12 +236,36 @@ class ProfilingQuestionSerializer(QuestionSerializer):
         read_only_fields = fields
 
 
+def question_has_score(question: QuestionnaireQuestion):
+    if question.type == QuestionType.BOOLEAN:
+        return True
+    if question.type in [
+        QuestionType.UNIQUE_CHOICE,
+        QuestionType.MULTIPLE_CHOICE,
+        QuestionType.CLOSED_WITH_SCALE,
+    ]:
+        return any(
+            [choice.associated_score for choice in question.response_choices.all()]
+        )
+    if question.type == QuestionType.NUMBER:
+        return any([range.associated_score for range in question.number_ranges.all()])
+    if question.type == QuestionType.PERCENTAGE:
+        return any(
+            [range.associated_score for range in question.percentage_ranges.all()]
+        )
+    return False
+
+
 class CriteriaSerializer(SerializerWithTranslatedFields):
     question_ids = serializers.PrimaryKeyRelatedField(
         many=True, read_only=True, source="questions"
     )
     definition_ids = serializers.SerializerMethodField()
     explanatory = serializers.SerializerMethodField()
+    has_questions_with_score = serializers.SerializerMethodField()
+
+    def get_has_questions_with_score(self, obj: Criteria):
+        return any([question_has_score(question) for question in obj.questions.all()])
 
     def get_explanatory(self, obj: Criteria):
         return list(obj.explanatory.raw_data or [])
@@ -260,6 +285,7 @@ class CriteriaSerializer(SerializerWithTranslatedFields):
             "thematic_tags",
             "definition_ids",
             "explanatory",
+            "has_questions_with_score",
             "description",
         ]
         read_only_fields = fields

@@ -101,6 +101,7 @@ export type Criteria = {
   id: number
   markerId: number
   concatenatedCode: string
+  hasQuestionsWithScore: boolean
   name: string
   questionIds: number[]
   thematicTags: number[]

@@ -4,7 +4,7 @@ import {
   Marker,
   PillarType,
   Question,
-  Survey,
+  Survey, SurveyType,
 } from "~/composables/types"
 import { useMessageStore } from "./messageStore"
 import { useApiGet } from "~/composables/api"
@@ -70,6 +70,26 @@ export const useQuestionnaireStore = defineStore("questionnaire", {
             return pillarName === question.pillarName
           },
         ) as Question[]
+      }
+    },
+    isCriteriaRelevantForAssessmentType() {
+      return (assessmentType: string | undefined, criteriaId: number) => {
+        if (!assessmentType) {
+          return true
+        }
+        return this.criteriaById[criteriaId].questionIds.some((questionId) => {
+          return this.questionById[questionId].assessmentTypes.includes(assessmentType)
+        })
+      }
+    },
+    isMarkerRelevantForAssessmentType() {
+      return (assessmentType: string | undefined, markerId: number) => {
+        if (!assessmentType) {
+          return true
+        }
+        return this.markerById[markerId].criteriaIds.some((criteriaId) => {
+          return this.isCriteriaRelevantForAssessmentType(assessmentType, criteriaId)
+        })
       }
     },
   },
