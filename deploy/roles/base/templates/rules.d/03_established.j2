@@ -1,0 +1,8 @@
+#
+# +-------------------------+
+# | Established connections |
+# +-------------------------+
+#
+-A INPUT   --match conntrack --ctstate ESTABLISHED --jump ACCEPT
+-A FORWARD --match conntrack --ctstate ESTABLISHED --jump ACCEPT
+-A OUTPUT  --match conntrack --ctstate ESTABLISHED --jump ACCEPT

@@ -1,0 +1,11 @@
+{% if debug_firewall is defined and debug_firewall %}
+#
+# +-------+
+# | Debug |
+# +-------+
+#
+-A OUTPUT  --jump LOG --log-prefix "IPTABLES OUT: "
+-A INPUT   --jump LOG --log-prefix "IPTABLES IN: "
+-A FORWARD --jump LOG --log-prefix "IPTABLES FWD: "
+{% endif %}
+#

@@ -1,0 +1,45 @@
+{
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js,.ts --ignore-path .eslintignore .",
+    "lint:fix": "eslint --ext .js,.ts --ignore-path .eslintignore . --fix",
+    "dev": "nuxi dev --mode=development",
+    "build": "nuxi build",
+    "start": "node .output/server/index.mjs",
+    "do-vue-i18n-extract": "yarn vue-i18n-extract report --vueFiles './?(composables|pages|components|utils)/**/*.?(ts|vue)' --languageFiles './language/empty.json' --separator ';;;;' > language/extraction.md"
+  },
+  "devDependencies": {
+    "@nuxt/eslint-config": "^0.7.3",
+    "@nuxtjs/i18n": "^8.5.1",
+    "bulma": "^0.9.3",
+    "cypress": "^13.16.1",
+    "easygettext": "^2.17.0",
+    "eslint": "^8.44.0",
+    "nuxt": "3.5.3",
+    "sass": "^1.49.9",
+    "sass-loader": "^13.3.2",
+    "vue-i18n-extract": "^2.0.7"
+  },
+  "dependencies": {
+    "@nuxt/test-utils": "^3.15.1",
+    "@nuxtjs/plausible": "^0.2.4",
+    "@pinia/nuxt": "0.4.11",
+    "@tiptap/extension-heading": "^2.1.7",
+    "@tiptap/extension-link": "^2.1.7",
+    "@tiptap/pm": "^2.1.7",
+    "@tiptap/starter-kit": "^2.1.7",
+    "@tiptap/vue-3": "^2.1.7",
+    "@vueform/slider": "^2.0.9",
+    "pinia": "^2.0.11",
+    "prettier": "^2.5.1",
+    "typescript": "^5.0.4",
+    "vue-select": "^4.0.0-beta.3",
+    "vue3-carousel": "0.3.1",
+    "vuedraggable": "^4.1.0"
+  },
+  "resolutions": {
+    "string-width": "4.2.3"
+  },
+  "packageManager": "yarn@1.22.19",
+  "type": "module"
+}

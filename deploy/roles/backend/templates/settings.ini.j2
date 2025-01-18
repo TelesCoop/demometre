@@ -1,0 +1,27 @@
+[security]
+secret_key={{ vault_django_secret_key }}
+allowed_hosts={{ ", ".join(public_hostnames) }},127.0.0.1
+
+[mail]
+api_key={{ vault_mailgun_api_key }}
+
+[backup]
+backup_access={{ vault_backup_access }}
+backup_secret={{ vault_backup_secret }}
+backup_bucket=democratie-ouverte-backup
+backup_region=eu-west-3
+
+[bugs]
+rollbar_access_token={{ vault_rollbar_access_token }}
+
+[staticfiles]
+static_root={{ backend_static_path }}
+
+[database]
+engine={{ database_provider }}
+user={{ project_db_name }}
+name={{ project_db_name }}
+password = {{ vault_database_password|default('') }}
+
+[environment]
+environment = {{ environment_name }}

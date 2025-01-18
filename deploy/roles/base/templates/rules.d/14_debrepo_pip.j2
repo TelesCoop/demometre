@@ -1,0 +1,7 @@
+#
+# +-------------------+
+# | Depots debian/pip |
+# +-------------------+
+#
+-A OUTPUT --protocol tcp --destination-port 80  --jump ACCEPT --match comment --comment "http pypi/debrepo"
+-A OUTPUT --protocol tcp --destination-port 443 --jump ACCEPT --match comment --comment "https pypi/debrepo"

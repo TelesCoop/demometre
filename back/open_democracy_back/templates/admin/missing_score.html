@@ -1,0 +1,27 @@
+{% extends "wagtailadmin/base.html" %}
+
+{% block content %}
+    {% include "wagtailadmin/shared/header.html" with title="Liste des anomalies" icon="warning" %}
+    <div class="nice-padding">
+        <h2>Liste des questions n'ayant pas de critère</h2>
+
+        <ul>
+            {% for item in questions_without_criteria_list %}
+            <li>« <strong>{{ item.text }}</strong> » <a href="{{ item.url }}" target="_blank">Modifier ici</a></li>
+            {% empty %}
+            Les questions du questionnaire ont toutes un critère ! :)
+            {% endfor %}
+        </ul>
+
+        <h2>Liste des réponses aux questions n'ayant pas de score</h2>
+
+        <ul>
+            {% for item in score_missing_list %}
+            <li>Réponse(s) « <strong>{{ item.text }}</strong> » <a href="{{ item.url }}" target="_blank">Modifier ici</a></li>
+            {% empty %}
+            Les réponses ont toutes un score ! :)
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}

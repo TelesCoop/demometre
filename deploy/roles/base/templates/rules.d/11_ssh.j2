@@ -1,0 +1,7 @@
+#
+# +-----+
+# | ssh |
+# +-----+
+#
+-A INPUT  --protocol tcp --destination-port {{ sshd.port }} --jump ACCEPT --match comment --comment "ssh in"
+-A OUTPUT --protocol tcp --destination-port {{ sshd.port }} --jump ACCEPT --match comment --comment "ssh out"

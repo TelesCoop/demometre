@@ -1,0 +1,9 @@
+#
+# +------+
+# | Ping |
+# +------+
+#
+-A INPUT  --protocol icmpv6 --icmpv6-type echo-reply   --jump ACCEPT --match comment --comment "Ping from everywhere"
+-A INPUT  --protocol icmpv6 --icmpv6-type echo-request --jump ACCEPT --match comment --comment "Ping from everywhere"
+-A OUTPUT --protocol icmpv6 --icmpv6-type echo-reply   --jump ACCEPT --match comment --comment "Ping to everywhere"
+-A OUTPUT --protocol icmpv6 --icmpv6-type echo-request --jump ACCEPT --match comment --comment "Ping to everywhere"

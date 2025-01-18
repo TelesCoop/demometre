@@ -1,0 +1,7 @@
+#
+# +------+
+# | Ping |
+# +------+
+#
+-A INPUT  --protocol icmp --icmp-type 8 --jump ACCEPT --match comment --comment "Ping from everywhere"
+-A OUTPUT --protocol icmp --icmp-type 8 --jump ACCEPT --match comment --comment "Ping to everywhere"

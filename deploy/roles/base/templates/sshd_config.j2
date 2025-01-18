@@ -1,0 +1,28 @@
+Port {{ sshd.port }}
+
+Ciphers aes256-gcm@openssh.com,aes256-ctr
+MACs hmac-sha2-512-etm@openssh.com
+
+PermitRootLogin no
+PasswordAuthentication no
+MaxAuthTries 10
+
+ChallengeResponseAuthentication no
+UsePAM yes
+
+AllowAgentForwarding no
+AllowTcpForwarding no
+X11Forwarding no
+PermitTTY yes
+
+PrintMotd no
+ClientAliveInterval 60
+ClientAliveCountMax 3
+
+UseDNS no
+
+AcceptEnv LANG LC_*
+
+Subsystem sftp internal-sftp
+
+AllowGroups admin sudo ssh-allowed

@@ -1,0 +1,55 @@
+# Home page is: http://www.smartmontools.org
+
+# smartd will re-read the configuration file if it receives a HUP
+# signal
+
+# The file gives a list of devices to monitor using smartd, with one
+# device per line. Text after a hash (#) is ignored, and you may use
+# spaces and tabs for white space. You may use '\' to continue lines.
+
+# You can usually identify which hard disks are on your system by
+# looking in /proc/ide and in /proc/scsi.
+
+{% for device, details in ansible_devices.items() if details.model %}
+# Run a short self-test at 2 am every day,
+# and a long self-test at 4 am every sunday
+/dev/{{ device }} -a -o on -S on -s (S/../.././02|L/../../7/04) -m {{ support_mail_addr }} -M exec /usr/share/smartmontools/smartd-runner
+{% endfor %}
+
+# HERE IS A LIST OF DIRECTIVES FOR THIS CONFIGURATION FILE.
+# PLEASE SEE THE smartd.conf MAN PAGE FOR DETAILS
+#
+#   -d TYPE Set the device type: ata, scsi, marvell, removable, 3ware,N, hpt,L/M/N
+#   -T TYPE set the tolerance to one of: normal, permissive
+#   -o VAL  Enable/disable automatic offline tests (on/off)
+#   -S VAL  Enable/disable attribute autosave (on/off)
+#   -n MODE No check. MODE is one of: never, sleep, standby, idle
+#   -H      Monitor SMART Health Status, report if failed
+#   -l TYPE Monitor SMART log.  Type is one of: error, selftest
+#   -f      Monitor for failure of any 'Usage' Attributes
+#   -m ADD  Send warning email to ADD for -H, -l error, -l selftest, and -f
+#   -M TYPE Modify email warning behavior (see man page)
+#   -s REGE Start self-test when type/date matches regular expression (see man page)
+#   -p      Report changes in 'Prefailure' Normalized Attributes
+#   -u      Report changes in 'Usage' Normalized Attributes
+#   -t      Equivalent to -p and -u Directives
+#   -r ID   Also report Raw values of Attribute ID with -p, -u or -t
+#   -R ID   Track changes in Attribute ID Raw value with -p, -u or -t
+#   -i ID   Ignore Attribute ID for -f Directive
+#   -I ID   Ignore Attribute ID for -p, -u or -t Directive
+#   -C ID   Report if Current Pending Sector count non-zero
+#   -U ID   Report if Offline Uncorrectable count non-zero
+#   -W D,I,C Monitor Temperature D)ifference, I)nformal limit, C)ritical limit
+#   -v N,ST Modifies labeling of Attribute N (see man page)
+#   -a      Default: equivalent to -H -f -t -l error -l selftest -C 197 -U 198
+#   -F TYPE Use firmware bug workaround. Type is one of: none, samsung
+#   -P TYPE Drive-specific presets: use, ignore, show, showall
+#    #      Comment: text after a hash sign is ignored
+#    \      Line continuation character
+# Attribute ID is a decimal integer 1 <= ID <= 255
+# except for -C and -U, where ID = 0 turns them off.
+# All but -d, -m and -M Directives are only implemented for ATA devices
+#
+# If the test string DEVICESCAN is the first uncommented text
+# then smartd will scan for devices.
+# DEVICESCAN may be followed by any desired Directives.

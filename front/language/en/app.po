@@ -1,0 +1,3103 @@
+
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-12-10 16:51+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#: components/header/navbar.vue:95
+#: pages/evaluation/[assessmentId]/questionnaire/index.vue:36
+msgid "Enregistrer"
+msgstr "Save"
+
+#: components/header/navbar.vue:75 pages/compte/index.vue:72
+msgid "Lancer une évaluation"
+msgstr "Start an evaluation"
+
+#: components/header/navbar.vue:198
+msgid "Accueil"
+msgstr "Home"
+
+#: components/footer.vue:10 components/footer.vue:49
+#: components/header/navbar.vue:202 pages/demometre.vue:242
+#: pages/demometre.vue:243
+msgid "DémoMètre"
+msgstr "DémoMètre"
+
+#: components/footer.vue:67 components/header/navbar.vue:214
+msgid "Le projet"
+msgstr "The project"
+
+#: components/header/navbar.vue:103 pages/compte/index.vue:6
+msgid "Mon compte"
+msgstr "My account"
+
+#: components/header/navbar.vue:135
+msgid "Réinitialiser"
+msgstr "reset"
+
+#: components/footer.vue:61 components/header/navbar.vue:210
+#: utils/constants.ts:43
+msgid "Résultats"
+msgstr "Results"
+
+#: components/header/navbar.vue:111
+#: pages/evaluation/initialisation/index.vue:52
+#: pages/evaluation/participation/[assessmentId]/ajout-expert.vue:31
+msgid "Se connecter"
+msgstr "Log in"
+
+#: components/footer.vue:55 components/header/navbar.vue:206
+#: pages/utilisations-possibles.vue:93
+msgid "Utilisations possibles"
+msgstr "Possible uses"
+
+#: pages/compte/ateliers/index.vue:110
+msgid "*Seulement les ateliers des évaluations dont la redevance à été réglée sont visibles ici"
+msgstr "*Only evaluation workshops for which the fee has been paid can be viewed here"
+
+#: components/questionnaire/question-statement.vue:11
+msgid "Acteur(s) concerné(s)"
+msgstr "Actor(s) concerned"
+
+#: pages/compte/index.vue:131
+msgid "Actions"
+msgstr "acts"
+
+#: components/analytics/scale-question-chart.vue:14
+msgid "Activer la vue simplifiée"
+msgstr "Activate simplified view"
+
+#: components/account/editUserInfoModal.vue:26
+#: components/workshop/participantEditModal.vue:34
+msgid "Adresse mail"
+msgstr "email address"
+
+#: components/account/editUserInfoModal.vue:32
+msgid "adresse@courriel.fr"
+msgstr "address@email.com"
+
+#: pages/evaluation/[assessmentId]/affinage/[questionId].vue:22
+msgid "Affinage"
+msgstr "Refining"
+
+#: components/workshop/participantEditModal.vue:172
+msgid "Ajout d'un participant"
+msgstr "Add a participant"
+
+#: components/assessment/addWorkshopModal.vue:13
+#: pages/compte/ateliers/index.vue:125
+msgid "Ajouter un atelier"
+msgstr "Add a workshop"
+
+#: components/assessment/addDocumentModal.vue:10
+#: pages/compte/evaluation/[assessmentId]/index.vue:147
+msgid "Ajouter un document"
+msgstr "Add a document"
+
+#: components/assessment/changeExpertModal.vue:39
+#: pages/compte/evaluation/[assessmentId]/index.vue:402
+msgid "Ajouter un expert"
+msgstr "Add an expert"
+
+#: components/richTextInput.vue:61
+msgid "Ajouter un lien"
+msgstr "Add a link"
+
+#: components/account/editUserInfoModal.vue:54
+#: components/assessment/addDocumentModal.vue:98
+#: components/assessment/addWorkshopModal.vue:89
+#: components/assessment/changeExpertModal.vue:60
+#: components/assessment/informationsEditModal.vue:82
+#: components/assessment/workshops.vue:149 components/richTextInput.vue:94
+#: components/workshop/informationsEditModal.vue:91
+#: components/workshop/participantEditModal.vue:132
+#: pages/compte/ateliers/index.vue:201
+msgid "Annuler"
+msgstr "Cancel"
+
+#: components/form/buttons.vue:67 components/form/localisation.vue:135
+#: pages/evaluation/index.vue:16
+msgid "appuyez sur "
+msgstr "Tap the"
+
+#: pages/compte/ateliers/index.vue:98
+msgid "Atelier clôturé"
+msgstr "Closed workshop"
+
+#: components/assessment/addWorkshopModal.vue:40
+msgid "Atelier d'évaluation"
+msgstr "Evaluation workshop"
+
+#: components/assessment/addWorkshopModal.vue:43
+msgid "Atelier sur les résultats"
+msgstr "Results workshop"
+
+#: pages/evaluation/initialisation/index.vue:127
+msgid "Au nom de qui lancez-vous cette évaluation  ?"
+msgstr "On whose behalf are you launching this evaluation ?"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:171
+msgid "Aucun document dans cette catégorie."
+msgstr "No document in this category"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:365
+msgid "Aucun expert pour le moment"
+msgstr "No expert for the moment"
+
+#: pages/compte/evaluation/[assessmentId]/ateliers/[workshopId]/index.vue:144
+msgid "Aucun participant renseigné"
+msgstr "No participant registered"
+
+#: pages/resultats/index.vue:44
+msgid "Aucun résultat n'est actuellement visible"
+msgstr "No results found"
+
+#: composables/errors.ts:11
+msgid "Aucune commune ne correspond à ce code postal"
+msgstr "No commune corresponds to this postal code"
+
+#: pages/compte/index.vue:98
+msgid "Aucune évaluation"
+msgstr "No evaluation"
+
+#: composables/errors.ts:12
+msgid "Aucune intercommunalité ne correspond à ce code postal"
+msgstr "No intercommunality corresponds to this postcode"
+
+#: composables/types.ts:297
+msgid "Autre"
+msgstr "Other"
+
+#: utils/constants.ts:32
+msgid "Autres documents"
+msgstr "Other documents"
+
+#: pages/projet.vue:28 pages/projet.vue:146
+msgid "Avec qui"
+msgstr "With whom"
+
+#: components/trainingCard.vue:12
+msgid "Bientôt disponible !"
+msgstr "Soon available !"
+
+#: components/footer.vue:75
+msgid "Blog"
+msgstr "Blog"
+
+#: components/page/assessment-card.vue:56
+msgid "C'est parti !"
+msgstr "Let's get started!"
+
+#: pages/evaluation/participation/[assessmentId]/ajout-expert.vue:50
+msgid "C’est parti !"
+msgstr "Let's get started!"
+
+#: utils/constants.ts:18
+msgid "calendrier"
+msgstr "timetable"
+
+#: components/assessment/addDocumentModal.vue:34
+msgid "Catégorie"
+msgstr "category"
+
+#: composables/errors.ts:15
+msgid "Cet email ne correspond à aucun utilisateur"
+msgstr "This email does not correspond to any user"
+
+#: components/informationRichDetail.vue:18
+msgid "Cette section est pour l'instant vide"
+msgstr "This section is empty for the moment"
+
+#: components/assessment/changeExpertModal.vue:10
+#: pages/compte/evaluation/[assessmentId]/index.vue:401
+msgid "Changer d'expert"
+msgstr "Change the expert"
+
+#: pages/nouveau-mdp.vue:7
+msgid "Changer mon mot de passe"
+msgstr "Change my password"
+
+#: components/participation/consent.vue:42
+msgid "Charte relative à la protection des données à caractère personnel"
+msgstr "Personal Data Protection Charter"
+
+#: components/response/input/multiple-choice.vue:7
+#: components/response/paper/input/multiple-choice.vue:7
+msgid "Choisissez entre 1 et %{ n_choices } réponses "
+msgstr "Choose between 1 and %{ n_choices } answers"
+
+#: components/response/input/binary.vue:9
+#: components/response/paper/input/binary.vue:8
+msgid "Choisissez oui ou non."
+msgstr "Answer yes or no"
+
+#: components/assessment/addDocumentModal.vue:65
+msgid "Choisissez un fichier..."
+msgstr "Selec a file"
+
+#: pages/compte/evaluation/[assessmentId]/ateliers/[workshopId]/reponses.vue:24
+msgid "Choisissez un pillier pour commencer."
+msgstr "Selec a pillar to start"
+
+#: pages/export/questionnaire/index.vue:9
+msgid "Choisissez un role"
+msgstr "Selec a role"
+
+#: components/response/input/unique-choice.vue:8
+#: components/response/paper/input/unique-choice.vue:8
+msgid "Choisissez une réponse."
+msgstr "Selec an answer"
+
+#: components/assessment/workshops.vue:143 pages/compte/ateliers/index.vue:195
+msgid "Clôturer"
+msgstr "Close"
+
+#: components/assessment/workshops.vue:121 pages/compte/ateliers/index.vue:93
+#: pages/compte/ateliers/index.vue:173
+msgid "Clôturer l'atelier"
+msgstr "Close the workshop"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:209
+msgid "Clôturer l'évaluation"
+msgstr "Complete the evaluation"
+
+#: pages/evaluation/index.vue:13
+msgid "Commencer"
+msgstr "Start"
+
+#: composables/userStep.ts:16
+msgid "Commencer l'évaluation"
+msgstr "Start the evaluation"
+
+#: pages/evaluation/index.vue:9
+msgid "Commencer une évaluation"
+msgstr "Start the evaluation"
+
+#: pages/projet.vue:271
+msgid "Comment"
+msgstr "Comment"
+
+#: pages/demometre.vue:23
+msgid "Comment on a construit le référentiel"
+msgstr "How we built the reference system"
+
+#: utils/constants.ts:24
+msgid "commentaires"
+msgstr "comments"
+
+#: composables/types.ts:191 utils/constants.ts:54
+msgid "Commune"
+msgstr "Town"
+
+#: components/footer.vue:24
+msgid "Conditions générales d'utilisation"
+msgstr "Terms and conditions of use"
+
+#: components/footer.vue:29
+msgid "Conditions générales de vente"
+msgstr "Terms and conditions of sale"
+
+#: composables/useConfirm.ts:12
+msgid "Confirmation"
+msgstr "Confirmation"
+
+#: composables/useConfirm.ts:13 pages/nouveau-mdp.vue:139
+msgid "Confirmer"
+msgstr "Confirmeur"
+
+#: pages/signup.vue:82
+msgid "Confirmer le mot de passe"
+msgstr "Confirm password"
+
+#: pages/nouveau-mdp.vue:95
+msgid "Confirmer le nouveau mot de passe"
+msgstr "Confirm new password"
+
+#: pages/signup.vue:150
+msgid "Connectez-vous"
+msgstr "Connect to"
+
+#: pages/login.vue:9 pages/login.vue:93 pages/login.vue:136
+msgid "Connexion"
+msgstr "Report"
+
+#: utils/constants.ts:15 utils/constants.ts:21
+msgid "contexte"
+msgstr "Context"
+
+#: pages/login.vue:14 pages/nouveau-mdp.vue:16
+msgid "Courriel"
+msgstr "E-mail"
+
+#: pages/signup.vue:237
+msgid "Création de compte"
+msgstr "Account creation"
+
+#: pages/evaluation/initialisation/index.vue:46
+#: pages/evaluation/participation/[assessmentId]/ajout-expert.vue:25
+msgid "Créer un compte"
+msgstr "Create an account"
+
+#: components/richTextInput.vue:268
+msgid "Créer un hyperlien"
+msgstr "Create a hyperlink"
+
+#: pages/login.vue:120
+msgid "Créez-en un"
+msgstr "Create one"
+
+#: components/response/animator.vue:57
+msgid "Ctrl + clic pour selectionner plusieurs options"
+msgstr "CTRL + click to selec several options"
+
+#: components/assessment/addWorkshopModal.vue:60
+#: components/workshop/informationsEditModal.vue:46
+msgid "Date"
+msgstr "Date"
+
+#: components/assessment/workshops.vue:19 pages/compte/ateliers/index.vue:17
+msgid "Date (MM/JJ/AAAA)"
+msgstr "Date (MM/DD/YYYY)"
+
+#: pages/compte/index.vue:124
+msgid "Date de création"
+msgstr "Creation date"
+
+#: components/participation/board/index.vue:45
+msgid "Date de lancement"
+msgstr "Launch date"
+
+#: stores/assessmentStore.ts:41
+msgid "de ma ville"
+msgstr "of my town"
+
+#: stores/assessmentStore.ts:42
+msgid "de mon inter-communalité"
+msgstr "of my intercommunality"
+
+#: pages/demometre.vue:150
+msgid "Definitions"
+msgstr "Definitions"
+
+#: components/form/question.vue:139
+msgid "Définitions"
+msgstr "Definitions"
+
+#: composables/types.ts:193 utils/constants.ts:56
+msgid "Département"
+msgstr "Department"
+
+#: utils/constants.ts:23
+msgid "déroulé"
+msgstr "unwound (?)"
+
+#: components/questionnaire/pillar-animator-responses.vue:192
+msgid "Des réponses ont été rentrées mais non sauvegardées. Pour les enregistrer, annulez et cliquez sur le bouton Valider les réponses."
+msgstr "Answers were entered but not saved. To save them, undo and click on the OK buttom "
+
+#: components/analytics/scale-question-chart.vue:11
+msgid "Désactiver la vue simplifiée"
+msgstr "Disable the simplified view"
+
+#: components/footer.vue:96
+msgid "Designé par "
+msgstr "Designated by"
+
+#: pages/compte/index.vue:164
+msgid "Détails"
+msgstr "detail"
+
+#: composables/types.ts:204
+msgid "Diagnostic rapide"
+msgstr "Rapid assessment"
+
+#: pages/compte/index.vue:128
+msgid "Échelon"
+msgstr "Level"
+
+#: composables/errors.ts:16
+msgid "Email et mot de passe ne correspondent pas"
+msgstr "Email and password do not match"
+
+#: pages/compte/evaluation/[id]/index.vue:415
+msgid "En clôturant l’évaluation, vous mettez fin à l’évaluation et n’autorisez plus de participation. Cette action est irréversible, n’oubliez pas de bien vérifier avant."
+msgstr "In closing the évaluation, you end the evaluation and you no longer authorize participation. This action is irreversible, remember to check well before."
+
+#: pages/compte/index.vue:99
+msgid "en cours"
+msgstr "in process"
+
+#: components/form/buttons.vue:57
+#: pages/evaluation/initialisation/[assessmentId]/questions-objectives/index.vue:33
+msgid "en cours de chargement"
+msgstr "in loading"
+
+#: utils/constants.ts:50
+msgid "En ligne"
+msgstr "Online"
+
+#: components/modal/cancel-participation-modal.vue:16
+msgid "En réinitialisant l'évaluation, vous perdrez l'ensemble de vos réponses."
+msgstr ""
+"By resetting the evaluation, \n"
+"you lose all of your answers"
+
+#: pages/resultats/[assessmentId].vue:20
+msgid "En savoir plus sur le DémoMètre"
+msgstr "Learn more about the DémoMètre"
+
+#: pages/compte/evaluation/[assessmentId]/ateliers/[workshopId]/index.vue:249
+msgid "En supprimant ce participant, vous supprimez également les évaluations du participant. Cette action est irréversible."
+msgstr "By removing this participant, you also delete the participant’s evaluations. This action is irreversible."
+
+#: components/assessment/informationsEditModal.vue:22
+msgid "En tant qu'initiateur ou expert de l'évaluation, pouvez modifier les informations."
+msgstr "As initiator or expert of the evaluation, you can change the information."
+
+#: pages/signup.vue:231
+msgid "Enregistrer son compte"
+msgstr "Register your account"
+
+#: pages/nouveau-mdp.vue:54
+msgid "Envoyer un lien de récupération"
+msgstr "Send recovery link"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:184
+msgid "État de l'évaluation"
+msgstr "Evaluation's status"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:261
+msgid "État de paiement de la redevance"
+msgstr "Payment of the fee"
+
+#: components/participation/board/index.vue:15 utils/constants.ts:37
+msgid "Évaluation"
+msgstr "Evaluation"
+
+#: composables/types.ts:206
+msgid "Evaluation avec expert"
+msgstr "Evaluation with a professional expert"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:28
+msgid "Évaluation en cours"
+msgstr "Evaluation in progress"
+
+#: composables/types.ts:205
+msgid "Evaluation participative"
+msgstr "Participatory evaluation"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:38
+msgid "Évaluation terminée"
+msgstr "Assessment completed"
+
+#: pages/compte/ateliers/index.vue:20
+msgid "Evaluation*"
+msgstr "Evaluation"
+
+#: pages/compte/index.vue:81
+msgid "Évaluations en cours"
+msgstr "Evaluations in progress"
+
+#: pages/compte/index.vue:87
+msgid "Évaluations terminées"
+msgstr "Assessments completed"
+
+#: components/assessment/expertChooser.vue:3
+#: pages/compte/evaluation/[id]/index.vue:109
+#: pages/compte/evaluation/[id]/index.vue:282
+msgid "Expert"
+msgid_plural "Experts"
+msgstr[0] "Expert"
+msgstr[1] "Experts"
+
+#: utils/constants.ts:33
+msgid "Factures"
+msgstr "Invoices"
+
+#: components/footer.vue:87
+msgid "FAQ"
+msgstr "Frequently Asked Questions (FAQs)"
+
+#: components/assessment/addDocumentModal.vue:50
+msgid "Fichier"
+msgstr "File"
+
+#: pages/export/questionnaire/index.vue:5
+msgid "Générer un questionnaire papier"
+msgstr "Generate paper questionnaire"
+
+#: pages/compte/index.vue:20
+msgid "Générer un questionnaire papier en fonction d'un profil"
+msgstr "Generate a paper questionnaire based on a profile"
+
+#: components/questionnaire/pillar-animator-responses.vue:194
+msgid "Ignorer et aller à la question suivante"
+msgstr "Ignore and go to the next question"
+
+#: components/questionnaire/pillar-animator-responses.vue:193
+msgid "Ignorer les réponses rentrées ?"
+msgstr "Ignore the answers entered ?"
+
+#: composables/errors.ts:20
+msgid "Il manque des données afin de valider"
+msgstr "Data is missing to validate"
+
+#: components/assessment/workshops.vue:104
+msgid "Il n'y a pas encore d'atelier dans cette évaluation."
+msgstr "There is no workshop in this evaluation yet."
+
+#: stores/workshopStore.ts:143
+msgid "Impossible d'ajouter l'atelier"
+msgstr "Cannot add the workshop"
+
+#: stores/userStore.ts:43
+msgid "Impossible d'enregistrer les informations, les noms d'utilisateur et adresse mail doivent être uniques"
+msgstr "Unable to save information, usernames and email addresses must be unique"
+
+#: stores/userStore.ts:59
+msgid "Impossible de se connecter, vérifiez vos identifiants"
+msgstr "Unable to login, check your identifiers"
+
+#: stores/workshopStore.ts:168
+msgid "Impossible de supprimer le participant"
+msgstr "Unable to delete participant"
+
+#: stores/workshopStore.ts:163
+msgid "Impossible de supprimer le participant (impossible de récupérer son atelier)"
+msgstr "Unable to delete participant (unable to get his workshop back)"
+
+#: stores/assessmentStore.ts:120
+msgid "Impossible de téléverser le document"
+msgstr "Unable to unpload the document"
+
+#: pages/export/questionnaire/[roleId].vue:30
+msgid "imprimer"
+msgstr "Print"
+
+#: components/workshop/informationsEditModal.vue:123
+msgid "Informations de l'atelier"
+msgstr "Workshop's information"
+
+#: components/assessment/informationsEditModal.vue:10
+msgid "Informations de l'évaluation"
+msgstr "Evaluation's information"
+
+#: pages/evaluation/initialisation/[assessmentId]/questions-objectives/index.vue:49
+#: pages/evaluation/initialisation/[assessmentId]/validation.vue:48
+msgid "Initialisation"
+msgstr "Initialisation"
+
+#: components/participation/board/index.vue:37
+msgid "Initiateur"
+msgstr "Iniator"
+
+#: composables/types.ts:192 utils/constants.ts:55
+msgid "Intercommunalité"
+msgstr "Intercommunality"
+
+#: components/form/buttons.vue:39
+msgid "Je ne sais pas / Je passe"
+msgstr "I don't know / I pass"
+
+#: components/form/buttons.vue:40
+msgid "Je passe"
+msgstr "I pass"
+
+#: composables/errors.ts:9
+msgid "L'email ne correspond pas à l'instance initiatrice"
+msgstr "The email does not match the initiator instance"
+
+#: composables/errors.ts:7
+msgid "L'évaluation a déjà été initialisée"
+msgstr "Evaluation has already been initiated"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:271
+msgid "L’expert a bien réglé le paiement de la commission d’utilisation du DémoMètre."
+msgstr "The expert has paid the commission for using the DemoMeter"
+
+#: composables/errors.ts:18
+msgid "La clé de réinitialisation du mot de passe est périmée (24h max), veuillez redemander un changement de mot de passe."
+msgstr "Password reset key is expired (maximum 24 hours), please request a password change."
+
+#: composables/errors.ts:21
+msgid "La forme de l'email n'est pas correct"
+msgstr "The form of the email is not correct"
+
+#: components/form/QuestionProfileTypes.vue:3
+msgid "La question est à répondre uniquement si vous avez un des profils suivants :"
+msgstr "The question is to be answered only if you have one of the following profiles :"
+
+#: pages/login.vue:157 pages/nouveau-mdp.vue:182 pages/signup.vue:185
+msgid "Le courriel doit contenir @"
+msgstr "The email must contain @"
+
+#: composables/errors.ts:13
+msgid "Le mail est déjà utilisé"
+msgstr "The mail is already used"
+
+#: composables/errors.ts:14
+msgid "Le mail n'est pas valide"
+msgstr "The e-mail address is not valid"
+
+#: pages/login.vue:169 pages/nouveau-mdp.vue:195 pages/signup.vue:198
+msgid "Le mot de passe ne peut pas être vide"
+msgstr "Password cannot be empty"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:290
+msgid "Le paiement n'a pas encore été effectué."
+msgstr "Payment has not yet been made"
+
+#: composables/errors.ts:10
+msgid "Le type de l'initiateur est incorrect"
+msgstr "Initiator type is incorrect"
+
+#: pages/nouveau-mdp.vue:209 pages/signup.vue:214
+msgid "Les deux mots de passe sont différents"
+msgstr "The two passwords are different"
+
+#: components/workshop/participantEditModal.vue:83
+msgid "Les participants peuvent répondre en ligne ou via questionnaire papier, dont les réponses peuvent être saisies par vos soins avec la plateforme. Si vous souhaitez saisir des réponses papier, sélectionnez « Sur papier », puis remplissez les questions de profilage, validez puis cliquez ensuite sur « Saisir les réponses papier »."
+msgstr "Participants can answer online or via paper questionnaire, the answers can be entered by you with the platform. If you want to enter paper responses, select “On paper”, then complete the profiling questions, confirm and then click on “Enter paper responses”"
+
+#: components/footer.vue:18
+msgid "License"
+msgstr "License"
+
+#: components/assessment/addWorkshopModal.vue:49
+#: components/assessment/workshops.vue:22
+msgid "Lieu"
+msgstr "Place"
+
+#: components/richTextInput.vue:260
+msgid "Liste à puce"
+msgstr "Bullet list"
+
+#: components/export/profile-types.vue:3
+msgid "Liste des profils et de leurs conditions :"
+msgstr "List of profiles and their conditions"
+
+#: components/richTextInput.vue:252
+msgid "Liste numérotée"
+msgstr "Numbered list"
+
+#: pages/compte/index.vue:129
+msgid "Localité"
+msgstr "Place"
+
+#: composables/types.ts:294
+msgid "Ma collectivité"
+msgstr "Local authority"
+
+#: pages/compte/evaluation/[assessmentId]/ateliers/[workshopId]/index.vue:95
+msgid "Mail"
+msgstr "Email"
+
+#: components/questionnaire/pillar-referential.vue:13
+msgid "Marqueurs"
+msgstr "Markers"
+
+#: components/footer.vue:34
+msgid "Mentions légales"
+msgstr "Legal information"
+
+#: pages/compte/index.vue:48
+msgid "Mes informations"
+msgstr "My information"
+
+#: pages/projet.vue:41
+msgid "Méthode"
+msgstr "Method"
+
+#: components/workshop/participantEditModal.vue:174
+msgid "Modification d'un participant"
+msgstr "Modification of a participant"
+
+#: pages/compte/evaluation/[assessmentId]/ateliers/[workshopId]/index.vue:133
+msgid "modifier"
+msgstr " Modifier"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:393
+#: pages/compte/index.vue:50
+msgid "Modifier les informations"
+msgstr "Modify the information"
+
+#: components/workshop/informationsEditModal.vue:121 utils/constants.ts:46
+msgid "Modifier les remarques"
+msgstr "Edit remarks"
+
+#: components/workshop/informationsEditModal.vue:121 utils/constants.ts:40
+msgid "Modifier les suggestions"
+msgstr "Edit suggestions"
+
+#: components/account/editUserInfoModal.vue:10
+msgid "Modifier mes informations"
+msgstr "Modify my information"
+
+#: components/questionnaire/question-statement.vue:31
+msgid "Moins de %{ inhabitants } habitants"
+msgstr "Less than %{ inhabitants } inhabitants"
+
+#: components/account/editUserInfoModal.vue:21
+msgid "Mon nom tel qu'affiché dans l'application"
+msgstr "My name as displayed in the app"
+
+#: pages/login.vue:53 pages/nouveau-mdp.vue:6 pages/signup.vue:54
+msgid "mot de passe"
+msgstr "password"
+
+#: pages/login.vue:47 pages/signup.vue:48
+msgid "Mot de passe"
+msgstr "Password"
+
+#: pages/login.vue:86
+msgid "Mot de passe oublié ?"
+msgstr "Forgotten password?"
+
+#: components/workshop/participantEditModal.vue:23
+msgid "Nom / pseudo"
+msgstr "Name / pseudonym"
+
+#: components/assessment/addWorkshopModal.vue:18
+#: components/workshop/informationsEditModal.vue:24
+msgid "Nom de l'atelier"
+msgstr "Workshop name"
+
+#: components/assessment/workshops.vue:13 pages/compte/ateliers/index.vue:14
+msgid "Nom de l’atelier"
+msgstr "Workshop name"
+
+#: components/assessment/informationsEditModal.vue:26
+msgid "Nom de l'évaluation"
+msgstr "Evaluation name"
+
+#: components/assessment/addDocumentModal.vue:23
+msgid "Nom du document"
+msgstr "Document name"
+
+#: components/assessment/informationsEditModal.vue:37
+msgid "Nom du porteur de l'évaluation"
+msgstr "Name of appraiser (?)"
+
+#: components/participation/board/index.vue:52
+msgid "Nombre de participants"
+msgstr "Number of participants"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:190
+msgid "Nombre de questions répondues :"
+msgstr "Number of questions answered :"
+
+#: components/modal/cancel-participation-modal.vue:30
+#: components/response/input/binary.vue:40
+msgid "Non"
+msgstr "No"
+
+#: composables/types.ts:207
+msgid "Non renseigné"
+msgstr "Not specified"
+
+#: components/modal/save-participation-modal.vue:30
+msgid "Non, ne rien enregistrer"
+msgstr "No, do not record"
+
+#: pages/nouveau-mdp-confirmation.vue:6
+msgid "Nous avons bien pris en compte votre demande"
+msgstr "We took into account your request"
+
+#: components/assessment/add-expert.vue:24
+msgid "Nous contactez"
+msgstr "Contact us"
+
+#: pages/nouveau-mdp.vue:64 pages/nouveau-mdp.vue:156
+msgid "Nouveau mot de passe"
+msgstr "New password"
+
+#: utils/constants.ts:16 utils/constants.ts:22
+msgid "objectifs"
+msgstr "objectives"
+
+#: components/response/input/binary.vue:35
+msgid "Oui"
+msgstr "Yes"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:412
+msgid "Oui, clôturer l'évaluation"
+msgstr "Yes, close the evaluation"
+
+#: components/modal/save-participation-modal.vue:24
+msgid "Oui, créer un compte"
+msgstr "Yes, create an account"
+
+#: components/modal/cancel-participation-modal.vue:24
+msgid "Oui, reinitialiser"
+msgstr "Yes, reset"
+
+#: pages/compte/evaluation/[assessmentId]/ateliers/[workshopId]/index.vue:251
+msgid "Oui, supprimer"
+msgstr "Yes, delete"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:268
+msgid "Paiement effectué"
+msgstr "Payment made"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:288
+msgid "Paiement en attente"
+msgstr "Pending payment"
+
+#: components/questionnaire/pillar-animator-responses.vue:63
+msgid "Participant·e·s"
+msgstr "Participants"
+
+#: components/assessment/workshops.vue:25
+msgid "Participants"
+msgstr "Participants"
+
+#: utils/constants.ts:17
+msgid "parties prenantes"
+msgstr "stakeholders"
+
+#: pages/compte/index.vue:130
+msgid "Pays"
+msgstr "Countries"
+
+#: components/analytics/choice-question-chart.vue:9
+#: components/analytics/scale-question-chart.vue:20
+msgid "Personne(s) concernée(s)"
+msgstr "Persons concerned"
+
+#: components/export/survey-questions.vue:9
+msgid "Pillier %{ name }"
+msgstr "Pillar"
+
+#: components/questionnaire/question-statement.vue:27
+msgid "Plus de %{ inhabitants } habitants"
+msgstr "More than %{ inhabitants } inhabitants"
+
+#: components/analytics/plus-and-minus.vue:22
+msgid "Points d'amélioration"
+msgstr "Points of improvement"
+
+#: components/analytics/plus-and-minus.vue:7
+msgid "Points forts"
+msgstr "Strong points"
+
+#: components/footer.vue:42
+msgid "Politique de confidentialité"
+msgstr "Privacy policy"
+
+#: pages/compte/index.vue:110
+msgid "Pour démarrer une évaluation, cliquer sur le bouton « Lancer une évaluation »."
+msgstr "To start the evaluation, click on the button \"Start an evaluation\""
+
+#: pages/projet.vue:15 pages/projet.vue:60
+msgid "Pourquoi"
+msgstr "Why"
+
+#: pages/evaluation/participation/[assessmentId]/tableau-de-bord.vue:20
+msgid "Poursuivre l'évaluation"
+msgstr "Continue evaluation"
+
+#: components/questionnaire/pillar-referential.vue:169
+msgid "Premier critère"
+msgstr "First criteria"
+
+#: components/questionnaire/pillar-referential.vue:199
+msgid "Premier marqueur"
+msgstr "First marker"
+
+#: pages/compte/evaluation/[assessmentId]/ateliers/[workshopId]/index.vue:89
+msgid "Prénom nom"
+msgstr "Full name"
+
+#: components/assessment/addWorkshopModal.vue:24
+msgid "Présentation des résultats"
+msgstr "Presentation of the results"
+
+#: components/questionnaire/question-statement.vue:4
+msgid "Question"
+msgstr "Question"
+
+#: pages/export/questionnaire/[roleId].vue:11
+msgid "Question d'affinage"
+msgstr "Question of refining"
+
+#: components/questionnaire/pillar-animator-responses.vue:130
+msgid "Question suivante"
+msgstr "Next question "
+
+#: pages/compte/index.vue:123 pages/export/questionnaire/[roleId].vue:5
+#: pages/export/questionnaire/[roleId].vue:18
+msgid "Questionnaire"
+msgstr "Questionnaire"
+
+#: pages/export/questionnaire/index.vue:28
+#: pages/export/questionnaire/index.vue:29
+msgid "Questionnaire papier"
+msgstr "Paper questionnaire"
+
+#: components/questionnaire/pillar-animator-responses.vue:13
+msgid "Questions"
+msgstr "Questions"
+
+#: utils/constants.ts:31
+msgid "Rapports d'évaluation"
+msgstr "Evaluation reports"
+
+#: components/footer.vue:103
+msgid "Réalisé par "
+msgstr "Produced by"
+
+#: components/form/localisation.vue:75
+msgid "Rechercher"
+msgstr "Search for"
+
+#: pages/compte/index.vue:156
+msgid "Redevance impayée"
+msgstr "Unpaid fee"
+
+#: pages/compte/index.vue:152
+msgid "Redevance payée"
+msgstr "Fee paid"
+
+#: composables/types.ts:194 utils/constants.ts:57
+msgid "Région"
+msgstr "Region"
+
+#: utils/constants.ts:45
+msgid "Remarques"
+msgstr "Remarks"
+
+#: components/response/input/open.vue:7
+msgid "Réponse ouverte"
+msgstr "Open answer"
+
+#: components/questionnaire/pillar-animator-responses.vue:97
+msgid "Réponse unique car question objective"
+msgstr "Single answer to objective question"
+
+#: components/analytics/choice-question-chart.vue:7
+msgid "Réponse(s)"
+msgstr "Response(s)"
+
+#: components/analytics/scale-question-chart.vue:47
+#: components/form/question.vue:133
+#: components/questionnaire/pillar-animator-responses.vue:66
+#: components/workshop/participantEditModal.vue:68
+msgid "Réponses"
+msgstr "Answers"
+
+#: composables/userStep.ts:17
+msgid "Reprendre l'évaluation"
+msgstr "Resume the assessment "
+
+#: components/participation/board/representativity.vue:28
+#: components/participation/board/representativity.vue:45
+msgid "Représentativité actuelle :"
+msgstr "Current representation"
+
+#: components/participation/board/index.vue:61
+msgid "Représentativité des participants"
+msgstr "The participants are representative."
+
+#: components/footer.vue:81
+msgid "Ressources"
+msgstr "Resources"
+
+#: pages/resultats/[assessmentId].vue:124
+msgid "Résultat"
+msgstr "Result"
+
+#: pages/resultats/[assessmentId].vue:14
+msgid "Résultats par piliers"
+msgstr "Results by pillars"
+
+#: components/assessment/expertChooser.vue:24
+msgid "Retirer cet expert"
+msgstr "Remove this expert"
+
+#: components/richTextInput.vue:276
+msgid "Retirer l'hyperlien"
+msgstr "Remove the hyperlink"
+
+#: pages/compte/ateliers/index.vue:139
+msgid "Retirer un atelier"
+msgstr "Remove a workshop"
+
+#: pages/nouveau-mdp-confirmation.vue:14
+msgid "Retourner à la connexion"
+msgstr "Return to the login"
+
+#: pages/compte/evaluation/[assessmentId]/ateliers/[workshopId]/reponses.vue:13
+msgid "Revenir à l'atelier"
+msgstr "Return to the workshop"
+
+#: pages/compte/evaluation/[assessmentId]/ateliers/[workshopId]/index.vue:15
+#: pages/compte/evaluation/[assessmentId]/index.vue:16
+msgid "Revenir à mon compte"
+msgstr "Return to my account"
+
+#: components/questionnaire/pillar-referential.vue:146
+msgid "Revenir au marqueur"
+msgstr "Return to the marker"
+
+#: components/questionnaire/pillar-referential.vue:163
+msgid "Revenir au pilier"
+msgstr "Return to the pillar"
+
+#: components/workshop/participantEditModal.vue:48
+#: pages/compte/evaluation/[assessmentId]/ateliers/[workshopId]/index.vue:92
+#: pages/compte/index.vue:126
+msgid "Rôle"
+msgstr "Role"
+
+#: pages/signup.vue:232
+msgid "S'enregistrer"
+msgstr "To register"
+
+#: pages/compte/index.vue:41
+msgid "S'enregistrer pour conserver vos résultats"
+msgstr "Register to save your results"
+
+#: pages/signup.vue:238
+msgid "S'inscrire"
+msgstr "Sign up"
+
+#: pages/compte/ateliers/index.vue:80
+msgid "Saisir les participant·e·s"
+msgstr "Enter participants"
+
+#: pages/compte/evaluation/[assessmentId]/ateliers/[workshopId]/reponses.vue:18
+msgid "Saisissez les réponses des participants aux évaluations papier."
+msgstr "Enter the participants’ responses to the paper assessments"
+
+#: components/assessment/addWorkshopModal.vue:55
+#: components/workshop/informationsEditModal.vue:41
+msgid "Salle polyvalente de la ville de ..."
+msgstr "Multipurpose hall of the city of ..."
+
+#: stores/workshopStore.ts:136
+msgid "Sauvegarde réussie"
+msgstr "Successful backup"
+
+#: pages/compte/index.vue:13
+msgid "Se déconnecter"
+msgstr "Log out"
+
+#: components/analytics/choice-question-chart.vue:11
+#: components/analytics/scale-question-chart.vue:23
+msgid "Sélectionner ci-dessous un ou plusieurs acteurs"
+msgstr "Select one or more actors below"
+
+#: components/questionnaire/pillar-animator-responses.vue:115
+msgid "Selectionner une question"
+msgstr "Selec a question"
+
+#: components/participation/board/representativity.vue:47
+msgid "Seuil minimal de représentativité :"
+msgstr "Minimum threshold of representativeness"
+
+#: components/assessment/changeExpertModal.vue:23
+msgid "Si vous souhaitez changer, sélectionnez un expert dans la liste ci-dessous et cliquez sur valider. Si votre expert n’est pas enregistré (et/ou ne figure pas dans la liste), contactez nous."
+msgstr "If you would like to change, select an expert from the list below and click to OK. If your expert is not registered (and/or listed), please contact us."
+
+#: components/modal/save-participation-modal.vue:13
+msgid "Souhaitez-vous enregistrer vos réponses pour pouvoir y revenir et contribuer à l’évaluation ?"
+msgstr "Would you like to save your answers so that you can go back and continue to contribute to the evaluation?"
+
+#: components/modal/cancel-participation-modal.vue:13
+msgid "Souhaitez-vous réinitialiser votre évaluation ?"
+msgstr "Would you like to reset your evaluation?"
+
+#: utils/constants.ts:39
+msgid "Suggestions"
+msgstr "Suggestions"
+
+#: pages/compte/evaluation/[assessmentId]/ateliers/[workshopId]/index.vue:127
+msgid "supprimer"
+msgstr "Delete"
+
+#: utils/constants.ts:26
+msgid "sur la plateforme"
+msgstr "On the platform"
+
+#: utils/constants.ts:25
+msgid "sur le démomètre"
+msgstr "On the DémoMètre"
+
+#: utils/constants.ts:28
+msgid "sur les mesures d'améliorations"
+msgstr "on improvement measures"
+
+#: utils/constants.ts:27
+msgid "sur les résultats"
+msgstr "On the results"
+
+#: utils/constants.ts:51
+msgid "Sur papier"
+msgstr "On paper"
+
+#: components/participation/board/index.vue:64
+msgid "Survoler les barres pour afficher les statistiques."
+msgstr "Hover over bars to view statistics"
+
+#: components/articleContent/block/pdf.vue:13
+msgid "Télécharger :"
+msgstr "Download"
+
+#: pages/compte/index.vue:99
+msgid "terminée"
+msgstr "is complete"
+
+#: components/participation/board/index.vue:19
+msgid "Territoire"
+msgstr "Territory"
+
+#: components/richTextInput.vue:236
+msgid "Text gras"
+msgstr "Bold text"
+
+#: components/richTextInput.vue:244
+msgid "Texte italique"
+msgstr "Italic text"
+
+#: components/richTextInput.vue:209
+msgid "titre 1"
+msgstr "Heading 1"
+
+#: components/richTextInput.vue:218
+msgid "titre 2"
+msgstr "Heading 2"
+
+#: components/richTextInput.vue:227
+msgid "titre 3"
+msgstr "Heading 3"
+
+#: components/richTextInput.vue:210
+msgid "Titre de niveau 1"
+msgstr "Level 1 heading"
+
+#: components/richTextInput.vue:219
+msgid "Titre de niveau 2"
+msgstr "Level 2 heading"
+
+#: components/richTextInput.vue:228
+msgid "Titre de niveau 3"
+msgstr "Level 3 heading"
+
+#: components/analytics/choice-question-chart.vue:30
+msgid "Totaux"
+msgstr "Totals"
+
+#: components/assessment/addWorkshopModal.vue:32
+#: components/assessment/workshops.vue:16
+msgid "Type d'atelier"
+msgstr "Type of workshop"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:74
+msgid "type d'évaluation"
+msgstr "Type of evaluation"
+
+#: composables/types.ts:296
+msgid "Un particulier"
+msgstr "An individual"
+
+#: composables/types.ts:295
+msgid "Une association"
+msgstr "An association"
+
+#: composables/errors.ts:6
+msgid "Une erreur s'est produite dans le serveur"
+msgstr "An error occurred in the server"
+
+#: stores/workshopStore.ts:133
+msgid "Une erreur s'est produite lors de la sauvegarde"
+msgstr "An error occurred while saving"
+
+#: components/richTextInput.vue:66
+msgid "URL"
+msgstr "URL"
+
+#: components/account/editUserInfoModal.vue:42
+#: components/assessment/addDocumentModal.vue:86
+#: components/assessment/addWorkshopModal.vue:77
+#: components/assessment/changeExpertModal.vue:48
+#: components/assessment/informationsEditModal.vue:70
+#: components/form/buttons.vue:15 components/form/localisation.vue:120
+#: components/richTextInput.vue:82
+#: components/workshop/informationsEditModal.vue:79
+#: components/workshop/participantEditModal.vue:120
+#: pages/compte/ateliers/index.vue:149
+#: pages/evaluation/initialisation/index.vue:95
+#: pages/evaluation/initialisation/index.vue:156
+#: pages/evaluation/initialisation/index.vue:218
+msgid "Valider"
+msgstr "Submit"
+
+#: components/questionnaire/pillar-animator-responses.vue:140
+msgid "Valider les réponses"
+msgstr "Validate the responses"
+
+#: pages/nouveau-mdp-confirmation.vue:8
+msgid "Veuillez vérifier votre boîte mail et suivre les instructions."
+msgstr "Please check your email and follow the instructions."
+
+#: components/questionnaire/question-statement.vue:21
+msgid "Villes concernées"
+msgstr " Cities concerned"
+
+#: components/form/buttons.vue:81
+#: pages/compte/evaluation/[assessmentId]/index.vue:234
+#: pages/evaluation/[assessmentId]/questionnaire/index.vue:49
+#: pages/resultats/index.vue:36
+msgid "Voir les résultats"
+msgstr "See the results"
+
+#: pages/compte/index.vue:32
+msgid "Votre participation ne sera pas comptabilisée tant que vous n'êtes pas enregistré. Elle sera supprimée au bout d'un mois."
+msgstr "Your participation will not be counted until you are registered. It will be deleted after one month."
+
+#: pages/signup.vue:140
+msgid "Vous avez déjà un compte ?"
+msgstr "Already have an account?"
+
+#: pages/evaluation/participation/[assessmentId]/ajout-expert.vue:18
+msgid "Vous devez être connecté pour ajouter un expert"
+msgstr "You must be logged in to add an expert"
+
+#: components/export/profile-types.vue:14
+msgid "vous devez respecter au moins une des les conditions suivantes :"
+msgstr "You must comply with at least one of the following conditions"
+
+#: components/export/profile-types.vue:11
+msgid "vous devez respecter toutes les conditions suivantes :"
+msgstr "You must comply with all of the following conditions"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:63
+msgid "Vous êtes à l'intiative de cette évaluation"
+msgstr "You are the initiator of this evaluation"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:65
+msgid "Vous êtes l'expert de cette évaluation"
+msgstr "You are the expert of this evaluation"
+
+#: pages/compte/index.vue:103
+msgid "Vous n’avez aucune évaluation en cours avec le DémoMètre."
+msgstr "You have no ongoing evaluation with the DemoMeter"
+
+#: pages/compte/index.vue:106
+msgid "Vous n’avez aucune évaluation terminée avec le DémoMètre."
+msgstr "You have no assessment completed with the DemoMeter"
+
+#: composables/errors.ts:19
+msgid "Vous n'avez pas à répondre à cette question."
+msgstr "You do not have to answer this question."
+
+#: pages/login.vue:110
+msgid "Vous n'avez pas encore de compte ?"
+msgstr "You don’t have an account yet?"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:199
+msgid "Vous n'avez pas participé à cette évaluation."
+msgstr "You did not participate in this assessment."
+
+#: components/modal/save-participation-modal.vue:17
+msgid "Vous pourrez ensuite y revenir via l'onglet \"Mon compte\"."
+msgstr "You can then return to it via the \"My account\" tab."
+
+#: components/trainingCard.vue:54 components/trainingCard.vue:62
+msgid "Vous renseigner"
+msgstr "Enquire"
+
+#: pages/compte/index.vue:147
+msgid "participant - non encore rempli"
+msgstr "participant - not yet filled"
+
+#: components/assessment/addWorkshopModal.vue:66
+msgid "fr-FR"
+msgstr "fr-FR"
+
+#: components/participation/board/index.vue:27
+msgid "Portée par"
+msgstr "Carried by"
+
+#: pages/compte/index.vue:121
+msgid "Nom"
+msgstr "Name"
+
+#: pages/resultats/[assessmentId].vue:79
+msgid "Explicitée par :"
+msgstr "Explained by:"
+
+#: pages/resultats/[assessmentId].vue:102
+msgid "Permet d'expliciter :"
+msgstr "Helps to clarify:"
+
+#: my_auth/models.py:10 open_democracy_back/models/animator_models.py:10
+msgid "email address"
+msgstr "email address"
+
+#: open_democracy_back/models/animator_models.py:31
+msgid "évaluation"
+msgstr "evaluation"
+
+#: open_democracy_back/models/animator_models.py:31
+msgid "résultats"
+msgstr "results"
+
+#: open_democracy_back/models/animator_models.py:40
+msgid "suggestions démomètre"
+msgstr "DémoMètre suggestions"
+
+#: open_democracy_back/models/animator_models.py:43
+msgid "suggestions sur la plateforme"
+msgstr "suggestions on the plateform"
+
+#: open_democracy_back/models/animator_models.py:46
+msgid "remarques sur les mesures d'amélioration"
+msgstr "comments on improvement measures"
+
+#: open_democracy_back/models/animator_models.py:52
+msgid "remarques sur les résultats"
+msgstr "comments on results"
+
+#: open_democracy_back/models/animator_models.py:56
+msgid "Atelier"
+msgstr "Workshop"
+
+#: open_democracy_back/models/assessment_models.py:29
+#: open_democracy_back/models/assessment_models.py:50
+#: open_democracy_back/models/assessment_models.py:122
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:175
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:229
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:333
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:476
+msgid "Code"
+msgstr "Code"
+
+#: open_democracy_back/models/assessment_models.py:45
+msgid "Régions"
+msgstr "Area"
+
+#: open_democracy_back/models/assessment_models.py:73
+msgid "Départements"
+msgstr "Departement"
+
+msgid "Code insee"
+msgstr "Insee code"
+
+#: open_democracy_back/models/assessment_models.py:142
+msgid "Population"
+msgstr "Population"
+
+#: open_democracy_back/models/assessment_models.py:103
+#: open_democracy_back/models/assessment_models.py:134
+msgid "Code postal"
+msgstr "Postcode"
+
+#: open_democracy_back/models/assessment_models.py:118
+msgid "Communes"
+msgstr "Commune"
+
+#: open_democracy_back/models/assessment_models.py:125
+msgid "Municipalité"
+msgstr "Municipality"
+
+#: open_democracy_back/models/assessment_models.py:135
+msgid "Code postaux"
+msgstr "Postal code"
+
+#: open_democracy_back/models/assessment_models.py:140
+msgid "Code siren"
+msgstr "SIREN code"
+
+#: open_democracy_back/models/assessment_models.py:150
+msgid "Liste des communes"
+msgstr "Communes list"
+
+#: open_democracy_back/models/assessment_models.py:164
+msgid "Intercommunalités"
+msgstr "Intercommunalities"
+
+#: open_democracy_back/models/assessment_models.py:189
+msgid "A qui c'est adressé"
+msgstr "Who it's for"
+
+#: open_democracy_back/models/assessment_models.py:192
+msgid "Ce que ça contient"
+msgstr "What it contains"
+
+#: open_democracy_back/models/assessment_models.py:195
+msgid "Ce que ça permet"
+msgstr "What it does"
+
+#: open_democracy_back/models/assessment_models.py:198
+msgid "Les résultats"
+msgstr "The results"
+
+#: open_democracy_back/models/assessment_models.py:200
+msgid "Le prix"
+msgstr "The price"
+
+#: open_democracy_back/models/assessment_models.py:203
+msgid "Pdf du questionnaire"
+msgstr "Pdf of the questionnaire"
+
+#: open_democracy_back/models/assessment_models.py:223
+#: open_democracy_back/models/assessment_models.py:241
+#: open_democracy_back/models/pages_models.py:253
+msgid "Type d'évaluation"
+msgstr "Type of evaluation"
+
+#: open_democracy_back/models/assessment_models.py:224
+msgid "Types d'évaluation"
+msgstr "Types of evaluation"
+
+#: open_democracy_back/models/assessment_models.py:251
+msgid "Date de fin"
+msgstr "End ate"
+
+#: open_democracy_back/models/assessment_models.py:256
+msgid "Experts"
+msgstr "Experts"
+
+#: open_democracy_back/models/assessment_models.py:260
+msgid "Pour ajouter un expert à la liste il faut créer / modifier l'utilisateur correspondant, aller dans l'onglet rôles et cocher la case Experts"
+msgstr "To add an expert to the list, you need to create/modify the corresponding user, go to the roles tab and tick the Experts box"
+
+#: open_democracy_back/models/assessment_models.py:268
+msgid "Initialisé par"
+msgstr "Initialised by"
+
+#: open_democracy_back/models/assessment_models.py:271
+msgid "Si l'évaluation est initié au nom de la localité, quelqu'un peut tout de même être à la source"
+msgstr "If the assessment is initiated in the name of the locality, someone may still be at the source"
+
+#: open_democracy_back/models/assessment_models.py:286
+msgid "Initialisé au nom de"
+msgstr "Initialised in the name of"
+
+#: open_democracy_back/models/assessment_models.py:291
+msgid "Date d'initialisation"
+msgstr "Initialisation date"
+
+#: open_democracy_back/models/assessment_models.py:293
+msgid "Si il n'y a pas de date d'initialisation, c'est que le début de l'évaluation n'a pas été confirmée"
+msgstr "If there is no initialisation date, it means that the start of the assessment has not been confirmed"
+
+#: open_democracy_back/models/assessment_models.py:298
+msgid "Date de dernière participation"
+msgstr "Date of last participation"
+
+#: open_democracy_back/models/assessment_models.py:304
+msgid "Type de localité"
+msgstr "Type of town"
+
+#: open_democracy_back/models/assessment_models.py:334
+#: open_democracy_back/models/assessment_models.py:443
+#: open_democracy_back/models/training_models.py:11
+msgid "nom"
+msgstr "Name"
+
+#: open_democracy_back/models/assessment_models.py:406
+msgid "Évaluations"
+msgstr "Assessments"
+
+#: open_democracy_back/models/assessment_models.py:435
+msgid "documents"
+msgstr "Documents"
+
+#: open_democracy_back/models/assessment_models.py:438
+msgid "catégorie"
+msgstr "Category"
+
+#: open_democracy_back/models/assessment_models.py:442
+msgid "fichier"
+msgstr "File"
+
+#: open_democracy_back/models/assessment_models.py:458
+msgid "auteur du paiement"
+msgstr "Name of the payer"
+
+#: open_democracy_back/models/assessment_models.py:463
+msgid "montant"
+msgstr "Amount"
+
+#: open_democracy_back/models/contents_models.py:31
+msgid "Context de la personne"
+msgstr "The person's background"
+
+#: open_democracy_back/models/contents_models.py:33
+msgid "Exemple : Elu de Strasbourg, Membre de Démocratie Ouverte, Habitant de Toulouse ... "
+msgstr "Example: Elected representative of Strasbourg, Member of Démocratie Ouverte, Resident of Toulouse..."
+
+#: open_democracy_back/models/contents_models.py:38
+msgid "Publier dans la page d'accueil"
+msgstr "Publish on the home page"
+
+#: open_democracy_back/models/contents_models.py:41
+#: open_democracy_back/models/contents_models.py:103
+#: open_democracy_back/models/training_models.py:36
+msgid "Lien externe"
+msgstr "External link"
+
+#: open_democracy_back/models/contents_models.py:68
+msgid "Retour d'expériences"
+msgstr "Feedback"
+
+#: open_democracy_back/models/contents_models.py:69
+msgid "Retours d'expériences"
+msgstr "Feedbacks"
+
+#: open_democracy_back/models/contents_models.py:84
+msgid "Date de publication"
+msgstr "Publication date"
+
+#: open_democracy_back/models/contents_models.py:86
+msgid "Permet de trier l'ordre d'affichage des articles de blog"
+msgstr "Allows you to sort the order in which blog posts are displayed"
+
+#: open_democracy_back/models/contents_models.py:92
+msgid "Description courte"
+msgstr "Short description"
+
+#: open_democracy_back/models/contents_models.py:93
+msgid "Ce texte apparait sur la miniature"
+msgstr "This text appears on the thumbnail"
+
+#: open_democracy_back/models/contents_models.py:98
+#: open_democracy_back/models/pages_models.py:397
+#: open_democracy_back/models/pages_models.py:434
+#: open_democracy_back/models/pages_models.py:455
+#: open_democracy_back/models/pages_models.py:750
+#: open_democracy_back/models/utils.py:15
+msgid "Contenu"
+msgstr "Content"
+
+#: open_democracy_back/models/contents_models.py:99
+msgid "Corps de l'article"
+msgstr "Article body"
+
+#: open_democracy_back/models/contents_models.py:107
+msgid "Si ce champ est rempli, le corps de l'article sera ignoré"
+msgstr "If this field is filled in, the body of the article will be ignored"
+
+#: open_democracy_back/models/contents_models.py:144
+msgid "Article de blog"
+msgstr "Blog article"
+
+#: open_democracy_back/models/contents_models.py:145
+msgid "Articles de blog"
+msgstr "Blog articles"
+
+#: open_democracy_back/models/contents_models.py:152
+msgid "Ressource"
+msgstr "Ressource"
+
+#: open_democracy_back/models/contents_models.py:162
+msgid "Logo"
+msgstr "Logo"
+
+#: open_democracy_back/models/contents_models.py:169
+msgid "Choisir la hauteur du logo (min 40px / max 120px)"
+msgstr "Choose the height of the logo (min 40px / max 120px)"
+
+#: open_democracy_back/models/contents_models.py:170
+msgid "Hauteur"
+msgstr "Height"
+
+#: open_democracy_back/models/contents_models.py:173
+msgid "Afficher dans la page d'accueil"
+msgstr "Display on home page"
+
+#: open_democracy_back/models/contents_models.py:183
+msgid "Logo du partenaire"
+msgstr "Partner logo"
+
+#: open_democracy_back/models/contents_models.py:200
+msgid "Partenaire"
+msgstr "Partner"
+
+#: open_democracy_back/models/contents_models.py:201
+#: open_democracy_back/models/pages_models.py:139
+msgid "Partenaires"
+msgstr "Partners"
+
+#: open_democracy_back/models/contents_models.py:209
+#: open_democracy_back/models/pages_models.py:42
+#: open_democracy_back/models/pages_models.py:161
+#: open_democracy_back/models/pages_models.py:185
+#: open_democracy_back/models/pages_models.py:378
+#: open_democracy_back/models/pages_models.py:494
+#: open_democracy_back/models/pages_models.py:529
+#: open_democracy_back/models/pages_models.py:551
+#: open_democracy_back/models/pages_models.py:603
+msgid "Image"
+msgstr "Picture"
+
+#: open_democracy_back/models/contents_models.py:215
+msgid "Intitulé du poste"
+msgstr "Job title"
+
+#: open_democracy_back/models/contents_models.py:234
+msgid "Personne"
+msgstr "Personne"
+
+#: open_democracy_back/models/contents_models.py:235
+msgid "Personnes"
+msgstr "Personnes"
+
+#: open_democracy_back/models/pages_models.py:33
+#: open_democracy_back/models/pages_models.py:153
+#: open_democracy_back/models/pages_models.py:519
+msgid "Phrase d'accroche"
+msgstr "Catchphrase"
+
+#: open_democracy_back/models/pages_models.py:38
+#: open_democracy_back/models/pages_models.py:157
+#: open_democracy_back/models/pages_models.py:489
+#: open_democracy_back/models/pages_models.py:524
+#: open_democracy_back/models/pages_models.py:1352
+#: open_democracy_back/models/pages_models.py:1370
+#: open_democracy_back/models/pages_models.py:1379
+msgid "Introduction"
+msgstr "Introduction"
+
+#: open_democracy_back/models/pages_models.py:48
+msgid "Si l'id d'une vidéo youtube est indiqué alors l'image ne sera pas affiché sur la page d'accueil"
+msgstr "If the id of a youtube video is indicated, the image will not be displayed on the home page"
+
+#: open_democracy_back/models/pages_models.py:55
+msgid "Vidéo Youtube (id)"
+msgstr "Youtube video (id)"
+
+#: open_democracy_back/models/pages_models.py:57
+msgid "Indiquer ici seulement l'id de la video youtube, celui-ci est indiqué dans l'url après 'v='. Exemple : pour https://www.youtube.com/watch?v=xMQMvVIB0vM renseigner xMQMvVIB0vM"
+msgstr "Indicate here only the id of the youtube video, this is indicated in the url after ‘v=’. Example: for https://www.youtube.com/watch?v=xMQMvVIB0vM enter xMQMvVIB0vM"
+
+#: open_democracy_back/models/pages_models.py:62
+msgid "Titre du bloc retours d'expérience"
+msgstr "Title of the feedback block"
+
+#: open_democracy_back/models/pages_models.py:65
+msgid "Si ce champ est vide les retours d'expérience ne s'afficheront pas sur l'accueil"
+msgstr "If this field is empty, the feedback will not be displayed on the home page"
+
+#: open_democracy_back/models/pages_models.py:69
+msgid "Intro du bloc retours d'expérience"
+msgstr "Introduction of the feedback block"
+
+#: open_democracy_back/models/pages_models.py:73
+msgid "Titre du bloc Blog"
+msgstr "Blog block title"
+
+#: open_democracy_back/models/pages_models.py:76
+msgid "Si ce champ est vide les articles de blog ne s'afficheront pas sur l'accueil"
+msgstr "If this field is empty, blog posts will not be displayed on the home page"
+
+#: open_democracy_back/models/pages_models.py:82
+msgid "Titre du bloc Ressources"
+msgstr "Resources block title"
+
+#: open_democracy_back/models/pages_models.py:85
+msgid "Si ce champ est vide bloc Ressources ne s'afficheront pas sur l'accueil"
+msgstr "If this field is empty, the Resources block will not be displayed on the home page"
+
+#: open_democracy_back/models/pages_models.py:89
+msgid "Intro du bloc Ressources"
+msgstr "Introducing the Resources block"
+
+#: open_democracy_back/models/pages_models.py:93
+msgid "Titre du bloc Partenaires"
+msgstr "Partner block title"
+
+#: open_democracy_back/models/pages_models.py:96
+msgid "Si ce champ est vide le bloc Partenaires ne s'afficheront pas sur l'accueil"
+msgstr "If this field is empty, the Partners block will not be displayed on the home page"
+
+#: open_democracy_back/models/pages_models.py:100
+msgid "Intro du bloc Partenaires"
+msgstr "Introducing the Partners block"
+
+#: open_democracy_back/models/pages_models.py:111
+msgid "Image ou Vidéo d'introduction"
+msgstr "Introductory image or video"
+
+#: open_democracy_back/models/pages_models.py:118
+msgid "Retour d'expérience"
+msgstr "Feedback"
+
+#: open_democracy_back/models/pages_models.py:144
+msgid "Page d'accueil"
+msgstr "Homepage"
+
+#: open_democracy_back/models/pages_models.py:170
+#: open_democracy_back/models/pages_models.py:186
+#: open_democracy_back/models/pages_models.py:201
+#: open_democracy_back/models/pages_models.py:225
+#: open_democracy_back/models/pages_models.py:240
+#: open_democracy_back/models/pages_models.py:358
+#: open_democracy_back/models/pages_models.py:387
+#: open_democracy_back/models/pages_models.py:402
+#: open_democracy_back/models/pages_models.py:538
+#: open_democracy_back/models/pages_models.py:560
+#: open_democracy_back/models/pages_models.py:579
+#: open_democracy_back/models/pages_models.py:593
+#: open_democracy_back/models/pages_models.py:604
+#: open_democracy_back/models/pages_models.py:618
+#: open_democracy_back/models/pages_models.py:684
+#: open_democracy_back/models/pages_models.py:700
+#: open_democracy_back/models/pages_models.py:706
+#: open_democracy_back/models/pages_models.py:728
+#: open_democracy_back/models/pages_models.py:880
+#: open_democracy_back/models/pages_models.py:894
+#: open_democracy_back/models/pages_models.py:906
+#: open_democracy_back/models/pages_models.py:916
+#: open_democracy_back/models/pages_models.py:926
+#: open_democracy_back/models/pages_models.py:936
+#: open_democracy_back/models/pages_models.py:960
+#: open_democracy_back/models/pages_models.py:970
+#: open_democracy_back/models/pages_models.py:977
+#: open_democracy_back/models/pages_models.py:987
+#: open_democracy_back/models/pages_models.py:997
+#: open_democracy_back/models/pages_models.py:1014
+#: open_democracy_back/models/pages_models.py:1223
+#: open_democracy_back/models/pages_models.py:1235
+#: open_democracy_back/models/pages_models.py:1254
+#: open_democracy_back/models/pages_models.py:1263
+#: open_democracy_back/models/pages_models.py:1280
+#: open_democracy_back/models/pages_models.py:1349
+#: open_democracy_back/models/pages_models.py:1367
+#: open_democracy_back/models/pages_models.py:1376
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:299
+msgid "Titre"
+msgstr "Title"
+
+#: open_democracy_back/models/pages_models.py:173
+#: open_democracy_back/models/pages_models.py:204
+#: open_democracy_back/models/pages_models.py:228
+msgid "Si ce champ est vide les étapes d'utilisation du DémoMètre ne s'afficheront pas"
+msgstr "If this field is empty, the steps for using the DemoMeter will not be displayed"
+
+#: open_democracy_back/models/pages_models.py:177
+#: open_democracy_back/models/pages_models.py:208
+#: open_democracy_back/models/pages_models.py:232
+msgid "Intro"
+msgstr "Intro"
+
+#: open_democracy_back/models/pages_models.py:187
+#: open_democracy_back/models/pages_models.py:302
+#: open_democracy_back/models/pages_models.py:339
+#: open_democracy_back/models/pages_models.py:685
+#: open_democracy_back/models/pages_models.py:851
+#: open_democracy_back/models/pages_models.py:898
+#: open_democracy_back/models/pages_models.py:909
+#: open_democracy_back/models/pages_models.py:919
+#: open_democracy_back/models/pages_models.py:929
+#: open_democracy_back/models/pages_models.py:939
+#: open_democracy_back/models/pages_models.py:963
+#: open_democracy_back/models/pages_models.py:973
+#: open_democracy_back/models/pages_models.py:980
+#: open_democracy_back/models/pages_models.py:990
+#: open_democracy_back/models/pages_models.py:1000
+#: open_democracy_back/models/pages_models.py:1016
+#: open_democracy_back/models/pages_models.py:1230
+#: open_democracy_back/models/pages_models.py:1241
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:137
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:189
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:238
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:303
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:345
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:549
+msgid "Description"
+msgstr "Description"
+
+#: open_democracy_back/models/pages_models.py:189
+msgid "Étape : {title}"
+msgstr "Step : {title}"
+
+#: open_democracy_back/models/pages_models.py:190
+msgid "Étape"
+msgstr "Step"
+
+#: open_democracy_back/models/pages_models.py:195
+msgid "Etapes d'utilisation"
+msgstr "Use stage"
+
+#: open_democracy_back/models/pages_models.py:213
+#: open_democracy_back/models/pages_models.py:368
+#: open_democracy_back/models/pages_models.py:412
+msgid "Paragraphe de gauche"
+msgstr "Left paragraph"
+
+#: open_democracy_back/models/pages_models.py:219
+#: open_democracy_back/models/pages_models.py:374
+#: open_democracy_back/models/pages_models.py:418
+msgid "Paragraphe de droite"
+msgstr "Right paragraph"
+
+#: open_democracy_back/models/pages_models.py:244
+msgid "Type"
+msgstr "Type"
+
+#: open_democracy_back/models/pages_models.py:249
+msgid "Nom du bouton pour le pdf"
+msgstr "Button name for pdf"
+
+#: open_democracy_back/models/pages_models.py:252
+msgid "Evaluation : {title}"
+msgstr "Evaluation : {title}"
+
+#: open_democracy_back/models/pages_models.py:258
+msgid "Descriptif des différents types d'évaluation"
+msgstr "Description of the different types of assessment"
+
+#: open_democracy_back/models/pages_models.py:260
+msgid "Pour modifier le descriptif de chaque type d'évaluation il faut directement aller dans le type d'évaluation correspondant"
+msgstr "To modify the description of each type of assessment, go directly to the corresponding type of assessmen"
+
+#: open_democracy_back/models/pages_models.py:267
+msgid "Titre de la section formation"
+msgstr "Title of the training section"
+
+#: open_democracy_back/models/pages_models.py:270
+msgid "Formations certifiantes"
+msgstr "Certification training"
+
+#: open_democracy_back/models/pages_models.py:274
+msgid "Démocratie Ouverte vous propose des formations pour accompagner des évaluations DémoMètre et/ou animer des ateliers d’évaluations."
+msgstr "Démocratie Ouverte offers training courses to help you conduct DemoMètre evaluations and/or evaluation workshops."
+
+#: open_democracy_back/models/pages_models.py:277
+msgid "Intro de la section formation"
+msgstr "Introducing the training section"
+
+#: open_democracy_back/models/pages_models.py:291
+msgid "Etapes d'utilisation du DémoMètre"
+msgstr "How to use the DemoMeter"
+
+#: open_democracy_back/models/pages_models.py:305
+msgid "Participer à une évaluation en cours"
+msgstr "Participate in an ongoing evaluation"
+
+#: open_democracy_back/models/pages_models.py:313
+msgid "Lancer une nouvelle évaluation"
+msgstr "Launch a new evaluation"
+
+#: open_democracy_back/models/pages_models.py:320
+msgid "Formations"
+msgstr "Training"
+
+#: open_democracy_back/models/pages_models.py:325
+msgid "Page des utilisations possibles"
+msgstr "Possible uses page"
+
+#: open_democracy_back/models/pages_models.py:346
+msgid "Légende du schéma interactif"
+msgstr "Interactive diagram legend"
+
+#: open_democracy_back/models/pages_models.py:353
+msgid "Légende du schéma d'arborescence du DémoMètre"
+msgstr "Legend for the DemoMeter tree diagram"
+
+#: open_democracy_back/models/pages_models.py:361
+msgid "si ce champ est vide l'explication des piliers ne s'affichera pas"
+msgstr "If this field is empty, the explanation of the pillars won't appear"
+
+#: open_democracy_back/models/pages_models.py:390
+msgid "si ce champ est vide l'explication des marqueurs ne s'affichera pas"
+msgstr "If this field is emplty, the explanation of the markers won't appear"
+
+#: open_democracy_back/models/pages_models.py:405
+msgid "si ce champ est vide l'explication des critères d'évaluation ne s'affichera pas"
+msgstr "If this field is empty, the explanation of the evaluation criteria won't appear"
+
+#: open_democracy_back/models/pages_models.py:438
+msgid "Explication des piliers"
+msgstr "Pillars explanation"
+
+#: open_democracy_back/models/pages_models.py:445
+msgid "Explication des marqueurs"
+msgstr "Markers explanation"
+
+#: open_democracy_back/models/pages_models.py:458
+msgid "Explication des critères d'évaluation"
+msgstr "Evaluation criteria explanation"
+
+#: open_democracy_back/models/pages_models.py:463
+msgid "Référentiel"
+msgstr "Baseline"
+
+#: open_democracy_back/models/pages_models.py:473
+msgid "Tableau de bord de la participation"
+msgstr "Participation dashboard"
+
+#: open_democracy_back/models/pages_models.py:482
+msgid "Consigne"
+msgstr "Instruction"
+
+#: open_democracy_back/models/pages_models.py:484
+msgid "Consigne si aucun résultat publié"
+msgstr "Instructions if no results published"
+
+#: open_democracy_back/models/pages_models.py:509
+msgid "Page de résultats"
+msgstr "Results page"
+
+#: open_democracy_back/models/pages_models.py:540
+#: open_democracy_back/models/pages_models.py:562
+#: open_democracy_back/models/pages_models.py:595
+#: open_democracy_back/models/pages_models.py:620
+#: open_democracy_back/models/pages_models.py:626
+#: open_democracy_back/models/pages_models.py:640
+#: open_democracy_back/models/pages_models.py:676
+#: open_democracy_back/models/pages_models.py:702
+msgid "Si ce champ est vide le bloc ne s'affichera pas"
+msgstr "If this field is empty, the block will not be displayed"
+
+#: open_democracy_back/models/pages_models.py:547
+#: open_democracy_back/models/pages_models.py:710
+msgid "Paragraphe"
+msgstr "If this field is empty, the block will not be displayed"
+
+#: open_democracy_back/models/pages_models.py:573
+#: open_democracy_back/models/pages_models.py:722
+msgid "Icone au format svg"
+msgstr "Icon in svg format"
+
+#: open_democracy_back/models/pages_models.py:575
+#: open_democracy_back/models/pages_models.py:724
+msgid "Pour ajouter un SVG d'abord l'ajouter dans le menu SVG"
+msgstr "To add an SVG, first add it to the SVG menu"
+
+#: open_democracy_back/models/pages_models.py:581
+msgid "Objectif : {title}"
+msgstr "Objective: {title}"
+
+#: open_democracy_back/models/pages_models.py:582
+msgid "Objectif"
+msgstr "Objective"
+
+#: open_democracy_back/models/pages_models.py:587
+msgid "Les objectifs"
+msgstr "The objectives"
+
+#: open_democracy_back/models/pages_models.py:606
+msgid "Impact : {title}"
+msgstr "Impact : : {title}"
+
+#: open_democracy_back/models/pages_models.py:607
+msgid "Impact"
+msgstr "Impact"
+
+#: open_democracy_back/models/pages_models.py:612
+msgid "Les impacts"
+msgstr "The impacts"
+
+#: open_democracy_back/models/pages_models.py:624
+msgid "Equipe Démocratie Ouverte - titre"
+msgstr "Démocratie Ouverte team - title"
+
+#: open_democracy_back/models/pages_models.py:630
+msgid "Logo Démocratie Ouverte"
+msgstr "Démocratie Ouverte logo"
+
+#: open_democracy_back/models/pages_models.py:638
+msgid "Le Comité d’orientation - titre"
+msgstr "The Steering Committee - title"
+
+#: open_democracy_back/models/pages_models.py:645
+msgid "Le Comité d’orientation - description"
+msgstr "The Steering Committee - description"
+
+#: open_democracy_back/models/pages_models.py:663
+msgid "Groupe du Comité d’orientation"
+msgstr "Steering Committee Group"
+
+#: open_democracy_back/models/pages_models.py:668
+msgid "Membres du Comité - contenu"
+msgstr "Committee members - content"
+
+#: open_democracy_back/models/pages_models.py:674
+msgid "Partenaires - titre"
+msgstr "Partners - title"
+
+#: open_democracy_back/models/pages_models.py:689
+msgid "Type de partenaires"
+msgstr "Type of partner"
+
+#: open_democracy_back/models/pages_models.py:694
+msgid "Partenaires - contenu"
+msgstr "Partners - content"
+
+#: open_democracy_back/models/pages_models.py:732
+msgid "Descriptif"
+msgstr "Description"
+
+#: open_democracy_back/models/pages_models.py:739
+msgid "Lien en savoir plus"
+msgstr "Link to find out more"
+
+#: open_democracy_back/models/pages_models.py:744
+msgid "Carte : {title}"
+msgstr "Map : {title}"
+
+#: open_democracy_back/models/pages_models.py:745
+msgid "Etapes"
+msgstr "Steps"
+
+#: open_democracy_back/models/pages_models.py:763
+msgid "Bloc pourquoi"
+msgstr "Why block"
+
+#: open_democracy_back/models/pages_models.py:770
+msgid "Bloc objectif"
+msgstr "Objective block"
+
+#: open_democracy_back/models/pages_models.py:777
+msgid "Bloc Impact"
+msgstr "Impact block"
+
+#: open_democracy_back/models/pages_models.py:788
+msgid "Membres de Démocratie Ouverte"
+msgstr "Démocratie Ouverte members"
+
+#: open_democracy_back/models/pages_models.py:791
+msgid "Sous bloc : Equipe Démocratie Ouverte"
+msgstr "Sub-block : Démocratie Ouverte Team"
+
+#: open_democracy_back/models/pages_models.py:799
+msgid "Sous bloc : Equipe Comité d’orientation"
+msgstr "Sub-block : Steering committee team"
+
+#: open_democracy_back/models/pages_models.py:806
+msgid "Sous bloc : Partenaire"
+msgstr "Sub-block : Partners"
+
+#: open_democracy_back/models/pages_models.py:809
+msgid "Bloc Avec Qui"
+msgstr "With Who Block"
+
+#: open_democracy_back/models/pages_models.py:816
+msgid "Bloc comment"
+msgstr "Comment block"
+
+#: open_democracy_back/models/pages_models.py:821
+msgid "Page du projet"
+msgstr "Project page"
+
+#: open_democracy_back/models/pages_models.py:829
+msgid "Membre"
+msgstr "Membre"
+
+#: open_democracy_back/models/pages_models.py:847
+msgid "title"
+msgstr "title"
+
+#: open_democracy_back/models/pages_models.py:855
+msgid "Question Commune / Interco"
+msgstr "Commune / Intercommunality question"
+
+#: open_democracy_back/models/pages_models.py:860
+msgid "Description de la question Commune / Interco"
+msgstr "Description of the question Commune / Interco"
+
+#: open_democracy_back/models/pages_models.py:865
+msgid "Question du code postal"
+msgstr "Postcode question"
+
+#: open_democracy_back/models/pages_models.py:870
+msgid "Description de la question du code postal"
+msgstr "Description of the postcode question"
+
+#: open_democracy_back/models/pages_models.py:875
+msgid "Aucun résultat"
+msgstr "No result"
+
+#: open_democracy_back/models/pages_models.py:884
+msgid "Description pour un utilisateur connecté"
+msgstr "Description for a logged-in user"
+
+#: open_democracy_back/models/pages_models.py:889
+msgid "Description pour un utilisateur NON connecté"
+msgstr "Description for a user NOT logged in"
+
+#: open_democracy_back/models/pages_models.py:902
+msgid "Texte sur redevance d'utilisation"
+msgstr "Text on user fees"
+
+#: open_democracy_back/models/pages_models.py:945
+msgid "Ajout d'un expert - Titre"
+msgstr "Add an expert - Title"
+
+#: open_democracy_back/models/pages_models.py:948
+msgid "Ajout d'un expert - Description"
+msgstr "Add an expert - Description "
+
+#: open_democracy_back/models/pages_models.py:951
+msgid "Ajout d'un expert - Bouton OUI"
+msgstr "Add an expert - YES button"
+
+#: open_democracy_back/models/pages_models.py:954
+msgid "Ajout d'un expert - Bouton NON"
+msgstr "Add an expert - NO button"
+
+#: open_democracy_back/models/pages_models.py:1006
+msgid "Choisir un expert dans la liste"
+msgstr "Choose an expert from the list"
+
+#: open_democracy_back/models/pages_models.py:1011
+msgid "Si il n'y a pas mon expert, contactez-nous"
+msgstr "If my expert is not here, contact us"
+
+#: open_democracy_back/models/pages_models.py:1024
+msgid "Enoncé de la question sur le nom de l'initateur qui sera affiché publiquement"
+msgstr "Statement of the question on the name of the initiator to be displayed publicly"
+
+#: open_democracy_back/models/pages_models.py:1030
+msgid "Description de la question sur le nom de l'initateur qui sera affiché publiquement"
+msgstr "Description of the question about the name of the initiator to be displayed publicly"
+
+#: open_democracy_back/models/pages_models.py:1038
+msgid "Titre - page des seuils d'acceptabilité de la représentativité"
+msgstr "Title - page of acceptability thresholds for representativeness"
+
+#: open_democracy_back/models/pages_models.py:1042
+msgid "Correspond à la partie où seront posées les questions sur les seuils d'acceptabilité de la représentativité"
+msgstr "Corresponds to the part where the questions on the thresholds of acceptability of representativeness will be asked"
+
+#: open_democracy_back/models/pages_models.py:1047
+msgid "Description - page des seuils d'acceptabilité de la représentativité"
+msgstr "Description - page of acceptability thresholds for representativeness"
+
+#: open_democracy_back/models/pages_models.py:1052
+msgid "Permet à la personne de mieux comprendre les questions sur les représentativités, et lui donne des éléments de réponse"
+msgstr "Enables people to better understand questions about representativeness, and gives them some answers"
+
+#: open_democracy_back/models/pages_models.py:1060
+msgid "Titre - Répondre aux questions objectives"
+msgstr "Title - Answering objective questions"
+
+#: open_democracy_back/models/pages_models.py:1063
+msgid "Description - Répondre aux questions objectives"
+msgstr "Description - Answering objective questions"
+
+#: open_democracy_back/models/pages_models.py:1070
+msgid "Call to action - Répondre aux questions objectives"
+msgstr "Call to action - Answering objective questions"
+
+#: open_democracy_back/models/pages_models.py:1077
+msgid "Titre - page de validation"
+msgstr "Title - validation page"
+
+#: open_democracy_back/models/pages_models.py:1078
+msgid "S'affichera une fois l'initialisation de l'évaluation terminée"
+msgstr "Will be displayed once the evaluation has been initialised"
+
+#: open_democracy_back/models/pages_models.py:1081
+msgid "Description - page de validation"
+msgstr "Description - validation page"
+
+#: open_democracy_back/models/pages_models.py:1088
+msgid "Call to action - page de validation"
+msgstr "Call to action - validation page"
+
+#: open_democracy_back/models/pages_models.py:1103
+msgid "Recherche d'une évaluation"
+msgstr "Search for an assessment"
+
+#: open_democracy_back/models/pages_models.py:1110
+msgid "Aucune évaluation ne correspond"
+msgstr "No assessment corresponds"
+
+#: open_democracy_back/models/pages_models.py:1118
+msgid "Consentement aux CGU"
+msgstr "Consent to the GCU"
+
+#: open_democracy_back/models/pages_models.py:1126
+msgid "Consentement aux CGV"
+msgstr "Consent to the General Terms and Conditions"
+
+#: open_democracy_back/models/pages_models.py:1133
+msgid "Un diagnostic rapide correspond"
+msgstr "Rapid diagnosis matches"
+
+#: open_democracy_back/models/pages_models.py:1144
+msgid "Une évaluation participative correspond"
+msgstr "A participatory evaluation matches"
+
+#: open_democracy_back/models/pages_models.py:1151
+msgid "Tableau de bord de l'évaluation"
+msgstr "Evaluation dashboard"
+
+#: open_democracy_back/models/pages_models.py:1159
+msgid "Un utilisateur non connecté ne peut pas initaliser une évaluation"
+msgstr "A user who is not logged in cannot initiate an assessment"
+
+#: open_democracy_back/models/pages_models.py:1167
+msgid "Une évaluation avec expert correspond"
+msgstr "A valuation with an expert matches"
+
+#: open_democracy_back/models/pages_models.py:1174
+msgid "Créer un diagnostic rapide"
+msgstr "Create a rapid diagnosis"
+
+#: open_democracy_back/models/pages_models.py:1181
+msgid "Créer une évaluation participative"
+msgstr "Creating a participatory evaluation"
+
+#: open_democracy_back/models/pages_models.py:1190
+msgid "Créer une évaluation avec un expert"
+msgstr "Create an assessment with an expert"
+
+#: open_democracy_back/models/pages_models.py:1207
+msgid "Initialisation de l'évaluation"
+msgstr "Initiating the assessment"
+
+#: open_democracy_back/models/pages_models.py:1212
+msgid "Lancement d'une évaluation"
+msgstr "Launch of an assessment"
+
+#: open_democracy_back/models/pages_models.py:1243
+msgid "Expliquer qu'il ne sera pas possible de revenir en arrière, puisque les questions du questionnaire dépendent du profilage"
+msgstr "Explain that it will not be possible to go back, as the questions in the questionnaire depend on profiling"
+
+#: open_democracy_back/models/pages_models.py:1248
+msgid "Call to action"
+msgstr "Call to action"
+
+#: open_democracy_back/models/pages_models.py:1257
+msgid "Texte"
+msgstr "Text"
+
+#: open_democracy_back/models/pages_models.py:1267
+msgid "Afficher dans le titre le liste des piliers terminés"
+msgstr "Display the list of completed pillars in the title"
+
+#: open_democracy_back/models/pages_models.py:1270
+#: open_democracy_back/models/pages_models.py:1283
+msgid "Texte pour un utilisateur connecté"
+msgstr "Text for a logged-in user"
+
+#: open_democracy_back/models/pages_models.py:1274
+#: open_democracy_back/models/pages_models.py:1287
+msgid "Texte pour un utilisateur non connecté"
+msgstr "Text for a user not logged in"
+
+#: open_democracy_back/models/pages_models.py:1297
+msgid "Enoncé de la question concernant les rôles"
+msgstr "Question about roles"
+
+#: open_democracy_back/models/pages_models.py:1305
+msgid "Page de confirmation du profilage"
+msgstr "Profiling confirmation page"
+
+#: open_democracy_back/models/pages_models.py:1312
+msgid "Commencement de l'évaluation"
+msgstr "Start of the assessment"
+
+#: open_democracy_back/models/pages_models.py:1322
+msgid "Etape intermédiaire (évaluation en cours et au moins un pilier terminé)"
+msgstr "Intermediate stage (assessment in progress and at least one pillar completed)"
+
+#: open_democracy_back/models/pages_models.py:1332
+msgid "L'Evaluation est terminée, toutes les questions ont été répondu"
+msgstr "The evaluation is now complete and all questions have been answered"
+
+#: open_democracy_back/models/pages_models.py:1338
+msgid "Déroulement de l'évaluation"
+msgstr "Assessment procedure"
+
+#: open_democracy_back/models/pages_models.py:1359
+msgid "Explication du la clôture d'un workshop"
+msgstr "Workshop closing explained"
+
+#: open_democracy_back/models/pages_models.py:1361
+msgid "Après clôture l'expert ne pourra plus accéder aux réponses des participants et donc ne pourra plus les modifier, leurs réponses seront alors pris en compte pour le calcul des résultats"
+msgstr "After closing, the expert will no longer be able to access participants' answers and therefore will not be able to modify them, their answers will then be taken into account when calculating the results"
+
+#: open_democracy_back/models/pages_models.py:1390
+msgid "Page ateliers"
+msgstr "Workshops page"
+
+#: open_democracy_back/models/pages_models.py:1397
+msgid "Page participants"
+msgstr "Page participants"
+
+#: open_democracy_back/models/pages_models.py:1404
+msgid "Page réponses"
+msgstr "Page aswers"
+
+#: open_democracy_back/models/pages_models.py:1409
+msgid "Espace Expert"
+msgstr "Expert space"
+
+#: open_democracy_back/models/pages_models.py:1419
+msgid "Contenu de la page"
+msgstr "Page content"
+
+#: open_democracy_back/models/pages_models.py:1427
+msgid "Page de contenu"
+msgstr "Content page"
+
+#: open_democracy_back/models/participation_models.py:53
+msgid "Support de réponse"
+msgstr "Answer support"
+
+#: open_democracy_back/models/participation_models.py:54
+msgid "en ligne"
+msgstr "online"
+
+#: open_democracy_back/models/participation_models.py:54
+msgid "papier"
+msgstr "paper"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:43
+msgid "Description du rôle"
+msgstr "Role description"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:44
+msgid "Texte précisant le rôle (définition, exemple, reformulation)."
+msgstr "Text specifying the role (definition, example, restatement)"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:50
+msgid "Ordre des marqueurs"
+msgstr "Order of markers"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:65
+msgid "Rôles"
+msgstr "Roles"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:87
+msgid "Types de profil"
+msgstr "Profile types"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:88
+msgid "Type de profil"
+msgstr "Profiles type"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:94
+msgid "Score = 1 (Signification)"
+msgstr "Score = 1 (Meaning)"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:95
+msgid "Signification du résultat 1, affiché dans le DémoMètre"
+msgstr "Meaning of result 1, displayed in the DemoMeter"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:100
+msgid "Score = 2 (Signification)"
+msgstr "Score = 2 (Meaning)"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:101
+msgid "Signification du résultat 2, affiché dans le DémoMètre"
+msgstr "Meaning of result 2, displayed in the DemoMeter"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:106
+msgid "Score = 3 (Signification)"
+msgstr "Score = 3 (Meaning)"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:107
+msgid "Signification du résultat 3, affiché dans le DémoMètre"
+msgstr "Meaning of result 3, displayed in the DemoMeter"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:112
+msgid "Score = 4 (Signification)"
+msgstr "Score = 4 (Meaning)"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:113
+msgid "Signification du résultat 4, affiché dans le DémoMètre"
+msgstr "Meaning of result 4, displayed in the DemoMeter"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:131
+msgid "Échelon du questionnaire"
+msgstr "Questionnaire level"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:138
+msgid "Description du questionnaire"
+msgstr "Description of the questionnaire"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:144
+msgid "code"
+msgstr "code"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:145
+msgid "Nom court du questionnaire pour les menus de l'interface admin"
+msgstr "Short name of the questionnaire for the admin interface menus"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:165
+msgid "Questionnaires"
+msgstr "Surveys"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:177
+msgid "Correspond au numéro (ou lettre) de ce pilier"
+msgstr "Corresponds to the number (or letter) of this pillar"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:180
+msgid "Ordre"
+msgstr "Order"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:181
+msgid "Permet de ranger dans l'ordre voulu les piliers"
+msgstr "Allows pillars to be arranged in any order"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:190
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:239
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:346
+msgid "Description pour le référentiel"
+msgstr "Description for the repository"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:217
+msgid "1. Piliers"
+msgstr "1. Pillars"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:218
+msgid "1. Pilier"
+msgstr "1. Pillars"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:231
+msgid "Correspond au numéro (ou lettre) de ce marqueur dans son pilier"
+msgstr "Corresponds to the number (or letter) of this marker in its pillar"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:272
+msgid "2. Marqueurs"
+msgstr "2. Markers"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:273
+msgid "2. Marqueur"
+msgstr "2. Markers"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:290
+msgid "Thématique"
+msgstr "Themes"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:291
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:339
+msgid "Thématiques"
+msgstr "Themes"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:308
+msgid "Catégorie : {title}"
+msgstr "Category : {title}"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:316
+msgid "Explicatif du critère (sources, exemples, obligations légales ...)"
+msgstr "Explanation of the criterion (sources, examples, legal requirements, etc.)"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:334
+msgid "Correspond au numéro de ce critère dans son marqueur"
+msgstr "Corresponds to the number of this criterion in its marker"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:358
+msgid "Explicatif du critère (sources, exemples, obligations légales ...) (fr)"
+msgstr "Explanation of the criterion (sources, examples, legal requirements, etc.) (fr)"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:368
+msgid "Explicatif du critère (sources, exemples, obligations légales ...) (en)"
+msgstr "Explanation of the criterion (sources, examples, legal requirements, etc.) (en)"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:407
+msgid "3. Critères"
+msgstr "3. Criteria"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:408
+msgid "3. Critère"
+msgstr "3. Criteria"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:414
+msgid "mot"
+msgstr "word"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:416
+msgid "explication"
+msgstr "Explanation"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:425
+msgid "Définition"
+msgstr "Definition"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:479
+msgid "Correspond au numéro (ou lettre) de cette question, détermine son ordre"
+msgstr "Corresponds to the number (or letter) of this question, determines its order"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:486
+msgid "Enoncé de la question"
+msgstr "Question statement"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:489
+msgid "Obligatoire"
+msgstr "Mandatory"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:495
+msgid "Choisir le type de question"
+msgstr "Choose the type of question"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:499
+msgid "Borne inférieure (population min)"
+msgstr "Lower limit (minimum population)"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:503
+msgid "Si aucune valeur n'est renseignée, aucune borne inférieur ne sera prise en compte"
+msgstr "If no value is entered, no lower limit will be taken into account."
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:507
+msgid "Borne suppérieur (population max)"
+msgstr "Upper limit (maximum population)"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:511
+msgid "Si aucune valeur n'est renseignée, aucune borne suppérieur ne sera prise en compte"
+msgstr "If no value is entered, no upper bollard will be taken into account."
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:521
+msgid "Permet d'expliciter une autre question"
+msgstr "To clarify another question"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:525
+msgid "Nombre maximal de choix possible"
+msgstr "Maximum number of choices"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:529
+msgid "Pour une question à choix multiple, indiquer le nombre maximum de choix possible"
+msgstr "For a multiple-choice question, indicate the maximum number of possible choices"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:534
+msgid "Valeur minimale du champ nombre"
+msgstr "Minimum value of the number field"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:537
+msgid "Valeur maximale du champ nombre"
+msgstr "Maximum value of the number field"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:540
+msgid "Granularité minimale du champ nombre (ex: 1, 0.1, 0.01, ...)"
+msgstr "Minimum number field granularity (e.g. 1, 0.1, 0.01, ...)"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:550
+msgid "Texte précisant la question et pourquoi elle est posée."
+msgstr "Text specifying the question and why it is being asked."
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:557
+msgid "Commentaires (pour l'interne)"
+msgstr "Comments (for the intern)"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:558
+msgid "Indication affichée uniquement pour les administrateurs."
+msgstr "Indication displayed for administrators only."
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:571
+#: open_democracy_back/utils.py:61
+msgid "Objective"
+msgstr "Objective"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:571
+#: open_democracy_back/utils.py:62
+msgid "Subjective"
+msgstr "Subjective"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:573
+msgid "Objective / Subjective (Non modifiable)"
+msgstr "Objective / Subjective (Cannot be modified)"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:574
+msgid "Ce champ n'est pas modifiable après la création de la question"
+msgstr "This field cannot be modified once the question has been created."
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:579
+#: open_democracy_back/utils.py:66
+msgid "Quantitative"
+msgstr "Quantitative"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:580
+#: open_democracy_back/utils.py:67
+msgid "Qualitative"
+msgstr "Qualitative"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:583
+msgid "Methode"
+msgstr "Method"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:587
+msgid "Profils concernés"
+msgstr "Profiles concerned"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:593
+msgid "Types d'évaluation concernés"
+msgstr "Types of assessment concerned"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:603
+msgid "Questionnaires concernés"
+msgstr "Questionnaires concerned"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:611
+msgid "Rôles concernés"
+msgstr "Roles concerned"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:612
+msgid "Si aucun rôle n'est sélectionné c'est comme si tous l'étaient"
+msgstr "If no role is selected, it's as if they were all selected."
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:639
+msgid "Taille des collectivités concernées"
+msgstr "Size of communities concerned"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:648
+msgid "Choix de réponses possibles"
+msgstr "Choice of possible answers"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:653
+msgid "Catégories pour une question fermée à échelle"
+msgstr "Categories for a scaled closed-ended question"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:686
+msgid "La granularité du champ nombre doit être renseignée"
+msgstr "The range in the number field must be filled in."
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:717
+msgid "Attention à prendre en compte la granularité dans les bornes des scores associés"
+msgstr "Be careful to take into account the range in the limits of the associated scores."
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:725
+msgid "Score associé aux réponses d'une question nombre"
+msgstr "Score associated with answers to a number question"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:731
+msgid "Paramétrage d'une question de nombre"
+msgstr "Setting up a number question"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:750
+msgid "Score associé aux réponses d'une question de pourcentage"
+msgstr "Score associated with answers to a percentage question"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:770
+msgid "4. Questions"
+msgstr "4. Questions\n"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:771
+msgid "4. Question"
+msgstr "4. Question"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:803
+msgid "Questions de Profilage"
+msgstr "Profiling questions"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:804
+msgid "Question de Profilage"
+msgstr "Profiling question"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:818
+msgid "Score associé"
+msgstr "Associated score"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:821
+msgid "Si pertinent"
+msgstr "If relevant"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:826
+msgid "Score associé linéarisé"
+msgstr "Associated linearized score"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:850
+msgid "Réponse possible"
+msgstr "Possible answer"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:857
+msgid "Description de la réponse"
+msgstr "Description of the answer"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:859
+msgid "Texte précisant la réponse (définition, exemple, reformulation). Si la question est fermée à échelle la description ne s'affichera pas."
+msgstr "Text specifying the answer (definition, example, rephrasing). If the question is scaled closed-ended, the description will not be displayed."
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:874
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:875
+msgid "Choix de réponse"
+msgstr "Choice of answer"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:889
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:937
+msgid "Borne inférieure"
+msgstr "Lower boundary"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:890
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:938
+msgid "Si la réponse est suppérieur ou égale à"
+msgstr "If the answer is greater than or equal to"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:894
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:944
+msgid "Borne suppérieure"
+msgstr "Upper terminal"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:895
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:945
+msgid "Si la réponse est inférieur ou égale à"
+msgstr "If the answer is less than or equal to"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:906
+msgid "Score associé à une fourchette de pourcentage"
+msgstr "Score associated with a percentage range"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:921
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:987
+msgid "La borne inférieure doit être inférieure ou égale à la borne supérieure"
+msgstr "The lower bound must be less than or equal to the upper bound"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:926
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:992
+msgid "Scores pour les différentes fourchettes"
+msgstr "Scores for different ranges"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:927
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:993
+msgid "Score pour une fourchette donnée"
+msgstr "Score for a given range"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:958
+msgid "Score associé à une fourchette de nombre"
+msgstr "Score associated with a number range"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:977
+msgid "Au moins une borne doit être renseignée"
+msgstr "At least one terminal must be filled in"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:1010
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:1022
+msgid "Category"
+msgstr "Category"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:1012
+msgid "Permet de répondre à la même question pour différentes catégories"
+msgstr "Allows you to answer the same question for different categories"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:1037
+msgid "Filter by question"
+msgstr "Filter by question"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:1063
+#, python-format
+msgid "La réponse de la question d'affinage %(question_code)s doit être %(response)s"
+msgstr "The answer to the refinement question %(question_code)s must be %(response)s"
+
+#: open_democracy_back/models/questionnaire_and_profiling_models.py:1076
+#, python-format
+msgid "égale à %(response_choices)s"
+msgstr "equal to %(response_choices)s"
+
+#: open_democracy_back/models/representativity_models.py:26
+msgid "Échelon questionnaire"
+msgstr "Questionnaire level"
+
+#: open_democracy_back/models/representativity_models.py:32
+msgid "Question de profilage reliée"
+msgstr "Question of linked profiling"
+
+#: open_democracy_back/models/representativity_models.py:40
+msgid "Taux (en %) minimum acceptable pour la publication des résultats"
+msgstr "Minimum acceptable rate (in %) for publication of results"
+
+#: open_democracy_back/models/representativity_models.py:43
+msgid "En dessous de ce taux (%) la publication des résultats est interdite"
+msgstr "Below this level (%) publication of results is prohibited."
+
+#: open_democracy_back/models/representativity_models.py:49
+msgid "Explication"
+msgstr "Explanation"
+
+#: open_democracy_back/models/representativity_models.py:52
+msgid "L'explication doit aider l'utilisateur à savoir quel pourcentage indiquer et expliciter le pourcentage renseigné par défault"
+msgstr "The explanation should help the user to know what percentage to enter and explain the default percentage."
+
+#: open_democracy_back/models/representativity_models.py:77
+msgid "Critère de représentativité"
+msgstr "Criterion of representativeness"
+
+#: open_democracy_back/models/representativity_models.py:78
+msgid "Critères de représentativité"
+msgstr "Representativeness criteria"
+
+#: open_democracy_back/models/representativity_models.py:91
+msgid "Réponse"
+msgstr "Answer"
+
+#: open_democracy_back/models/representativity_models.py:97
+msgid "Ne pas compter pour le seuil d'acceptabilité minimal"
+msgstr "Do not count towards the minimum acceptability threshold"
+
+#: open_democracy_back/models/representativity_models.py:98
+msgid "Ex: binaire pour la parité"
+msgstr "E.g.: binary for parity"
+
+#: open_democracy_back/models/representativity_models.py:102
+msgid "Ignorer totalement"
+msgstr "Totally ignore"
+
+#: open_democracy_back/models/representativity_models.py:125
+msgid "Seuil d'acceptabilité"
+msgstr "Acceptability limit"
+
+#: open_democracy_back/models/settings_models.py:10
+msgid "Adresse mail de contact"
+msgstr "Contact email address"
+
+#: open_democracy_back/models/settings_models.py:13
+msgid "Paramètre de la structure"
+msgstr "Structure parameter"
+
+#: open_democracy_back/models/settings_models.py:56
+msgid "Licence Contenu"
+msgstr "Licence Content"
+
+#: open_democracy_back/models/settings_models.py:74
+msgid "Pages importantes"
+msgstr "Important pages"
+
+#: open_democracy_back/models/training_models.py:9
+msgid "Formation"
+msgstr "Training"
+
+#: open_democracy_back/models/training_models.py:13
+msgid "public ciblé pour la formation"
+msgstr "target audience for training"
+
+#: open_democracy_back/models/training_models.py:15
+msgid "description courte"
+msgstr "short description"
+
+#: open_democracy_back/models/training_models.py:17
+msgid "durée de la formation"
+msgstr "duration of training"
+
+#: open_democracy_back/models/training_models.py:18
+msgid "ex une journée, une heure..."
+msgstr "e.g. one day, one hour..."
+
+#: open_democracy_back/models/training_models.py:26
+msgid "Document lié"
+msgstr "Related document"
+
+#: open_democracy_back/models/training_models.py:27
+msgid "Ce document est ignoré si le lien externe est défini"
+msgstr "This document is ignored if the external link is defined"
+
+#: open_democracy_back/models/training_models.py:31
+msgid "bientôt disponible"
+msgstr "available soon"
+
+#: open_democracy_back/models/training_models.py:33
+msgid "si cette case est cochée, la formation ne sera pas accessible, mais l'utilisateur sera informé de sa publication prochaine"
+msgstr "if this box is ticked, the course will not be accessible, but the user will be informed of its forthcoming publication"
+
+#: open_democracy_back/models/utils.py:33
+msgid "légende"
+msgstr "caption"
+
+#: open_democracy_back/models/utils.py:42
+msgid "titre"
+msgstr "title"
+
+#: open_democracy_back/utils.py:34
+msgid "La collectivité"
+msgstr "The community"
+
+#: open_democracy_back/utils.py:47
+msgid "et"
+msgstr "and"
+
+#: open_democracy_back/utils.py:48
+msgid "ou"
+msgstr "or"
+
+#: open_democracy_back/utils.py:52
+msgid "Choix unique"
+msgstr "Only one choice"
+
+#: open_democracy_back/utils.py:53
+msgid "Choix multiple"
+msgstr "Multiple choice"
+
+#: open_democracy_back/utils.py:54
+msgid "Fermée à échelle"
+msgstr "Closed to scale"
+
+#: open_democracy_back/utils.py:55
+msgid "Binaire oui / non"
+msgstr "Binary yes / no"
+
+#: open_democracy_back/utils.py:56
+msgid "Pourcentage"
+msgstr "Percentage"
+
+#: open_democracy_back/utils.py:57
+msgid "Nombre"
+msgstr "Number"
+
+#: open_democracy_back/utils.py:98
+msgid "Représentation"
+msgstr "Representation"
+
+#: components/questionnaire/rosette.vue:91
+msgid "Transparence"
+msgstr "Transparency"
+
+#: open_democracy_back/utils.py:100
+msgid "Participation"
+msgstr "Participation"
+
+#: components/questionnaire/rosette.vue:91
+msgid "Coopération"
+msgstr "Cooperation"
+
+#: open_democracy_back/utils.py:105
+msgid "Commune/EPCI"
+msgstr "Commune/EPCI "
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:411
+msgid "Souhaitez-vous clôturer l'évaluation"
+msgstr "Would you like to close the evaluation"
+
+#: pages/compte/evaluation/[assessmentId]/ateliers/[workshopId]/index.vue:250
+msgid "Supprimer le participant :"
+msgstr "Remove participant:"
+
+#: components/footer.vue:18
+msgid "Licence"
+msgstr "License"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:410
+msgid "En clôturant l’évaluation, vous mettez fin à l’évaluation et n’autorisez plus de participation. Cette action est irréversible, n’oubliez pas de bien vérifier avant. Si vous êtes accompagnateur et que vous n'avez pas encore payé l'utilisation du DémoMètre pour cette évaluation, Démocratie Ouverte vous enverra une facture."
+msgstr "By closing the evaluation, you end the evaluation and authorize no further participation. This action is irreversible, so be sure to check beforehand. If you are an accompanying person and have not yet paid for the use of the DemoMeter for this evaluation, Démocratie Ouverte will send you an invoice."
+
+#: pages/resultats/index.vue:47
+msgid "chargement..."
+msgstr "loading..."
+
+#: components/modal/save-participation-modal.vue:17
+msgid "Vous pourrez ensuite y revenir via l'onglet Mon compte."
+msgstr "You can then return to it via the My Account tab."
+
+#: pages/evaluation/initialisation/index.vue:129
+msgid "Au nom de qui lancez-vous cette évaluation ?"
+msgstr "On whose behalf are you launching this evaluation?"
+
+#: components/analytics/choice-question-chart.vue:61
+msgid "for the role"
+msgstr "for the role"
+
+#: pages/evaluation/participation/[assessmentId]/index.vue:68
+msgid "lancement d'une évaluation"
+msgstr "Launch of an assessment"
+
+#: pages/index.vue:45
+msgid "Explorer les articles"
+msgstr "Browse articles"
+
+#: components/form/buttons.vue:67 components/form/localisation.vue:129
+#: pages/evaluation/index.vue:16
+msgid "appuyez sur Entrer ⏎"
+msgstr "press Enter ⏎"
+
+#: pages/index.vue:74
+msgid "Explorer les ressources"
+msgstr "Browse resources"
+
+#: components/questionnaire/question-statement.vue:34
+msgid "Moins de {inhabitants} habitants"
+msgstr "Less than {inhabitants} inhabitants"
+
+#: components/response/input/multiple-choice.vue:7
+#: components/response/paper/input/multiple-choice.vue:7
+msgid "Choisissez entre 1 et {n_choices} réponses"
+msgstr "Choose between 1 and {n_choices} answers"
+
+#: components/questionnaire/question-statement.vue:28
+msgid "Plus de {inhabitants} habitants"
+msgstr "More than {inhabitants} inhabitants"
+
+#: components/export/survey-questions.vue:9
+msgid "Pillier {name}"
+msgstr "Pillar {name}"
+
+#: components/footer.vue:96
+msgid "Designé par"
+msgstr "Designed by"
+
+#: components/footer.vue:103
+msgid "Réalisé par"
+msgstr "Developed by"
+
+#: pages/compte/index.vue:70
+msgid "Mes évaluations"
+msgstr "My evaluations"
+
+#: pages/compte/index.vue:71
+msgid "Toutes mes évaluations en cours et terminées"
+msgstr "All my current and completed evaluations"
+
+#: components/analytics/choice-question-chart.vue:61
+msgid "pour le rôle"
+msgstr "for the role"
+
+#: components/questionnaire/rosette.vue:97
+msgid "représentation"
+msgstr "representation"
+
+#: components/questionnaire/rosette.vue:96
+msgid "participation"
+msgstr "participation"
+
+#: pages/demometre.vue:34
+msgid "Découvrir"
+msgstr "Discover"
+
+#: components/questionnaire/rosette.vue:95
+msgid "transparence"
+msgstr "transparency"
+
+#: components/questionnaire/rosette.vue:94
+msgid "coopération"
+msgstr "cooperation"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:95
+msgid "participants hors ateliers"
+msgstr "participants outside workshops"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:99
+msgid "ateliers"
+msgstr "workshops"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:87
+msgid "localité"
+msgstr "locality"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:91
+msgid "Mon rôle"
+msgstr "My role"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:78
+msgid "lancée le"
+msgstr "launched on"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:83
+msgid "par"
+msgstr "by"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:135
+msgid "Calendrier"
+msgstr "Calendar"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:115
+msgid "Contexte"
+msgstr "Context"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:121
+msgid "Objectifs"
+msgstr "Objectives"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:129
+msgid "Parties prenantes"
+msgstr "Stakeholders"
