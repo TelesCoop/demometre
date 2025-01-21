@@ -92,6 +92,7 @@
             :value="PARTICIPANT_TYPE[assessment.details.role]"
           />
           <InformationDetail
+            v-if="!assessment.details.hasDetailAccess"
             :title="$t('participants hors ateliers')"
             :value="assessment.participationCount"
           />
@@ -104,6 +105,14 @@
             :value="withExpertValue"
             :title="`${$t('Expert')}${(assessment.experts || []).length ? 's' : ''}`"
           />
+          <template v-if="assessment.details.hasDetailAccess">
+            <template v-for="(count, roleName) in assessment.participationCountPerRole" :key="roleName">
+              <InformationDetail
+                :value="count"
+                :title="`${$t('Nb participants')} - ${roleName}`"
+              />
+            </template>
+          </template>
         </div>
         <div
           v-if="assessment.details.hasDetailAccess"

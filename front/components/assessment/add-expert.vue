@@ -57,5 +57,8 @@ const assessmentStore = useAssessmentStore()
 const settingsStore = useSettingStore()
 assessmentStore.getExperts()
 
-const expertSelected = useModel("modelValue")
+const expertSelected = defineModel("modelValue", {
+  type: Object as PropType<User>,
+  required: true,
+})
 </script>

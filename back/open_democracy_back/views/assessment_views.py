@@ -167,6 +167,15 @@ class AssessmentsView(
 
             assessment.initiated_by_user = request.user
             assessment.initialization_date = date.today()
+            if initialize_data["expert_id"]:
+                expert = User.objects.get(id=initialize_data["expert_id"])
+                if not expert.is_expert:
+                    raise ValidationFieldError(
+                        "expert_id",
+                        detail="The user is not an expert",
+                        code=ErrorCode.USER_NOT_EXPERT.value,
+                    )
+                assessment.experts.add(expert)
             if initialize_data["initiator_type"] in InitiatorType.values:
                 assessment.initiator_type = initialize_data["initiator_type"]
             else:

@@ -275,6 +275,8 @@ if (assessmentStore.representativityCriterias.length === 0) {
   assessmentStore.getRepresentativityCriterias()
 }
 
+const expertSelected = ref<User>()
+
 const color = ref("no-pillar")
 
 enum steps {
@@ -393,6 +395,7 @@ async function onSubmit() {
   const isSuccess = await assessmentStore.initializeAssessment({
     initiatorType: initiatorTypeSelected.value,
     initiatorName: initiatorName.value,
+    expertId: expertSelected.value?.id || null,
   })
   if (isSuccess) {
     useRouter().push(

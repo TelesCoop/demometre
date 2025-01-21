@@ -10,5 +10,15 @@ describe('go through questionnaire with expert', () => {
     cy.fillRepresentationPillar()
     cy.checkQuestionnaireIsDone()
     cy.checkResultsAreAvailable('Ville test 1', false)
+
+    // login as expert user and go through expert journey
+    cy.login("expert@telescoop.fr", "password")
+    cy.wait(400)
+    cy.visit('/compte')
+    cy.getEl('current-assessments-count').should('contain', '1')
+    cy.getEl('assessment-row').eq(0).within(() => {
+      cy.getEl('role').should('contain', 'expert ')
+      cy.getEl('details').click()
+    })
   })
 })

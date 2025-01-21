@@ -60,3 +60,4 @@ class ErrorCode(Enum):
     INVALID_EMAIL_SHAPE = "invalid_email_shape"
     CGV_MUST_BE_CONSENTED = "cgv_not_consented"
     CGU_MUST_BE_CONSENTED = "cgu_not_consented"
+    USER_NOT_EXPERT = "user_is_not_expert"

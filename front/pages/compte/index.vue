@@ -79,7 +79,7 @@
               :class="isCurrentAssessmentsTab ? 'is-active' : null"
               @click="isCurrentAssessmentsTab = true"
             >
-              <a>{{ $t("Évaluations en cours") }} ({{ currentAssessments.length }})</a>
+              <a>{{ $t("Évaluations en cours") }} (<span data-cy="current-assessments-count">{{ currentAssessments.length }}</span>)</a>
             </li>
             <li
               :class="isCurrentAssessmentsTab ? null : 'is-active'"
@@ -139,12 +139,17 @@
                 style="cursor: pointer"
                 tabindex="0"
                 title="Cliquer pour accéder aux détails"
+                data-cy="assessment-row"
                 @click="selectAssessment(assessment.id)"
               >
-                <td>{{ assessment.name }}</td>
-                <td>{{ assessment.surveyName }}</td>
+                <td data-cy="assessment-name">
+                  {{ assessment.name }}
+                </td>
+                <td data-cy="survey-name">
+                  {{ assessment.surveyName }}
+                </td>
                 <td>{{ new Date(assessment.created).toLocaleDateString() }}</td>
-                <td>
+                <td data-cy="role">
                   {{ PARTICIPANT_TYPE[assessment.details.role] || $t("participant - non encore rempli") }}
                   <template v-if="assessment.details.hasDetailAccess">
                     <span
@@ -160,7 +165,7 @@
                 <td>{{ LOCALITY_TYPE_NAME[assessment.localityType] }}</td>
                 <td>{{ assessment.collectivityName }}</td>
                 <td>France</td>
-                <td>
+                <td data-cy="details">
                   <button class="button is-small is-rounded">
                     {{ $t("Détails") }}
                   </button>
