@@ -1,0 +1,44 @@
+{% extends "wagtailadmin/base.html" %}
+
+{% block content %}
+    {% include "wagtailadmin/shared/header.html" with title="Conditions d'affichage pour la question" icon="folder-inverse" %}
+
+    <div class="nice-padding">
+        <h1>Conditions d'affichage pour la question : <i>{{ data.question }}</i></h1>
+
+        {% if data.rules.count > 1 %}
+            {% include "admin/components/intersection_operator.html" with url="question-intersection-operator" id=data.question.id rules_intersection_operator=data.rules_intersection_operator %}
+        {% endif %}
+
+        {% if data.rules.count > 0 %}
+            <h2>Conditions d'affichage déjà existantes</h2>
+            {% include "admin/components/existing_rules.html" with url="delete-question-filter" id=data.question.id rules=data.rules %}
+        {% endif %}
+
+        <h2>Créer une nouvelle condition d'affichage</h2>
+        <form action="{% url 'question-filter' data.question.id %}" method="post">
+            {% csrf_token %}
+            {{ rule_form.question.as_hidden }}
+
+            <div id="id_display_conditional_question" style="display: block;">
+                {% include "admin/components/condition_question.html" with rule_form=rule_form %}
+            </div>
+            <div id="id_display_conditional_profile_type" style="display: none;">
+                <div>
+                    {{ rule_form.conditional_profile_type.error }}
+                    {{ rule_form.conditional_profile_type.label_tag }}
+                    {{ rule_form.conditional_profile_type }}
+                </div>
+            </div>
+            <br/>
+            <div class="actions">
+                <input type="submit" class="button button-small button-secondary" value="Ajouter">
+            </div>
+        </form>
+
+        <a type="button" class="button button-small button-secondary" style="margin-top: 1rem;"
+            href="{% if data.question %} /admin/open_democracy_back/questionnairequestion/ {% elif data.profile_type %} /admin/open_democracy_back/profilingquestion/ {% endif %}"
+            >Terminer</a>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+<div>
+    <b>Lien logique entre les différentes conditions :</b>
+    <form id="intersection-operator-form" action="{% url url id %}" method="post">
+        {% csrf_token %}
+        <div style="display: flex;">
+            <input
+                id="toggle-or"
+                class="toggle toggle-left"
+                name="intersection-operator"
+                value="or"
+                type="radio"
+                {% if rules_intersection_operator == "or" %}checked{% endif %}
+                onclick="document.getElementById('intersection-operator-form').submit()">
+            <label for="toggle-or" class="btn">OU</label>
+            <input
+                id="toggle-and"
+                class="toggle toggle-right"
+                name="intersection-operator"
+                value="and"
+                type="radio"
+                {% if rules_intersection_operator == "and" %}checked{% endif %}
+                onclick="document.getElementById('intersection-operator-form').submit()"
+            >
+            <label for="toggle-and" class="btn">ET</label>
+        </div>
+    </form>
+</div>
+
+<style>
+    .btn {
+        border: 2px solid var(--color-primary);
+        display: inline-block;
+        padding: 8px;
+        position: relative;
+        text-align: center;
+        transition: background 600ms ease, color 600ms ease;
+    }
+    input[type="radio"].toggle {
+    display: none;
+    }
+        input[type="radio"].toggle + label {
+            cursor: pointer;
+            min-width: 50px;
+            color: var(--color-primary);
+    }
+        input[type="radio"].toggle.toggle-left + label {
+            border-right: 0;
+    }
+        input[type="radio"].toggle.toggle-right + label {
+            margin-left: -5px;
+    }
+        input[type="radio"].toggle:checked + label {
+            cursor: default;
+            color: #fff;
+            background-color: var(--color-primary);
+            transition: color 200ms;
+    }
+</style>

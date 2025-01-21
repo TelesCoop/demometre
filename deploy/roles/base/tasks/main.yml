@@ -1,0 +1,169 @@
+---
+
+- name: Install core packages
+  apt:
+    name:
+      # Infra
+      - sudo
+      - iptables
+      - iptables-persistent
+      - fail2ban
+      - mdadm
+      - smartmontools
+      - unattended-upgrades
+      - apt-listchanges
+      - logrotate
+      - snapd
+
+      # Monitoring/debug/diag
+      - dnsutils
+      - htop
+      - telnet
+      - netcat
+
+      # User utilities
+      - vim
+      - tmux
+      - rsync
+      - bash-completion
+      - tree
+      - atool
+
+- name: Copy sshd default config
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: 0644
+    validate: /usr/sbin/sshd -t -f %s
+  notify: restart sshd
+
+- name: Remove ntp package
+  apt:
+    name: ntp
+    state: absent
+  notify: restart systemd-timesyncd
+
+- name: Copy timesyncd conf
+  template:
+    src: timesyncd.conf.j2
+    dest: /etc/systemd/timesyncd.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart systemd-timesyncd
+
+- name: Set timezone to Europe/Paris
+  timezone:
+    name: Europe/Paris
+
+# - name: Create iptables config files
+#   file:
+#     path: "/etc/iptables/{{ item }}"
+#     state: directory
+#     owner: root
+#     group: root
+#     mode: '0755'
+#   loop:
+#     - rules.v4.d
+#     - rules.v6.d
+
+# - name: Copy common iptables rules
+#   template:
+# #   Example: rules.d/01_header.j2
+#     src: "rules.d/{{ item[1] }}.j2"
+# #   Example: /etc/iptables/rules.v4.d/01_header
+#     dest: "/etc/iptables/{{ item[0] }}/{{ item[1] }}"
+#     owner: root
+#     group: root
+#     mode: '0644'
+#   loop:
+#   with_nested:
+#     - - rules.v4.d
+#       - rules.v6.d
+#     - - 01_header
+#       - 02_policies
+#       - 03_established
+#       - 04_loopback
+#       - 11_ssh
+#       - 12_dns
+#       - 13_ntp
+#       - 14_debrepo_pip
+#       - 98_debug
+#       - 99_footer
+
+# - name: Copy v4/v6common iptables rules
+#   template:
+# #   Example: rules.v4.d/10_ping.j2
+#     src: "{{ item[0] }}/{{ item[1] }}.j2"
+# #   Example: /etc/iptables/rules.v4.d/10_ping
+#     dest: "/etc/iptables/{{ item[0] }}/{{ item[1] }}"
+#     owner: root
+#     group: root
+#     mode: '0644'
+#   loop:
+#   with_nested:
+#     - - rules.v4.d
+#       - rules.v6.d
+#     - - 10_ping
+
+# - name: Assemble iptables fragments
+#   assemble:
+# #   Example: /etc/iptables/rules.v4.d
+#     src: "/etc/iptables/rules.{{ item.version }}.d"
+# #   Example: /etc/iptables/rules.v4
+#     dest: "/etc/iptables/rules.{{ item.version }}"
+#     validate: "/usr/sbin/{{ item.command }} --test %s"
+#   loop:
+#     - version: v4
+#       command: iptables-restore
+#     - version: v6
+#       command: ip6tables-restore
+
+# - name: "Periodic RAID verification"
+#   cron:
+#     name: "RAID periodic verification"
+#     job: /usr/share/mdadm/checkarray --all
+#     special_time: weekly
+
+- name: "Set mdadm mail address"
+  lineinfile:
+    dest: /etc/mdadm/mdadm.conf
+    regexp: "^MAILADDR"
+    line: "MAILADDR {{ support_mail_addr }}"
+
+- name: "Start daemon"
+  lineinfile:
+    dest: /etc/default/smartmontools
+    regexp: "start_smartd="
+    line: "start_smartd=yes"
+  notify: restart smartmontools
+
+- name: "Copy smartd config"
+  template:
+    src: "smartd.conf.j2"
+    dest: /etc/smartd.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart smartmontools
+
+- name: "Configure unattended-upgrade"
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/apt/apt.conf.d/{{ item }}"
+    owner: root
+    group: root
+    mode: '0644'
+  loop:
+    - 20auto-upgrades
+    - 50unattended-upgrades
+
+- name: "Configure logrotate - nginx"
+  template:
+    src: logrotate-nginx.j2
+    dest: /etc/logrotate.d/nginx
+    owner: root
+    group: root
+    mode: '0644'

@@ -1,0 +1,23 @@
+---
+
+- name: restart fail2ban
+  service:
+    name: fail2ban
+    state: restarted
+
+- name: restart sshd
+  service:
+    name: sshd
+    state: restarted
+
+- name: restart systemd-timesyncd
+  systemd:
+    name: systemd-timesyncd
+    state: restarted
+    enabled: true
+
+- name: restart smartmontools
+  systemd:
+    name: smartmontools
+    state: restarted
+    enabled: true

@@ -1,0 +1,104 @@
+---
+
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Install sudo
+      apt:
+        name:
+          - sudo
+
+    - name: Create misc groups
+      group:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - devops
+        - ssh-allowed
+
+    - name: Download employees file
+      get_url:
+        url: https://gitlab.com/telescoop-public/devops/company-settings/-/raw/main/employees.yaml
+        dest: ./employees.yaml
+        force: yes # file might have been updated
+      delegate_to: localhost
+
+    - name: Define employees variable from file
+      include_vars:
+        file: employees.yaml
+        name: employees
+
+    - name: Create users
+      user:
+        name: "{{ item.name }}"
+        group: devops
+        groups: sudo,ssh-allowed
+        append: true
+      loop: "{{ employees.employees }}"
+      when: not item.remove|default(false)
+      loop_control:
+        label: "{{ item.name }}"
+
+    - name: Remove former users
+      user:
+        name: "{{ item.name }}"
+        force: true
+        state: absent
+      loop: "{{ employees.employees }}"
+      when: item.remove|default(false)
+      loop_control:
+        label: "{{ item.name }}"
+
+    - name: Fill authorized keys for ubuntu
+      authorized_key:
+        user: ubuntu
+        state: present
+        key: "{{ item.ssh_key }}"
+        comment: "{{ item.name }}"
+      loop: "{{ employees.employees }}"
+      when: not (item.remove|default(false))
+      loop_control:
+        label: "{{ item.name }}"
+
+    - name: Fill authorized keys for devops
+      authorized_key:
+        user: "{{ item.name }}"
+        state: present
+        key: "{{ item.ssh_key }}"
+        comment: "{{ item.name }}"
+      loop: "{{ employees.employees }}"
+      when: not (item.remove|default(false))
+      loop_control:
+        label: "{{ item.name }}"
+
+    - name: Allow specified groups to sudo
+      lineinfile:
+        path: /etc/sudoers
+        regexp: '%sudo'
+        line: '%sudo   ALL=(ALL:ALL) ALL'
+        validate: 'visudo -cf %s'
+        owner: root
+        group: root
+        mode: '0440'
+
+    - name: Disable ssh root access
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: PermitRootLogin
+        line: 'PermitRootLogin no'
+        validate: '/usr/sbin/sshd -t -f %s'
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Set ubuntu password
+      user:
+        user: ubuntu
+        state: present
+        password: "{{ users.ubuntu.pwd | password_hash('sha512') }}"
+
+    - name: Set root password
+      user:
+        user: root
+        state: present
+        password: "{{ users.root.pwd | password_hash('sha512') }}"

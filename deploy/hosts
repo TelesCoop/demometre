@@ -1,0 +1,5 @@
+[preprod]
+preprod.demometre.tlscp.fr:42722 ansible_user=ubuntu
+
+[prod]
+demometre.tlscp.fr:42722 ansible_user=ubuntu
