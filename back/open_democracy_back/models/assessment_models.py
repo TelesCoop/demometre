@@ -17,6 +17,7 @@ from my_auth.models import User
 from open_democracy_back.constants import ASSESSMENT_DOCUMENT_CATEGORIES_CHOICES
 from open_democracy_back.models.participation_models import Response
 from open_democracy_back.models.utils import FrontendRichText
+from open_democracy_back.models.questionnaire_and_profiling_models import ResponseChoice
 from open_democracy_back.utils import (
     InitiatorType,
     LocalityType,
@@ -407,8 +408,9 @@ class Assessment(TimeStampedModel, ClusterableModel):
         FieldPanel("objectives"),
         FieldPanel("stakeholders"),
         FieldPanel("calendar"),
-        InlinePanel("documents", label="documents"),
-        InlinePanel("payment", label="paiement"),
+        InlinePanel("documents", label=_("documents")),
+        InlinePanel("payment", label=_("paiement")),
+        InlinePanel("participative_processes", label=_("Process participatifs")),
     ]
 
     def __str__(self):
@@ -459,7 +461,7 @@ class AssessmentResponse(Response):
 
 class AssessmentDocument(TimeStampedModel):
     assessment = ParentalKey(
-        Assessment, on_delete=models.CASCADE, related_name=_("documents")
+        Assessment, on_delete=models.CASCADE, related_name="documents"
     )
     category = models.CharField(
         verbose_name=_("catégorie"),
@@ -499,3 +501,15 @@ class AssessmentPayment(TimeStampedModel):
             f"assessment id {self.assessment.pk}, amount {self.amount},"
             f"by {self.author.email}"
         )
+
+
+class ParticipativeProcess(TimeStampedModel):
+    assessment = ParentalKey(
+        Assessment,
+        on_delete=models.CASCADE,
+        related_name="participative_processes",
+    )
+    response_choice = models.ForeignKey(
+        ResponseChoice, on_delete=models.CASCADE, verbose_name=_("Catégorie")
+    )
+    name = models.CharField(max_length=255, verbose_name=_("Nom"))

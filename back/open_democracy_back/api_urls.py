@@ -22,6 +22,7 @@ from open_democracy_back.views.page_views import (
     ReferentialPageView,
     ResultsPageView,
     UsagePageView,
+    ParticipativeProcessPageView,
 )
 from open_democracy_back.views.participation_views import (
     ParticipationResponseView,
@@ -100,6 +101,11 @@ router.register(
     r"important-pages-settings",
     ImportantPagesSettingsView,
     basename="ImportantPagesSettings",
+)
+router.register(
+    r"participative-process-pages",
+    ParticipativeProcessPageView,
+    basename="ParticipativeProcessPage",
 )
 router.register(r"rgpd-settings", RGPDSettingsView, basename="RGPDSettings")
 router.register(

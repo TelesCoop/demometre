@@ -60,6 +60,9 @@ from open_democracy_back.serializers.assessment_serializers import (
     RegionSerializer,
     DepartmentSerializer,
 )
+from open_democracy_back.serializers.questionnaire_and_profiling_serializers import (
+    ParticipativeProcessSerializer,
+)
 from open_democracy_back.serializers.user_serializers import UserSerializer
 from open_democracy_back.utils import ManagedAssessmentType, SurveyLocality
 
@@ -270,6 +273,21 @@ class AssessmentsView(
         )
 
         return RestResponse(status=200, data=self.serializer_class(assessment).data)
+
+    @action(
+        detail=True,
+        methods=["POST"],
+        url_path="add-participative-processes",
+        permission_classes=[IsAuthenticated],
+    )
+    def add_participative_processes(self, request, pk):
+        processes = request.data.get("participative_processes")
+        processes = [{**process, "assessment": pk} for process in processes]
+        serializer = ParticipativeProcessSerializer(data=processes, many=True)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return RestResponse(status=200, data=serializer.data)
+        return RestResponse(status=400, data=serializer.errors)
 
 
 class ZipCodeSurveysView(mixins.ListModelMixin, viewsets.GenericViewSet):

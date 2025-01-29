@@ -72,8 +72,12 @@ Cypress.Commands.add("startQuestionnaire", (cityCode, assessmentType, userIsInit
   }
 })
 
-Cypress.Commands.add("fillObjectiveQuestions", () => {
-  cy.getEl('start-objective-questions').click()
+Cypress.Commands.add("fillObjectiveQuestions", (skipParticipativeProcess = false) => {
+  if (skipParticipativeProcess) {
+    cy.getEl('skip-participative-processes').click()
+  } else {
+    cy.getEl('start-objective-questions').click()
+  }
   cy.getEl('question-statement').contains('Nombre de doigts')
   cy.inputNumber(5)
   cy.submitQuestion()
@@ -89,7 +93,7 @@ Cypress.Commands.add("fillRole", (roleIndex, roleName) => {
 })
 
 Cypress.Commands.add("fillProfilingQuestions", (firstQuestionChoice, secondQuestionValue) => {
-  cy.getEl('question-statement').contains('Profiling Question Profile-1')
+  cy.getEl('question-statement').contains('Profiling Question 7A')
   cy.selectChoice(firstQuestionChoice)
   cy.submitQuestion()
   cy.getEl('question-statement').contains('Profiling Question Profile-2')

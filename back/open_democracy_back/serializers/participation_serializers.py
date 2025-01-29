@@ -74,18 +74,22 @@ class ParticipationSerializer(serializers.ModelSerializer):
     profile_ids = serializers.PrimaryKeyRelatedField(
         read_only=True, source="profiles", many=True
     )
+    participative_processes = serializers.PrimaryKeyRelatedField(
+        read_only=True, many=True
+    )
 
     class Meta:
         model = Participation
         fields = [
-            "id",
-            "user",
             "assessment_id",
-            "role_id",
             "consent",
-            "is_profiling_questions_completed",
+            "id",
             "is_pillar_questions_completed",
+            "is_profiling_questions_completed",
+            "participative_processes",
             "profile_ids",
+            "role_id",
+            "user",
         ]
         read_only_fields = ["is_profiling_questions_completed"]
 

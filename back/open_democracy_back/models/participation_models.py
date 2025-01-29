@@ -42,6 +42,10 @@ class Participation(models.Model):
         on_delete=models.CASCADE,
         related_name="participations",
     )
+    participative_processes = models.ManyToManyField(
+        "open_democracy_back.ParticipativeProcess",
+        related_name="participations",
+    )
     role = models.ForeignKey(
         Role,
         on_delete=models.SET_NULL,

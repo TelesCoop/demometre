@@ -92,10 +92,10 @@ class Command(BaseCommand):
 
     def create_profile_types(self):
         profile_type_1, _ = ProfileType.objects.update_or_create(
-            name="Profile 1-1",
-            defaults=dict(name_fr="Profile 1-1", rules_intersection_operator="and"),
+            name="Profile 7A-1",
+            defaults=dict(name_fr="Profile 7A-1", rules_intersection_operator="and"),
         )
-        question = Question.objects.get(code="Profile-1")
+        question = Question.objects.get(code="7A")
         definition, _ = ProfileDefinition.objects.update_or_create(
             profile_type=profile_type_1,
             defaults=dict(
@@ -134,7 +134,7 @@ class Command(BaseCommand):
         )
 
         question = self.create_question(criteria, QuestionType.UNIQUE_CHOICE)
-        question.profiles.add(ProfileType.objects.get(name="Profile 1-1"))
+        question.profiles.add(ProfileType.objects.get(name="Profile 7A-1"))
         question = self.create_question(criteria, QuestionType.MULTIPLE_CHOICE)
         question.profiles.add(ProfileType.objects.get(name="Profile 2-high"))
 
@@ -147,7 +147,7 @@ class Command(BaseCommand):
             None,
             QuestionType.UNIQUE_CHOICE,
             profiling_question=True,
-            code="Profile-1",
+            code="7A",
             n_choices=3,
         )
         question.surveys.set(surveys)
@@ -331,6 +331,7 @@ class Command(BaseCommand):
             democracy_models.EvaluationQuestionnairePage,
             democracy_models.AnimatorPage,
             democracy_models.ContentPage,
+            democracy_models.ParticipativeProcessPage,
         ]
         root = Page.objects.get(pk=1)
         n_added = 0
@@ -400,7 +401,7 @@ class Command(BaseCommand):
             name="Représentativité 1",
             defaults=dict(
                 survey_locality=SurveyLocality.CITY,
-                profiling_question=Question.objects.get(code="Profile-1"),
+                profiling_question=Question.objects.get(code="7A"),
                 min_rate=25,
                 name_fr="Représentativité 1",
                 explanation_fr="Représentativité 1 explication",

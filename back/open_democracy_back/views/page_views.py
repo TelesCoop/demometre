@@ -3,6 +3,7 @@ from django.utils import translation
 from rest_framework import mixins, viewsets
 from wagtail.models import Locale
 
+from open_democracy_back.models import ParticipativeProcessPage
 from open_democracy_back.models.pages_models import (
     AnimatorPage,
     ContentPage,
@@ -26,6 +27,7 @@ from open_democracy_back.serializers.page_serializers import (
     ReferentialPageSerializer,
     ResultsPageSerializer,
     UsagePageSerializer,
+    ParticipativeProcessPageSerializer,
 )
 
 
@@ -150,3 +152,13 @@ class ContentPageView(
 ):
     serializer_class = ContentPageSerializer
     model = ContentPage
+
+
+class ParticipativeProcessPageView(
+    OnlyPageInCurrentLanguageMixin,
+    mixins.RetrieveModelMixin,
+    mixins.ListModelMixin,
+    viewsets.GenericViewSet,
+):
+    serializer_class = ParticipativeProcessPageSerializer
+    model = ParticipativeProcessPage

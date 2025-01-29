@@ -4,7 +4,7 @@ describe('go through participative questionnaire', () => {
     cy.login("user1@telescoop.fr", "password")
     cy.wait(400)
     cy.startQuestionnaire('99902', 'participative')
-    cy.fillObjectiveQuestions()
+    cy.fillObjectiveQuestions(true)
     cy.fillRole(0, 'Citoyen')
     cy.fillProfilingQuestions(1, 3)
     cy.fillRepresentationPillar()

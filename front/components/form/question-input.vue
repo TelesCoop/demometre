@@ -1,5 +1,6 @@
 <template>
   <div class="my-1_5">
+    <pre>{{ {type: question.type, hasParticipativeProcesses} }}</pre>
     <ResponseInputPercentage
       v-if="question.type === QuestionType.PERCENTAGE"
       v-model="answer"
@@ -15,8 +16,14 @@
       :max="question.maxNumberValue"
       :step="question.stepNumberValue"
     />
+    <ResponseInputParticipativeProcesses
+      v-else-if="question.code === '7A' && hasParticipativeProcesses"
+      v-model="answer"
+      :color="props.color"
+      :question-id="question.id"
+    />
     <ResponseInputUniqueChoice
-      v-else-if="question.type === QuestionType.UNIQUE_CHOICE"
+      v-else-if="question.type === QuestionType.UNIQUE_CHOICE && !(question.code === '7A' && hasParticipativeProcesses)"
       v-model="answer"
       :response-choices="question.responseChoices"
       :color="props.color"
@@ -59,7 +66,13 @@ import {
   getQuestionResponseValue,
   toQuestionResponseValue,
 } from "~/utils/question-response"
+import {useAssessmentStore} from "~/stores/assessmentStore"
 
+const assessmentStore = useAssessmentStore()
+
+const hasParticipativeProcesses = computed(() => {
+  return !!(assessmentStore.currentAssessment?.participativeProcesses?.length)
+})
 const props = defineProps({
   question: { type: Object as PropType<Question>, required: true },
   color: { type: String, required: true },
