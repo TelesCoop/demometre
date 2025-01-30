@@ -3,7 +3,7 @@
     <PageSection
       :title="$t('Mes ateliers')"
       :buttons="assessment.isCurrent ? [{text: 'Ajouter un atelier', icon: 'add-line'}] : []"
-      @button-click="showAddWorkshorModal = true"
+      @button-click="showAddWorkshopModal = true"
     >
       <div v-if="workshops.length">
         <table class="table is-striped is-fullwidth">

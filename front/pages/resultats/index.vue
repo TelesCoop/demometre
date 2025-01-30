@@ -108,7 +108,7 @@ const seeResults = () => {
   right: 0
   width: 55%
   height: 150%
-  background-repeat: repeat
+  background-repeat: no-repeat
   z-index: -1
 
   &-container

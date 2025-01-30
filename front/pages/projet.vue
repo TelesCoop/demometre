@@ -80,15 +80,13 @@
                 class="column is-one-quarter"
               >
                 <div class="card is-fullheight has-background-white">
-                  <div class="card-image">
-                    <figure class="image is-4by3 has-text-centered">
-                      <img
-                        :src="MEDIA_BASE_URL + objective.svgUrl"
-                        :alt="objective.title"
-                        :style="`height: 100px; width: 100px`"
-                        class="mt-2"
-                      >
-                    </figure>
+                  <div class="card-image has-text-centered">
+                    <img
+                      :src="MEDIA_BASE_URL + objective.svgUrl"
+                      :alt="objective.title"
+                      :style="`height: 100px; width: 100px`"
+                      class="mt-2"
+                    >
                   </div>
                   <div class="card-content px-2 pb-2">
                     <p
