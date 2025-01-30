@@ -110,11 +110,14 @@ class RepresentativityCriteriaRule(models.Model):
         related_name="representativity_criteria_rule",
     )
 
+    # accept any proportion
     ignore_for_acceptability_threshold = models.BooleanField(
         default=False,
         verbose_name=_("Ne pas compter pour le seuil d'acceptabilité minimal"),
         help_text=_("Ex: binaire pour la parité"),
     )
+
+    # do not even show in participation board
     totally_ignore = models.BooleanField(
         default=False,
         verbose_name=_("Ignorer totalement"),
