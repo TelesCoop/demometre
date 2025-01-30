@@ -1,0 +1,7 @@
+#
+# +-----+
+# | DNS |
+# +-----+
+#
+-A OUTPUT --protocol udp --destination-port 53 --jump ACCEPT --match comment --comment "dns"
+-A OUTPUT  --protocol tcp --destination-port 53 --jump ACCEPT --match comment --comment "dns"

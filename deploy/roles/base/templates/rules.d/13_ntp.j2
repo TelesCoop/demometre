@@ -1,0 +1,6 @@
+#
+# +-----+
+# | NTP |
+# +-----+
+#
+-A OUTPUT  --protocol udp --destination-port 123 --jump ACCEPT --match comment --comment "ntp"

@@ -1,0 +1,12 @@
+---
+
+support_mail_addr: contact@telescoop.fr
+
+sshd:
+  port: 42722
+
+users:
+  root:
+    pwd: "{{ vault_pwd_root }}"
+  ubuntu:
+    pwd: "{{ vault_pwd_ubuntu }}"
