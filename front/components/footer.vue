@@ -131,7 +131,10 @@
 <script setup lang="ts">
 import { MEDIA_BASE_URL } from "~/composables/api"
 import { useSettingStore } from "~/stores/settingStore"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 // const email = ref("")
 const settingStore = useSettingStore()
 </script>

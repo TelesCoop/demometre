@@ -32,7 +32,10 @@
 <script lang="ts" setup>
 import { useQuestionnaireStore } from "~/stores/questionnaireStore"
 import { filterQuestionsByRoleId } from "~/utils/util"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 defineProps({
   roleId: { type: Number, required: true },
 })

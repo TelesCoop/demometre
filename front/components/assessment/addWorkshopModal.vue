@@ -96,7 +96,10 @@
 
 <script setup lang="ts">
 import { useWorkshopStore } from "~/stores/workshopStore"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const props = defineProps({ assessmentId: { type: Number, required: true } })
 const emit = defineEmits(["close"])
 

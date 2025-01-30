@@ -121,7 +121,10 @@ import {
   getQuestionResponseValue,
 } from "~/utils/question-response"
 import { useWorkshopStore } from "~/stores/workshopStore"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const props = defineProps({
   question: {
     type: Object as PropType<Question>,

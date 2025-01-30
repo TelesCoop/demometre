@@ -18,7 +18,10 @@
 
 <script setup lang="ts">
 import { useLegacyModel } from "~/composables/modelWrapper"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const props = defineProps({
   color: { type: String, required: true },
   modelValue: { type: Boolean, required: true },

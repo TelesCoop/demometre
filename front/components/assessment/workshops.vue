@@ -164,7 +164,10 @@ import { usePageStore } from "~/stores/pageStore"
 import { PropType } from "vue"
 import { useWorkshopStore } from "~/stores/workshopStore"
 import { WORKSHOP_TYPES } from "~/utils/constants"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const props = defineProps({ assessment: { type: Object as PropType<Assessment>, required: true } })
 const workshopStore = useWorkshopStore()
 const pageStore = usePageStore()

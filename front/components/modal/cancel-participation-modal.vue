@@ -44,7 +44,10 @@ import { useParticipationStore } from "~/stores/participationStore"
 import { useUserStore } from "~/stores/userStore"
 import { useUserStep } from "~/composables/userStep"
 import { useRouter } from "vue-router"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const isLoading = ref(false)
 
 defineEmits(["close"])

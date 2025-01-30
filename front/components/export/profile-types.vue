@@ -28,6 +28,9 @@
 
 <script lang="ts" setup>
 import { useProfilingStore } from "~/stores/profilingStore"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const profilingStore = useProfilingStore()
 </script>

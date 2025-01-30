@@ -223,7 +223,10 @@ import { useQuestionnaireStore } from "~/stores/questionnaireStore"
 import { Marker, Criteria, Scores } from "~/composables/types"
 import { getScoreToDisplay } from "~/utils/scores"
 import { isNullOrUndefined } from "assets/utils"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const questionnaireStore = useQuestionnaireStore()
 
 const props = defineProps({

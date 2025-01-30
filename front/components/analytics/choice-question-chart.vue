@@ -122,7 +122,10 @@ import {
   getColorGradients,
 } from "assets/utils/choice-question-chart"
 import { useProfilingStore } from "~/stores/profilingStore"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const props = defineProps({
   data: { type: Object, required: true },
   color: { type: String, required: true },

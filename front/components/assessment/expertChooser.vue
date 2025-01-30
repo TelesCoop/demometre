@@ -30,7 +30,10 @@
 
 <script setup lang="ts">
 import { useAssessmentStore } from "~/stores/assessmentStore"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 defineProps({
   modelValue: { type: Number, required: true },
   expertIx: { type: Number, default: 0 },

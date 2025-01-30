@@ -55,7 +55,10 @@
 import { PropType } from "vue"
 import { ref } from "vue"
 import { AssessmentRepresentativity } from "~/composables/types"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const props = defineProps({
   representativity: {
     type: Object as PropType<AssessmentRepresentativity>,

@@ -60,7 +60,10 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~/stores/userStore"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const emit = defineEmits(["close"])
 
 const userStore = useUserStore()

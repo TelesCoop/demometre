@@ -84,7 +84,10 @@ import { PropType } from "vue"
 import { Assessment } from "~/composables/types"
 import { useAssessmentStore } from "~/stores/assessmentStore"
 import { usePageStore } from "~/stores/pageStore"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const props = defineProps({
   assessment: { type: Object as PropType<Assessment>, required: true },
   showAssessmentInfo: { type: Boolean, default: false },

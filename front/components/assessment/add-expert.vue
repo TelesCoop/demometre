@@ -44,7 +44,10 @@ import { useAssessmentStore } from "~/stores/assessmentStore"
 import { User, EvaluationInitiationPage } from "~/composables/types"
 import vSelect from "vue-select"
 import { useSettingStore } from "~~/stores/settingStore"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const props = defineProps({
   initiationPage: {
     type: Object as PropType<EvaluationInitiationPage>,

@@ -108,6 +108,10 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from "vue-i18n"
+
+const i18n = useI18n()
+const $t = i18n.t
 const props = defineProps({
   questionId: { type: Number, required: false, default: -1 },
   required: { type: Boolean, required: false },

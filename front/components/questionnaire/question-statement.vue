@@ -46,7 +46,10 @@
 
 <script setup lang="ts">
 import { useProfilingStore } from "~~/stores/profilingStore"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const props = defineProps({
   question: { type: Object, required: true },
   color: { type: String, required: true },

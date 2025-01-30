@@ -58,7 +58,10 @@ import { useSettingStore } from "~/stores/settingStore"
 import { useParticipationStore } from "~/stores/participationStore"
 import { useUserStore } from "~/stores/userStore"
 import { useAssessmentStore } from "~/stores/assessmentStore"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const props = defineProps({
   type: { type: String, required: true },
   initiator: { type: Boolean, default: false },

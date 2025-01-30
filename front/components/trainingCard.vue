@@ -75,7 +75,10 @@
 <script setup lang="ts">
 import { PropType } from "vue"
 import { Training } from "~/composables/types"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 defineProps(
   {
     training: { type: Object as PropType<Training>, required: true },

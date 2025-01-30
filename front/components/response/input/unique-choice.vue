@@ -38,7 +38,10 @@
 <script setup lang="ts">
 import { PropType } from "vue"
 import { ResponseChoice as ResponseChoiceType } from "~/composables/types"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const props = defineProps({
   responseChoices: {
     type: Array as PropType<ResponseChoiceType[]>,

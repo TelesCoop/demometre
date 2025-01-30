@@ -19,7 +19,10 @@
 import { PropType } from "vue"
 import { Block } from "~/composables/types"
 import { useBackendUrl } from "~/composables/api"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const props = defineProps({
   block: {
     type: Object as PropType<Block>,

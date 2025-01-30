@@ -66,7 +66,10 @@ import { PropType } from "vue"
 import { MEDIA_BASE_URL } from "~/composables/api"
 import { useAssessmentStore } from "~/stores/assessmentStore"
 import { AssessmentTypeDetails } from "~~/composables/types"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const props = defineProps({
   assessmentType: {
     type: Object as PropType<AssessmentTypeDetails>,

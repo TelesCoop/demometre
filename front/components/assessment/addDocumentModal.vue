@@ -109,7 +109,10 @@ import {
 } from "~/utils/constants"
 import { useLoadingStore } from "~/stores/loadingStore"
 import { useAssessmentStore } from "~/stores/assessmentStore"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const assessmentStore = useAssessmentStore()
 const loadingStore = useLoadingStore()
 

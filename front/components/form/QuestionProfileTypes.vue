@@ -9,7 +9,10 @@
 import type { PropType } from "vue"
 import type { ProfileType } from "~/composables/types"
 import { useProfilingStore } from "~/stores/profilingStore"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const props = defineProps({
   profileTypesIds: { type: Array as PropType<ProfileType[]>, required: true },
 })

@@ -147,7 +147,10 @@ import {
 import { usePageStore } from "~/stores/pageStore"
 import { usePressEnter } from "~/composables/pressEnter"
 import { useQuestionnaireStore } from "~/stores/questionnaireStore"
+import { useI18n } from "vue-i18n"
 
+const i18n = useI18n()
+const $t = i18n.t
 const emits = defineEmits(["submit"])
 
 const pageStore = usePageStore()
