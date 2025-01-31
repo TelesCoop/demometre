@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.fields import ReadOnlyField
 
 from open_democracy_back.models.representativity_models import (
     AssessmentRepresentativity,
@@ -20,6 +21,8 @@ class AssessmentRepresentativityCriteriaSerializer(serializers.ModelSerializer):
         source="representativity_criteria.name"
     )
 
+    min_rate = ReadOnlyField(source="representativity_criteria.min_rate")
+
     class Meta:
         model = AssessmentRepresentativity
         fields = [
@@ -27,7 +30,7 @@ class AssessmentRepresentativityCriteriaSerializer(serializers.ModelSerializer):
             "assessment_id",
             "representativity_criteria_name",
             "count_by_response_choice",
-            "acceptability_threshold_considered",
+            "min_rate",
             "respected",
         ]
         read_only_fields = fields

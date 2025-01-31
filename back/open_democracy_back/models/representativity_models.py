@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Count, F, Q
+from django.db.models import Count, F, Q, Subquery, OuterRef
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils import translation
 from django.utils.translation import gettext_lazy as _
@@ -84,7 +84,7 @@ class RepresentativityCriteria(index.Indexed, models.Model):
         super().save(*args, **kwargs)
         if must_create_assessment_representativity:
             for assessment in Assessment.objects.filter(
-                survey__survey_locality=self.survey_locality
+                    survey__survey_locality=self.survey_locality
             ):
                 AssessmentRepresentativity.objects.create(
                     assessment=assessment, representativity_criteria_id=self.id
@@ -154,12 +154,18 @@ class AssessmentRepresentativity(models.Model):
                 ignore_for_acceptability_threshold=F(
                     "representativity_criteria_rule__ignore_for_acceptability_threshold"
                 ),
+                acceptability_threshold=Subquery(
+                    self.response_choice_rules
+                    .filter(response_choice_id=OuterRef("id"))[:1]
+                    .values("acceptability_threshold")
+                )
             )
             .values(
                 "response_choice_id",
                 "response_choice_name",
                 "ignore_for_acceptability_threshold",
                 "sort_order",
+                "acceptability_threshold"
             )
             .annotate(
                 total=Count(
@@ -184,9 +190,8 @@ class AssessmentRepresentativity(models.Model):
             .count()
         )
 
-    @property
-    def acceptability_threshold_considered(self):
-        return self.representativity_criteria.min_rate
+    def acceptability_threshold_considered(self, response_choice_threshold=None):
+        return self.representativity_criteria.min_rate if response_choice_threshold is None else response_choice_threshold
 
     @property
     def respected(self):
@@ -197,8 +202,8 @@ class AssessmentRepresentativity(models.Model):
             [
                 (
                     (
-                        (response_choice_count["total"] / total_response) * 100
-                        >= self.acceptability_threshold_considered
+                            (response_choice_count["total"] / total_response) * 100
+                            >= self.acceptability_threshold_considered(response_choice_count["acceptability_threshold"])
                     )
                     if not response_choice_count["ignore_for_acceptability_threshold"]
                     else True
@@ -206,3 +211,28 @@ class AssessmentRepresentativity(models.Model):
                 for response_choice_count in self.count_by_response_choice
             ]
         )
+
+
+class AssessmentRepresentativityCriteriaRule(models.Model):
+    class Meta:
+        unique_together = ["assessment_representativity", "response_choice"]
+
+    assessment_representativity = models.ForeignKey(
+        AssessmentRepresentativity,
+        on_delete=models.CASCADE,
+        related_name="response_choice_rules",
+    )
+
+    response_choice = models.ForeignKey(
+        ResponseChoice,
+        on_delete=models.CASCADE,
+        verbose_name=_("Réponse"),
+        related_name="assessment_representativity_criteria_rules",
+    )
+
+    acceptability_threshold = models.IntegerField(
+        blank=True,
+        null=True,
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        verbose_name=_("Seuil d'acceptabilité"),
+    )

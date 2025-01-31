@@ -226,6 +226,7 @@ type CountByResponseChoice = {
   responseChoiceId: number
   total: number
   ignoreForAcceptabilityThreshold: boolean
+  acceptabilityThreshold: number
 }
 export type RepresentativityCriteria = {
   id: number
@@ -240,7 +241,7 @@ export type AssessmentRepresentativity = {
   assessmentId: number
   representativityCriteriaName: string
   countByResponseChoice: CountByResponseChoice[]
-  acceptabilityThresholdConsidered: number
+  minRate: number
   respected: boolean
 }
 export type AssessmentDetails = {
