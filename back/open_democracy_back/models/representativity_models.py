@@ -8,7 +8,6 @@ from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 from wagtail.fields import RichTextField
 
-
 from open_democracy_back.models.assessment_models import Assessment
 
 from open_democracy_back.models.questionnaire_and_profiling_models import (
@@ -139,12 +138,6 @@ class AssessmentRepresentativity(models.Model):
         on_delete=models.CASCADE,
         related_name="representativities",
     )
-    acceptability_threshold = models.IntegerField(
-        blank=True,
-        null=True,
-        validators=[MinValueValidator(1), MaxValueValidator(100)],
-        verbose_name=_("Seuil d'acceptabilité"),
-    )
 
     @property
     def count_by_response_choice(self):
@@ -193,12 +186,7 @@ class AssessmentRepresentativity(models.Model):
 
     @property
     def acceptability_threshold_considered(self):
-        if self.acceptability_threshold and (
-            self.acceptability_threshold > self.representativity_criteria.min_rate
-        ):
-            return self.acceptability_threshold
-        else:
-            return self.representativity_criteria.min_rate
+        return self.representativity_criteria.min_rate
 
     @property
     def respected(self):

@@ -213,12 +213,6 @@ class AssessmentsView(
                     assessment=assessment,
                     representativity_criteria=representativity_criteria,
                 )[0]
-                # representativity_threshold as shape of [{"id": 1, "value":30}, {"id": 2, "value":20}]
-                representativity.acceptability_threshold = next(
-                    threshold["value"]
-                    for threshold in initialize_data["representativity_thresholds"]
-                    if threshold["id"] == representativity_criteria.id
-                )
                 representativity.save()
 
             return RestResponse(

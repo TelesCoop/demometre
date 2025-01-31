@@ -231,7 +231,6 @@ export type RepresentativityCriteria = {
   id: number
   name: string
   profilingQuestionId: number
-  acceptabilityThreshold: number
   minRate: number
   explanation: string
   surveyLocality: SurveyLocality

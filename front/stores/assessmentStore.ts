@@ -288,11 +288,6 @@ export const useAssessmentStore = defineStore("assessment", {
       const { data, error } = await useApiPost<Assessment>(
         `assessments/${this.currentAssessmentId}/initialization/`,
         {
-          representativityThresholds: this.representativityCriterias.map(
-            (item) => {
-              return { id: item.id, value: item.acceptabilityThreshold || null }
-            },
-          ),
           ...this.newAssessment,
           ...payload,
         },
