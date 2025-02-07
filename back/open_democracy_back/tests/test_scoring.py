@@ -387,3 +387,33 @@ class TestScoring(TestCase):
                 score=response_range.linearized_score,
             ),
         )
+
+    # def test_score_of_questions_with_participative_processes(self):
+    #     question = QuestionFactory.create(
+    #         is_participative_process_question=True, type=QuestionType.MULTIPLE_CHOICE
+    #     )
+    #     ass = AssessmentFactory.create()
+    #     rc1 = ResponseChoiceFactory.create(question=question)
+    #     rc2 = ResponseChoiceFactory.create(question=question)
+    #     pp1 = ParticipativeProcess.objects.create(
+    #         response_choice=rc1, assessment=ass, name="name"
+    #     )
+    #     pp2 = ParticipativeProcess.objects.create(
+    #         response_choice=rc1, assessment=ass, name="name"
+    #     )
+    #
+    #     # choice 1 for pp1, choice 1 and 2 for pp2
+    #     pr = ParticipationResponseFactory.create(
+    #         question=question, assessment=ass, participative_process=pp1
+    #     )
+    #     pr.multiple_choice_response.add(rc1)
+    #     pr2 = ParticipationResponseFactory.create(
+    #         question=question, assessment=ass, participative_process=pp2
+    #     )
+    #     pr.multiple_choice_response.add(rc1)
+    #     pr.multiple_choice_response.add(rc2)
+    #
+    #     # call it once globally + once per possible ParticipativeProcess
+    #     score = get_score_of_multiple_choice_question(
+    #         ParticipationResponse.objects.accounted_in_assessment(ass.pk)
+    #     )

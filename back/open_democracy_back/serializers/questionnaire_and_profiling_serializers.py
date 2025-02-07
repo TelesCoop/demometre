@@ -225,6 +225,7 @@ class QuestionnaireQuestionSerializer(QuestionSerializer):
             "profile_ids",
             "survey_id",
             "survey_locality",
+            "is_participative_process_question",
         ] + QUESTION_FIELDS
         read_only_fields = fields
 

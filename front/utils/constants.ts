@@ -56,3 +56,4 @@ export const LOCALITY_TYPE_NAME = {
   department: $t("Département"),
   region: $t("Région"),
 }
+export const ONE_MILLION = 1000000

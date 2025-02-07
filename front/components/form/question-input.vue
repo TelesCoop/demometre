@@ -1,6 +1,5 @@
 <template>
   <div class="my-1_5">
-    <pre>{{ {type: question.type, hasParticipativeProcesses} }}</pre>
     <ResponseInputPercentage
       v-if="question.type === QuestionType.PERCENTAGE"
       v-model="answer"

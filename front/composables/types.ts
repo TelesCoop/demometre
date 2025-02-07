@@ -145,6 +145,7 @@ export type Question = {
   description: string
   explainsByQuestionIds: number[]
   id: number
+  isParticipativeProcessQuestion: boolean
   mandatory: boolean
   maxMultipleChoices: number | null
   maxNumberValue: number | null

@@ -17,6 +17,7 @@ import {
 import { useUserStore } from "./userStore"
 import { useMessageStore } from "./messageStore"
 import { useQuestionnaireStore } from "./questionnaireStore"
+import {ONE_MILLION} from "~/utils/constants"
 
 type Status = {
   total: number
@@ -227,14 +228,18 @@ export const useParticipationStore = defineStore("participation", {
       question: Question,
       response: QuestionResponseValue,
       isAnswered: boolean,
+      participativeProcessId?: number,
     ) {
+      console.log("### save response 2", { participativeProcessId: participativeProcessId })
       const questionResponse = toQuestionResponse(
         question.id,
         this.id!,
         useAssessmentStore().currentAssessmentId!,
         !isAnswered,
         response,
+        participativeProcessId,
       )
+      console.log("### questionResponse", { questionResponse })
 
       let apiResponse
       if (
@@ -258,9 +263,10 @@ export const useParticipationStore = defineStore("participation", {
         errorStore.setError(error.value.data?.messageCode)
       }
       if (!error.value && data.value) {
+        const answerKey = participativeProcessId == null ? question.id : (participativeProcessId || -1) * ONE_MILLION + question.id
         const questionResponses =
           this[QUESTION_RESPONSES_BY_TYPE[question.surveyType]]
-        questionResponses[question.id] = data.value
+        questionResponses[answerKey] = data.value
         if (question.surveyType === SurveyType.QUESTIONNAIRE) {
           this.setTotalAndAnsweredQuestionsInPillar(question.pillarName)
         }
@@ -325,6 +331,20 @@ export const useParticipationStore = defineStore("participation", {
     },
     setShowSaveParticipationModal(show) {
       this.showSaveParticipationModal = show
+    },
+    async updateParticipation(
+      assessmentId: number,
+      payload: any,
+    ) {
+      const res = await useApiPost<Participation>(
+        `participations/`, {assessmentId, ...payload},
+      )
+      if (res.error.value) {
+        return false
+      }
+      const participation: Participation = res.data.value
+      this.participations[participation.id!] = participation
+      return true
     },
   },
 })

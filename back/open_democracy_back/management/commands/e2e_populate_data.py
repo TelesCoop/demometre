@@ -145,7 +145,7 @@ class Command(BaseCommand):
         surveys = Survey.objects.all()
         question = self.create_question(
             None,
-            QuestionType.UNIQUE_CHOICE,
+            QuestionType.MULTIPLE_CHOICE,
             profiling_question=True,
             code="7A",
             n_choices=3,
@@ -165,6 +165,7 @@ class Command(BaseCommand):
         statement=None,
         objective=False,
         n_choices=None,
+        is_participative_process_question=False,
     ):
         self.code_per_criteria[criteria] += 1
         if code is None:
@@ -187,6 +188,7 @@ class Command(BaseCommand):
             question_statement_fr=question_statement,
             profiling_question=profiling_question,
             objectivity=objectivity,
+            is_participative_process_question=is_participative_process_question,
         )
         if question_type in [
             QuestionType.UNIQUE_CHOICE,
@@ -250,7 +252,11 @@ class Command(BaseCommand):
         )
 
         self.create_question(criteria, QuestionType.UNIQUE_CHOICE)
-        self.create_question(criteria, QuestionType.MULTIPLE_CHOICE)
+        self.create_question(
+            criteria,
+            QuestionType.MULTIPLE_CHOICE,
+            is_participative_process_question=True,
+        )
         self.create_question(criteria, QuestionType.CLOSED_WITH_SCALE)
         self.create_question(criteria, QuestionType.BOOLEAN)
         self.create_question(criteria, QuestionType.PERCENTAGE)

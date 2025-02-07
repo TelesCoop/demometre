@@ -10,7 +10,10 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response as RestResponse
 
-from open_democracy_back.mixins.update_or_create_mixin import UpdateOrCreateModelMixin
+from open_democracy_back.mixins.update_or_create_mixin import (
+    UpdateOrCreateModelMixin,
+    PartialUpdateOrCreateModelMixin,
+)
 from open_democracy_back.models.participation_models import (
     Participation,
     ParticipationResponse,
@@ -136,7 +139,7 @@ def assignProfilesToParticipation(participation):
 class ParticipationView(
     mixins.ListModelMixin,
     mixins.RetrieveModelMixin,
-    UpdateOrCreateModelMixin,
+    PartialUpdateOrCreateModelMixin,
     viewsets.GenericViewSet,
 ):
     permission_classes = [IsAuthenticated]
@@ -190,6 +193,7 @@ class ParticipationResponseView(UpdateOrCreateModelMixin, viewsets.GenericViewSe
         return self.get_queryset().get(
             participation_id=request.data.get("participation_id"),
             question_id=request.data.get("question_id"),
+            participative_process_id=request.data.get("participative_process_id"),
         )
 
     @action(

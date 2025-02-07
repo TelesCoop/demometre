@@ -602,6 +602,10 @@ class Question(index.Indexed, TimeStampedModel, ClusterableModel):
         related_name="questions",
         blank=True,
     )
+    is_participative_process_question = models.BooleanField(
+        default=False,
+        verbose_name=_("Cette question concerne les process participatifs"),
+    )
 
     # Profiling questions fields
     profiling_question = models.BooleanField(default=False)
@@ -750,6 +754,7 @@ class QuestionnaireQuestion(Question):
         *Question.principal_panels,
         FieldPanel("profiles", widget=forms.CheckboxSelectMultiple),
         FieldPanel("assessment_types", widget=forms.CheckboxSelectMultiple),
+        FieldPanel("is_participative_process_question"),
         FieldPanel("objectivity"),
         FieldPanel("method"),
         *Question.commun_types_panels,

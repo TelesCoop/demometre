@@ -12,6 +12,7 @@
           :question="question"
           :explanatory="explanatory"
           :definitions="definitions"
+          :participative-process="participativeProcess"
         />
 
         <FormButtons
@@ -61,13 +62,15 @@ import {
   SurveyType,
   QuestionResponse,
   QuestionResponseValue,
+  ParticipationParticipativeProcess,
 } from "~/composables/types"
 import { computed, PropType, watch } from "vue"
 import { ref } from "vue"
 import { useParticipationStore } from "~/stores/participationStore"
-import { getQuestionResponseValue } from "~/utils/question-response"
+import {getQuestionResponseValue, toQuestionResponseValue} from "~/utils/question-response"
 import { useAssessmentStore } from "~/stores/assessmentStore"
 import { usePressEnter } from "~/composables/pressEnter"
+import {ONE_MILLION} from "~/utils/constants"
 
 const props = defineProps({
   questionId: { type: Number, required: true },
@@ -83,11 +86,64 @@ console.log("### question setup", {
 
 const participationStore = useParticipationStore()
 const assessmentStore = useAssessmentStore()
+const router = useRouter()
+const route = useRoute()
 
 const question = computed(() => {
   return props.context.questionById[props.questionId]
 })
 const { explanatory, definitions } = useQuestionHandler(question.value)
+
+const participativeProcessId = computed({
+  get: () => route.query.participativeProcessId ? +route.query.participativeProcessId : undefined,
+  set: (newValue) => {
+    router.push({
+      query: {
+        ...route.query,
+        participativeProcessId: newValue,
+      },
+    })
+  },
+})
+
+const participativeProcess = computed<ParticipationParticipativeProcess|undefined>(() => {
+  if (participativeProcessId.value == null) {
+    console.log("### no participative process")
+    return undefined
+  }
+  console.log("### participativeProcess is ", participativeProcessId.value, possibleParticipativeProcesses.value, assessmentStore.currentAssessment.participativeProcesses.find(p => p.id))
+  return assessmentStore.currentAssessment?.participativeProcesses.find(p => p.id === participativeProcessId.value) || undefined
+})
+
+const answerKey = computed(() => {
+  if (participativeProcessId.value != null) {
+    return (participativeProcessId.value || -1) * ONE_MILLION + props.questionId
+  } else {
+    return props.questionId
+  }
+})
+
+const checkParticipativeProcess = () => {
+  if (participativeProcessId.value == null && possibleParticipativeProcesses.value.length && question.value.isParticipativeProcessQuestion ) {
+    console.log("### set", possibleParticipativeProcesses.value[0])
+    participativeProcessId.value = possibleParticipativeProcesses.value[0]
+  } else {
+    console.log("### checkParticipativeProcess nothing")
+  }
+}
+
+router.afterEach(() => {
+  checkParticipativeProcess()
+})
+
+const possibleParticipativeProcesses = computed<number[]>(() => {
+  return (participationStore.participation?.participativeProcesses || [])
+})
+
+checkParticipativeProcess()
+setTimeout(() => {
+  checkParticipativeProcess()
+}, 1000)
 
 const isAnswered = computed(() => {
   const value = getQuestionResponseValue(answer.value, question.value.type)
@@ -96,19 +152,22 @@ const isAnswered = computed(() => {
 })
 
 const answer = ref<QuestionResponse | QuestionResponseValue | undefined>(
-  props.context.responseByQuestionId[props.questionId],
+  props.context.responseByQuestionId[answerKey.value],
 )
 const isLoading = ref(false)
 
 watch(question, () => {
-  answer.value = props.context.responseByQuestionId[props.questionId]
+  answer.value = props.context.responseByQuestionId[answerKey.value]
+})
+watch(participativeProcessId, () => {
+  answer.value = props.context.responseByQuestionId[answerKey.value]
 })
 
 const nextQuestionDisabled = computed(
   () =>
     !(
       isAnswered.value ||
-      props.context.responseByQuestionId[props.questionId]?.hasPassed
+      props.context.responseByQuestionId[answerKey.value]?.hasPassed
     ),
 )
 
@@ -124,12 +183,22 @@ const goToNextQuestion = () => {
 
 const submit = async () => {
   isLoading.value = true
-  const result = await participationStore.saveResponse(
-    question.value,
-    answer.value,
-    isAnswered.value,
-  )
+  let result = false
+  // if the question is about participative processes
+  if (question.value.code === '7A' && assessmentStore.currentAssessment?.participativeProcesses?.length) {
+    // we update the participation, we don't answer the question
+    result = await participationStore.updateParticipation(assessmentStore.currentAssessmentId!, {participativeProcesses: answer.value!.multipleChoiceResponseIds})
+  } else {
+    console.log("### save response", { participativeProcessId: participativeProcessId.value })
+    result = await participationStore.saveResponse(
+      question.value,
+      answer.value,
+      isAnswered.value,
+      participativeProcessId.value,
+    )
+  }
   if (result) {
+    isLoading.value = false
     if (props.context.journey.isLastQuestion(question.value.id)) {
       if (props.context.journey.surveyType() === SurveyType.INITILIZATION) {
         // await assessmentStore.saveEndInitializationQuestions()
@@ -142,7 +211,17 @@ const submit = async () => {
         )
       }
     }
-    goToNextQuestion()
+    if (participativeProcessId.value) {
+      // if the question is for a participative process, select next participative process
+      if (possibleParticipativeProcesses.value.indexOf(participativeProcessId.value) === possibleParticipativeProcesses.value.length - 1) {
+        participativeProcessId.value = undefined
+        goToNextQuestion()
+      } else {
+        participativeProcessId.value = possibleParticipativeProcesses.value[possibleParticipativeProcesses.value.indexOf(participativeProcessId.value) + 1]
+      }
+    } else {
+      goToNextQuestion()
+    }
   }
 }
 const canSubmit = () => isAnswered.value
