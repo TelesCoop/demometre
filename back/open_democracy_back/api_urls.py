@@ -29,7 +29,7 @@ from open_democracy_back.views.participation_views import (
     CompletedQuestionsParticipationView,
 )
 from open_democracy_back.views.representativity_views import (
-    RepresentativityCriteriaView,
+    RepresentativityCriteriaView,    AssessmentRepresentativityCriteriaRuleView,
 )
 from open_democracy_back.views.setting_views import (
     ImportantPagesSettingsView,
@@ -134,7 +134,8 @@ router.register(
 )
 router.register("surveys", SurveyView, basename="surveys")
 router.register("profile-types", ProfileTypeView, basename="profile-types")
-
+router.register(r"assessment-reprentativity-rules", AssessmentRepresentativityCriteriaRuleView,
+                basename="assessment-reprentativity-rules")
 
 urlpatterns = [
     path(

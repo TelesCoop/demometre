@@ -1,9 +1,11 @@
 from rest_framework import serializers
 from rest_framework.fields import ReadOnlyField
 
+from open_democracy_back.models import ResponseChoice
 from open_democracy_back.models.representativity_models import (
     AssessmentRepresentativity,
     RepresentativityCriteria,
+    AssessmentRepresentativityCriteriaRule,
 )
 from open_democracy_back.serializers_utils import TranslatedField
 
@@ -52,3 +54,32 @@ class RepresentativityCriteriaSerializer(serializers.ModelSerializer):
             "explanation",
         ]
         read_only_fields = fields
+
+
+class AssessmentRepresentativityCriteriaRuleSerializer(serializers.ModelSerializer):
+    """
+    """
+
+    assessment_representativity_id = serializers.PrimaryKeyRelatedField(
+        queryset=AssessmentRepresentativity.objects.all(),  # really have all?
+        source="assessment_representativity"
+    )
+    response_choice_id = serializers.PrimaryKeyRelatedField(
+        queryset=ResponseChoice.objects.all(),  # really have all?
+        source="response_choice"
+    )
+
+    class Meta:
+        model = AssessmentRepresentativityCriteriaRule
+        fields = [
+            "id",
+            "assessment_id",
+            "assessment_representativity_id",
+            "response_choice_id",
+            "acceptability_threshold"
+        ]
+
+    def validate(self, data):
+        if data["assessment_representativity"].representativity_criteria.profiling_question_id != data["response_choice"].question_id:
+            raise serializers.ValidationError("the response choice does not match the assessment representativity")
+        return data
