@@ -260,6 +260,11 @@
 
     <hr>
 
+    <AssessmentRepresentativityRuleByChoice :assessment="assessmentStore.currentAssessment"
+                                            v-if="assessment.details.hasDetailAccess"/>
+
+    <hr>
+
     <AssessmentWorkshops
       v-if="assessment.details.hasDetailAccess"
       :assessment="assessment"

@@ -158,6 +158,11 @@ class AssessmentRepresentativity(models.Model):
                     self.response_choice_rules
                     .filter(response_choice_id=OuterRef("id"))[:1]
                     .values("acceptability_threshold")
+                ),
+                rule_id=Subquery(
+                    self.response_choice_rules
+                    .filter(response_choice_id=OuterRef("id"))[:1]
+                    .values("pk")
                 )
             )
             .values(
@@ -165,7 +170,8 @@ class AssessmentRepresentativity(models.Model):
                 "response_choice_name",
                 "ignore_for_acceptability_threshold",
                 "sort_order",
-                "acceptability_threshold"
+                "acceptability_threshold",
+                "rule_id",
             )
             .annotate(
                 total=Count(
@@ -236,3 +242,7 @@ class AssessmentRepresentativityCriteriaRule(models.Model):
         validators=[MinValueValidator(0), MaxValueValidator(100)],
         verbose_name=_("Seuil d'acceptabilité"),
     )
+
+    @property
+    def assessment_id(self):
+        return self.assessment_representativity.assessment_id

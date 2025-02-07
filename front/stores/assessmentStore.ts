@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import {
   Assessment,
-  AssessmentDocumentType,
+  AssessmentDocumentType, AssessmentRepresentativityRule,
   Localities,
   RepresentativityCriteria,
   Scores,
@@ -284,6 +284,51 @@ export const useAssessmentStore = defineStore("assessment", {
         errorStore.setError(error.value.data?.messageCode)
       }
     },
+
+
+    async newAssessmentCriteraRule(rule: Partial<AssessmentRepresentativityRule>) {
+      const msgStore = useMessageStore()
+      const {error} = await useApiPost<AssessmentRepresentativityRule>(
+        "assessment-reprentativity-rules/",
+        rule,
+      )
+      if (!error.value) {
+        // TODO better update locally than wait for another call
+        await this.getAssessment(rule!.assessmentId)
+        msgStore.setInfo("Valeur enregistrée avec succès")
+      } else {
+        msgStore.setError(error.value.data?.messageCode)
+      }
+    },
+    async updateAssessmentCriteraRule(rule: Partial<AssessmentRepresentativityRule> & Pick<AssessmentRepresentativityRule, "id" | "assessmentId">) {
+      const msgStore = useMessageStore()
+      const {error} = await useApiPatch<AssessmentRepresentativityRule>(
+        `assessment-reprentativity-rules/${rule.id}/`,
+        rule,
+      )
+      if (!error.value) {
+        // TODO better update locally than wait for another call
+        await this.getAssessment(rule.assessmentId)
+        msgStore.setInfo("Valeur enregistrée avec succès")
+      } else {
+        msgStore.setError(error.value.data?.messageCode)
+      }
+    },
+    async deleteAssessmentCriteraRule(rule: Partial<AssessmentRepresentativityRule> & Pick<AssessmentRepresentativityRule, "id" | "assessmentId">) {
+      const msgStore = useMessageStore()
+      const {error} = await useApiDelete<AssessmentRepresentativityRule>(
+        `assessment-reprentativity-rules/${rule.id}/`,
+      )
+      if (!error.value) {
+        // TODO better update locally than wait for another call
+        await this.getAssessment(rule.assessmentId)
+        msgStore.setInfo("Valeur réinitialisée avec succès")
+      } else {
+        msgStore.setError(error.value.data?.messageCode)
+      }
+    },
+
+
     async initializeAssessment(payload) {
       const { data, error } = await useApiPost<Assessment>(
         `assessments/${this.currentAssessmentId}/initialization/`,
