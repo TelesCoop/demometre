@@ -80,6 +80,6 @@ class AssessmentRepresentativityCriteriaRuleSerializer(serializers.ModelSerializ
         ]
 
     def validate(self, data):
-        if data["assessment_representativity"].representativity_criteria.profiling_question_id != data["response_choice"].question_id:
+        if not self.partial and data["assessment_representativity"].representativity_criteria.profiling_question_id != data["response_choice"].question_id:
             raise serializers.ValidationError("the response choice does not match the assessment representativity")
         return data
