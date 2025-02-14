@@ -28,6 +28,7 @@ class AssessmentRepresentativityCriteriaRuleView(
 ):
     queryset = AssessmentRepresentativityCriteriaRule.objects.all()
     serializer_class = AssessmentRepresentativityCriteriaRuleSerializer
+    permission_classes = [HasAssessmentWriteAccessForRepresentativityCriteriaRule]
 
     def get_queryset(self):
         rq =  AssessmentRepresentativityCriteriaRule.objects.filter(
