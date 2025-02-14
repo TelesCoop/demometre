@@ -23,7 +23,6 @@ class AssessmentRepresentativityCriteriaRuleView(
     mixins.UpdateModelMixin,
     mixins.DestroyModelMixin,
     mixins.CreateModelMixin,
-    mixins.ListModelMixin,
     viewsets.GenericViewSet,
 ):
     queryset = AssessmentRepresentativityCriteriaRule.objects.all()
