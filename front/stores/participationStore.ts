@@ -17,6 +17,7 @@ import {
 import { useUserStore } from "./userStore"
 import { useMessageStore } from "./messageStore"
 import { useQuestionnaireStore } from "./questionnaireStore"
+import {getAnswerKey} from "~/utils/util"
 import {ONE_MILLION} from "~/utils/constants"
 
 type Status = {
@@ -64,10 +65,13 @@ export const useParticipationStore = defineStore("participation", {
       return "id" in this.participation ? this.participation.id : undefined
     },
     hasAnsweredQuestionnaireQuestion: (state) => {
+      // a question is set to answered if there is a response for it directly
+      // or if there is a response for at least one of its participative processes
       return (questionId: number) => {
-        return state.responseByQuestionnaireQuestionId[questionId]
-          ? true
-          : false
+        const possibleKeys = Object.keys(state.responseByQuestionnaireQuestionId)
+          .map(key => parseInt(key))
+          .filter((key: number) => key % ONE_MILLION === questionId)
+        return possibleKeys.some(key => !!state.responseByQuestionnaireQuestionId[key])
       }
     },
     status(): Status {
@@ -263,7 +267,7 @@ export const useParticipationStore = defineStore("participation", {
         errorStore.setError(error.value.data?.messageCode)
       }
       if (!error.value && data.value) {
-        const answerKey = participativeProcessId == null ? question.id : (participativeProcessId || -1) * ONE_MILLION + question.id
+        const answerKey = getAnswerKey(question.id, participativeProcessId)
         const questionResponses =
           this[QUESTION_RESPONSES_BY_TYPE[question.surveyType]]
         questionResponses[answerKey] = data.value

@@ -7,7 +7,7 @@
     >
       {{ question.questionStatement }}
     </h1>
-    <div v-if="participativeProcess" class="notification is-info">
+    <div v-if="participativeProcess" class="notification is-info" data-cy="participative-process-info">
       {{ $t('Répondez pour le process participatif : ') }} {{ participativeProcess?.name }}
     </div>
     <RichText

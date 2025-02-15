@@ -75,7 +75,7 @@ class ParticipationSerializer(serializers.ModelSerializer):
         read_only=True, source="profiles", many=True
     )
     participative_processes = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=ParticipativeProcess.objects.all()
+        many=True, queryset=ParticipativeProcess.objects.all(), required=False
     )
 
     class Meta:

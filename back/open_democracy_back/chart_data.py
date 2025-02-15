@@ -36,17 +36,24 @@ def get_chart_data_objective_queryset(
     return to_return
 
 
-def get_chart_data_subjective_queryset(assessment_id, prefix_queryset=""):
+def get_chart_data_subjective_queryset(
+    assessment_id, prefix_queryset="", participative_processes=None
+):
     prefix = f"{prefix_queryset}__" if prefix_queryset else ""
 
-    return {
+    to_return = {
         f"{prefix}participation__user__is_unknown_user": False,
         f"{prefix}participation__assessment_id": assessment_id,
         f"{prefix}has_passed": False,
     }
+    if participative_processes:
+        to_return[f"{prefix}participative_process__in"] = participative_processes
+    return to_return
 
 
-def get_chart_data_of_boolean_question(question, assessment_id):
+def get_chart_data_of_boolean_question(
+    question, assessment_id, participative_processes=None
+):
     if question.objectivity == "objective":
         base_count = "assessmentresponses"
         base_queryset = get_chart_data_objective_queryset(
@@ -54,7 +61,9 @@ def get_chart_data_of_boolean_question(question, assessment_id):
         )
     else:
         base_count = "participationresponses"
-        base_queryset = get_chart_data_subjective_queryset(assessment_id, base_count)
+        base_queryset = get_chart_data_subjective_queryset(
+            assessment_id, base_count, participative_processes
+        )
 
     result = (
         Question.objects.filter(id=question.id)
@@ -81,7 +90,9 @@ def get_chart_data_of_boolean_question(question, assessment_id):
     }
 
 
-def get_chart_data_of_choice_question(question, assessment_id, choice_type):
+def get_chart_data_of_choice_question(
+    question, assessment_id, choice_type, participative_processes=None
+):
     locale = translation.get_language()
     if question.objectivity == "objective":
         base_count = f"{choice_type}_assessmentresponses"
@@ -90,7 +101,9 @@ def get_chart_data_of_choice_question(question, assessment_id, choice_type):
     else:
         base_count = f"{choice_type}_participationresponses"
         role_count = f"{base_count}__participation__role__name_{locale}"
-        base_queryset = get_chart_data_subjective_queryset(assessment_id, base_count)
+        base_queryset = get_chart_data_subjective_queryset(
+            assessment_id, base_count, participative_processes=participative_processes
+        )
 
     response_choices = ResponseChoice.objects.filter(question_id=question.id).annotate(
         count=Count(base_count, filter=Q(**base_queryset)),
@@ -128,15 +141,31 @@ def get_chart_data_of_choice_question(question, assessment_id, choice_type):
     return data
 
 
-def get_chart_data_of_unique_choice_question(question, assessment_id):
-    return get_chart_data_of_choice_question(question, assessment_id, "unique_choice")
+def get_chart_data_of_unique_choice_question(
+    question, assessment_id, participative_processes=None
+):
+    return get_chart_data_of_choice_question(
+        question,
+        assessment_id,
+        "unique_choice",
+        participative_processes=participative_processes,
+    )
 
 
-def get_chart_data_of_multiple_choice_question(question, assessment_id):
-    return get_chart_data_of_choice_question(question, assessment_id, "multiple_choice")
+def get_chart_data_of_multiple_choice_question(
+    question, assessment_id, participative_processes=None
+):
+    return get_chart_data_of_choice_question(
+        question,
+        assessment_id,
+        "multiple_choice",
+        participative_processes=participative_processes,
+    )
 
 
-def get_chart_data_of_closed_with_scale_question(question, assessment_id):
+def get_chart_data_of_closed_with_scale_question(
+    question, assessment_id, participative_processes=None
+):
     locale = translation.get_language()
     if question.objectivity == "objective":
         base_count = "assessment_response"
@@ -147,8 +176,12 @@ def get_chart_data_of_closed_with_scale_question(question, assessment_id):
     else:
         base_count = "participation_response"
         role_count = f"{base_count}__participation__role__name_{locale}"
-        base_queryset = get_chart_data_subjective_queryset(assessment_id, base_count)
-        root_queryset = get_chart_data_subjective_queryset(assessment_id)
+        base_queryset = get_chart_data_subjective_queryset(
+            assessment_id, base_count, participative_processes=participative_processes
+        )
+        root_queryset = get_chart_data_subjective_queryset(
+            assessment_id, participative_processes=participative_processes
+        )
         model = ParticipationResponse
 
     base_queryset[f"{base_count}__question_id"] = question.pk
@@ -209,7 +242,9 @@ LABEL_BY_QUESTION_TYPE = {
 }
 
 
-def get_chart_data_of_interval_question(question, assessment_id):
+def get_chart_data_of_interval_question(
+    question, assessment_id, participative_processes=None
+):
     label = LABEL_BY_QUESTION_TYPE[question.type]
     response_ranges_name = Question.RESPONSE_RANGES_BY_QUESTION_TYPE[question.type]
 
@@ -217,7 +252,9 @@ def get_chart_data_of_interval_question(question, assessment_id):
         base_queryset = get_chart_data_objective_queryset(assessment_id)
         model = AssessmentResponse
     else:
-        base_queryset = get_chart_data_subjective_queryset(assessment_id)
+        base_queryset = get_chart_data_subjective_queryset(
+            assessment_id, participative_processes=participative_processes
+        )
         model = ParticipationResponse
 
     try:

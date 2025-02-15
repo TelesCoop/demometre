@@ -55,6 +55,7 @@ import { PropType } from "vue"
 const props = defineProps({
   assessmentId: { type: Number, required: true },
   question: { type: Object as PropType<Question>, required: true },
+  participativeProcesses: { type: Object as PropType<number[]>, required: false, default: [] },
   color: { type: String, required: true },
 })
 
@@ -69,8 +70,23 @@ if (!assessmentChartData.value) {
   assessmentStore.getChartDataByAssessmentIdAndQuestionId(
     props.assessmentId,
     props.question.id,
+    props.question?.isParticipativeProcessQuestion ? props.participativeProcesses : [],
   )
 }
+// re-fetch data when participativeProcesses have been updated
+watch(
+  () => props.participativeProcesses,
+  () => {
+    console.log("### should update ?", props.question?.id, props.question?.isParticipativeProcessQuestion)
+    if (props.question?.isParticipativeProcessQuestion) {
+      assessmentStore.getChartDataByAssessmentIdAndQuestionId(
+        props.assessmentId,
+        props.question.id,
+        props.participativeProcesses,
+      )
+    }
+  },
+)
 </script>
 
 <style scoped lang="sass"></style>

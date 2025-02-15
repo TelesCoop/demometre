@@ -416,8 +416,14 @@ class AssessmentScoreView(APIView):
 @api_view(["GET"])
 def get_chart_data(request, assessment_id, question_id):
     question = Question.objects.get(id=question_id)
+    if participative_processes := request.query_params.get("participative-processes"):
+        participative_processes = [int(pp) for pp in participative_processes.split(",")]
+    else:
+        participative_processes = None
     data = (
-        CHART_DATA_FN_BY_QUESTION_TYPE[question.type](question, assessment_id)
+        CHART_DATA_FN_BY_QUESTION_TYPE[question.type](
+            question, assessment_id, participative_processes
+        )
         if CHART_DATA_FN_BY_QUESTION_TYPE.get(question.type)
         else None
     )

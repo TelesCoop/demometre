@@ -12,8 +12,13 @@ describe('go through questionnaire with expert', () => {
     cy.getEl('participative-process-name').eq(2).type('Process participatif 2-1')
     cy.fillObjectiveQuestions()
     cy.fillRole(0, 'Citoyen')
-    cy.fillProfilingQuestions(1, 3)
-    cy.fillRepresentationPillar()
+    // additional choice for participative processes
+    cy.fillProfilingQuestions(1, 3, 0)
+    const question2ParticipativeProcessesAnswers = [
+      {"name": "Process participatif 1-1", "choices": [0, 1]},
+      {"name": "Process participatif 1-2", "choices": [1, 2]},
+    ]
+    cy.fillRepresentationPillar(question2ParticipativeProcessesAnswers)
     cy.checkQuestionnaireIsDone()
     cy.checkResultsAreAvailable('Ville test 1', false)
 
@@ -26,5 +31,6 @@ describe('go through questionnaire with expert', () => {
       cy.getEl('role').should('contain', 'expert ')
       cy.getEl('details').click()
     })
+
   })
 })

@@ -220,10 +220,13 @@ export const useAssessmentStore = defineStore("assessment", {
     async getChartDataByAssessmentIdAndQuestionId(
       assessmentId: number,
       questionId: number,
+      participativeProcesses: number[],
     ): Promise<boolean> {
-      const { data, error } = await useApiGet<any>(
-        `assessments/${assessmentId}/questions/${questionId}/chart-data/`,
-      )
+      let url = `assessments/${assessmentId}/questions/${questionId}/chart-data/`
+      if (participativeProcesses && participativeProcesses.length > 0) {
+        url += `?participative-processes=${participativeProcesses.join(",")}`
+      }
+      const { data, error } = await useApiGet<any>(url)
       if (error.value && error.value.data?.statusCode !== 404) {
         const errorStore = useMessageStore()
         errorStore.setError(error.value.data?.messageCode)

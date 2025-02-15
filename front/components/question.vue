@@ -71,6 +71,7 @@ import {getQuestionResponseValue, toQuestionResponseValue} from "~/utils/questio
 import { useAssessmentStore } from "~/stores/assessmentStore"
 import { usePressEnter } from "~/composables/pressEnter"
 import {ONE_MILLION} from "~/utils/constants"
+import {getAnswerKey} from "~/utils/util"
 
 const props = defineProps({
   questionId: { type: Number, required: true },
@@ -116,11 +117,7 @@ const participativeProcess = computed<ParticipationParticipativeProcess|undefine
 })
 
 const answerKey = computed(() => {
-  if (participativeProcessId.value != null) {
-    return (participativeProcessId.value || -1) * ONE_MILLION + props.questionId
-  } else {
-    return props.questionId
-  }
+  return getAnswerKey(props.questionId, participativeProcessId.value)
 })
 
 const checkParticipativeProcess = () => {

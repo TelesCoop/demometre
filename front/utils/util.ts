@@ -1,4 +1,5 @@
 import { Question } from "~/composables/types"
+import {ONE_MILLION} from "~/utils/constants"
 
 export const wordTitleCase = (input: string): string => {
   if (!input.length) {
@@ -40,4 +41,11 @@ export const filterQuestionsByRoleId = (
 
 export const isAdminOrExpert = (user: User): boolean => {
   return user.isAdmin || user.isExpert
+}
+
+export const getAnswerKey = (questionId: number, participativeProcessId: number|undefined): number => {
+  if (participativeProcessId == null) {
+    return questionId
+  }
+  return (participativeProcessId || -1) * ONE_MILLION + questionId
 }
