@@ -77,7 +77,7 @@ class HasAssessmentWriteAccessForRepresentativityCriteriaRule(BasePermission):
         return has_details_access(role)
 
     def has_permission(self, request, view):
-        if request.method != "POST":
+        if request.method not in ["POST", "PATCH", "PUT", "DELETE"]:
             return False
         is_authenticated = bool(request.user and request.user.is_authenticated)
         if not is_authenticated:
@@ -91,8 +91,4 @@ class HasAssessmentWriteAccessForRepresentativityCriteriaRule(BasePermission):
         )
         if assessment_representativity_id is None:
             return True
-        assessment_representativity_id = int(assessment_representativity_id)
-        my_assessments_representativities = assessments_by_user(request.user).values(
-            "representativities").distinct().values_list("representativities", flat=True)
-
-        return assessment_representativity_id in my_assessments_representativities
+        return assessments_by_user(request.user).filter(representativities__id=assessment_representativity_id).exists()
