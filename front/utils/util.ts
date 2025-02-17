@@ -43,6 +43,7 @@ export const isAdminOrExpert = (user: User): boolean => {
   return user.isAdmin || user.isExpert
 }
 
+// the answer key is a unique integer that takes into account question id and participative process id
 export const getAnswerKey = (questionId: number, participativeProcessId: number|undefined): number => {
   if (participativeProcessId == null) {
     return questionId
