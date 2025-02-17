@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from rest_framework.fields import ReadOnlyField
+from rest_framework.validators import qs_exists
 
 from open_democracy_back.models import ResponseChoice
 from open_democracy_back.models.representativity_models import (
@@ -56,7 +57,7 @@ class RepresentativityCriteriaSerializer(serializers.ModelSerializer):
         read_only_fields = fields
 
 
-class AssessmentRepresentativityCriteriaRuleSerializer(serializers.ModelSerializer):
+class AssessmentRepresentativityCriteriaRuleSerializer(serializers.ModelSerializer):  # TODO
     """
     """
 
@@ -78,8 +79,23 @@ class AssessmentRepresentativityCriteriaRuleSerializer(serializers.ModelSerializ
             "response_choice_id",
             "acceptability_threshold"
         ]
+        validators = [] # default unique_together validation fails with _id primaryKeyRelatedFields
 
     def validate(self, data):
-        if not self.partial and data["assessment_representativity"].representativity_criteria.profiling_question_id != data["response_choice"].question_id:
+        assessment_representativity = data["assessment_representativity"] if "assessment_representativity" in data else self.instance.assessment_representativity if self.instance is not None else None
+        response_choice = data["response_choice"] if "response_choice" in data else self.instance.response_choice if self.instance is not None else None
+        
+        # prevent duplicate
+        queryset = AssessmentRepresentativityCriteriaRule.objects.filter(assessment_representativity=assessment_representativity, response_choice=response_choice)
+        if self.instance is not None:
+            queryset = queryset.exclude(pk=self.instance.pk)
+
+        if "assessment_representativity" in data and "response_choice" in data and qs_exists(queryset):
+            message = "The fields assessment_representativity and response_choice must make a unique set."
+            raise serializers.ValidationError(message)
+
+        # ensure that response and criteria match
+        if assessment_representativity.representativity_criteria.profiling_question_id != \
+                response_choice.question_id:
             raise serializers.ValidationError("the response choice does not match the assessment representativity")
         return data
