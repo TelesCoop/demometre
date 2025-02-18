@@ -1,23 +1,31 @@
 <template>
-  <div class="field has-addons">
-    <label class="field-label">{{ props.choice.responseChoiceName }}</label>
-    <div class="control is-expanded">
-      <input
-        v-model="threshold"
-        class="input"
-        type="number"
-        :placeholder="props.representativity.minRate.toString()"
-      >
-    </div>
-    <div class="control">
-      <button class="button " :disabled="saved" @click="onSave">
-        S
-      </button>
-      <button class="button " :disabled="props.choice?.acceptabilityThreshold == undefined" @click="onReinitilize">
-        R
-      </button>
+  <div class="field is-horizontal has-addons has-addons-right">
+        <label class="field-label">{{ props.choice.responseChoiceName }}</label>
+    <div class="field-body">
+      <div class="control">
+        <input
+          v-model="threshold"
+          class="input"
+          type="number"
+          :placeholder="props.representativity.minRate.toString()"
+          @focusout="onSave"
+        >
+      </div>
+      <div class="control">
+        <button class="button full-height"
+                :disabled="props.choice?.acceptabilityThreshold == undefined"
+                @click="onReinitilize">
+          <span class="icon">
+        <icon
+          name="close"
+          size="24"
+          class="icon"/>
+          </span>
+        </button>
+      </div>
     </div>
   </div>
+
 </template>
 
 <script setup lang="ts">
@@ -49,6 +57,7 @@ function onReinitilize() {
 }
 
 async function onSave() {
+  if (!saved.value) return
   if (!threshold.value) throw "TODO error message"
   if (props.choice?.ruleId) {
     await assessmentStore.updateAssessmentCriteraRule({
@@ -71,5 +80,19 @@ async function onSave() {
 </script>
 
 <style scoped lang="sass">
+.control .button.full-height
+  height: 2.5em
+
+.field-body .control input
+  width: 5em
+
+.field-label
+  flex-grow: 5
+  margin-top: auto
+  margin-bottom: auto
+
+.field
+  margin-bottom: 0.75rem
+
 
 </style>
