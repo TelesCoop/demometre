@@ -295,7 +295,7 @@ export const useAssessmentStore = defineStore("assessment", {
       if (!error.value) {
         // TODO better update locally than wait for another call
         await this.getAssessment(rule!.assessmentId)
-        msgStore.setInfo("Valeur enregistrée avec succès")
+        msgStore.setInfo($t("Valeur enregistrée avec succès"))
       } else {
         msgStore.setError(error.value.data?.messageCode)
       }
@@ -309,7 +309,7 @@ export const useAssessmentStore = defineStore("assessment", {
       if (!error.value) {
         // TODO better update locally than wait for another call
         await this.getAssessment(rule.assessmentId)
-        msgStore.setInfo("Valeur enregistrée avec succès")
+        msgStore.setInfo($t("Valeur enregistrée avec succès"))
       } else {
         msgStore.setError(error.value.data?.messageCode)
       }
@@ -322,7 +322,7 @@ export const useAssessmentStore = defineStore("assessment", {
       if (!error.value) {
         // TODO better update locally than wait for another call
         await this.getAssessment(rule.assessmentId)
-        msgStore.setInfo("Valeur réinitialisée avec succès")
+        msgStore.setInfo($t("Valeur réinitialisée avec succès"))
       } else {
         msgStore.setError(error.value.data?.messageCode)
       }
