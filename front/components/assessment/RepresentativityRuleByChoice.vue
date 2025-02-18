@@ -1,23 +1,23 @@
 <template>
   <section>
     <h2 class="title is-3 mb-2">Configuration des seuils de représentativité</h2>
+    <p class="block mb-2">
+      {{ $t(`L'évaluation sera publique lorsque tous les seuils représentativité seront atteint, c'est à dire que pour chaque seuil, la proportion des participants ayant un profil qui correspond est supérieure au seuil.`)}}<br>
+      {{ $t(`Si vous ne configurez pas les seuils, ceux par défaut du Démomètre seront utilisés (affichés en gris).`)}}<br>
+      {{ $t(`Si vous ne voulez pas de seuil minimum pour une réponse, vous pouvez indiquer la valeur 0. Les seuils qui sont ignorés au niveau du Démomètre apparaissent en grisé et ne sont pas configurables.`)}},
+    </p>
     <div class="two-columns-grid">
-    <div v-for="representativity in props.assessment.representativities" :key="representativity.id" class="mb-2">
-      <h3 class="title is-4 mb-1">{{representativity.representativityCriteriaName}}</h3>
-      <OneRepresentativityRuleByChoice
-        v-for="(responseChoice) in representativity.countByResponseChoice"
-        :key="responseChoice.responseChoiceId"
-        :choice="responseChoice"
-        :representativity="representativity"
-      /></div>
+      <div v-for="representativity in props.assessment.representativities" :key="representativity.id" class="mb-2">
+        <h3 class="title is-4 mb-1">{{ representativity.representativityCriteriaName }}</h3>
+        <OneRepresentativityRuleByChoice
+          v-for="(responseChoice) in representativity.countByResponseChoice"
+          :key="responseChoice.responseChoiceId"
+          :choice="responseChoice"
+          :representativity="representativity"
+        />
+      </div>
     </div>
   </section>
-
-
-  <!-- TODO around here add configuration of response choices thresholds
-  afficher les critères de représentativité et le champ pour chaque truc. Bouton de suppression
-  à la création valider que reponse choice corresponde à un critère de représentativité
-  -->
 </template>
 
 <script setup lang="ts">
