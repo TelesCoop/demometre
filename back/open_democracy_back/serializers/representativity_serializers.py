@@ -62,11 +62,14 @@ class AssessmentRepresentativityCriteriaRuleSerializer(serializers.ModelSerializ
     """
 
     assessment_representativity_id = serializers.PrimaryKeyRelatedField(
-        queryset=AssessmentRepresentativity.objects.all(),  # really have all?
+        queryset=AssessmentRepresentativity.objects.all(),
         source="assessment_representativity"
     )
     response_choice_id = serializers.PrimaryKeyRelatedField(
-        queryset=ResponseChoice.objects.all(),  # really have all?
+        queryset=ResponseChoice.objects.filter(representativity_criteria_rule__isnull=False)
+        .exclude(
+            representativity_criteria_rule__ignore_for_acceptability_threshold=True).exclude(
+            representativity_criteria_rule__totally_ignore=True),
         source="response_choice"
     )
 
