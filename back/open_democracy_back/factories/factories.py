@@ -217,6 +217,7 @@ class ScoreFactory(factory.django.DjangoModelFactory):
         model = Score
 
     associated_score = factory.Faker("random_int", min=1, max=4)
+    linearized_score = factory.LazyAttribute(lambda o: (o.associated_score - 1) / 3)
 
 
 class PercentageRangeFactory(ScoreFactory):

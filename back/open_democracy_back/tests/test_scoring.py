@@ -1,6 +1,7 @@
 from statistics import mean
 
 from django.test import TestCase
+from django.urls import reverse
 
 from open_democracy_back.factories.factories import (
     QuestionFactory,
@@ -17,6 +18,7 @@ from open_democracy_back.models import (
     ParticipationResponse,
     SCORE_MAP,
     AssessmentResponse,
+    ParticipativeProcess,
 )
 from open_democracy_back.scoring import (
     get_score_of_boolean_question,
@@ -388,32 +390,58 @@ class TestScoring(TestCase):
             ),
         )
 
-    # def test_score_of_questions_with_participative_processes(self):
-    #     question = QuestionFactory.create(
-    #         is_participative_process_question=True, type=QuestionType.MULTIPLE_CHOICE
-    #     )
-    #     ass = AssessmentFactory.create()
-    #     rc1 = ResponseChoiceFactory.create(question=question)
-    #     rc2 = ResponseChoiceFactory.create(question=question)
-    #     pp1 = ParticipativeProcess.objects.create(
-    #         response_choice=rc1, assessment=ass, name="name"
-    #     )
-    #     pp2 = ParticipativeProcess.objects.create(
-    #         response_choice=rc1, assessment=ass, name="name"
-    #     )
-    #
-    #     # choice 1 for pp1, choice 1 and 2 for pp2
-    #     pr = ParticipationResponseFactory.create(
-    #         question=question, assessment=ass, participative_process=pp1
-    #     )
-    #     pr.multiple_choice_response.add(rc1)
-    #     pr2 = ParticipationResponseFactory.create(
-    #         question=question, assessment=ass, participative_process=pp2
-    #     )
-    #     pr.multiple_choice_response.add(rc1)
-    #     pr.multiple_choice_response.add(rc2)
-    #
-    #     # call it once globally + once per possible ParticipativeProcess
-    #     score = get_score_of_multiple_choice_question(
-    #         ParticipationResponse.objects.accounted_in_assessment(ass.pk)
-    #     )
+    def test_score_of_questions_with_participative_processes(self):
+        question = QuestionFactory.create(
+            is_participative_process_question=True, type=QuestionType.MULTIPLE_CHOICE
+        )
+        ass = AssessmentFactory.create()
+        rc1 = ResponseChoiceFactory.create(question=question, associated_score=1)
+        rc2 = ResponseChoiceFactory.create(question=question, associated_score=3)
+        pp1 = ParticipativeProcess.objects.create(
+            response_choice=rc1, assessment=ass, name="name"
+        )
+        pp2 = ParticipativeProcess.objects.create(
+            response_choice=rc1, assessment=ass, name="name"
+        )
+
+        # choice 1 for pp1, choice 1 and 2 for pp2
+        pr = ParticipationResponseFactory.create(
+            question=question, assessment=ass, participative_process=pp1
+        )
+        pr.multiple_choice_response.add(rc1)
+        pr2 = ParticipationResponseFactory.create(
+            question=question, assessment=ass, participative_process=pp2
+        )
+        pr2.multiple_choice_response.add(rc1)
+        pr2.multiple_choice_response.add(rc2)
+
+        # check data without specifying participative process
+        data = self.client.get(reverse("chart-data", args=[ass.pk, question.pk])).data[
+            "data"
+        ]["value"]
+        self.assertEqual(data[rc1.pk]["value"], 2)
+        self.assertEqual(data[rc2.pk]["value"], 1)
+
+        # check data for pp1
+        data = self.client.get(
+            reverse("chart-data", args=[ass.pk, question.pk])
+            + f"?participative-processes={pp1.pk}"
+        ).data["data"]["value"]
+        self.assertEqual(data[rc1.pk]["value"], 1)
+        self.assertEqual(data[rc2.pk]["value"], 0)
+
+        # check data for pp2
+        data = self.client.get(
+            reverse("chart-data", args=[ass.pk, question.pk])
+            + f"?participative-processes={pp2.pk}"
+        ).data["data"]["value"]
+        self.assertEqual(data[rc1.pk]["value"], 1)
+        self.assertEqual(data[rc2.pk]["value"], 1)
+
+        # call it once globally + once per possible ParticipativeProcess
+        score = get_score_of_multiple_choice_question(
+            ParticipationResponse.objects.accounted_in_assessment(ass.pk)
+        )
+        # in multiple score, we take the max score, 0 for first answer,
+        # 2/3 for second answer
+        self.assertEqual(score[0]["score"], (0 + 2 / 3) / 2)

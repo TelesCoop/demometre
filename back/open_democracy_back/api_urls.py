@@ -185,6 +185,7 @@ urlpatterns = [
     path(
         "assessments/<int:assessment_id>/questions/<int:question_id>/chart-data/",
         get_chart_data,
+        name="chart-data",
     ),
     path(
         "assessments/<int:assessment_id>/add-expert/",
