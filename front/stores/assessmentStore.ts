@@ -293,7 +293,6 @@ export const useAssessmentStore = defineStore("assessment", {
         rule,
       )
       if (!error.value) {
-        // TODO better update locally than wait for another call
         await this.getAssessment(rule!.assessmentId)
         msgStore.setInfo($t("Valeur enregistrée avec succès"))
       } else {
@@ -307,7 +306,6 @@ export const useAssessmentStore = defineStore("assessment", {
         rule,
       )
       if (!error.value) {
-        // TODO better update locally than wait for another call
         await this.getAssessment(rule.assessmentId)
         msgStore.setInfo($t("Valeur enregistrée avec succès"))
       } else {
@@ -320,7 +318,6 @@ export const useAssessmentStore = defineStore("assessment", {
         `assessment-reprentativity-rules/${rule.id}/`,
       )
       if (!error.value) {
-        // TODO better update locally than wait for another call
         await this.getAssessment(rule.assessmentId)
         msgStore.setInfo($t("Valeur réinitialisée avec succès"))
       } else {
