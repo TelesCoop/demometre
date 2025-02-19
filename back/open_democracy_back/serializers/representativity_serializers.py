@@ -82,14 +82,16 @@ class AssessmentRepresentativityCriteriaRuleSerializer(serializers.ModelSerializ
             "response_choice_id",
             "acceptability_threshold"
         ]
-        validators = [] # default unique_together validation fails with _id primaryKeyRelatedFields
 
     def validate(self, data):
-        assessment_representativity = data["assessment_representativity"] if "assessment_representativity" in data else self.instance.assessment_representativity if self.instance is not None else None
-        response_choice = data["response_choice"] if "response_choice" in data else self.instance.response_choice if self.instance is not None else None
-        
+        assessment_representativity = data[
+            "assessment_representativity"] if "assessment_representativity" in data else self.instance.assessment_representativity if self.instance is not None else None
+        response_choice = data[
+            "response_choice"] if "response_choice" in data else self.instance.response_choice if self.instance is not None else None
+
         # prevent duplicate
-        queryset = AssessmentRepresentativityCriteriaRule.objects.filter(assessment_representativity=assessment_representativity, response_choice=response_choice)
+        queryset = AssessmentRepresentativityCriteriaRule.objects.filter(
+            assessment_representativity=assessment_representativity, response_choice=response_choice)
         if self.instance is not None:
             queryset = queryset.exclude(pk=self.instance.pk)
 
