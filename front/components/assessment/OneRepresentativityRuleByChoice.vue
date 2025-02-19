@@ -1,6 +1,6 @@
 <template>
   <div class="field is-horizontal has-addons has-addons-right">
-        <label class="field-label">{{ props.choice.responseChoiceName }}</label>
+    <label class="field-label">{{ props.choice.responseChoiceName }}</label>
     <div class="field-body">
       <div class="control">
         <input
@@ -9,6 +9,7 @@
           type="number"
           :placeholder="props.representativity.minRate.toString()"
           :disabled="props.choice?.ignoreForAcceptabilityThreshold"
+          @change="setFocus"
           @focusout="onSave"
         >
       </div>
@@ -60,7 +61,7 @@ function onReinitilize() {
 }
 
 async function onSave() {
-  if (!saved.value) return
+  if (saved.value) return
   if (!threshold.value) throw "TODO error message"
   if (props.choice?.ruleId) {
     await assessmentStore.updateAssessmentCriteraRule({
@@ -76,8 +77,10 @@ async function onSave() {
     acceptabilityThreshold: threshold.value,
     assessmentId: props.representativity!.assessmentId,
   })
+}
 
-  threshold.value = null
+function setFocus(e) {
+  e.target.focus()
 }
 
 </script>
