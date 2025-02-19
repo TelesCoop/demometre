@@ -8,18 +8,21 @@
           class="input"
           type="number"
           :placeholder="props.representativity.minRate.toString()"
+          :disabled="props.choice?.ignoreForAcceptabilityThreshold"
           @focusout="onSave"
         >
       </div>
       <div class="control">
         <button class="button full-height"
-                :disabled="props.choice?.acceptabilityThreshold == undefined"
+                v-show="!props.choice?.ignoreForAcceptabilityThreshold && props.choice?.acceptabilityThreshold != undefined"
+                :disabled="props.choice?.ignoreForAcceptabilityThreshold || props.choice?.acceptabilityThreshold == undefined"
                 @click="onReinitilize">
           <span class="icon">
-        <icon
-          name="close"
-          size="24"
-          class="icon"/>
+            <icon
+              name="close"
+              size="24"
+              class="icon"
+            />
           </span>
         </button>
       </div>
@@ -43,7 +46,7 @@ const props = defineProps({
   representativity: {type: Object as PropType<AssessmentRepresentativity>, required: true},
 })
 const saved = computed(() => threshold.value == null || (!!props.choice.ruleId && props.choice.acceptabilityThreshold === threshold.value))
-const threshold = ref(props.choice.ruleId ? props.choice?.acceptabilityThreshold : null)
+const threshold = ref(props.choice?.ignoreForAcceptabilityThreshold ? 0 : props.choice.ruleId ? props.choice?.acceptabilityThreshold : null)
 
 
 function onReinitilize() {
