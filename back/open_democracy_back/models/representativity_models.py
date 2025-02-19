@@ -84,7 +84,7 @@ class RepresentativityCriteria(index.Indexed, models.Model):
         super().save(*args, **kwargs)
         if must_create_assessment_representativity:
             for assessment in Assessment.objects.filter(
-                    survey__survey_locality=self.survey_locality
+                survey__survey_locality=self.survey_locality
             ):
                 AssessmentRepresentativity.objects.create(
                     assessment=assessment, representativity_criteria_id=self.id
@@ -155,15 +155,15 @@ class AssessmentRepresentativity(models.Model):
                     "representativity_criteria_rule__ignore_for_acceptability_threshold"
                 ),
                 acceptability_threshold=Subquery(
-                    self.response_choice_rules
-                    .filter(response_choice_id=OuterRef("id"))[:1]
-                    .values("acceptability_threshold")
+                    self.response_choice_rules.filter(
+                        response_choice_id=OuterRef("id")
+                    )[:1].values("acceptability_threshold")
                 ),
                 rule_id=Subquery(
-                    self.response_choice_rules
-                    .filter(response_choice_id=OuterRef("id"))[:1]
-                    .values("pk")
-                )
+                    self.response_choice_rules.filter(
+                        response_choice_id=OuterRef("id")
+                    )[:1].values("pk")
+                ),
             )
             .values(
                 "response_choice_id",
@@ -197,7 +197,11 @@ class AssessmentRepresentativity(models.Model):
         )
 
     def acceptability_threshold_considered(self, response_choice_threshold=None):
-        return self.representativity_criteria.min_rate if response_choice_threshold is None else response_choice_threshold
+        return (
+            self.representativity_criteria.min_rate
+            if response_choice_threshold is None
+            else response_choice_threshold
+        )
 
     @property
     def respected(self):
@@ -208,8 +212,10 @@ class AssessmentRepresentativity(models.Model):
             [
                 (
                     (
-                            (response_choice_count["total"] / total_response) * 100
-                            >= self.acceptability_threshold_considered(response_choice_count["acceptability_threshold"])
+                        (response_choice_count["total"] / total_response) * 100
+                        >= self.acceptability_threshold_considered(
+                            response_choice_count["acceptability_threshold"]
+                        )
                     )
                     if not response_choice_count["ignore_for_acceptability_threshold"]
                     else True

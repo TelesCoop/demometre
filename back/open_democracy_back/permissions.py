@@ -1,6 +1,10 @@
 from rest_framework.permissions import BasePermission
 
-from open_democracy_back.models import AssessmentDocument, Assessment, AssessmentRepresentativityCriteriaRule
+from open_democracy_back.models import (
+    AssessmentDocument,
+    Assessment,
+    AssessmentRepresentativityCriteriaRule,
+)
 from open_democracy_back.models.animator_models import Workshop
 from open_democracy_back.querysets import assessments_by_user
 
@@ -66,7 +70,9 @@ class HasAssessmentWriteAccessForRepresentativityCriteriaRule(BasePermission):
     on the assessment.
     """
 
-    def has_object_permission(self, request, view, obj: AssessmentRepresentativityCriteriaRule):
+    def has_object_permission(
+        self, request, view, obj: AssessmentRepresentativityCriteriaRule
+    ):
         from open_democracy_back.serializers.assessment_serializers import (
             get_assessment_role,
             has_details_access,
@@ -84,11 +90,15 @@ class HasAssessmentWriteAccessForRepresentativityCriteriaRule(BasePermission):
             return False
 
         assessment_representativity_id = (
-                request.data.get("assessment_representativity_id")
-                or request.query_params.get("assessment_representativity_id")
-                or view.kwargs.get("assessment_representativity_id", None)
-                or view.kwargs.get("assessment_representativity_id", None)
+            request.data.get("assessment_representativity_id")
+            or request.query_params.get("assessment_representativity_id")
+            or view.kwargs.get("assessment_representativity_id", None)
+            or view.kwargs.get("assessment_representativity_id", None)
         )
         if assessment_representativity_id is None:
             return True
-        return assessments_by_user(request.user).filter(representativities__id=assessment_representativity_id).exists()
+        return (
+            assessments_by_user(request.user)
+            .filter(representativities__id=assessment_representativity_id)
+            .exists()
+        )
