@@ -1,7 +1,8 @@
 import { defineStore } from "pinia"
 import {
   Assessment,
-  AssessmentDocumentType, AssessmentRepresentativityRule,
+  AssessmentDocumentType,
+  AssessmentRepresentativityRule,
   Localities,
   RepresentativityCriteria,
   Scores,

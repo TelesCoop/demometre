@@ -36,6 +36,9 @@
 import {useAssessmentStore} from "~/stores/assessmentStore"
 import {PropType} from "vue"
 import {AssessmentRepresentativity, CountByResponseChoice} from "~/composables/types"
+import { i18n } from "~/utils/i18n-util"
+
+const $t = i18n.global.t
 
 const assessmentStore = useAssessmentStore()
 
@@ -55,14 +58,14 @@ function onReinitilize() {
     assessmentStore.deleteAssessmentCriteraRule({
       id: props.choice.ruleId,
       assessmentId: props.representativity.assessmentId,
-    }) // TODO why string?
+    })
   }
   threshold.value = null
 }
 
 async function onSave() {
   if (saved.value) return
-  if (!threshold.value) throw "TODO error message"
+  if (!threshold.value) throw $t("La valeur vide ne peut pas être enregistrée. Pour réinitialiser la valeur, cliquer sur la croix")
   if (props.choice?.ruleId) {
     await assessmentStore.updateAssessmentCriteraRule({
       id: props.choice.ruleId,

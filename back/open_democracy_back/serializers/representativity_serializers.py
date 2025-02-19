@@ -57,11 +57,7 @@ class RepresentativityCriteriaSerializer(serializers.ModelSerializer):
         read_only_fields = fields
 
 
-class AssessmentRepresentativityCriteriaRuleSerializer(
-    serializers.ModelSerializer
-):  # TODO
-    """ """
-
+class AssessmentRepresentativityCriteriaRuleSerializer(serializers.ModelSerializer):
     assessment_representativity_id = serializers.PrimaryKeyRelatedField(
         queryset=AssessmentRepresentativity.objects.all(),
         source="assessment_representativity",
@@ -100,7 +96,9 @@ class AssessmentRepresentativityCriteriaRuleSerializer(
         response_choice = (
             data["response_choice"]
             if "response_choice" in data
-            else self.instance.response_choice if self.instance is not None else None
+            else self.instance.response_choice
+            if self.instance is not None
+            else None
         )
 
         # prevent duplicate
