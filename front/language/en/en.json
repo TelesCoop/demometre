@@ -293,6 +293,7 @@
   "La granularit\u00e9 du champ nombre doit \u00eatre renseign\u00e9e": "The range in the number field must be filled in.",
   "La question est \u00e0 r\u00e9pondre uniquement si vous avez un des profils suivants :": "The question is to be answered only if you have one of the following profiles :",
   "La r\u00e9ponse de la question d'affinage %(question_code)s doit \u00eatre %(response)s": "The answer to the refinement question %(question_code)s must be %(response)s",
+  "La valeur vide ne peut pas \u00eatre enregistr\u00e9e. Pour r\u00e9initialiser la valeur, cliquer sur la croix": "Empty value cannot be saved. To reset value, click on the cross",
   "Lancement d'une \u00e9valuation": "Launch of an assessment",
   "Lancer une nouvelle \u00e9valuation": "Launch a new evaluation",
   "Lancer une \u00e9valuation": "Start an evaluation",

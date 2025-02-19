@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-18 12:46+0100\n"
+"POT-Creation-Date: 2025-02-27 16:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -376,11 +376,11 @@ msgstr "Creation date"
 msgid "Date de lancement"
 msgstr "Launch date"
 
-#: stores/assessmentStore.ts:41
+#: stores/assessmentStore.ts:45
 msgid "de ma ville"
 msgstr "of my town"
 
-#: stores/assessmentStore.ts:42
+#: stores/assessmentStore.ts:46
 msgid "de mon inter-communalité"
 msgstr "of my intercommunality"
 
@@ -555,27 +555,27 @@ msgstr "Data is missing to validate"
 msgid "Il n'y a pas encore d'atelier dans cette évaluation."
 msgstr "There is no workshop in this evaluation yet."
 
-#: stores/workshopStore.ts:143
+#: stores/workshopStore.ts:145
 msgid "Impossible d'ajouter l'atelier"
 msgstr "Cannot add the workshop"
 
-#: stores/userStore.ts:43
+#: stores/userStore.ts:44
 msgid "Impossible d'enregistrer les informations, les noms d'utilisateur et adresse mail doivent être uniques"
 msgstr "Unable to save information, usernames and email addresses must be unique"
 
-#: stores/userStore.ts:59
+#: stores/userStore.ts:61
 msgid "Impossible de se connecter, vérifiez vos identifiants"
 msgstr "Unable to login, check your identifiers"
 
-#: stores/workshopStore.ts:168
+#: stores/workshopStore.ts:170
 msgid "Impossible de supprimer le participant"
 msgstr "Unable to delete participant"
 
-#: stores/workshopStore.ts:163
+#: stores/workshopStore.ts:165
 msgid "Impossible de supprimer le participant (impossible de récupérer son atelier)"
 msgstr "Unable to delete participant (unable to get his workshop back)"
 
-#: stores/assessmentStore.ts:120
+#: stores/assessmentStore.ts:124
 msgid "Impossible de téléverser le document"
 msgstr "Unable to unpload the document"
 
@@ -1084,7 +1084,7 @@ msgstr "Enter the participants’ responses to the paper assessments"
 msgid "Salle polyvalente de la ville de ..."
 msgstr "Multipurpose hall of the city of ..."
 
-#: stores/workshopStore.ts:136
+#: stores/workshopStore.ts:138
 msgid "Sauvegarde réussie"
 msgstr "Successful backup"
 
@@ -1219,7 +1219,7 @@ msgstr "An association"
 msgid "Une erreur s'est produite dans le serveur"
 msgstr "An error occurred in the server"
 
-#: stores/workshopStore.ts:133
+#: stores/workshopStore.ts:135
 msgid "Une erreur s'est produite lors de la sauvegarde"
 msgstr "An error occurred while saving"
 
@@ -3147,3 +3147,14 @@ msgstr "If you don't configure these thresholds, the default from Demometer will
 msgid "non noté"
 msgstr "not rated"
 
+#: components/assessment/OneRepresentativityRuleByChoice.vue:68
+msgid "La valeur vide ne peut pas être enregistrée. Pour réinitialiser la valeur, cliquer sur la croix"
+msgstr "Empty value cannot be saved. To reset value, click on the cross"
+
+#: stores/assessmentStore.ts:323
+msgid "Valeur réinitialisée avec succès"
+msgstr "Value reset successfully"
+
+#: stores/assessmentStore.ts:298 stores/assessmentStore.ts:311
+msgid "Valeur enregistrée avec succès"
+msgstr "Value saved successfully"
