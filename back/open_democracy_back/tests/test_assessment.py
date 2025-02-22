@@ -14,10 +14,15 @@ from open_democracy_back.factories.factories import (
     MunicipalityFactory,
     AssessmentTypeFactory,
     SurveyFactory,
+    QuestionFactory,
 )
-from open_democracy_back.models import Assessment
+from open_democracy_back.models import (
+    Assessment,
+    ResponseChoice,
+    ParticipativeProcess,
+)
 from open_democracy_back.tests.utils import authenticate
-from open_democracy_back.utils import ManagedAssessmentType
+from open_democracy_back.utils import ManagedAssessmentType, QuestionType
 
 
 class TestScoring(TestCase):
@@ -266,3 +271,41 @@ class TestAssessmentCreation(TestCase):
             )
             res = self.client.get(url)
             self.assertEqual(res.json()["id"], assessment.pk)
+
+
+class TestParticipativeProcesses(TestCase):
+    @authenticate
+    def test_participative_processes(self):
+        assessment = AssessmentFactory.create()
+        question = QuestionFactory.create(
+            type=QuestionType.MULTIPLE_CHOICE,
+            code="7A",
+            profiling_question=True,
+            objectivity="subjective",
+        )
+        choice_pks = []
+        n_choices = 3
+        for score, choice in enumerate(range(1, n_choices + 1), start=1):
+            choice, _ = ResponseChoice.objects.get_or_create(
+                question=question,
+                response_choice_fr=f"choice {choice}",
+                associated_score=score,
+            )
+            choice_pks.append(choice.pk)
+
+        data = [
+            {"responseChoice": choice_pks[0], "name": "process 1"},
+            {"responseChoice": choice_pks[0], "name": "process 2"},
+        ]
+        url = reverse("assessments-add-participative-processes", args=[assessment.pk])
+        res = self.client.post(
+            url,
+            {"participative_processes": data},
+            content_type="application/json",
+        )
+        self.assertEqual(len(res.json()), 2)
+        self.assertEqual(
+            assessment.participative_processes.count(),
+            2,
+        )
+        self.assertEqual(ParticipativeProcess.objects.count(), 2)

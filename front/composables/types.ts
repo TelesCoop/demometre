@@ -145,6 +145,7 @@ export type Question = {
   description: string
   explainsByQuestionIds: number[]
   id: number
+  isParticipativeProcessQuestion: boolean
   mandatory: boolean
   maxMultipleChoices: number | null
   maxNumberValue: number | null
@@ -284,6 +285,7 @@ export type Assessment = {
   municipality: Locality | null
   name: string
   participationCount: number
+  participativeProcesses: ParticipationParticipativeProcess[]
   publicInitiator: boolean
   publishedResults: boolean
   representativities: AssessmentRepresentativity[]
@@ -316,6 +318,14 @@ export type ParticipationPillarCompleted = {
   pillarId: number
   participationId: number
 }
+export type ParticipationParticipativeProcess = {
+  id: number
+  name: string
+  category: {
+    id: number
+    name: string
+  }
+}
 export type Participation = {
   id: number | null
   assessmentId: number
@@ -325,6 +335,7 @@ export type Participation = {
   isPillarQuestionsCompleted: ParticipationPillarCompleted[]
   profileIds: number[]
   isCurrent: boolean
+  participativeProcesses: ParticipationParticipativeProcess[]
 }
 export type ClosedWithScaleResponse = {
   id: number | null
@@ -452,6 +463,13 @@ export type ReferentialPage = {
 }
 export type ParticipationBoardPage = {
   title: string
+}
+export type ParticipativeProcessPage = {
+  processesTitle: string
+  description: string
+  addParticipativeProcessCallToAction: string
+  confirmCallToAction: string
+  skipCallToAction: string
 }
 export type ResultsPage = {
   title: string
@@ -727,4 +745,10 @@ export type Training = {
   isAvailableSoon: boolean
   name: string
   url: string
+}
+export type ParticipativeProcess = {
+  id: string
+  responseChoice: number
+  assessmentId: number
+  name: string
 }

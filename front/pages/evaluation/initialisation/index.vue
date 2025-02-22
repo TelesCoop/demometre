@@ -398,9 +398,11 @@ async function onSubmit() {
     expertId: expertSelected.value?.id || null,
   })
   if (isSuccess) {
-    useRouter().push(
-      `/evaluation/initialisation/${assessmentStore.currentAssessmentId}/questions-objectives`,
-    )
+    if (assessmentStore.currentAssessment.assessmentType === AssessmentType.QUICK.key) {
+      router.push(`/evaluation/initialisation/${assessmentStore.currentAssessmentId}/questions-objectives`)
+    } else {
+      router.push(`/evaluation/initialisation/${assessmentStore.currentAssessmentId}/process-participatifs`)
+    }
   }
 }
 </script>

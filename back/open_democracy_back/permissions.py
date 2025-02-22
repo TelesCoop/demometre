@@ -47,7 +47,7 @@ class HasAssessmentWriteAccessForUpdate(BasePermission):
     """
 
     def has_object_permission(self, request, view, obj: Assessment):
-        if request.method != "PATCH":
+        if request.method != "PATCH" and view.action != "add_participative_processes":
             return True
         from open_democracy_back.serializers.assessment_serializers import (
             get_assessment_role,

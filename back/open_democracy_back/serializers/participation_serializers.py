@@ -2,7 +2,7 @@ from django.utils import timezone
 from rest_framework import serializers
 from open_democracy_back.exceptions import ErrorCode
 
-from open_democracy_back.models import Assessment
+from open_democracy_back.models import Assessment, ParticipativeProcess
 from open_democracy_back.models.assessment_models import AssessmentResponse
 
 from open_democracy_back.models.participation_models import (
@@ -74,18 +74,22 @@ class ParticipationSerializer(serializers.ModelSerializer):
     profile_ids = serializers.PrimaryKeyRelatedField(
         read_only=True, source="profiles", many=True
     )
+    participative_processes = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=ParticipativeProcess.objects.all(), required=False
+    )
 
     class Meta:
         model = Participation
         fields = [
-            "id",
-            "user",
             "assessment_id",
-            "role_id",
             "consent",
-            "is_profiling_questions_completed",
+            "id",
             "is_pillar_questions_completed",
+            "is_profiling_questions_completed",
+            "participative_processes",
             "profile_ids",
+            "role_id",
+            "user",
         ]
         read_only_fields = ["is_profiling_questions_completed"]
 
@@ -197,6 +201,11 @@ class ResponseSerializer(serializers.ModelSerializer):
 
 class ParticipationResponseSerializer(ResponseSerializer):
     participation_id = ParticipationField(source="participation")
+    participative_process_id = serializers.PrimaryKeyRelatedField(
+        source="participative_process",
+        queryset=ParticipativeProcess.objects.all(),
+        allow_null=True,
+    )
 
     def validate(self, data):
         participation = data["participation"]
@@ -208,7 +217,7 @@ class ParticipationResponseSerializer(ResponseSerializer):
             .exists()
         ):
             raise serializers.ValidationError(
-                detail="You don't need to respond to this question.",
+                detail="You don't need to answer this question.",
                 code=ErrorCode.QUESTION_NOT_NEEDED.value,
             )
         question = data["question"]
@@ -224,5 +233,5 @@ class ParticipationResponseSerializer(ResponseSerializer):
 
     class Meta:
         model = ParticipationResponse
-        fields = RESPONSE_FIELDS + ["participation_id"]
-        optional_fields = OPTIONAL_RESPONSE_FIELDS
+        fields = RESPONSE_FIELDS + ["participation_id", "participative_process_id"]
+        optional_fields = OPTIONAL_RESPONSE_FIELDS + ["participative_process_id"]

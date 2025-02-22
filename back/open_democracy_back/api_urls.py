@@ -22,6 +22,7 @@ from open_democracy_back.views.page_views import (
     ReferentialPageView,
     ResultsPageView,
     UsagePageView,
+    ParticipativeProcessPageView,
 )
 from open_democracy_back.views.participation_views import (
     ParticipationResponseView,
@@ -101,6 +102,11 @@ router.register(
     ImportantPagesSettingsView,
     basename="ImportantPagesSettings",
 )
+router.register(
+    r"participative-process-pages",
+    ParticipativeProcessPageView,
+    basename="ParticipativeProcessPage",
+)
 router.register(r"rgpd-settings", RGPDSettingsView, basename="RGPDSettings")
 router.register(
     r"structure-settings", StructureSettingsView, basename="StructureSettings"
@@ -179,6 +185,7 @@ urlpatterns = [
     path(
         "assessments/<int:assessment_id>/questions/<int:question_id>/chart-data/",
         get_chart_data,
+        name="chart-data",
     ),
     path(
         "assessments/<int:assessment_id>/add-expert/",

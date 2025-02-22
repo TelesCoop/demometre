@@ -17,6 +17,8 @@ import {
 import { useUserStore } from "./userStore"
 import { useMessageStore } from "./messageStore"
 import { useQuestionnaireStore } from "./questionnaireStore"
+import {getAnswerKey} from "~/utils/util"
+import {ONE_MILLION} from "~/utils/constants"
 
 type Status = {
   total: number
@@ -63,10 +65,13 @@ export const useParticipationStore = defineStore("participation", {
       return "id" in this.participation ? this.participation.id : undefined
     },
     hasAnsweredQuestionnaireQuestion: (state) => {
+      // a question is set to answered if there is a response for it directly
+      // or if there is a response for at least one of its participative processes
       return (questionId: number) => {
-        return state.responseByQuestionnaireQuestionId[questionId]
-          ? true
-          : false
+        const possibleKeys = Object.keys(state.responseByQuestionnaireQuestionId)
+          .map(key => parseInt(key))
+          .filter((key: number) => key % ONE_MILLION === questionId)
+        return possibleKeys.some(key => !!state.responseByQuestionnaireQuestionId[key])
       }
     },
     status(): Status {
@@ -227,14 +232,18 @@ export const useParticipationStore = defineStore("participation", {
       question: Question,
       response: QuestionResponseValue,
       isAnswered: boolean,
+      participativeProcessId?: number,
     ) {
+      console.log("### save response 2", { participativeProcessId: participativeProcessId })
       const questionResponse = toQuestionResponse(
         question.id,
         this.id!,
         useAssessmentStore().currentAssessmentId!,
         !isAnswered,
         response,
+        participativeProcessId,
       )
+      console.log("### questionResponse", { questionResponse })
 
       let apiResponse
       if (
@@ -258,9 +267,10 @@ export const useParticipationStore = defineStore("participation", {
         errorStore.setError(error.value.data?.messageCode)
       }
       if (!error.value && data.value) {
+        const answerKey = getAnswerKey(question.id, participativeProcessId)
         const questionResponses =
           this[QUESTION_RESPONSES_BY_TYPE[question.surveyType]]
-        questionResponses[question.id] = data.value
+        questionResponses[answerKey] = data.value
         if (question.surveyType === SurveyType.QUESTIONNAIRE) {
           this.setTotalAndAnsweredQuestionsInPillar(question.pillarName)
         }
@@ -325,6 +335,20 @@ export const useParticipationStore = defineStore("participation", {
     },
     setShowSaveParticipationModal(show) {
       this.showSaveParticipationModal = show
+    },
+    async updateParticipation(
+      assessmentId: number,
+      payload: any,
+    ) {
+      const res = await useApiPost<Participation>(
+        `participations/`, {assessmentId, ...payload},
+      )
+      if (res.error.value) {
+        return false
+      }
+      const participation: Participation = res.data.value
+      this.participations[participation.id!] = participation
+      return true
     },
   },
 })

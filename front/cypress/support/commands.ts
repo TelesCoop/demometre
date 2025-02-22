@@ -72,8 +72,12 @@ Cypress.Commands.add("startQuestionnaire", (cityCode, assessmentType, userIsInit
   }
 })
 
-Cypress.Commands.add("fillObjectiveQuestions", () => {
-  cy.getEl('start-objective-questions').click()
+Cypress.Commands.add("fillObjectiveQuestions", (skipParticipativeProcess = false) => {
+  if (skipParticipativeProcess) {
+    cy.getEl('skip-participative-processes').click()
+  } else {
+    cy.getEl('start-objective-questions').click()
+  }
   cy.getEl('question-statement').contains('Nombre de doigts')
   cy.inputNumber(5)
   cy.submitQuestion()
@@ -88,9 +92,12 @@ Cypress.Commands.add("fillRole", (roleIndex, roleName) => {
   cy.submitQuestion()
 })
 
-Cypress.Commands.add("fillProfilingQuestions", (firstQuestionChoice, secondQuestionValue) => {
-  cy.getEl('question-statement').contains('Profiling Question Profile-1')
+Cypress.Commands.add("fillProfilingQuestions", (firstQuestionChoice, secondQuestionValue, firstQuestionChoiceAdditionalChoice = null) => {
+  cy.getEl('question-statement').contains('Profiling Question 7A')
   cy.selectChoice(firstQuestionChoice)
+  if (firstQuestionChoiceAdditionalChoice != null) {
+    cy.selectChoice(firstQuestionChoiceAdditionalChoice)
+  }
   cy.submitQuestion()
   cy.getEl('question-statement').contains('Profiling Question Profile-2')
   cy.inputNumber(secondQuestionValue)
@@ -98,15 +105,25 @@ Cypress.Commands.add("fillProfilingQuestions", (firstQuestionChoice, secondQuest
   cy.getEl('affinage-continue').click()
 })
 
-Cypress.Commands.add("fillRepresentationPillar", () => {
+Cypress.Commands.add("fillRepresentationPillar", (question2ParticipativeProcessesAnswers) => {
   cy.getEl('rosette-start').click()
   cy.getEl('question-statement').contains('Question 1')
   cy.selectChoice(0)
   cy.submitQuestion()
   cy.getEl('question-statement').contains('Question 2')
-  cy.selectChoice(1)
-  cy.selectChoice(2)
-  cy.submitQuestion()
+  if (question2ParticipativeProcessesAnswers != null) {
+    for (const participativeProcessData of question2ParticipativeProcessesAnswers) {
+      cy.getEl("participative-process-info").contains(participativeProcessData.name)
+      for (const choice of participativeProcessData.choices) {
+        cy.selectChoice(choice)
+      }
+      cy.submitQuestion()
+    }
+  } else {
+    cy.selectChoice(1)
+    cy.selectChoice(2)
+    cy.submitQuestion()
+  }
   cy.getEl('question-statement').contains('Question 3')
   cy.selectCategory('Catégorie 1', 3)
   cy.selectCategory('Catégorie 2', 4)
@@ -133,6 +150,7 @@ Cypress.Commands.add("checkResultsAreAvailable", (cityName: string, available: b
     cy.getEl('results-select').click()
     cy.getEl('results-select').should('contain', cityName)
   } else {
+    cy.wait(400)
     cy.getEl('no-results').should('contain', 'Aucun résultat')
   }
 })
