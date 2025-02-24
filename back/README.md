@@ -27,6 +27,12 @@ les réponses possibles pour chaque question
 La configuration se fait depuis l'interface d'aministration, accessible à l'adresse :
 `/admin/`.
 
+### Catégorie des process participatifs
+
+Les catégories des process participatifs sont définis comme étant les réponses possible
+à la question du questionnaire (qui ne peut pas être une question de profilage) dont le
+code est `7A`. Il est possible de les modifier depuis l'interface d'administration.
+
 ### Pages
 
 ### Questions
