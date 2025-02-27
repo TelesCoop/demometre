@@ -8,7 +8,7 @@ from open_democracy_back.factories.factories import (
     ALL_FACTORY_QUESTION_CLASSES,
 )
 from open_democracy_back.models import Criteria, Marker, Question
-from open_democracy_back.utils import QuestionType, SurveyLocality
+from open_democracy_back.utils import QuestionType, Locality
 from open_democracy_back.views.wagtail_rule_views import (
     duplicate_survey,
     duplicate_question,
@@ -74,7 +74,7 @@ class TestSurvey(TestCase):
         data = {
             "name": "test",
             "description": "test",
-            "survey_locality": SurveyLocality.REGION,
+            "survey_locality": Locality.REGION,
             "code": "R0",
         }
 

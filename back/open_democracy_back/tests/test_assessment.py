@@ -209,7 +209,7 @@ class TestAssessmentCreation(TestCase):
             reverse(
                 "create-assessment",
             )
-            + f"?locality_id={municipality.pk}&locality_type=municipality"
+            + f"?locality_id={municipality.pk}&locality_type=city"
         )
         res = self.client.get(url)
         assessment_id = res.json()["id"]
@@ -239,7 +239,7 @@ class TestAssessmentCreation(TestCase):
             reverse(
                 "create-assessment",
             )
-            + f"?locality_id={municipality.pk}&locality_type=municipality"
+            + f"?locality_id={municipality.pk}&locality_type=city"
         )
         res = self.client.get(url)
         self.assertNotEqual(res.json()["id"], assessment.pk)
@@ -267,7 +267,7 @@ class TestAssessmentCreation(TestCase):
                 reverse(
                     "create-assessment",
                 )
-                + f"?locality_id={municipality.pk}&locality_type=municipality"
+                + f"?locality_id={municipality.pk}&locality_type=city"
             )
             res = self.client.get(url)
             self.assertEqual(res.json()["id"], assessment.pk)

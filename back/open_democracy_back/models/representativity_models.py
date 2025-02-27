@@ -16,15 +16,15 @@ from open_democracy_back.models.questionnaire_and_profiling_models import (
     QuestionType,
     ResponseChoice,
 )
-from open_democracy_back.utils import SIMPLE_RICH_TEXT_FIELD_FEATURE, SurveyLocality
+from open_democracy_back.utils import SIMPLE_RICH_TEXT_FIELD_FEATURE, Locality
 
 
 @register_snippet
 class RepresentativityCriteria(index.Indexed, models.Model):
     survey_locality = models.CharField(
         max_length=32,
-        choices=SurveyLocality.choices,
-        default=SurveyLocality.CITY,
+        choices=Locality.choices,
+        default=Locality.CITY,
         verbose_name=_("Échelon questionnaire"),
     )
     name = models.CharField(max_length=64, verbose_name="Nom")

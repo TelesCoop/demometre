@@ -37,7 +37,6 @@
             :value="localityType.key"
             class="custom-hidden white-on-black-input-checked"
             name="localityType"
-            required
           >
           <label
             :for="localityType.key"

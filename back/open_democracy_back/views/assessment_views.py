@@ -33,7 +33,6 @@ from open_democracy_back.models.assessment_models import (
     AssessmentResponse,
     AssessmentType,
     InitiatorType,
-    LocalityType,
     Municipality,
 )
 from open_democracy_back.models.representativity_models import (
@@ -64,7 +63,7 @@ from open_democracy_back.serializers.questionnaire_and_profiling_serializers imp
     ParticipativeProcessSerializer,
 )
 from open_democracy_back.serializers.user_serializers import UserSerializer
-from open_democracy_back.utils import ManagedAssessmentType, SurveyLocality
+from open_democracy_back.utils import ManagedAssessmentType, Locality
 
 logger = logging.getLogger(__name__)
 
@@ -237,26 +236,24 @@ class AssessmentsView(
         else:
             user_id = request.user.id
         locality_id = request.GET.get("locality_id")
-        locality_type = request.GET.get("locality_type", LocalityType.MUNICIPALITY)
+        locality_type = request.GET.get("locality_type", Locality.CITY)
         assessments_usable = Assessment.objects.all().exclude(
             Q(assessment_type__assessment_type=ManagedAssessmentType.QUICK)
             & ~Q(initiated_by_user_id=user_id)
         )
-        survey = Survey.objects.get(survey_locality=SurveyLocality.CITY)
+        survey = Survey.objects.get(survey_locality=locality_type)
         assessment_kwargs = {"locality_type": locality_type}
-        if locality_type == LocalityType.MUNICIPALITY:
+        if locality_type == Locality.CITY:
             assessment_kwargs["municipality"] = (
                 locality := Municipality.objects.get(id=locality_id)
             )
-        elif locality_type == LocalityType.INTERCOMMUNALITY:
+        elif locality_type == Locality.EPCI:
             assessment_kwargs["epci"] = (locality := EPCI.objects.get(id=locality_id))
-        elif locality_type == LocalityType.REGION:
-            survey = Survey.objects.get(survey_locality=SurveyLocality.REGION)
+        elif locality_type == Locality.REGION:
             assessment_kwargs["region"] = (
                 locality := Region.objects.get(id=locality_id)
             )
-        elif locality_type == LocalityType.DEPARTMENT:
-            survey = Survey.objects.get(survey_locality=SurveyLocality.DEPARTMENT)
+        elif locality_type == Locality.DEPARTMENT:
             assessment_kwargs["department"] = (
                 locality := Department.objects.get(id=locality_id)
             )
@@ -306,28 +303,28 @@ class ZipCodeSurveysView(mixins.ListModelMixin, viewsets.GenericViewSet):
         )
 
         to_return = {
-            LocalityType.MUNICIPALITY: municipalities.data,
-            LocalityType.INTERCOMMUNALITY: epcis.data,
+            Locality.CITY: municipalities.data,
+            Locality.EPCI: epcis.data,
         }
 
         # only include departements and region if corresponding surveys exist
-        if Survey.objects.filter(survey_locality=SurveyLocality.DEPARTMENT).exists():
+        if Survey.objects.filter(survey_locality=Locality.DEPARTMENT).exists():
             departments = DepartmentSerializer(
                 Department.objects.filter(
                     municipalities__zip_codes__code=zip_code
                 ).distinct(),
                 many=True,
             )
-            to_return[LocalityType.DEPARTMENT] = departments.data
+            to_return[Locality.DEPARTMENT] = departments.data
 
-        if Survey.objects.filter(survey_locality=SurveyLocality.REGION).exists():
+        if Survey.objects.filter(survey_locality=Locality.REGION).exists():
             regions = RegionSerializer(
                 Region.objects.filter(
                     departments__municipalities__zip_codes__code=zip_code
                 ).distinct(),
                 many=True,
             )
-            to_return[LocalityType.REGION] = regions.data
+            to_return[Locality.REGION] = regions.data
 
         return Response(to_return)
 

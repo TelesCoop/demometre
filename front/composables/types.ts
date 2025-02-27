@@ -196,12 +196,12 @@ export const LOCALITY_TYPE: Record<string, { key: string; value: string }> = {
   REGION: { key: "region", value: $t("Région") },
 }
 export type LocalityTypes =
-  | "municipality"
-  | "intercommunality"
+  | "city"
+  | "epci"
   | "region"
   | "department"
 export const LOCALITY_TYPES = Object.values(LOCALITY_TYPE).map((localityType) => localityType.key)
-export type SurveyLocality = "city" | "region" | "department"
+export type SurveyLocality = "city" | "epci" | "region" | "department"
 export const AssessmentType = {
   QUICK: { key: "quick", value: $t("Diagnostic rapide") },
   PARTICIPATIVE: { key: "participative", value: $t("Evaluation participative") },
@@ -282,6 +282,7 @@ export type Assessment = {
   initiatorUsageConsent: boolean
   isCurrent: boolean
   isInitializationQuestionsCompleted: boolean
+  localityType: SurveyLocality
   municipality: Locality | null
   name: string
   participationCount: number
