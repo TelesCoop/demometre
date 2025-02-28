@@ -30,6 +30,7 @@ from open_democracy_back.models import (
     AssessmentRepresentativity,
     RepresentativityCriteria,
     AssessmentRepresentativityCriteriaRule,
+    RepresentativityCriteriaRule,
 )
 from open_democracy_back.utils import (
     QuestionObjectivity,
@@ -400,6 +401,16 @@ class AssessmentRepresentativityCriteriaRuleFactory(factory.django.DjangoModelFa
         ),
     )
     acceptability_threshold = factory.Faker("random_int", min=0, max=100)
+
+
+class RepresentativityCriteriaRuleFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = RepresentativityCriteriaRule
+
+    representativity_criteria = factory.SubFactory(RepresentativityCriteriaFactory)
+    response_choice = factory.SubFactory(ResponseChoiceFactory)
+    ignore_for_acceptability_threshold = False
+    totally_ignore = False
 
 
 ALL_FACTORY_QUESTION_CLASSES = [
