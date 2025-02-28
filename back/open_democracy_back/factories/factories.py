@@ -27,6 +27,9 @@ from open_democracy_back.models import (
     ClosedWithScaleCategoryResponse,
     NumberRange,
     Survey,
+    AssessmentRepresentativity,
+    RepresentativityCriteria,
+    AssessmentRepresentativityCriteriaRule,
 )
 from open_democracy_back.utils import (
     QuestionObjectivity,
@@ -353,6 +356,50 @@ class ClosedWithScaleQuestionFactory(ChoiceQuestionFactory):
                 CategoryFactory.create_batch(4, question=self)
             else:
                 self.categories.set(extracted)
+
+
+class RepresentativityCriteriaFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = RepresentativityCriteria
+
+    survey_locality = SurveyLocality.CITY
+    name = factory.Faker("name")
+    profiling_question = factory.SubFactory(QuestionFactory)
+    min_rate = factory.Faker("random_int", min=0, max=100)
+    explanation = factory.Faker("text")
+
+
+class QuestionFactoryFromCriteria(QuestionFactory):
+    profiling_question = True
+    representativity_criteria = factory.RelatedFactory(
+        RepresentativityCriteriaFactory, factory_related_name="profiling_question"
+    )
+
+
+class ResponseChoiceFromCriteria(ResponseChoiceFactory):
+    question = factory.SubFactory(QuestionFactoryFromCriteria)
+
+
+class AssessmentRepresentativityFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = AssessmentRepresentativity
+
+    assessment = factory.SubFactory(AssessmentFactory)
+    representativity_criteria = factory.SubFactory(RepresentativityCriteriaFactory)
+
+
+class AssessmentRepresentativityCriteriaRuleFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = AssessmentRepresentativityCriteriaRule
+
+    assessment_representativity = factory.SubFactory(AssessmentRepresentativityFactory)
+    response_choice = factory.SubFactory(
+        ResponseChoiceFromCriteria,
+        question=factory.SelfAttribute(
+            "..assessment_representativity.representativity_criteria.profiling_question"
+        ),
+    )
+    acceptability_threshold = factory.Faker("random_int", min=0, max=100)
 
 
 ALL_FACTORY_QUESTION_CLASSES = [
