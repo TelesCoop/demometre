@@ -25,7 +25,7 @@ class TestRepresentativityAssessmentResponse(TestCase):
             question=criteria.profiling_question
         )
 
-        # Create responses, one with special rate response and two of one other
+        # Create participations, one with special threshold response and two with another response
         ParticipationResponseFactory.create(
             assessment=assessment,
             question=criteria.profiling_question,
@@ -66,7 +66,7 @@ class TestRepresentativityAssessmentResponse(TestCase):
             question=criteria.profiling_question
         )
 
-        # Create responses, one with special rate response and two of one other
+        # Create participations, one with special threshold response and one with another response
         ParticipationResponseFactory.create(
             assessment=assessment,
             question=criteria.profiling_question,
@@ -84,20 +84,19 @@ class TestRepresentativityAssessmentResponse(TestCase):
     @authenticate
     def test_custom_rates_are_sent(self):
         min_rate = 40
-        test_custom_rates_are_sent = 25
+        custom_rate_for_assessment = 25
         # things are often created manually because creations in save conflict with factories otherwhise
         assessment = AssessmentFactory.create(initiated_by_user=authenticate.user)
         RepresentativityCriteriaFactory.create(min_rate=min_rate)
         assessment_representativity = assessment.representativities.first()
         criteriaRule = AssessmentRepresentativityCriteriaRuleFactory.create(
-            acceptability_threshold=test_custom_rates_are_sent,
+            acceptability_threshold=custom_rate_for_assessment,
             assessment_representativity=assessment_representativity,
         )
         ResponseChoiceFactory.create(
             question=assessment_representativity.representativity_criteria.profiling_question
         )
 
-        #
         url = reverse("assessments-detail", args=[assessment.pk])
         res = self.client.get(
             url,
@@ -110,7 +109,7 @@ class TestRepresentativityAssessmentResponse(TestCase):
                 count["acceptabilityThreshold"]
                 for count in representativity["countByResponseChoice"]
             ],
-            [test_custom_rates_are_sent, None],
+            [custom_rate_for_assessment, None],
         )
         self.assertEqual(
             [count["ruleId"] for count in representativity["countByResponseChoice"]],

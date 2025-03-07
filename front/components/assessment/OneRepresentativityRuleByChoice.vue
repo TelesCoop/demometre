@@ -74,7 +74,7 @@ async function onSave() {
     })
     const instance = getCurrentInstance()
     if (instance?.proxy) instance.proxy.$forceUpdate()
-  } else await assessmentStore.newAssessmentCriteraRule({
+  } else await assessmentStore.createAssessmentCriteraRule({
     assessmentRepresentativityId: props.representativity.id,
     responseChoiceId: props.choice?.responseChoiceId,
     acceptabilityThreshold: threshold.value,

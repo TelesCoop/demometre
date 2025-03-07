@@ -287,7 +287,7 @@ export const useAssessmentStore = defineStore("assessment", {
     },
 
 
-    async newAssessmentCriteraRule(rule: Partial<AssessmentRepresentativityRule>) {
+    async createAssessmentCriteraRule(rule: Partial<AssessmentRepresentativityRule>) {
       const msgStore = useMessageStore()
       const {error} = await useApiPost<AssessmentRepresentativityRule>(
         "assessment-reprentativity-rules/",
