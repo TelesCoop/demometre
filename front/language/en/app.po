@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-10 16:51+0100\n"
+"POT-Creation-Date: 2025-02-27 16:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 msgid "Enregistrer"
 msgstr "Save"
 
-#: components/header/navbar.vue:75 pages/compte/index.vue:72
+#: components/header/navbar.vue:75 pages/compte/index.vue:73
 msgid "Lancer une évaluation"
 msgstr "Start an evaluation"
 
@@ -67,7 +67,7 @@ msgstr "*Only evaluation workshops for which the fee has been paid can be viewed
 msgid "Acteur(s) concerné(s)"
 msgstr "Actor(s) concerned"
 
-#: pages/compte/index.vue:131
+#: pages/compte/index.vue:132
 msgid "Actions"
 msgstr "acts"
 
@@ -98,12 +98,12 @@ msgid "Ajouter un atelier"
 msgstr "Add a workshop"
 
 #: components/assessment/addDocumentModal.vue:10
-#: pages/compte/evaluation/[assessmentId]/index.vue:147
+#: pages/compte/evaluation/[assessmentId]/index.vue:156
 msgid "Ajouter un document"
 msgstr "Add a document"
 
 #: components/assessment/changeExpertModal.vue:39
-#: pages/compte/evaluation/[assessmentId]/index.vue:402
+#: pages/compte/evaluation/[assessmentId]/index.vue:416
 msgid "Ajouter un expert"
 msgstr "Add an expert"
 
@@ -144,11 +144,11 @@ msgstr "Results workshop"
 msgid "Au nom de qui lancez-vous cette évaluation  ?"
 msgstr "On whose behalf are you launching this evaluation ?"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:171
+#: pages/compte/evaluation/[assessmentId]/index.vue:180
 msgid "Aucun document dans cette catégorie."
 msgstr "No document in this category"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:365
+#: pages/compte/evaluation/[assessmentId]/index.vue:379
 msgid "Aucun expert pour le moment"
 msgstr "No expert for the moment"
 
@@ -156,7 +156,7 @@ msgstr "No expert for the moment"
 msgid "Aucun participant renseigné"
 msgstr "No participant registered"
 
-#: pages/resultats/index.vue:44
+#: pages/resultats/index.vue:47
 msgid "Aucun résultat n'est actuellement visible"
 msgstr "No results found"
 
@@ -164,7 +164,7 @@ msgstr "No results found"
 msgid "Aucune commune ne correspond à ce code postal"
 msgstr "No commune corresponds to this postal code"
 
-#: pages/compte/index.vue:98
+#: pages/compte/index.vue:99
 msgid "Aucune évaluation"
 msgstr "No evaluation"
 
@@ -172,7 +172,7 @@ msgstr "No evaluation"
 msgid "Aucune intercommunalité ne correspond à ce code postal"
 msgstr "No intercommunality corresponds to this postcode"
 
-#: composables/types.ts:297
+#: composables/types.ts:307
 msgid "Autre"
 msgstr "Other"
 
@@ -180,7 +180,7 @@ msgstr "Other"
 msgid "Autres documents"
 msgstr "Other documents"
 
-#: pages/projet.vue:28 pages/projet.vue:146
+#: pages/projet.vue:28 pages/projet.vue:144
 msgid "Avec qui"
 msgstr "With whom"
 
@@ -192,7 +192,7 @@ msgstr "Soon available !"
 msgid "Blog"
 msgstr "Blog"
 
-#: components/page/assessment-card.vue:56
+#: components/page/assessment-card.vue:57
 msgid "C'est parti !"
 msgstr "Let's get started!"
 
@@ -217,7 +217,7 @@ msgid "Cette section est pour l'instant vide"
 msgstr "This section is empty for the moment"
 
 #: components/assessment/changeExpertModal.vue:10
-#: pages/compte/evaluation/[assessmentId]/index.vue:401
+#: pages/compte/evaluation/[assessmentId]/index.vue:415
 msgid "Changer d'expert"
 msgstr "Change the expert"
 
@@ -225,7 +225,7 @@ msgstr "Change the expert"
 msgid "Changer mon mot de passe"
 msgstr "Change my password"
 
-#: components/participation/consent.vue:42
+#: components/participation/consent.vue:45
 msgid "Charte relative à la protection des données à caractère personnel"
 msgstr "Personal Data Protection Charter"
 
@@ -265,10 +265,11 @@ msgstr "Close"
 msgid "Clôturer l'atelier"
 msgstr "Close the workshop"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:209
+#: pages/compte/evaluation/[assessmentId]/index.vue:218
 msgid "Clôturer l'évaluation"
 msgstr "Complete the evaluation"
 
+#: pages/evaluation/[assessmentId]/questionnaire/index.vue:146
 #: pages/evaluation/index.vue:13
 msgid "Commencer"
 msgstr "Start"
@@ -281,7 +282,7 @@ msgstr "Start the evaluation"
 msgid "Commencer une évaluation"
 msgstr "Start the evaluation"
 
-#: pages/projet.vue:271
+#: pages/projet.vue:269
 msgid "Comment"
 msgstr "Comment"
 
@@ -293,7 +294,7 @@ msgstr "How we built the reference system"
 msgid "commentaires"
 msgstr "comments"
 
-#: composables/types.ts:191 utils/constants.ts:54
+#: composables/types.ts:192 utils/constants.ts:54
 msgid "Commune"
 msgstr "Town"
 
@@ -305,11 +306,11 @@ msgstr "Terms and conditions of use"
 msgid "Conditions générales de vente"
 msgstr "Terms and conditions of sale"
 
-#: composables/useConfirm.ts:12
+#: composables/useConfirm.ts:11
 msgid "Confirmation"
 msgstr "Confirmation"
 
-#: composables/useConfirm.ts:13 pages/nouveau-mdp.vue:139
+#: composables/useConfirm.ts:12 pages/nouveau-mdp.vue:139
 msgid "Confirmer"
 msgstr "Confirmeur"
 
@@ -325,7 +326,7 @@ msgstr "Confirm new password"
 msgid "Connectez-vous"
 msgstr "Connect to"
 
-#: pages/login.vue:9 pages/login.vue:93 pages/login.vue:136
+#: pages/login.vue:9 pages/login.vue:96 pages/login.vue:139
 msgid "Connexion"
 msgstr "Report"
 
@@ -350,7 +351,7 @@ msgstr "Create an account"
 msgid "Créer un hyperlien"
 msgstr "Create a hyperlink"
 
-#: pages/login.vue:120
+#: pages/login.vue:123
 msgid "Créez-en un"
 msgstr "Create one"
 
@@ -367,7 +368,7 @@ msgstr "Date"
 msgid "Date (MM/JJ/AAAA)"
 msgstr "Date (MM/DD/YYYY)"
 
-#: pages/compte/index.vue:124
+#: pages/compte/index.vue:125
 msgid "Date de création"
 msgstr "Creation date"
 
@@ -375,11 +376,11 @@ msgstr "Creation date"
 msgid "Date de lancement"
 msgstr "Launch date"
 
-#: stores/assessmentStore.ts:41
+#: stores/assessmentStore.ts:45
 msgid "de ma ville"
 msgstr "of my town"
 
-#: stores/assessmentStore.ts:42
+#: stores/assessmentStore.ts:46
 msgid "de mon inter-communalité"
 msgstr "of my intercommunality"
 
@@ -387,11 +388,11 @@ msgstr "of my intercommunality"
 msgid "Definitions"
 msgstr "Definitions"
 
-#: components/form/question.vue:139
+#: components/form/question.vue:140
 msgid "Définitions"
 msgstr "Definitions"
 
-#: composables/types.ts:193 utils/constants.ts:56
+#: composables/types.ts:194 utils/constants.ts:56
 msgid "Département"
 msgstr "Department"
 
@@ -411,15 +412,15 @@ msgstr "Disable the simplified view"
 msgid "Designé par "
 msgstr "Designated by"
 
-#: pages/compte/index.vue:164
+#: pages/compte/index.vue:170
 msgid "Détails"
 msgstr "detail"
 
-#: composables/types.ts:204
+#: composables/types.ts:205
 msgid "Diagnostic rapide"
 msgstr "Rapid assessment"
 
-#: pages/compte/index.vue:128
+#: pages/compte/index.vue:129
 msgid "Échelon"
 msgstr "Level"
 
@@ -431,12 +432,12 @@ msgstr "Email and password do not match"
 msgid "En clôturant l’évaluation, vous mettez fin à l’évaluation et n’autorisez plus de participation. Cette action est irréversible, n’oubliez pas de bien vérifier avant."
 msgstr "In closing the évaluation, you end the evaluation and you no longer authorize participation. This action is irreversible, remember to check well before."
 
-#: pages/compte/index.vue:99
+#: pages/compte/index.vue:100
 msgid "en cours"
 msgstr "in process"
 
-#: components/form/buttons.vue:57
-#: pages/evaluation/initialisation/[assessmentId]/questions-objectives/index.vue:33
+#: components/form/buttons.vue:58
+#: pages/evaluation/initialisation/[assessmentId]/questions-objectives/index.vue:34
 msgid "en cours de chargement"
 msgstr "in loading"
 
@@ -470,11 +471,11 @@ msgstr "Register your account"
 msgid "Envoyer un lien de récupération"
 msgstr "Send recovery link"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:184
+#: pages/compte/evaluation/[assessmentId]/index.vue:193
 msgid "État de l'évaluation"
 msgstr "Evaluation's status"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:261
+#: pages/compte/evaluation/[assessmentId]/index.vue:275
 msgid "État de paiement de la redevance"
 msgstr "Payment of the fee"
 
@@ -482,7 +483,7 @@ msgstr "Payment of the fee"
 msgid "Évaluation"
 msgstr "Evaluation"
 
-#: composables/types.ts:206
+#: composables/types.ts:207
 msgid "Evaluation avec expert"
 msgstr "Evaluation with a professional expert"
 
@@ -490,7 +491,7 @@ msgstr "Evaluation with a professional expert"
 msgid "Évaluation en cours"
 msgstr "Evaluation in progress"
 
-#: composables/types.ts:205
+#: composables/types.ts:206
 msgid "Evaluation participative"
 msgstr "Participatory evaluation"
 
@@ -502,11 +503,11 @@ msgstr "Assessment completed"
 msgid "Evaluation*"
 msgstr "Evaluation"
 
-#: pages/compte/index.vue:81
+#: pages/compte/index.vue:82
 msgid "Évaluations en cours"
 msgstr "Evaluations in progress"
 
-#: pages/compte/index.vue:87
+#: pages/compte/index.vue:88
 msgid "Évaluations terminées"
 msgstr "Assessments completed"
 
@@ -554,27 +555,27 @@ msgstr "Data is missing to validate"
 msgid "Il n'y a pas encore d'atelier dans cette évaluation."
 msgstr "There is no workshop in this evaluation yet."
 
-#: stores/workshopStore.ts:143
+#: stores/workshopStore.ts:145
 msgid "Impossible d'ajouter l'atelier"
 msgstr "Cannot add the workshop"
 
-#: stores/userStore.ts:43
+#: stores/userStore.ts:44
 msgid "Impossible d'enregistrer les informations, les noms d'utilisateur et adresse mail doivent être uniques"
 msgstr "Unable to save information, usernames and email addresses must be unique"
 
-#: stores/userStore.ts:59
+#: stores/userStore.ts:61
 msgid "Impossible de se connecter, vérifiez vos identifiants"
 msgstr "Unable to login, check your identifiers"
 
-#: stores/workshopStore.ts:168
+#: stores/workshopStore.ts:170
 msgid "Impossible de supprimer le participant"
 msgstr "Unable to delete participant"
 
-#: stores/workshopStore.ts:163
+#: stores/workshopStore.ts:165
 msgid "Impossible de supprimer le participant (impossible de récupérer son atelier)"
 msgstr "Unable to delete participant (unable to get his workshop back)"
 
-#: stores/assessmentStore.ts:120
+#: stores/assessmentStore.ts:124
 msgid "Impossible de téléverser le document"
 msgstr "Unable to unpload the document"
 
@@ -590,8 +591,8 @@ msgstr "Workshop's information"
 msgid "Informations de l'évaluation"
 msgstr "Evaluation's information"
 
-#: pages/evaluation/initialisation/[assessmentId]/questions-objectives/index.vue:49
-#: pages/evaluation/initialisation/[assessmentId]/validation.vue:48
+#: pages/evaluation/initialisation/[assessmentId]/questions-objectives/index.vue:50
+#: pages/evaluation/initialisation/[assessmentId]/validation.vue:49
 msgid "Initialisation"
 msgstr "Initialisation"
 
@@ -599,15 +600,15 @@ msgstr "Initialisation"
 msgid "Initiateur"
 msgstr "Iniator"
 
-#: composables/types.ts:192 utils/constants.ts:55
+#: composables/types.ts:193 utils/constants.ts:55
 msgid "Intercommunalité"
 msgstr "Intercommunality"
 
-#: components/form/buttons.vue:39
+#: components/form/buttons.vue:40
 msgid "Je ne sais pas / Je passe"
 msgstr "I don't know / I pass"
 
-#: components/form/buttons.vue:40
+#: components/form/buttons.vue:41
 msgid "Je passe"
 msgstr "I pass"
 
@@ -619,7 +620,7 @@ msgstr "The email does not match the initiator instance"
 msgid "L'évaluation a déjà été initialisée"
 msgstr "Evaluation has already been initiated"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:271
+#: pages/compte/evaluation/[assessmentId]/index.vue:285
 msgid "L’expert a bien réglé le paiement de la commission d’utilisation du DémoMètre."
 msgstr "The expert has paid the commission for using the DemoMeter"
 
@@ -635,7 +636,7 @@ msgstr "The form of the email is not correct"
 msgid "La question est à répondre uniquement si vous avez un des profils suivants :"
 msgstr "The question is to be answered only if you have one of the following profiles :"
 
-#: pages/login.vue:157 pages/nouveau-mdp.vue:182 pages/signup.vue:185
+#: pages/login.vue:160 pages/nouveau-mdp.vue:182 pages/signup.vue:185
 msgid "Le courriel doit contenir @"
 msgstr "The email must contain @"
 
@@ -647,11 +648,11 @@ msgstr "The mail is already used"
 msgid "Le mail n'est pas valide"
 msgstr "The e-mail address is not valid"
 
-#: pages/login.vue:169 pages/nouveau-mdp.vue:195 pages/signup.vue:198
+#: pages/login.vue:172 pages/nouveau-mdp.vue:195 pages/signup.vue:198
 msgid "Le mot de passe ne peut pas être vide"
 msgstr "Password cannot be empty"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:290
+#: pages/compte/evaluation/[assessmentId]/index.vue:304
 msgid "Le paiement n'a pas encore été effectué."
 msgstr "Payment has not yet been made"
 
@@ -688,11 +689,11 @@ msgstr "List of profiles and their conditions"
 msgid "Liste numérotée"
 msgstr "Numbered list"
 
-#: pages/compte/index.vue:129
+#: pages/compte/index.vue:130
 msgid "Localité"
 msgstr "Place"
 
-#: composables/types.ts:294
+#: composables/types.ts:304
 msgid "Ma collectivité"
 msgstr "Local authority"
 
@@ -724,7 +725,7 @@ msgstr "Modification of a participant"
 msgid "modifier"
 msgstr " Modifier"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:393
+#: pages/compte/evaluation/[assessmentId]/index.vue:407
 #: pages/compte/index.vue:50
 msgid "Modifier les informations"
 msgstr "Modify the information"
@@ -749,15 +750,15 @@ msgstr "Less than %{ inhabitants } inhabitants"
 msgid "Mon nom tel qu'affiché dans l'application"
 msgstr "My name as displayed in the app"
 
-#: pages/login.vue:53 pages/nouveau-mdp.vue:6 pages/signup.vue:54
+#: pages/login.vue:54 pages/nouveau-mdp.vue:6 pages/signup.vue:54
 msgid "mot de passe"
 msgstr "password"
 
-#: pages/login.vue:47 pages/signup.vue:48
+#: pages/login.vue:48 pages/signup.vue:48
 msgid "Mot de passe"
 msgstr "Password"
 
-#: pages/login.vue:86
+#: pages/login.vue:88
 msgid "Mot de passe oublié ?"
 msgstr "Forgotten password?"
 
@@ -790,7 +791,7 @@ msgstr "Name of appraiser (?)"
 msgid "Nombre de participants"
 msgstr "Number of participants"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:190
+#: pages/compte/evaluation/[assessmentId]/index.vue:199
 msgid "Nombre de questions répondues :"
 msgstr "Number of questions answered :"
 
@@ -799,7 +800,7 @@ msgstr "Number of questions answered :"
 msgid "Non"
 msgstr "No"
 
-#: composables/types.ts:207
+#: composables/types.ts:208
 msgid "Non renseigné"
 msgstr "Not specified"
 
@@ -827,7 +828,7 @@ msgstr "objectives"
 msgid "Oui"
 msgstr "Yes"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:412
+#: pages/compte/evaluation/[assessmentId]/index.vue:426
 msgid "Oui, clôturer l'évaluation"
 msgstr "Yes, close the evaluation"
 
@@ -843,11 +844,11 @@ msgstr "Yes, reset"
 msgid "Oui, supprimer"
 msgstr "Yes, delete"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:268
+#: pages/compte/evaluation/[assessmentId]/index.vue:282
 msgid "Paiement effectué"
 msgstr "Payment made"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:288
+#: pages/compte/evaluation/[assessmentId]/index.vue:302
 msgid "Paiement en attente"
 msgstr "Pending payment"
 
@@ -863,7 +864,7 @@ msgstr "Participants"
 msgid "parties prenantes"
 msgstr "stakeholders"
 
-#: pages/compte/index.vue:130
+#: pages/compte/index.vue:131
 msgid "Pays"
 msgstr "Countries"
 
@@ -892,7 +893,7 @@ msgstr "Strong points"
 msgid "Politique de confidentialité"
 msgstr "Privacy policy"
 
-#: pages/compte/index.vue:110
+#: pages/compte/index.vue:111
 msgid "Pour démarrer une évaluation, cliquer sur le bouton « Lancer une évaluation »."
 msgstr "To start the evaluation, click on the button \"Start an evaluation\""
 
@@ -900,15 +901,15 @@ msgstr "To start the evaluation, click on the button \"Start an evaluation\""
 msgid "Pourquoi"
 msgstr "Why"
 
-#: pages/evaluation/participation/[assessmentId]/tableau-de-bord.vue:20
+#: pages/evaluation/participation/[assessmentId]/tableau-de-bord.vue:21
 msgid "Poursuivre l'évaluation"
 msgstr "Continue evaluation"
 
-#: components/questionnaire/pillar-referential.vue:169
+#: components/questionnaire/pillar-referential.vue:174
 msgid "Premier critère"
 msgstr "First criteria"
 
-#: components/questionnaire/pillar-referential.vue:199
+#: components/questionnaire/pillar-referential.vue:204
 msgid "Premier marqueur"
 msgstr "First marker"
 
@@ -932,7 +933,7 @@ msgstr "Question of refining"
 msgid "Question suivante"
 msgstr "Next question "
 
-#: pages/compte/index.vue:123 pages/export/questionnaire/[roleId].vue:5
+#: pages/compte/index.vue:124 pages/export/questionnaire/[roleId].vue:5
 #: pages/export/questionnaire/[roleId].vue:18
 msgid "Questionnaire"
 msgstr "Questionnaire"
@@ -954,19 +955,19 @@ msgstr "Evaluation reports"
 msgid "Réalisé par "
 msgstr "Produced by"
 
-#: components/form/localisation.vue:75
+#: components/form/localisation.vue:77
 msgid "Rechercher"
 msgstr "Search for"
 
-#: pages/compte/index.vue:156
+#: pages/compte/index.vue:162
 msgid "Redevance impayée"
 msgstr "Unpaid fee"
 
-#: pages/compte/index.vue:152
+#: pages/compte/index.vue:158
 msgid "Redevance payée"
 msgstr "Fee paid"
 
-#: composables/types.ts:194 utils/constants.ts:57
+#: composables/types.ts:195 utils/constants.ts:57
 msgid "Région"
 msgstr "Region"
 
@@ -986,14 +987,15 @@ msgstr "Single answer to objective question"
 msgid "Réponse(s)"
 msgstr "Response(s)"
 
-#: components/analytics/scale-question-chart.vue:47
-#: components/form/question.vue:133
+#: components/analytics/scale-question-chart.vue:49
+#: components/form/question.vue:134
 #: components/questionnaire/pillar-animator-responses.vue:66
 #: components/workshop/participantEditModal.vue:68
 msgid "Réponses"
 msgstr "Answers"
 
 #: composables/userStep.ts:17
+#: pages/compte/evaluation/[assessmentId]/index.vue:231
 msgid "Reprendre l'évaluation"
 msgstr "Resume the assessment "
 
@@ -1010,7 +1012,7 @@ msgstr "The participants are representative."
 msgid "Ressources"
 msgstr "Resources"
 
-#: pages/resultats/[assessmentId].vue:124
+#: pages/resultats/[assessmentId].vue:126
 msgid "Résultat"
 msgstr "Result"
 
@@ -1018,7 +1020,7 @@ msgstr "Result"
 msgid "Résultats par piliers"
 msgstr "Results by pillars"
 
-#: components/assessment/expertChooser.vue:24
+#: components/assessment/expertChooser.vue:25
 msgid "Retirer cet expert"
 msgstr "Remove this expert"
 
@@ -1043,17 +1045,17 @@ msgstr "Return to the workshop"
 msgid "Revenir à mon compte"
 msgstr "Return to my account"
 
-#: components/questionnaire/pillar-referential.vue:146
+#: components/questionnaire/pillar-referential.vue:151
 msgid "Revenir au marqueur"
 msgstr "Return to the marker"
 
-#: components/questionnaire/pillar-referential.vue:163
+#: components/questionnaire/pillar-referential.vue:168
 msgid "Revenir au pilier"
 msgstr "Return to the pillar"
 
 #: components/workshop/participantEditModal.vue:48
 #: pages/compte/evaluation/[assessmentId]/ateliers/[workshopId]/index.vue:92
-#: pages/compte/index.vue:126
+#: pages/compte/index.vue:127
 msgid "Rôle"
 msgstr "Role"
 
@@ -1082,7 +1084,7 @@ msgstr "Enter the participants’ responses to the paper assessments"
 msgid "Salle polyvalente de la ville de ..."
 msgstr "Multipurpose hall of the city of ..."
 
-#: stores/workshopStore.ts:136
+#: stores/workshopStore.ts:138
 msgid "Sauvegarde réussie"
 msgstr "Successful backup"
 
@@ -1099,6 +1101,7 @@ msgstr "Select one or more actors below"
 msgid "Selectionner une question"
 msgstr "Selec a question"
 
+#: components/participation/board/representativity.vue:32
 #: components/participation/board/representativity.vue:47
 msgid "Seuil minimal de représentativité :"
 msgstr "Minimum threshold of representativeness"
@@ -1151,7 +1154,7 @@ msgstr "Hover over bars to view statistics"
 msgid "Télécharger :"
 msgstr "Download"
 
-#: pages/compte/index.vue:99
+#: pages/compte/index.vue:100
 msgid "terminée"
 msgstr "is complete"
 
@@ -1191,7 +1194,7 @@ msgstr "Level 2 heading"
 msgid "Titre de niveau 3"
 msgstr "Level 3 heading"
 
-#: components/analytics/choice-question-chart.vue:30
+#: components/analytics/choice-question-chart.vue:32
 msgid "Totaux"
 msgstr "Totals"
 
@@ -1204,11 +1207,11 @@ msgstr "Type of workshop"
 msgid "type d'évaluation"
 msgstr "Type of evaluation"
 
-#: composables/types.ts:296
+#: composables/types.ts:306
 msgid "Un particulier"
 msgstr "An individual"
 
-#: composables/types.ts:295
+#: composables/types.ts:305
 msgid "Une association"
 msgstr "An association"
 
@@ -1216,7 +1219,7 @@ msgstr "An association"
 msgid "Une erreur s'est produite dans le serveur"
 msgstr "An error occurred in the server"
 
-#: stores/workshopStore.ts:133
+#: stores/workshopStore.ts:135
 msgid "Une erreur s'est produite lors de la sauvegarde"
 msgstr "An error occurred while saving"
 
@@ -1229,14 +1232,13 @@ msgstr "URL"
 #: components/assessment/addWorkshopModal.vue:77
 #: components/assessment/changeExpertModal.vue:48
 #: components/assessment/informationsEditModal.vue:70
-#: components/form/buttons.vue:15 components/form/localisation.vue:120
+#: components/form/buttons.vue:16 components/form/localisation.vue:124
 #: components/richTextInput.vue:82
 #: components/workshop/informationsEditModal.vue:79
 #: components/workshop/participantEditModal.vue:120
 #: pages/compte/ateliers/index.vue:149
-#: pages/evaluation/initialisation/index.vue:95
-#: pages/evaluation/initialisation/index.vue:156
-#: pages/evaluation/initialisation/index.vue:218
+#: pages/evaluation/initialisation/index.vue:96
+#: pages/evaluation/initialisation/index.vue:160
 msgid "Valider"
 msgstr "Submit"
 
@@ -1252,10 +1254,10 @@ msgstr "Please check your email and follow the instructions."
 msgid "Villes concernées"
 msgstr " Cities concerned"
 
-#: components/form/buttons.vue:81
-#: pages/compte/evaluation/[assessmentId]/index.vue:234
+#: components/form/buttons.vue:83
+#: pages/compte/evaluation/[assessmentId]/index.vue:243
 #: pages/evaluation/[assessmentId]/questionnaire/index.vue:49
-#: pages/resultats/index.vue:36
+#: pages/resultats/index.vue:38
 msgid "Voir les résultats"
 msgstr "See the results"
 
@@ -1287,11 +1289,11 @@ msgstr "You are the initiator of this evaluation"
 msgid "Vous êtes l'expert de cette évaluation"
 msgstr "You are the expert of this evaluation"
 
-#: pages/compte/index.vue:103
+#: pages/compte/index.vue:104
 msgid "Vous n’avez aucune évaluation en cours avec le DémoMètre."
 msgstr "You have no ongoing evaluation with the DemoMeter"
 
-#: pages/compte/index.vue:106
+#: pages/compte/index.vue:107
 msgid "Vous n’avez aucune évaluation terminée avec le DémoMètre."
 msgstr "You have no assessment completed with the DemoMeter"
 
@@ -1299,11 +1301,11 @@ msgstr "You have no assessment completed with the DemoMeter"
 msgid "Vous n'avez pas à répondre à cette question."
 msgstr "You do not have to answer this question."
 
-#: pages/login.vue:110
+#: pages/login.vue:113
 msgid "Vous n'avez pas encore de compte ?"
 msgstr "You don’t have an account yet?"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:199
+#: pages/compte/evaluation/[assessmentId]/index.vue:208
 msgid "Vous n'avez pas participé à cette évaluation."
 msgstr "You did not participate in this assessment."
 
@@ -1315,7 +1317,7 @@ msgstr "You can then return to it via the \"My account\" tab."
 msgid "Vous renseigner"
 msgstr "Enquire"
 
-#: pages/compte/index.vue:147
+#: pages/compte/index.vue:153
 msgid "participant - non encore rempli"
 msgstr "participant - not yet filled"
 
@@ -1327,15 +1329,15 @@ msgstr "fr-FR"
 msgid "Portée par"
 msgstr "Carried by"
 
-#: pages/compte/index.vue:121
+#: pages/compte/index.vue:122
 msgid "Nom"
 msgstr "Name"
 
-#: pages/resultats/[assessmentId].vue:79
+#: pages/resultats/[assessmentId].vue:81
 msgid "Explicitée par :"
 msgstr "Explained by:"
 
-#: pages/resultats/[assessmentId].vue:102
+#: pages/resultats/[assessmentId].vue:104
 msgid "Permet d'expliciter :"
 msgstr "Helps to clarify:"
 
@@ -1396,8 +1398,7 @@ msgstr "Insee code"
 msgid "Population"
 msgstr "Population"
 
-#: open_democracy_back/models/assessment_models.py:103
-#: open_democracy_back/models/assessment_models.py:134
+#: components/form/localisation.vue:65
 msgid "Code postal"
 msgstr "Postcode"
 
@@ -2956,7 +2957,7 @@ msgstr "Cooperation"
 msgid "Commune/EPCI"
 msgstr "Commune/EPCI "
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:411
+#: pages/compte/evaluation/[assessmentId]/index.vue:425
 msgid "Souhaitez-vous clôturer l'évaluation"
 msgstr "Would you like to close the evaluation"
 
@@ -2968,11 +2969,11 @@ msgstr "Remove participant:"
 msgid "Licence"
 msgstr "License"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:410
+#: pages/compte/evaluation/[assessmentId]/index.vue:424
 msgid "En clôturant l’évaluation, vous mettez fin à l’évaluation et n’autorisez plus de participation. Cette action est irréversible, n’oubliez pas de bien vérifier avant. Si vous êtes accompagnateur et que vous n'avez pas encore payé l'utilisation du DémoMètre pour cette évaluation, Démocratie Ouverte vous enverra une facture."
 msgstr "By closing the evaluation, you end the evaluation and authorize no further participation. This action is irreversible, so be sure to check beforehand. If you are an accompanying person and have not yet paid for the use of the DemoMeter for this evaluation, Démocratie Ouverte will send you an invoice."
 
-#: pages/resultats/index.vue:47
+#: pages/resultats/index.vue:50
 msgid "chargement..."
 msgstr "loading..."
 
@@ -2980,7 +2981,7 @@ msgstr "loading..."
 msgid "Vous pourrez ensuite y revenir via l'onglet Mon compte."
 msgstr "You can then return to it via the My Account tab."
 
-#: pages/evaluation/initialisation/index.vue:129
+#: pages/evaluation/initialisation/index.vue:131
 msgid "Au nom de qui lancez-vous cette évaluation ?"
 msgstr "On whose behalf are you launching this evaluation?"
 
@@ -2988,7 +2989,7 @@ msgstr "On whose behalf are you launching this evaluation?"
 msgid "for the role"
 msgstr "for the role"
 
-#: pages/evaluation/participation/[assessmentId]/index.vue:68
+#: pages/evaluation/participation/[assessmentId]/index.vue:69
 msgid "lancement d'une évaluation"
 msgstr "Launch of an assessment"
 
@@ -2996,7 +2997,7 @@ msgstr "Launch of an assessment"
 msgid "Explorer les articles"
 msgstr "Browse articles"
 
-#: components/form/buttons.vue:67 components/form/localisation.vue:129
+#: components/form/buttons.vue:68 components/form/localisation.vue:133
 #: pages/evaluation/index.vue:16
 msgid "appuyez sur Entrer ⏎"
 msgstr "press Enter ⏎"
@@ -3030,23 +3031,23 @@ msgstr "Designed by"
 msgid "Réalisé par"
 msgstr "Developed by"
 
-#: pages/compte/index.vue:70
+#: pages/compte/index.vue:71
 msgid "Mes évaluations"
 msgstr "My evaluations"
 
-#: pages/compte/index.vue:71
+#: pages/compte/index.vue:72
 msgid "Toutes mes évaluations en cours et terminées"
 msgstr "All my current and completed evaluations"
 
-#: components/analytics/choice-question-chart.vue:61
+#: components/analytics/choice-question-chart.vue:66
 msgid "pour le rôle"
 msgstr "for the role"
 
-#: components/questionnaire/rosette.vue:97
+#: components/questionnaire/rosette.vue:98
 msgid "représentation"
 msgstr "representation"
 
-#: components/questionnaire/rosette.vue:96
+#: components/questionnaire/rosette.vue:97
 msgid "participation"
 msgstr "participation"
 
@@ -3054,19 +3055,19 @@ msgstr "participation"
 msgid "Découvrir"
 msgstr "Discover"
 
-#: components/questionnaire/rosette.vue:95
+#: components/questionnaire/rosette.vue:96
 msgid "transparence"
 msgstr "transparency"
 
-#: components/questionnaire/rosette.vue:94
+#: components/questionnaire/rosette.vue:95
 msgid "coopération"
 msgstr "cooperation"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:95
+#: pages/compte/evaluation/[assessmentId]/index.vue:96
 msgid "participants hors ateliers"
 msgstr "participants outside workshops"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:99
+#: pages/compte/evaluation/[assessmentId]/index.vue:100
 msgid "ateliers"
 msgstr "workshops"
 
@@ -3086,18 +3087,74 @@ msgstr "launched on"
 msgid "par"
 msgstr "by"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:135
+#: pages/compte/evaluation/[assessmentId]/index.vue:144
 msgid "Calendrier"
 msgstr "Calendar"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:115
+#: pages/compte/evaluation/[assessmentId]/index.vue:124
 msgid "Contexte"
 msgstr "Context"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:121
+#: pages/compte/evaluation/[assessmentId]/index.vue:130
 msgid "Objectifs"
 msgstr "Objectives"
 
-#: pages/compte/evaluation/[assessmentId]/index.vue:129
+#: pages/compte/evaluation/[assessmentId]/index.vue:138
 msgid "Parties prenantes"
 msgstr "Stakeholders"
+
+#: utils/constants.ts:7
+msgid "expert"
+msgstr "expert"
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:112
+msgid "Nb participants"
+msgstr "Nb of participants"
+
+#: utils/constants.ts:8
+msgid "participant"
+msgstr "participant"
+
+#: components/assessment/workshops.vue:4
+msgid "Mes ateliers"
+msgstr "My workshops"
+
+#: pages/evaluation/[assessmentId]/questionnaire/index.vue:146
+msgid "Continuer"
+msgstr "Continue"
+
+#: utils/constants.ts:6
+msgid "initiateur"
+msgstr "initiator"
+
+#: components/assessment/RepresentativityRuleByChoice.vue:5
+msgid "L'évaluation sera publique lorsque tous les seuils représentativité seront atteint, c'est à dire que pour chaque seuil, la proportion des participants ayant un profil qui correspond est supérieure au seuil."
+msgstr "The assessment will be made public when all representativity thresholds will be met. That is to say for each threshold, the proportion of participants with corresponding profile is greater than the threshold."
+
+#: pages/compte/evaluation/[assessmentId]/index.vue:232
+msgid "Participer à l'évaluation"
+msgstr "Participate in the assessment"
+
+#: components/assessment/RepresentativityRuleByChoice.vue:7
+msgid "Si vous ne voulez pas de seuil minimum pour une réponse, vous pouvez indiquer la valeur 0. Les seuils qui sont ignorés au niveau du Démomètre apparaissent en grisé et ne sont pas configurables."
+msgstr "If you do not want a minimum threshold for a response, you can indicate the value 0. The threshold ignored at the Demometer level appear grey and are not configurable."
+
+#: components/assessment/RepresentativityRuleByChoice.vue:6
+msgid "Si vous ne configurez pas les seuils, ceux par défaut du Démomètre seront utilisés (affichés en gris)."
+msgstr "If you don't configure these thresholds, the default from Demometer will be used (displayed in grey)"
+
+#: components/questionnaire/pillar-referential.vue:103
+msgid "non noté"
+msgstr "not rated"
+
+#: components/assessment/OneRepresentativityRuleByChoice.vue:68
+msgid "La valeur vide ne peut pas être enregistrée. Pour réinitialiser la valeur, cliquer sur la croix"
+msgstr "Empty value cannot be saved. To reset value, click on the cross"
+
+#: stores/assessmentStore.ts:323
+msgid "Valeur réinitialisée avec succès"
+msgstr "Value reset successfully"
+
+#: stores/assessmentStore.ts:298 stores/assessmentStore.ts:311
+msgid "Valeur enregistrée avec succès"
+msgstr "Value saved successfully"

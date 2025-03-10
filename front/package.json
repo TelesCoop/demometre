@@ -6,7 +6,7 @@
     "dev": "nuxi dev --mode=development",
     "build": "nuxi build",
     "start": "node .output/server/index.mjs",
-    "do-vue-i18n-extract": "yarn vue-i18n-extract report --vueFiles './?(composables|pages|components|utils)/**/*.?(ts|vue)' --languageFiles './language/empty.json' --separator ';;;;' > language/extraction.md"
+    "do-vue-i18n-extract": "yarn vue-i18n-extract report --vueFiles './?(composables|pages|components|utils|stores)/**/*.?(ts|vue)' --languageFiles './language/empty.json' --separator ';;;;' > language/extraction.md"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.7.3",

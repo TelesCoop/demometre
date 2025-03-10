@@ -30,7 +30,7 @@
         </div>
         <div v-if="!hoverRepresentativity?.ignoreThreshold">
           {{ $t("Seuil minimal de représentativité :") }}
-          {{ props.representativity.acceptabilityThresholdConsidered }}%
+          {{ hoverRepresentativity.threshold ?? props.representativity.minRate }}%
         </div>
       </div>
     </div>
@@ -73,6 +73,7 @@ const distributionBarData = () => {
       name: item.responseChoiceName,
       value: item.total,
       ignoreThreshold: item.ignoreForAcceptabilityThreshold,
+      threshold: item.acceptabilityThreshold,
     }
   })
 }

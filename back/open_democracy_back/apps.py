@@ -62,9 +62,11 @@ def replace_field_panels(model: models.Model, field_name: str, locales: List[str
     if panels := getattr(model, "panels", None):
         try:
             panel_index = [
-                panel.field_name
-                if isinstance(panel, FieldPanel)
-                else "__not_field_panel"
+                (
+                    panel.field_name
+                    if isinstance(panel, FieldPanel)
+                    else "__not_field_panel"
+                )
                 for panel in panels
             ].index(field_name)
         except ValueError:

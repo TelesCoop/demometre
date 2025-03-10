@@ -222,17 +222,18 @@ export type Localities = {
   region: Locality[]
   department: Locality[]
 }
-type CountByResponseChoice = {
+export type CountByResponseChoice = {
   responseChoiceName: string
   responseChoiceId: number
   total: number
   ignoreForAcceptabilityThreshold: boolean
+  acceptabilityThreshold: number
+  ruleId?: number
 }
 export type RepresentativityCriteria = {
   id: number
   name: string
   profilingQuestionId: number
-  acceptabilityThreshold: number
   minRate: number
   explanation: string
   surveyLocality: SurveyLocality
@@ -242,8 +243,15 @@ export type AssessmentRepresentativity = {
   assessmentId: number
   representativityCriteriaName: string
   countByResponseChoice: CountByResponseChoice[]
-  acceptabilityThresholdConsidered: number
+  minRate: number
   respected: boolean
+}
+export type AssessmentRepresentativityRule = {
+  id: number
+  assessmentId: number
+  assessmentRepresentativityId: number
+  responseChoiceId: number
+  acceptabilityThreshold: number
 }
 export type AssessmentDetails = {
   calendar: string

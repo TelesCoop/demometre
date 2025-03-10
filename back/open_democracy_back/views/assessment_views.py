@@ -44,6 +44,7 @@ from open_democracy_back.permissions import (
     HasWriteAccessOnAssessment,
     HasAssessmentWriteAccessForUpdate,
 )
+from open_democracy_back.querysets import assessments_by_user
 from open_democracy_back.scoring import (
     get_scores_by_assessment_pk,
 )
@@ -108,15 +109,7 @@ class AssessmentsView(
         if request.user.is_anonymous:
             assessments = []
         else:
-            assessments = Assessment.objects.filter(
-                Q(
-                    participations__in=Participation.objects.filter_available(
-                        self.request.user.id, timezone.now()
-                    )
-                )
-                | Q(initiated_by_user=self.request.user)
-                | Q(experts=self.request.user),
-            ).distinct()
+            assessments = assessments_by_user(self.request.user)
         return RestResponse(
             status=200,
             data=self.serializer_class(
@@ -216,12 +209,6 @@ class AssessmentsView(
                     assessment=assessment,
                     representativity_criteria=representativity_criteria,
                 )[0]
-                # representativity_threshold as shape of [{"id": 1, "value":30}, {"id": 2, "value":20}]
-                representativity.acceptability_threshold = next(
-                    threshold["value"]
-                    for threshold in initialize_data["representativity_thresholds"]
-                    if threshold["id"] == representativity_criteria.id
-                )
                 representativity.save()
 
             return RestResponse(
