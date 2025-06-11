@@ -29,7 +29,7 @@ from open_democracy_back.utils import (
     BooleanOperator,
     QuestionType,
     PillarName,
-    SurveyLocality,
+    Locality,
 )
 
 
@@ -133,8 +133,8 @@ class Survey(TimeStampedModel):
     name = models.CharField(max_length=255, verbose_name=_("Nom"), unique=True)
     survey_locality = models.CharField(
         max_length=32,
-        choices=SurveyLocality.choices,
-        default=SurveyLocality.CITY,
+        choices=Locality.choices,
+        default=Locality.CITY,
         verbose_name=_("Échelon du questionnaire"),
         unique=True,
     )
@@ -147,7 +147,7 @@ class Survey(TimeStampedModel):
         default="",
     )
     code = models.CharField(
-        max_length=10,
+        max_length=2,
         verbose_name=_("code"),
         help_text=_("Nom court du questionnaire pour les menus de l'interface admin"),
         default="",

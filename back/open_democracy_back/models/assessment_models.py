@@ -20,7 +20,7 @@ from open_democracy_back.models.utils import FrontendRichText
 from open_democracy_back.models.questionnaire_and_profiling_models import ResponseChoice
 from open_democracy_back.utils import (
     InitiatorType,
-    LocalityType,
+    Locality,
     ManagedAssessmentType,
 )
 
@@ -30,7 +30,7 @@ class Region(index.Indexed, models.Model):
     code = models.CharField(max_length=3, verbose_name=_("Code"))
     name = models.CharField(max_length=64, verbose_name=_("Nom"))
 
-    locality_type = LocalityType.REGION
+    locality_type = Locality.REGION
 
     search_fields = [
         index.SearchField(
@@ -58,7 +58,7 @@ class Department(index.Indexed, models.Model):
         related_name="departments",
     )
 
-    locality_type = LocalityType.DEPARTMENT
+    locality_type = Locality.DEPARTMENT
 
     search_fields = [
         index.SearchField(
@@ -92,7 +92,7 @@ class Municipality(index.Indexed, ClusterableModel):
         verbose_name=pgettext_lazy("number of inhabitants", "Population"), default=0
     )
 
-    locality_type = LocalityType.MUNICIPALITY
+    locality_type = Locality.CITY
 
     panels = [
         FieldPanel("code"),
@@ -142,7 +142,7 @@ class EPCI(index.Indexed, ClusterableModel):
     name = models.CharField(max_length=255, verbose_name=_("Nom"))
     population = models.IntegerField(verbose_name=_("Population"), default=0)
 
-    locality_type = LocalityType.INTERCOMMUNALITY
+    locality_type = Locality.EPCI
 
     panels = [
         FieldPanel("code"),
@@ -313,8 +313,8 @@ class Assessment(TimeStampedModel, ClusterableModel):
     )
     locality_type = models.CharField(
         max_length=32,
-        choices=LocalityType.choices,
-        default=LocalityType.MUNICIPALITY,
+        choices=Locality.choices,
+        default=Locality.CITY,
         verbose_name=_("Type de localité"),
     )
     epci = models.ForeignKey(
@@ -373,23 +373,23 @@ class Assessment(TimeStampedModel, ClusterableModel):
 
     @property
     def population(self):
-        if self.locality_type == LocalityType.MUNICIPALITY:
+        if self.locality_type == Locality.CITY:
             return self.municipality.population
-        if self.locality_type == LocalityType.INTERCOMMUNALITY:
+        if self.locality_type == Locality.EPCI:
             return self.epci.population
 
     @property
     def collectivity_name(self):
-        if self.locality_type == LocalityType.MUNICIPALITY:
+        if self.locality_type == Locality.CITY:
             return self.municipality.name
-        if self.locality_type == LocalityType.INTERCOMMUNALITY:
+        if self.locality_type == Locality.EPCI:
             return self.epci.name
 
     @property
     def code(self):
-        if self.locality_type == LocalityType.MUNICIPALITY:
+        if self.locality_type == Locality.CITY:
             return self.municipality.code
-        if self.locality_type == LocalityType.INTERCOMMUNALITY:
+        if self.locality_type == Locality.EPCI:
             return self.epci.code
 
     panels = [
@@ -415,13 +415,13 @@ class Assessment(TimeStampedModel, ClusterableModel):
 
     def __str__(self):
         locality = None
-        if self.locality_type == LocalityType.MUNICIPALITY:
+        if self.locality_type == Locality.CITY:
             locality = self.municipality
-        elif self.locality_type == LocalityType.INTERCOMMUNALITY:
+        elif self.locality_type == Locality.EPCI:
             locality = self.epci
-        elif self.locality_type == LocalityType.DEPARTMENT:
+        elif self.locality_type == Locality.DEPARTMENT:
             locality = self.department
-        elif self.locality_type == LocalityType.REGION:
+        elif self.locality_type == Locality.REGION:
             locality = self.region
         return f"{self.get_locality_type_display()} {locality}"
 

@@ -38,7 +38,7 @@ from open_democracy_back.utils import (
     InitiatorType,
     ManagedAssessmentType,
     QuestionType,
-    SurveyLocality,
+    Locality,
 )
 
 
@@ -65,7 +65,7 @@ class SurveyFactory(factory.django.DjangoModelFactory):
     name: str = factory.Faker("name")
     name_fr: str = factory.LazyAttribute(lambda a: a.name)
     description: str = factory.Faker("text")
-    survey_locality: str = SurveyLocality.CITY
+    survey_locality: str = Locality.CITY
 
     class Meta:
         model = Survey

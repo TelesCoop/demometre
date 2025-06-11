@@ -37,7 +37,7 @@ from open_democracy_back.models import (
 )
 from open_democracy_back.utils import (
     QuestionType,
-    SurveyLocality,
+    Locality,
     QuestionObjectivity,
     ManagedAssessmentType,
 )
@@ -234,7 +234,7 @@ class Command(BaseCommand):
 
     def create_questionnaire(self):
         survey, _ = Survey.objects.update_or_create(
-            survey_locality=SurveyLocality.CITY, defaults=dict(code="M")
+            survey_locality=Locality.CITY, defaults=dict(code="M")
         )
         representation, _ = Pillar.objects.get_or_create(
             name="représentation", defaults=dict(survey=survey)
@@ -406,7 +406,7 @@ class Command(BaseCommand):
         repr_criteria, _ = RepresentativityCriteria.objects.update_or_create(
             name="Représentativité 1",
             defaults=dict(
-                survey_locality=SurveyLocality.CITY,
+                survey_locality=Locality.CITY,
                 profiling_question=Question.objects.get(code="7A"),
                 min_rate=25,
                 name_fr="Représentativité 1",

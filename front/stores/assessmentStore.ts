@@ -84,7 +84,7 @@ export const useAssessmentStore = defineStore("assessment", {
     },
     municipalityAssessments() {
       return this.assessments.find(
-        (assessment: Assessment) => assessment.localityType === "municipality",
+        (assessment: Assessment) => assessment.localityType === "city",
       )
     },
     representativityCriteriasForSurveyLocality() {

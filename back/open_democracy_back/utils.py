@@ -23,11 +23,6 @@ NUMERICAL_OPERATOR = [
 
 
 # NB : use get_<field_name>_display() to retrieve the second argument of TextChoices
-class LocalityType(models.TextChoices):
-    MUNICIPALITY = "municipality", _("Commune")
-    INTERCOMMUNALITY = "intercommunality", _("Intercommunalité")
-    DEPARTMENT = "department", _("Département")
-    REGION = "region", _("Région")
 
 
 class InitiatorType(models.TextChoices):
@@ -101,7 +96,8 @@ class PillarName(models.TextChoices):
     COOPERATION = "coopération", _("Coopération")
 
 
-class SurveyLocality(models.TextChoices):
-    CITY = "city", _("Commune/EPCI")
+class Locality(models.TextChoices):
+    CITY = "city", _("Commune")
+    EPCI = "epci", _("EPCI")
     DEPARTMENT = "department", _("Département")
     REGION = "region", _("Région")
