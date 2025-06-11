@@ -70,4 +70,5 @@ class Migration(migrations.Migration):
                 verbose_name="Échelon du questionnaire",
             ),
         ),
+        migrations.RunPython(update_assessment_locality_type, migrations.RunPython.noop)
     ]
