@@ -51,8 +51,8 @@ export const WORKSHOP_MEDIUM = {
   paper: $t("Sur papier"),
 }
 export const LOCALITY_TYPE_NAME = {
-  municipality: $t("Commune"),
-  intercommunality: $t("Intercommunalité"),
+  city: $t("Commune"),
+  epci: $t("Intercommunalité"),
   department: $t("Département"),
   region: $t("Région"),
 }

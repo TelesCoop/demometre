@@ -50,7 +50,7 @@ Cypress.Commands.add("startQuestionnaire", (cityCode, assessmentType, userIsInit
   cy.wait(400)
   cy.getEl('zip-code').type(cityCode)
   cy.getEl('search').click()
-  cy.getEl(`locality-municipality-${cityCode}`).click()
+  cy.getEl(`locality-city-${cityCode}`).click()
   cy.getEl('submit').click()
   if (userIsInitiator) {
     cy.getEl(`${assessmentType}-choose`).click()

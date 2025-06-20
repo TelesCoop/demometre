@@ -364,7 +364,7 @@ class RepresentativityCriteriaFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = RepresentativityCriteria
 
-    survey_locality = SurveyLocality.CITY
+    survey_locality = Locality.CITY
     name = factory.Faker("name")
     profiling_question = factory.SubFactory(QuestionFactory)
     min_rate = factory.Faker("random_int", min=0, max=100)

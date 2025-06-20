@@ -190,8 +190,8 @@ export type Definition = {
 
 // Assessment
 export const LOCALITY_TYPE: Record<string, { key: string; value: string }> = {
-  MUNICIPALITY: { key: "municipality", value: $t("Commune") },
-  INTERCOMMUNALITY: { key: "intercommunality", value: $t("Intercommunalité") },
+  CITY: { key: "city", value: $t("Commune") },
+  EPCI: { key: "epci", value: $t("Intercommunalité") },
   DEPARTMENT: { key: "department", value: $t("Département") },
   REGION: { key: "region", value: $t("Région") },
 }
@@ -217,8 +217,8 @@ export type Locality = {
   localityType: LocalityTypes
 }
 export type Localities = {
-  municipality: Locality[]
-  intercommunality: Locality[]
+  city: Locality[]
+  epci: Locality[]
   region: Locality[]
   department: Locality[]
 }

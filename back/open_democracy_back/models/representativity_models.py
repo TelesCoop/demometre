@@ -32,7 +32,9 @@ class RepresentativityCriteria(index.Indexed, models.Model):
         on_delete=models.CASCADE,
         verbose_name=_("Question de profilage reliée"),
         related_name="representativity_criteria",
-        limit_choices_to={"type": QuestionType.UNIQUE_CHOICE},
+        limit_choices_to={
+            "type__in": [QuestionType.UNIQUE_CHOICE, QuestionType.MULTIPLE_CHOICE]
+        },
     )
     min_rate = models.IntegerField(
         default=0,
@@ -145,6 +147,26 @@ class AssessmentRepresentativity(models.Model):
         # values() : specifies which columns are going to be used to "group by"
         # annotate() : specifies an operation over the grouped values
         locale = translation.get_language()
+        question_type = self.representativity_criteria.profiling_question.type
+
+        # Build the filter condition based on question type
+        if question_type == QuestionType.UNIQUE_CHOICE:
+            count_filter = Q(
+                unique_choice_participationresponses__participation__assessment_id=self.assessment_id,
+                unique_choice_participationresponses__participation__user__is_unknown_user=False,
+            )
+            count_field = "unique_choice_participationresponses"
+        elif question_type == QuestionType.MULTIPLE_CHOICE:
+            count_filter = Q(
+                multiple_choice_participationresponses__participation__assessment_id=self.assessment_id,
+                multiple_choice_participationresponses__participation__user__is_unknown_user=False,
+            )
+            count_field = "multiple_choice_participationresponses"
+        else:
+            # Fallback for unsupported question types
+            count_filter = Q()
+            count_field = "unique_choice_participationresponses"
+
         return (
             self.representativity_criteria.profiling_question.response_choices.all()
             .exclude(representativity_criteria_rule__totally_ignore=True)
@@ -175,11 +197,8 @@ class AssessmentRepresentativity(models.Model):
             )
             .annotate(
                 total=Count(
-                    "unique_choice_participationresponses",
-                    filter=Q(
-                        unique_choice_participationresponses__participation__assessment_id=self.assessment_id,
-                        unique_choice_participationresponses__participation__user__is_unknown_user=False,
-                    ),
+                    count_field,
+                    filter=count_filter,
                 )
             )
             .order_by("sort_order")
@@ -187,14 +206,28 @@ class AssessmentRepresentativity(models.Model):
 
     @property
     def total_responses(self):
-        return (
-            self.representativity_criteria.profiling_question.participationresponses.filter(
-                participation__assessment_id=self.assessment_id,
-                participation__user__is_unknown_user=False,
-            )
-            .exclude(unique_choice_response=None)
-            .count()
+        question_type = self.representativity_criteria.profiling_question.type
+
+        base_queryset = self.representativity_criteria.profiling_question.participationresponses.filter(
+            participation__assessment_id=self.assessment_id,
+            participation__user__is_unknown_user=False,
         )
+
+        if question_type == QuestionType.UNIQUE_CHOICE:
+            return base_queryset.filter(unique_choice_response__isnull=False).count()
+        elif question_type == QuestionType.MULTIPLE_CHOICE:
+            # For multiple choice, count responses that have at least one choice selected
+            return (
+                base_queryset.filter(multiple_choice_response__isnull=False)
+                .distinct()
+                .count()
+            )
+        else:
+            # Fallback for other question types
+            return base_queryset.filter(
+                Q(unique_choice_response__isnull=False)
+                | Q(multiple_choice_response__isnull=False)
+            ).count()
 
     def acceptability_threshold_considered(self, response_choice_threshold=None):
         return (

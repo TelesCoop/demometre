@@ -375,15 +375,21 @@ class Assessment(TimeStampedModel, ClusterableModel):
     def population(self):
         if self.locality_type == Locality.CITY:
             return self.municipality.population
-        if self.locality_type == Locality.EPCI:
+        elif self.locality_type == Locality.EPCI:
             return self.epci.population
+        else:
+            return None
 
     @property
     def collectivity_name(self):
         if self.locality_type == Locality.CITY:
             return self.municipality.name
-        if self.locality_type == Locality.EPCI:
+        elif self.locality_type == Locality.EPCI:
             return self.epci.name
+        elif self.locality_type == Locality.DEPARTMENT:
+            return self.department.name
+        elif self.locality_type == Locality.REGION:
+            return self.region.name
 
     @property
     def code(self):
