@@ -304,6 +304,7 @@ class QuestionnaireQuestionModelAdmin(ModelAdmin):
         "criteria__marker__pillar__survey__name",
         "criteria__marker__pillar__name",
         "objectivity",
+        "is_participative_process_question",
         "roles",
         "profiles",
         "type",
