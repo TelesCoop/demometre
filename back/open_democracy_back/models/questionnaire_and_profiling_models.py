@@ -635,6 +635,9 @@ class Question(index.Indexed, TimeStampedModel, ClusterableModel):
         index.SearchField(
             "name",
         ),
+        index.SearchField(
+            "concatenated_code",
+        ),
     ]
 
     principal_panels = [
@@ -688,7 +691,7 @@ class Question(index.Indexed, TimeStampedModel, ClusterableModel):
 
     def __str__(self):
         if self.profiling_question:
-            return f"{_('Profilage')}: {self.name_fr}"
+            return f"{_('Profilage')} {self.code}: {self.name_fr}"
         return f"{self.concatenated_code}: {self.name_fr}"
 
     def clean(self):
