@@ -1369,6 +1369,14 @@ class ParticipativeProcessPage(Page):
         default=_("Valider"),
     )
 
+    content_panels = Page.content_panels + [
+        FieldPanel("processes_title"),
+        FieldPanel("description"),
+        FieldPanel("add_participative_process_call_to_action"),
+        FieldPanel("confirm_call_to_action"),
+        FieldPanel("skip_call_to_action"),
+    ]
+
 
 class AnimatorPage(Page):
     parent_page_types = ["HomePage"]
