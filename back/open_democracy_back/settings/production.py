@@ -36,7 +36,7 @@ EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 DEFAULT_FROM_EMAIL = "no-reply@telescoop.fr"
 SERVER_EMAIL = "no-reply@telescoop.fr"
 
-WAGTAILADMIN_BASE_URL = "https://demometre.org"
-FRONT_END_URL = "https://demometre.org"
+WAGTAILADMIN_BASE_URL = config.getstr("site.main_host")
+FRONT_END_URL = config.getstr("site.main_host")
 
 WAGTAIL_ENABLE_UPDATE_CHECK = False  # Disable update alerts
