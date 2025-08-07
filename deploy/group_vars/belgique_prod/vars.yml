@@ -1,0 +1,23 @@
+---
+environment_suffix: "_belgique_prod"
+project_slug: "{{ base_project_slug }}{{ environment_suffix }}"
+
+project_dir: /{{project_base_dir}}{{ environment_suffix }}
+backend_static_path: "{{ project_dir }}/backend_static"
+media_static_path: "{{ project_dir }}/backend/media"
+
+frontend_branch: dev
+backend_branch: dev
+n_workers: 4
+
+node_version: 18.18.0
+
+backend_application_port: 8048  # must be unique for each project on the same server
+frontend_application_port: 3048  # must be unique for each project on the same server
+
+public_hostnames:
+  - belgique.demometre.tlscp.fr
+
+project_db_name: "{{ project_slug }}"
+
+environment_name: belgique_prod

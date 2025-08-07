@@ -241,3 +241,6 @@ AUTH_USER_MODEL = "my_auth.User"
 
 HIJACK_ALLOW_GET_REQUESTS = True
 LOGIN_REDIRECT_URL = "/"
+
+# Country specific settings
+COUNTRY = config.getstr("localization.country", "FR")

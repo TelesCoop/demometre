@@ -28,3 +28,11 @@ environment = {{ environment_name }}
 
 [site]
 main_host = {{ public_hostnames[0] }}
+
+
+[localization]
+{% if group_names[0] == "prod" or group_names[0] == "preprod" %}
+country = FR
+{% elif group_names[0] == "belgique_prod" or group_names[0] == "belgique_preprod" %}
+country = BE
+{% endif %}
