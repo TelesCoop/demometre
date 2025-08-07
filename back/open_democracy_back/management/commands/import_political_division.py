@@ -20,7 +20,7 @@ from open_democracy_back.models import (
 country = settings.COUNTRY
 
 
-def import_political_division(apps, _):
+def import_political_division():
     bulk_region = []
     for region in REGIONS:
         bulk_region.append(Region(name=region["nom"], code=region["code"]))
