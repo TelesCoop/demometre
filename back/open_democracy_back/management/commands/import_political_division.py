@@ -24,7 +24,8 @@ def import_political_division():
     bulk_region = []
     for region in REGIONS:
         bulk_region.append(Region(name=region["nom"], code=region["code"]))
-    bulk_region.append(Region(name="Région d'outre-mer", code="97"))
+    if country == "FR":
+        bulk_region.append(Region(name="Région d'outre-mer", code="97"))
     Region.objects.bulk_create(bulk_region)
     regions = {region.code: region for region in Region.objects.all()}
 
@@ -37,9 +38,10 @@ def import_political_division():
                 region=regions[department["region"]],
             )
         )
-    bulk_department.append(
-        Department(name="Département d'outre-mer", code="97", region=regions["97"])
-    )
+    if country == "FR":
+        bulk_department.append(
+            Department(name="Département d'outre-mer", code="97", region=regions["97"])
+        )
 
     Department.objects.bulk_create(bulk_department)
     departments = {
