@@ -413,7 +413,7 @@ class Criteria(index.Indexed, ClusterableModel):
     class Meta:
         verbose_name_plural = _("3. Critères")
         verbose_name = _("3. Critère")
-        ordering = ["code"]
+        ordering = ["concatenated_code"]
 
 
 @register_snippet
