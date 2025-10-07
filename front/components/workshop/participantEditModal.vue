@@ -158,11 +158,11 @@ const props = defineProps({
   participant: { type: Object as PropType<WorkshopParticipation>, default: () => ({}) },
 })
 const workshopId: number = +route.params.workshopId
-const assessmentId: number = +route.params.id
+const assessmentId: number = +route.params.assessmentId
 const emit = defineEmits(["close"])
 const isNew = computed(() => Object.keys(props.participant).length == 0)
 const participation = ref<WorkshopParticipation>({ ...props.participant })
-console.log("### edit modal with", participation)
+console.log("### edit modal with", {participation, assessmentId})
 if (participation.value.responseByQuestionId == null) {
   participation.value.responseByQuestionId = {}
 }

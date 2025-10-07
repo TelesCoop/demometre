@@ -18,7 +18,7 @@ numpy==1.22.3
 pandas==1.4.1
 psycopg2==2.9.5
 rollbar>=1.1,<1.2
-telescoop_backup==0.1.4
+telescoop_backup==0.6.2
 wagtail>=6.1,<6.2
 wagtail-generic-chooser==0.5.1
 wagtail-localize==1.9

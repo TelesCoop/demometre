@@ -68,6 +68,42 @@ class HomePage(Page):
     feedback_block_intro = models.TextField(
         verbose_name=_("Intro du bloc retours d'expérience"), blank=True
     )
+    international_block_title = models.CharField(
+        max_length=68,
+        verbose_name=_("Titre du bloc International"),
+        blank=True,
+        help_text=_(
+            "Si ce champ est vide, cette section ne s'affichera pas sur l'accueil"
+        ),
+    )
+    international_block_intro = models.TextField(
+        verbose_name="Intro du bloc Blog", blank=True
+    )
+    international_block_countries = StreamField(
+        [
+            (
+                "country",
+                blocks.StructBlock(
+                    [
+                        (
+                            "button_name_fr",
+                            blocks.CharBlock(label=f"{_('Nom du bouton')} (fr)"),
+                        ),
+                        (
+                            "button_name_en",
+                            blocks.CharBlock(label=f"{_('Nom du bouton')} (en)"),
+                        ),
+                        ("link", blocks.URLBlock(label=_("Lien"))),
+                    ],
+                    label_format=_("Pays : {button_name}"),
+                    label=_("Pays"),
+                ),
+            )
+        ],
+        blank=True,
+        verbose_name=_("Liste des pays"),
+        use_json_field=True,
+    )
     blog_block_title = models.CharField(
         max_length=68,
         verbose_name=_("Titre du bloc Blog"),
@@ -116,6 +152,14 @@ class HomePage(Page):
                 FieldPanel("feedback_block_intro"),
             ],
             heading=_("Retour d'expérience"),
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("international_block_title"),
+                FieldPanel("international_block_intro"),
+                FieldPanel("international_block_countries", classname="full"),
+            ],
+            heading=_("International"),
         ),
         MultiFieldPanel(
             [

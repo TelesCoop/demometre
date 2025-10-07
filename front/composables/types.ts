@@ -445,6 +445,9 @@ export type HomePage = {
   feedbackBlockTitle: string
   feedbackBlockIntro: string
   feedbacks: Feedback[]
+  internationalBlockTitle: string
+  internationalBlockIntro: string
+  internationalBlockCountries: any[]
   blogBlockTitle: string
   blogBlockIntro: string
   blogPosts: Article[]

@@ -391,9 +391,8 @@ class Criteria(index.Indexed, ClusterableModel):
     translated_fields = ["name", "description", "explanatory"]
 
     search_fields = [
-        index.SearchField(
-            "name",
-        )
+        index.SearchField("name_fr"),
+        index.SearchField("concatenated_code"),
     ]
 
     def __str__(self):

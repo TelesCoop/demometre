@@ -95,6 +95,7 @@
           />
           <InformationDetail
             v-if="!assessment.details.hasDetailAccess"
+
             :title="$t('participants hors ateliers')"
             :value="assessment.participationCount"
           />
