@@ -64,8 +64,6 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <!-- button to toggle locale between fr and en -->
-              <HeaderLocaleSwitcher />
               <NuxtLink
                 v-if="!isEvaluationRoute && assessmentStore.userHasNoAssessment"
                 to="/evaluation/localisation"
@@ -110,6 +108,7 @@
               >
                 {{ $t("Se connecter") }}
               </NuxtLink>
+              <HeaderLocaleSwitcher />
             </div>
           </div>
         </div>

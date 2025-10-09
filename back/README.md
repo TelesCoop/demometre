@@ -56,6 +56,7 @@ Pour terminer : connectez-vous à la plateforme du DémoMètre avec le compte qu
 le code de `open_democracy_back.apps.ready`)
 - envoyer en (pré-)prod le nouveau code
 - ajouter la langue dans les paramètres de wagtail
+- ajouter la langue dans front/xx/localeSwitcher.vue:availableLocales
 - redémarrer le service web (via supervisor) pour que les changements soient bien pris
 en compte
 
