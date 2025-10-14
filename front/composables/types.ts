@@ -201,7 +201,7 @@ export type LocalityTypes =
   | "region"
   | "department"
 export const LOCALITY_TYPES = Object.values(LOCALITY_TYPE).map((localityType) => localityType.key)
-export type SurveyLocality = "city" | "epci" | "region" | "department"
+export type SurveyLocality = LocalityTypes
 export const AssessmentType = {
   QUICK: { key: "quick", value: $t("Diagnostic rapide") },
   PARTICIPATIVE: { key: "participative", value: $t("Evaluation participative") },

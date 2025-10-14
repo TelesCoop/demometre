@@ -38,17 +38,11 @@
             class="custom-hidden white-on-black-input-checked"
             name="localityType"
           >
-          <label
-            :for="localityType.key"
-            class="button is-shade-600 is-outlined locality"
-          >
-            <template v-if="foreignInstanceName()">
-              {{ localityType[`value_${foreignInstanceName()}`] || localityType.value }}
-            </template>
-            <template v-else>
-              {{ localityType.value }}
-            </template>
-          </label>
+            <label
+              :for="localityType.key"
+              class="button is-shade-600 is-outlined locality">
+              {{ LOCALITY_TYPE_NAME[localityType.key] }}
+            </label>
         </div>
       </div>
     </div>
@@ -150,6 +144,7 @@ import {
   LOCALITY_TYPE,
   type LocalityTypes,
 } from "~/composables/types"
+import { LOCALITY_TYPE_NAME } from "~/utils/constants"
 import { usePageStore } from "~/stores/pageStore"
 import { usePressEnter } from "~/composables/pressEnter"
 import { useQuestionnaireStore } from "~/stores/questionnaireStore"
