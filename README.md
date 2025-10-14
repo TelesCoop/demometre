@@ -14,13 +14,83 @@
 
 ### Cycle de vie d'une évaluation et évaluations multiples par ville
 
+
+
 ### Process participatifs
 
-Lors de l'initiation d'une évalution (et uniquement lors de l'évaluation), on peut définir des process
-participatifs pour la collectivité évaluée. Les process participatifs sont associées à des catégories
-process participatifs, qui sont les réponses possibles à la Question dont le code est "7A"
+#### Définir les process participatifs
+
+Auparavant, pour les questions qui concernaient les process participatifs, il était difficile
+d'interpréter les réponses s'il y avait plusieurs process participatifs pour la ville. Ça posait
+également des questions pour les participants : comment dois-je répondre à la question de savoir
+si j'ai été écouté lors des process participatifs si j'ai participé à plusieurs et que j'ai
+des avis différents ?
+
+Lors de l'initiation d'une évalution (et uniquement lors de l'évaluation), il est maintenant possible de
+définir des process participatifs pour la collectivité évaluée. Les process participatifs sont associées
+à des catégories process participatifs, qui sont les réponses possibles à la Question dont le code est
+"7A".
+
+Si des process participatifs sont définis pour une évaluation, les participants peuvent indiquer les
+process auxquels iels ont participé lors des questions de profilage.
+
+#### Les questions qui concernent les process participatifs
+
+Dans l'admin, on peut définir les questions qui concernent les process participatifs, en cochant
+simplement la case correspondantes dans l'édition des questions.
+
+![admin process participatif](docs-images/admin-process-participatif.png)
+
+En tant que participant, quand je réponds aux questions, si une questions concerne un process
+participatif et que j'ai indiqué avoir participé à plusieurs process participatifs, je réponds
+alors plusieurs fois à la question, une fois par process participatif.
+
+Lorsque je visualise les résultats, je peux sélectionner le ou les process participatifs pour
+lesquels je souhaite visualiser les résultats.
 
 ### Seuils de représentativité
+
+Les seuils de représentativité servent à déterminer quand une évaluation peut être publiée : c'est le cas
+lorsque tous les seuils de représentativité sont respéctés.
+
+Par exemple, si j'ai configuré pour le seuil de représentativité "Genre" 35% pour Femme et 35% pour Homme,
+l'évaluation ne peut être publiée que si au moins 35% des participants ont répondu Femme à la question de
+profilage ET que au moins 35% des participants ont répondu Homme à la question de profilage.
+
+#### Modifier les seuils pour une évaluation
+
+Ces seuils peuvent être configuré par l'initiateur, dans la page d'une évaluation
+(accessible depuis Mon Compte -> Mes Évaluations -> cliquer sur l'évaluation).
+
+![Configuration des seuils de représentativité](docs-images/configuration-des-seuils-de-representativité.png)
+
+Les chiffres indiqués en gris sont les valeurs par défaut (configurable dans l'admin).
+Je peux modifier chacun des seuils. Un seuil est ignoré s'il est rempli à zéro.
+Pour rétablir la valeur par défaut, cliquer sur la croix à côté de celui-ci.
+
+#### Modifier globalement les seuils
+
+Dans l'interface admin, les seuils peuvent être modifié en cliquant depuis le menu de gauche sur Représentativité.
+
+![Critères de représentativité](docs-images/criteres-representativite.png)
+
+De manière globale, on ne peut définir qu'un seuil par question de profilage, sans pouvoir différencier.
+Par exemple pour les catégories socio-professionnelles, la même valeur choisie s'appliquera à chacune des catégories
+socio-professionnelle définie. Comme décrit plus haut, cela peut cependant être affiné par évaluation.
+
+Si certains réponses sont peu courantes, on peut toutefois les exclure des critères de représentativité. Sur
+l'image plus haut, cliquer sur le bouton "Affiner le critère de représentativité".
+
+![Affiner les critères de représentativité](docs-images/affiner-critere-representativite.png)
+
+- Ne pas compter pour le seuil d'acceptabilité minimal : signifie que ce critère est affiché dans le tableau
+de bord d'une évaluation, mais ignoré pour le calcul du seuil d'acceptabilité minimal.
+
+- Ignorer totalement : signifie que cette réponse est également ignorée pour le calcul du seuil d'acceptabilité
+minimal, mais également que la réponse n'est pas affichée dans le tableau de bord. Également, les réponses
+correspondantes ne sont pas prises en compte dans les calculs. Si je coche cette case pour Non binaire, et que
+10 personnes ont répondu Femme, 10 personnes ont répondu Homme et 5 personnes Non binaire, le tableau de bord
+affichera 50%/50% (et non 40%/40%)
 
 ### Générer un questionnaire papier
 
