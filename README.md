@@ -38,6 +38,12 @@ Depuis la page d'une évaluation (Mon Compte -> Évaluations -> Mon évaluation)
 Depuis la page d'un atelier (cliquer dessus depuis la liste pour y accéder), on peut modifier les
 informations et saisir des réponses papier.
 
+Pour saisir des réponses papier, il faut d'abord saisir des participants, et indiquer donc qu'ils
+ont répondu "Sur papier".
+
+Une fois les participants saisis, cliquer sur "Saisir les réponses papier". On peut répondre ensuite
+à chaque question, une fois par participant.
+
 ### Traduction
 
 #### Éléments traduisibles dans l'interface d'administration
