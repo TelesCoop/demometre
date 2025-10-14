@@ -41,7 +41,14 @@
           <label
             :for="localityType.key"
             class="button is-shade-600 is-outlined locality"
-          >{{ localityType.value }}</label>
+          >
+            <template v-if="foreignInstanceName()">
+              {{ localityType[`value_${foreignInstanceName()}`] || localityType.value }}
+            </template>
+            <template v-else>
+              {{ localityType.value }}
+            </template>
+          </label>
         </div>
       </div>
     </div>
@@ -187,7 +194,7 @@ const localityOfSurveys = computed(() => {
 const localityTypeToShow = computed(() => {
   const valueToPick = [
     "CITY",
-    "EPCI",
+    localityOfSurveys.value.includes("epci") ? "EPCI" : "",
     localityOfSurveys.value.includes("department") ? "DEPARTMENT" : "",
     localityOfSurveys.value.includes("region") ? "REGION" : "",
   ].filter(Boolean)

@@ -50,3 +50,10 @@ export const getAnswerKey = (questionId: number, participativeProcessId: number|
   }
   return (participativeProcessId || -1) * ONE_MILLION + questionId
 }
+
+export const foreignInstanceName = (): string|null => {
+  if (window.location.host.includes('belgique')) {
+    return 'belgique'
+  }
+  return null
+}
