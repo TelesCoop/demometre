@@ -12,7 +12,17 @@
 
 [Éléments de documentation technique à destination de Démocratie Ouverte](https://docs.google.com/document/d/1gxbE-jc1jgo6TjsCxgWjgNBIH2bfUEvHKVm4Xmb4Aso/edit?tab=t.0)
 
-### Questionnaire papier
+### Cycle de vie d'une évaluation et évaluations multiples par ville
+
+### Process participatifs
+
+Lors de l'initiation d'une évalution (et uniquement lors de l'évaluation), on peut définir des process
+participatifs pour la collectivité évaluée. Les process participatifs sont associées à des catégories
+process participatifs, qui sont les réponses possibles à la Question dont le code est "7A"
+
+### Seuils de représentativité
+
+### Générer un questionnaire papier
 
 Note : seuls les utilisateurs administrateurs ou experts peuvent générer un questionnaire papier.
 
@@ -41,8 +51,12 @@ informations et saisir des réponses papier.
 Pour saisir des réponses papier, il faut d'abord saisir des participants, et indiquer donc qu'ils
 ont répondu "Sur papier".
 
+![Participants saisis](docs-images/ateliers-participants.png)
+
 Une fois les participants saisis, cliquer sur "Saisir les réponses papier". On peut répondre ensuite
 à chaque question, une fois par participant.
+
+![Réponses papier](docs-images/reponses-papier.png)
 
 ### Traduction
 
