@@ -156,7 +156,7 @@ Pour terminer : connectez-vous à la plateforme du DémoMètre avec le compte qu
 
 - lancer `E2E_TESTS=1 python manage.py migrate` si nécessaire (lorsque la BDD de test n'existe pas),
 puis `E2E_TESTS=1 python manage.py e2e_populate_data` si nécessaire (lorsque des données de test ont changé).
-- lancer `E2E_TESTS=1 python manage.py migrate`
+- lancer `E2E_TESTS=1 python manage.py runserver` pour servir le front avec les données de test
 
 #### Front
 
