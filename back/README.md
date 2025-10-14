@@ -57,10 +57,12 @@ Pour terminer : connectez-vous à la plateforme du DémoMètre avec le compte qu
 - ajouter la langue dans `settings/base.py`, dans les `WAGTAIL_CONTENT_LANGUAGES` et
 `LOCALES_FOR_TRANSLATED_FIELDS`
 - ajouter manuellement le champ Criteria.explanatory_{locale}
+- ajouter manuellement le champ HomePage.international_block_countries.button_name_xx
 - lancer `python manage.py makemigrations` (des champs sont ajoutés automatiquement dans les modèles via
 le code de `open_democracy_back.apps.ready`)
 - envoyer en (pré-)prod le nouveau code
 - ajouter la langue dans les paramètres de wagtail
+- ajouter la langue dans front/xx/localeSwitcher.vue:availableLocales
 - redémarrer le service web (via supervisor) pour que les changements soient bien pris
 en compte
 
