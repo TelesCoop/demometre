@@ -150,6 +150,19 @@ Pour terminer : connectez-vous à la plateforme du DémoMètre avec le compte qu
 
 ## Pour les développeurs
 
+### Lancer les tests E2E
+
+#### Back
+
+- lancer `E2E_TESTS=1 python manage.py migrate` si nécessaire (lorsque la BDD de test n'existe pas),
+puis `E2E_TESTS=1 python manage.py e2e_populate_data` si nécessaire (lorsque des données de test ont changé).
+- lancer `E2E_TESTS=1 python manage.py migrate`
+
+#### Front
+
+- lancer un `yarn run dev` dans un terminal
+- lancer `yarn run cypress:open` pour lancer les tests
+
 ### Ajouter une langue
 
 - ajouter la langue dans `settings/base.py`, dans les `WAGTAIL_CONTENT_LANGUAGES` et
