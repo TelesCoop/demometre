@@ -180,68 +180,6 @@
         />
       </form>
     </PageSection>
-
-    <!-- Representativity rates step -->
-    <PageSection
-      v-else-if="initializationSteps[currentStep] === steps.REPRESENTATIVITY"
-      class="column is-8 questionnaire-container"
-      :title="pageStore.evaluationInitiationPage.representativityTitle"
-      :intro="pageStore.evaluationInitiationPage.representativityDescription"
-      :is-first-element="true"
-      :intro-is-rich-text="true"
-    >
-      <form
-        class="nav-questionnaire-container"
-        @submit.prevent="onSubmit"
-      >
-        <div
-          v-for="representativityCriteria of assessmentStore.representativityCriteriasForSurveyLocality(
-            assessmentStore.currentAssessment.surveyLocality,
-          )"
-          :key="representativityCriteria.id"
-        >
-          <label class="label is-size-5">{{
-            representativityCriteria.name
-          }}</label>
-          <RichText
-            class="is-family-secondary is-size-6"
-            :rich-text="representativityCriteria.explanation"
-          />
-          <ResponseInputPercentage
-            v-model="representativityCriteria.acceptabilityThreshold"
-            class="mt-1"
-            :color="color"
-            :question-id="representativityCriteria.id"
-          />
-        </div>
-        <div class="buttons mt-1_5">
-          <button
-            class="button is-shade-600 is-rounded"
-            :disabled="disabled"
-          >
-            <span>{{ $t("Valider") }}</span>
-            <span class="icon">
-              <icon
-                size="20"
-                name="check"
-              />
-            </span>
-          </button>
-
-          <!-- Permet d'appuyer sur entrer -->
-          <input
-            type="submit"
-            hidden
-          >
-        </div>
-
-        <ButtonsArrowButton
-          color="no-pillar"
-          class="arrow-button-fixed is-left"
-          @click.prevent="goBack"
-        />
-      </form>
-    </PageSection>
   </div>
 </template>
 
@@ -283,15 +221,12 @@ enum steps {
   ASSESSMENT_TYPE = "assessment_type",
   START = "start",
   INITIATOR = "initiator",
-  REPRESENTATIVITY = "representativity",
 }
 
 const initializationSteps = [
   steps.ASSESSMENT_TYPE,
   steps.START,
   steps.INITIATOR,
-  // At the last moment it was decided not to give the possibility to customize the representativity in order not to confuse the user
-  // steps.REPRESENTATIVITY,
 ]
 const currentStep = ref<number>(
   assessmentStore.newAssessment.assessmentType ? 1 : 0,
@@ -373,22 +308,9 @@ function goBack() {
 }
 
 function goToNextStep() {
-  if (disabled.value) {
-    return
-  }
-  if (initializationSteps.length - 1 > currentStep.value) {
-    if (
-      initializationSteps[currentStep.value + 1] === steps.REPRESENTATIVITY &&
-      assessmentStore.newAssessment.assessmentType === AssessmentType.QUICK.key
-    ) {
-      // There is no representativity logic for quick diagnostics
-      onSubmit()
-    } else {
-      currentStep.value += 1
-    }
-  } else {
-    onSubmit()
-  }
+  if (disabled.value) return
+  if (initializationSteps.length - 1 > currentStep.value) currentStep.value += 1
+  else onSubmit()
 }
 
 async function onSubmit() {
@@ -398,9 +320,11 @@ async function onSubmit() {
     expertId: expertSelected.value?.id || null,
   })
   if (isSuccess) {
-    useRouter().push(
-      `/evaluation/initialisation/${assessmentStore.currentAssessmentId}/questions-objectives`,
-    )
+    if (assessmentStore.currentAssessment.assessmentType === AssessmentType.QUICK.key) {
+      router.push(`/evaluation/initialisation/${assessmentStore.currentAssessmentId}/questions-objectives`)
+    } else {
+      router.push(`/evaluation/initialisation/${assessmentStore.currentAssessmentId}/process-participatifs`)
+    }
   }
 }
 </script>

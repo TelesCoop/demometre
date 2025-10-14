@@ -33,7 +33,6 @@ from open_democracy_back.models.assessment_models import (
     AssessmentResponse,
     AssessmentType,
     InitiatorType,
-    LocalityType,
     Municipality,
 )
 from open_democracy_back.models.representativity_models import (
@@ -44,6 +43,7 @@ from open_democracy_back.permissions import (
     HasWriteAccessOnAssessment,
     HasAssessmentWriteAccessForUpdate,
 )
+from open_democracy_back.querysets import assessments_by_user
 from open_democracy_back.scoring import (
     get_scores_by_assessment_pk,
 )
@@ -60,8 +60,11 @@ from open_democracy_back.serializers.assessment_serializers import (
     RegionSerializer,
     DepartmentSerializer,
 )
+from open_democracy_back.serializers.questionnaire_and_profiling_serializers import (
+    ParticipativeProcessSerializer,
+)
 from open_democracy_back.serializers.user_serializers import UserSerializer
-from open_democracy_back.utils import ManagedAssessmentType, SurveyLocality
+from open_democracy_back.utils import ManagedAssessmentType, Locality
 
 logger = logging.getLogger(__name__)
 
@@ -105,15 +108,7 @@ class AssessmentsView(
         if request.user.is_anonymous:
             assessments = []
         else:
-            assessments = Assessment.objects.filter(
-                Q(
-                    participations__in=Participation.objects.filter_available(
-                        self.request.user.id, timezone.now()
-                    )
-                )
-                | Q(initiated_by_user=self.request.user)
-                | Q(experts=self.request.user),
-            ).distinct()
+            assessments = assessments_by_user(self.request.user)
         return RestResponse(
             status=200,
             data=self.serializer_class(
@@ -213,12 +208,6 @@ class AssessmentsView(
                     assessment=assessment,
                     representativity_criteria=representativity_criteria,
                 )[0]
-                # representativity_threshold as shape of [{"id": 1, "value":30}, {"id": 2, "value":20}]
-                representativity.acceptability_threshold = next(
-                    threshold["value"]
-                    for threshold in initialize_data["representativity_thresholds"]
-                    if threshold["id"] == representativity_criteria.id
-                )
                 representativity.save()
 
             return RestResponse(
@@ -234,26 +223,24 @@ class AssessmentsView(
         else:
             user_id = request.user.id
         locality_id = request.GET.get("locality_id")
-        locality_type = request.GET.get("locality_type", LocalityType.MUNICIPALITY)
+        locality_type = request.GET.get("locality_type", Locality.CITY)
         assessments_usable = Assessment.objects.all().exclude(
             Q(assessment_type__assessment_type=ManagedAssessmentType.QUICK)
             & ~Q(initiated_by_user_id=user_id)
         )
-        survey = Survey.objects.get(survey_locality=SurveyLocality.CITY)
+        survey = Survey.objects.get(survey_locality=locality_type)
         assessment_kwargs = {"locality_type": locality_type}
-        if locality_type == LocalityType.MUNICIPALITY:
+        if locality_type == Locality.CITY:
             assessment_kwargs["municipality"] = (
                 locality := Municipality.objects.get(id=locality_id)
             )
-        elif locality_type == LocalityType.INTERCOMMUNALITY:
+        elif locality_type == Locality.EPCI:
             assessment_kwargs["epci"] = (locality := EPCI.objects.get(id=locality_id))
-        elif locality_type == LocalityType.REGION:
-            survey = Survey.objects.get(survey_locality=SurveyLocality.REGION)
+        elif locality_type == Locality.REGION:
             assessment_kwargs["region"] = (
                 locality := Region.objects.get(id=locality_id)
             )
-        elif locality_type == LocalityType.DEPARTMENT:
-            survey = Survey.objects.get(survey_locality=SurveyLocality.DEPARTMENT)
+        elif locality_type == Locality.DEPARTMENT:
             assessment_kwargs["department"] = (
                 locality := Department.objects.get(id=locality_id)
             )
@@ -270,6 +257,21 @@ class AssessmentsView(
         )
 
         return RestResponse(status=200, data=self.serializer_class(assessment).data)
+
+    @action(
+        detail=True,
+        methods=["POST"],
+        url_path="add-participative-processes",
+        permission_classes=[IsAuthenticated],
+    )
+    def add_participative_processes(self, request, pk):
+        processes = request.data.get("participative_processes")
+        processes = [{**process, "assessment": pk} for process in processes]
+        serializer = ParticipativeProcessSerializer(data=processes, many=True)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return RestResponse(status=200, data=serializer.data)
+        return RestResponse(status=400, data=serializer.errors)
 
 
 class ZipCodeSurveysView(mixins.ListModelMixin, viewsets.GenericViewSet):
@@ -288,28 +290,28 @@ class ZipCodeSurveysView(mixins.ListModelMixin, viewsets.GenericViewSet):
         )
 
         to_return = {
-            LocalityType.MUNICIPALITY: municipalities.data,
-            LocalityType.INTERCOMMUNALITY: epcis.data,
+            Locality.CITY: municipalities.data,
+            Locality.EPCI: epcis.data,
         }
 
         # only include departements and region if corresponding surveys exist
-        if Survey.objects.filter(survey_locality=SurveyLocality.DEPARTMENT).exists():
+        if Survey.objects.filter(survey_locality=Locality.DEPARTMENT).exists():
             departments = DepartmentSerializer(
                 Department.objects.filter(
                     municipalities__zip_codes__code=zip_code
                 ).distinct(),
                 many=True,
             )
-            to_return[LocalityType.DEPARTMENT] = departments.data
+            to_return[Locality.DEPARTMENT] = departments.data
 
-        if Survey.objects.filter(survey_locality=SurveyLocality.REGION).exists():
+        if Survey.objects.filter(survey_locality=Locality.REGION).exists():
             regions = RegionSerializer(
                 Region.objects.filter(
                     departments__municipalities__zip_codes__code=zip_code
                 ).distinct(),
                 many=True,
             )
-            to_return[LocalityType.REGION] = regions.data
+            to_return[Locality.REGION] = regions.data
 
         return Response(to_return)
 
@@ -398,8 +400,14 @@ class AssessmentScoreView(APIView):
 @api_view(["GET"])
 def get_chart_data(request, assessment_id, question_id):
     question = Question.objects.get(id=question_id)
+    if participative_processes := request.query_params.get("participative-processes"):
+        participative_processes = [int(pp) for pp in participative_processes.split(",")]
+    else:
+        participative_processes = None
     data = (
-        CHART_DATA_FN_BY_QUESTION_TYPE[question.type](question, assessment_id)
+        CHART_DATA_FN_BY_QUESTION_TYPE[question.type](
+            question, assessment_id, participative_processes
+        )
         if CHART_DATA_FN_BY_QUESTION_TYPE.get(question.type)
         else None
     )

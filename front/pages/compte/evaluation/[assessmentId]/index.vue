@@ -60,10 +60,12 @@
           <span class="tag is-light is-medium">
             <template
               v-if="assessment.details.role! === 'initiator'"
-            >{{ $t("Vous êtes à l'intiative de cette évaluation")
-            }}</template>
-            <template v-if="assessment.details.role === 'expert'">{{ $t("Vous êtes l'expert de cette évaluation")
-            }}</template>
+            >{{
+                $t("Vous êtes à l'intiative de cette évaluation")
+              }}</template>
+            <template v-if="assessment.details.role === 'expert'">{{
+                $t("Vous êtes l'expert de cette évaluation")
+              }}</template>
           </span>
         </div>
         <div
@@ -228,10 +230,10 @@
               class="button is-rounded is-dark ml-1"
             >
               <span>{{
-                participationStore.status.participated
-                  ? $t("Reprendre l'évaluation")
-                  : $t("Participer à l'évaluation")
-              }}</span>
+                  participationStore.status.participated
+                    ? $t("Reprendre l'évaluation")
+                    : $t("Participer à l'évaluation")
+                }}</span>
               <span class="icon"><icon
                 size="20"
                 name="arrow-right-line"
@@ -254,55 +256,59 @@
             v-if="participationStore.status.participated"
             class="mb-3"
           />
-          <ParticipationBoard :assessment="assessmentStore.currentAssessment" />
+          <ParticipationBoard :assessment="assessmentStore.currentAssessment"/>
         </div>
       </section>
     </div>
 
     <hr>
 
-    <AssessmentWorkshops
-      v-if="assessment.details.hasDetailAccess"
-      :assessment="assessment"
-    />
+    <template v-if="assessment.details.hasDetailAccess">
 
-    <div v-if="assessment.details.hasDetailAccess">
+      <AssessmentRepresentativityRuleByChoice :assessment="assessmentStore.currentAssessment"/>
+
       <hr>
-      <PageSection :title="$t('État de paiement de la redevance')">
-        <template v-if="assessment.details.paymentDate">
-          <div class="message">
-            <div class="message-body p-3">
-              <div class="columns is-tablet">
-                <div class="column is-8">
-                  <p class="title is-4 mb-0_5">
-                    {{ $t("Paiement effectué") }}
-                  </p>
-                  <p>
-                    {{ $t("L’expert a bien réglé le paiement de la commission d’utilisation du DémoMètre.") }}
-                  </p>
-                </div>
-                <div class="column is-4">
-                  <InformationDetail
-                    :title="$t('Expert')"
-                    :value="assessment.details.paymentAuthor"
-                  />
+
+      <AssessmentWorkshops :assessment="assessment"/>
+
+      <div>
+        <hr>
+        <PageSection :title="$t('État de paiement de la redevance')">
+          <template v-if="assessment.details.paymentDate">
+            <div class="message">
+              <div class="message-body p-3">
+                <div class="columns is-tablet">
+                  <div class="column is-8">
+                    <p class="title is-4 mb-0_5">
+                      {{ $t("Paiement effectué") }}
+                    </p>
+                    <p>
+                      {{ $t("L’expert a bien réglé le paiement de la commission d’utilisation du DémoMètre.") }}
+                    </p>
+                  </div>
+                  <div class="column is-4">
+                    <InformationDetail
+                      :title="$t('Expert')"
+                      :value="assessment.details.paymentAuthor"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </template>
-        <template v-else>
-          <div class="message is-warning">
-            <div class="message-body p-3">
-              <p class="title is-4 mb-0_5">
-                {{ $t("Paiement en attente") }}
-              </p>
-              <p>{{ $t("Le paiement n'a pas encore été effectué.") }}</p>
+          </template>
+          <template v-else>
+            <div class="message is-warning">
+              <div class="message-body p-3">
+                <p class="title is-4 mb-0_5">
+                  {{ $t("Paiement en attente") }}
+                </p>
+                <p>{{ $t("Le paiement n'a pas encore été effectué.") }}</p>
+              </div>
             </div>
-          </div>
-        </template>
-      </PageSection>
-    </div>
+          </template>
+        </PageSection>
+      </div>
+    </template>
 
     <AssessmentInformationsEditModal
       v-if="showInformationsEditModal"
@@ -323,8 +329,8 @@
 </template>
 
 <script setup lang="ts">
-import { useAssessmentStore } from "~/stores/assessmentStore"
-import { useParticipationStore } from "~/stores/participationStore"
+import {useAssessmentStore} from "~/stores/assessmentStore"
+import {useParticipationStore} from "~/stores/participationStore"
 import {
   Assessment,
   AssessmentDocumentCategory,
@@ -335,9 +341,9 @@ import {
   ASSESSMENT_DOCUMENT_CATEGORIES,
   PARTICIPANT_TYPE,
 } from "~/utils/constants"
-import { useConfirm } from "~/composables/useConfirm"
-import { useI18n } from "vue-i18n"
-import { useAssessmentIsReady } from "~/composables/useAssessmentIsReady"
+import {useConfirm} from "~/composables/useConfirm"
+import {useI18n} from "vue-i18n"
+import {useAssessmentIsReady} from "~/composables/useAssessmentIsReady"
 
 definePageMeta({
   title: "Évaluation",
@@ -400,7 +406,7 @@ const informationsButtons = computed(() => {
     return []
   }
   const toReturn = [
-    { text: $t("Modifier les informations"), icon: "list-settings-line" },
+    {text: $t("Modifier les informations"), icon: "list-settings-line"},
   ]
   if (
     assessment.value.details.role === "initiator" &&

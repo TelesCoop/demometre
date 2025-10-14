@@ -1382,6 +1382,46 @@ class EvaluationQuestionnairePage(Page):
         verbose_name = _("Déroulement de l'évaluation")
 
 
+class ParticipativeProcessPage(Page):
+    parent_page_types = ["HomePage"]
+    subpage_types: List[str] = []
+    max_count_per_parent = 1
+    preview_modes = []
+
+    processes_title = models.CharField(
+        max_length=128,
+        verbose_name=_("Titre"),
+    )
+    description = RichTextField(
+        default="",
+        features=SIMPLE_RICH_TEXT_FIELD_FEATURE,
+        verbose_name=_("Description"),
+    )
+    add_participative_process_call_to_action = models.CharField(
+        max_length=32,
+        verbose_name=_("Bouton ajouter un processus participatif"),
+        default=_("Valider"),
+    )
+    confirm_call_to_action = models.CharField(
+        max_length=32,
+        verbose_name=_("Bouton de confirmation"),
+        default=_("Valider"),
+    )
+    skip_call_to_action = models.CharField(
+        max_length=32,
+        verbose_name=_("Bouton pour passer l'étape"),
+        default=_("Valider"),
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel("processes_title"),
+        FieldPanel("description"),
+        FieldPanel("add_participative_process_call_to_action"),
+        FieldPanel("confirm_call_to_action"),
+        FieldPanel("skip_call_to_action"),
+    ]
+
+
 class AnimatorPage(Page):
     parent_page_types = ["HomePage"]
     subpage_types: List[str] = []

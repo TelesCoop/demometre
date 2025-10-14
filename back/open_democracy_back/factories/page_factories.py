@@ -100,6 +100,10 @@ AnimatorPageFactory = factory.make_factory(
     democracy_models.AnimatorPage,
     **make_page_declarations(democracy_models.AnimatorPage),
 )
+ParticipativeProcessPageFactory = factory.make_factory(
+    democracy_models.ParticipativeProcessPage,
+    **make_page_declarations(democracy_models.ParticipativeProcessPage),
+)
 ContentPageFactory = factory.make_factory(
     democracy_models.ContentPage, **make_page_declarations(democracy_models.ContentPage)
 )

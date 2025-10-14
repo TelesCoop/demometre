@@ -145,6 +145,7 @@ export type Question = {
   description: string
   explainsByQuestionIds: number[]
   id: number
+  isParticipativeProcessQuestion: boolean
   mandatory: boolean
   maxMultipleChoices: number | null
   maxNumberValue: number | null
@@ -189,18 +190,18 @@ export type Definition = {
 
 // Assessment
 export const LOCALITY_TYPE: Record<string, { key: string; value: string }> = {
-  MUNICIPALITY: { key: "municipality", value: $t("Commune") },
-  INTERCOMMUNALITY: { key: "intercommunality", value: $t("Intercommunalité") },
+  CITY: { key: "city", value: $t("Commune") },
+  EPCI: { key: "epci", value: $t("Intercommunalité") },
   DEPARTMENT: { key: "department", value: $t("Département") },
   REGION: { key: "region", value: $t("Région") },
 }
 export type LocalityTypes =
-  | "municipality"
-  | "intercommunality"
+  | "city"
+  | "epci"
   | "region"
   | "department"
 export const LOCALITY_TYPES = Object.values(LOCALITY_TYPE).map((localityType) => localityType.key)
-export type SurveyLocality = "city" | "region" | "department"
+export type SurveyLocality = "city" | "epci" | "region" | "department"
 export const AssessmentType = {
   QUICK: { key: "quick", value: $t("Diagnostic rapide") },
   PARTICIPATIVE: { key: "participative", value: $t("Evaluation participative") },
@@ -216,22 +217,23 @@ export type Locality = {
   localityType: LocalityTypes
 }
 export type Localities = {
-  municipality: Locality[]
-  intercommunality: Locality[]
+  city: Locality[]
+  epci: Locality[]
   region: Locality[]
   department: Locality[]
 }
-type CountByResponseChoice = {
+export type CountByResponseChoice = {
   responseChoiceName: string
   responseChoiceId: number
   total: number
   ignoreForAcceptabilityThreshold: boolean
+  acceptabilityThreshold: number
+  ruleId?: number
 }
 export type RepresentativityCriteria = {
   id: number
   name: string
   profilingQuestionId: number
-  acceptabilityThreshold: number
   minRate: number
   explanation: string
   surveyLocality: SurveyLocality
@@ -241,8 +243,15 @@ export type AssessmentRepresentativity = {
   assessmentId: number
   representativityCriteriaName: string
   countByResponseChoice: CountByResponseChoice[]
-  acceptabilityThresholdConsidered: number
+  minRate: number
   respected: boolean
+}
+export type AssessmentRepresentativityRule = {
+  id: number
+  assessmentId: number
+  assessmentRepresentativityId: number
+  responseChoiceId: number
+  acceptabilityThreshold: number
 }
 export type AssessmentDetails = {
   calendar: string
@@ -281,9 +290,11 @@ export type Assessment = {
   initiatorUsageConsent: boolean
   isCurrent: boolean
   isInitializationQuestionsCompleted: boolean
+  localityType: SurveyLocality
   municipality: Locality | null
   name: string
   participationCount: number
+  participativeProcesses: ParticipationParticipativeProcess[]
   publicInitiator: boolean
   publishedResults: boolean
   representativities: AssessmentRepresentativity[]
@@ -316,6 +327,14 @@ export type ParticipationPillarCompleted = {
   pillarId: number
   participationId: number
 }
+export type ParticipationParticipativeProcess = {
+  id: number
+  name: string
+  category: {
+    id: number
+    name: string
+  }
+}
 export type Participation = {
   id: number | null
   assessmentId: number
@@ -325,6 +344,7 @@ export type Participation = {
   isPillarQuestionsCompleted: ParticipationPillarCompleted[]
   profileIds: number[]
   isCurrent: boolean
+  participativeProcesses: ParticipationParticipativeProcess[]
 }
 export type ClosedWithScaleResponse = {
   id: number | null
@@ -455,6 +475,13 @@ export type ReferentialPage = {
 }
 export type ParticipationBoardPage = {
   title: string
+}
+export type ParticipativeProcessPage = {
+  processesTitle: string
+  description: string
+  addParticipativeProcessCallToAction: string
+  confirmCallToAction: string
+  skipCallToAction: string
 }
 export type ResultsPage = {
   title: string
@@ -730,4 +757,10 @@ export type Training = {
   isAvailableSoon: boolean
   name: string
   url: string
+}
+export type ParticipativeProcess = {
+  id: string
+  responseChoice: number
+  assessmentId: number
+  name: string
 }

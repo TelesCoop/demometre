@@ -1,13 +1,16 @@
 import { defineStore } from "pinia"
 import {
   Criteria,
-  Marker,
+  Marker, ParticipativeProcess,
   PillarType,
   Question,
   Survey, SurveyType,
 } from "~/composables/types"
 import { useMessageStore } from "./messageStore"
 import { useApiGet } from "~/composables/api"
+import { i18n } from "~/utils/i18n-util"
+
+const $t = i18n.global.t
 
 type HierarchicalQuestionStructure = {
   criteriaId: number
@@ -94,6 +97,14 @@ export const useQuestionnaireStore = defineStore("questionnaire", {
     },
   },
   actions: {
+    async addParticipativeProcesses (assessmentId: number, processes: ParticipativeProcess[]): Promise<boolean> {
+      const { error} = await useApiPost(
+        `assessments/${assessmentId}/add-participative-processes/`,
+        {participativeProcesses: processes},
+        $t("Impossible d'ajouter les process participatifs"),
+      )
+      return !error.value
+    },
     getPillarNameById(pillarId: number) {
       return this.pillarById[pillarId].name
     },

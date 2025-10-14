@@ -1,10 +1,16 @@
 import datetime
 
+from django.utils import translation
 from rest_framework import serializers
 
 from my_auth.models import User
 from open_democracy_back.exceptions import ErrorCode
-from open_democracy_back.models import Participation, AssessmentDocument, Region
+from open_democracy_back.models import (
+    Participation,
+    AssessmentDocument,
+    Region,
+    ParticipativeProcess,
+)
 from open_democracy_back.models.assessment_models import (
     EPCI,
     Assessment,
@@ -158,11 +164,32 @@ class AssessmentDocumentSerializer(serializers.ModelSerializer):
         ]
 
 
+class ParticipativeProcessSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ParticipativeProcess
+        fields = [
+            "id",
+            "name",
+            "category",
+        ]
+        read_only_fields = fields
+
+    category = serializers.SerializerMethodField()
+
+    def get_category(self, obj: ParticipativeProcess):
+        locale = translation.get_language()
+        return {
+            "id": obj.response_choice.id,
+            "name": getattr(obj.response_choice, f"response_choice_{locale}"),
+        }
+
+
 class AssessmentSerializer(serializers.ModelSerializer):
     assessment_type = serializers.CharField(
         read_only=True, source="assessment_type.assessment_type"
     )
     documents = AssessmentDocumentSerializer(many=True)
+    participative_processes = ParticipativeProcessSerializer(many=True, read_only=True)
     epci = EpciSerializer(many=False, read_only=True)
     experts = UserSerializer(many=True, read_only=True)
     initiated_by_user = UserSerializer(read_only=True)
@@ -257,6 +284,7 @@ class AssessmentSerializer(serializers.ModelSerializer):
             "objectives",
             "name",
             "participation_count",
+            "participative_processes",
             "published_results",
             "representativities",
             "stakeholders",

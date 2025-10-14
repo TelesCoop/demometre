@@ -42,6 +42,10 @@ class Participation(models.Model):
         on_delete=models.CASCADE,
         related_name="participations",
     )
+    participative_processes = models.ManyToManyField(
+        "open_democracy_back.ParticipativeProcess",
+        related_name="participations",
+    )
     role = models.ForeignKey(
         Role,
         on_delete=models.SET_NULL,
@@ -143,9 +147,16 @@ class ParticipationResponse(Response):
     )
 
     objects = ParticipationResponseQuerySet.as_manager()
+    participative_process = models.ForeignKey(
+        "open_democracy_back.ParticipativeProcess",
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        related_name="participation_responses",
+    )
 
     class Meta:
-        unique_together = ["participation", "question"]
+        unique_together = ["participation", "question", "participative_process"]
 
 
 class ClosedWithScaleCategoryResponse(models.Model):

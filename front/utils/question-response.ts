@@ -85,12 +85,17 @@ export const toQuestionResponse = (
   assessmentId: number,
   hasPassed: boolean,
   response: QuestionResponseValue,
+  participativeProcessId?: number|null,
 ) => {
+  if (participativeProcessId == null) {
+    participativeProcessId = null
+  }
   return {
     questionId,
     participationId,
     assessmentId,
     hasPassed,
+    participativeProcessId,
     ...response,
   }
 }

@@ -7,6 +7,9 @@
     >
       {{ question.questionStatement }}
     </h1>
+    <div v-if="participativeProcess" class="notification is-info" data-cy="participative-process-info">
+      {{ $t('Répondez pour le process participatif : ') }} {{ participativeProcess?.name }}
+    </div>
     <RichText
       v-if="question.description"
       class="is-family-secondary"
@@ -94,11 +97,11 @@
 </template>
 
 <script setup lang="ts">
-import type {
+import {
   Definition,
   QuestionResponse,
   SimpleBlock,
-  Question,
+  Question, ParticipationParticipativeProcess,
 } from "~/composables/types"
 import { computed, PropType } from "vue"
 import { useI18n } from "vue-i18n"
@@ -116,6 +119,7 @@ const props = defineProps({
     default: () => ({}),
   },
   color: { type: String, required: true },
+  participativeProcess: { type: Object as PropType<ParticipationParticipativeProcess | undefined>, required: false, default: undefined },
 })
 
 const answer = defineModel("modelValue", {

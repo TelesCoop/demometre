@@ -1,6 +1,7 @@
 from django.utils import translation
 from rest_framework import serializers
 
+from open_democracy_back.models import ParticipativeProcessPage
 from open_democracy_back.models.assessment_models import AssessmentType
 from open_democracy_back.models.contents_models import (
     BlogPost,
@@ -455,6 +456,20 @@ class AnimatorPageSerializer(PageSerialiserWithLocale):
             "add_participants_intro",
             "responses_title",
             "responses_intro",
+        ]
+        read_only_fields = fields
+
+
+class ParticipativeProcessPageSerializer(PageSerialiserWithLocale):
+    class Meta:
+        model = ParticipativeProcessPage
+        fields = [
+            "id",
+            "processes_title",
+            "description",
+            "add_participative_process_call_to_action",
+            "confirm_call_to_action",
+            "skip_call_to_action",
         ]
         read_only_fields = fields
 
