@@ -6,7 +6,7 @@ import {
   EvaluationQuestionnairePage,
   HomePage,
   ImportantPages,
-  ParticipationBoardPage,
+  ParticipationBoardPage, ParticipativeProcessPage,
   ProjectPage,
   ReferentialPage,
   ResultsPage,
@@ -24,20 +24,21 @@ import { useMessageStore } from "./messageStore"
 
 export const usePageStore = defineStore("page", {
   state: () => ({
-    homePage: <HomePage>{},
-    blogPostsBySlug: <Record<string, Article>>{},
-    resources: <Article[]>[],
+    animatorPage: <AnimatorPage>{},
     blogLoaded: <boolean>false,
-    resourcesLoaded: <boolean>false,
-    referentialPage: <ReferentialPage>{},
-    participationBoardPage: <ParticipationBoardPage>{},
-    resultsPage: <ResultsPage>{},
-    usagePage: <UsagePage>{},
-    projectPage: <ProjectPage>{},
+    blogPostsBySlug: <Record<string, Article>>{},
     evaluationInitiationPage: <EvaluationInitiationPage>{},
     evaluationQuestionnairePage: <EvaluationQuestionnairePage>{},
-    animatorPage: <AnimatorPage>{},
+    homePage: <HomePage>{},
     importantPages: <ImportantPages>{},
+    participationBoardPage: <ParticipationBoardPage>{},
+    participativeProcessPage: <ParticipativeProcessPage>{},
+    projectPage: <ProjectPage>{},
+    referentialPage: <ReferentialPage>{},
+    resources: <Article[]>[],
+    resourcesLoaded: <boolean>false,
+    resultsPage: <ResultsPage>{},
+    usagePage: <UsagePage>{},
   }),
   getters: {
     projectPageMember: (state) => {
@@ -124,6 +125,21 @@ export const usePageStore = defineStore("page", {
           this.participationBoardPage = data.value[0]
         } else {
           console.error("Impossible to retrieve participation board page")
+        }
+      } else {
+        const errorStore = useMessageStore()
+        errorStore.setError(error.value.data?.messageCode)
+      }
+    },
+    async getParticipativeProcessPage() {
+      const { data, error } = await useApiGet<ParticipativeProcessPage[]>(
+        "participative-process-pages/",
+      )
+      if (!error.value) {
+        if (data.value.length) {
+          this.participativeProcessPage = data.value[0]
+        } else {
+          console.error("Impossible to retrieve participative process page")
         }
       } else {
         const errorStore = useMessageStore()

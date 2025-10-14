@@ -1,5 +1,15 @@
 from collections import defaultdict
-from typing import TypedDict, List, DefaultDict, Dict, Callable, Any, Tuple, Union
+from typing import (
+    TypedDict,
+    List,
+    DefaultDict,
+    Dict,
+    Callable,
+    Any,
+    Tuple,
+    Union,
+    Iterable,
+)
 
 import numpy as np
 import pandas as pd
@@ -18,6 +28,7 @@ from open_democracy_back.models import (
     ParticipationResponse,
     AssessmentResponse,
     Question,
+    ParticipativeProcess,
 )
 from open_democracy_back.utils import QuestionType, QUESTION_TYPE_WITH_SCORE
 
@@ -36,6 +47,19 @@ class QuestionScoreAverage(TypedDict):
     question__criteria__marker__pillar_id: int
     score: float
     count: int
+
+
+def score_per_participative_processes(score_function):
+    def wrapper(participative_processes: Iterable[ParticipativeProcess], queryset):
+        results: Dict[int, List[QuestionScore]] = {}
+        for participative_process in participative_processes:
+            results[participative_process.id] = score_function(
+                queryset.filter(question__participative_process=participative_process)
+            )
+        results[-1] = score_function(queryset)
+        return results
+
+    return wrapper
 
 
 def get_score_of_boolean_question(queryset) -> List[QuestionScore]:
@@ -290,6 +314,11 @@ SCORES_FN_BY_QUESTION_TYPE: Dict[str, Callable] = {
     QuestionType.PERCENTAGE.value: get_score_of_percentage_question,  # type: ignore
     QuestionType.CLOSED_WITH_SCALE.value: get_score_of_closed_with_scale_question,  # type: ignore
     QuestionType.NUMBER.value: get_score_of_number_question,  # type: ignore
+}
+
+SCORES_FN_BY_QUESTION_TYPE_WITH_PARTICIPATIVE_PROCESS = {
+    key: score_per_participative_processes(value)
+    for key, value in SCORES_FN_BY_QUESTION_TYPE.items()
 }
 
 

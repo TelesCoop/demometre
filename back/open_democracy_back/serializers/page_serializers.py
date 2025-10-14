@@ -1,6 +1,7 @@
 from django.utils import translation
 from rest_framework import serializers
 
+from open_democracy_back.models import ParticipativeProcessPage
 from open_democracy_back.models.assessment_models import AssessmentType
 from open_democracy_back.models.contents_models import (
     BlogPost,
@@ -51,6 +52,7 @@ class HomePageSerializer(PageSerialiserWithLocale):
     blog_posts = serializers.SerializerMethodField()
     resources = serializers.SerializerMethodField()
     partners = serializers.SerializerMethodField()
+    international_block_countries = serializers.SerializerMethodField()
 
     @property
     def locale_pk(self):
@@ -93,6 +95,19 @@ class HomePageSerializer(PageSerialiserWithLocale):
                 partners.append(PartnerSerializer(partner, read_only=True).data)
         return partners
 
+    def get_international_block_countries(self, obj: HomePage):
+        language = translation.get_language()
+        countries = []
+        for country in obj.international_block_countries:
+            country_data = {
+                "type": country.block_type,
+                "button_name": country.value.get(f"button_name_{language}", ""),
+                "link": country.value.get("link", ""),
+                "id": country.id,
+            }
+            countries.append(country_data)
+        return countries
+
     class Meta:
         model = HomePage
         fields = PAGE_FIELDS + [
@@ -102,6 +117,9 @@ class HomePageSerializer(PageSerialiserWithLocale):
             "feedback_block_title",
             "feedback_block_intro",
             "feedbacks",
+            "international_block_title",
+            "international_block_intro",
+            "international_block_countries",
             "blog_block_title",
             "blog_block_intro",
             "blog_posts",
@@ -438,6 +456,20 @@ class AnimatorPageSerializer(PageSerialiserWithLocale):
             "add_participants_intro",
             "responses_title",
             "responses_intro",
+        ]
+        read_only_fields = fields
+
+
+class ParticipativeProcessPageSerializer(PageSerialiserWithLocale):
+    class Meta:
+        model = ParticipativeProcessPage
+        fields = [
+            "id",
+            "processes_title",
+            "description",
+            "add_participative_process_call_to_action",
+            "confirm_call_to_action",
+            "skip_call_to_action",
         ]
         read_only_fields = fields
 

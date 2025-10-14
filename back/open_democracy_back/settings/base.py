@@ -18,7 +18,7 @@ import sys
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 IS_TEST = sys.argv[1:2] == ["test"]
-IS_MIGRATING = "migrat" in sys.argv[1]
+IS_MIGRATING = any(el in sys.argv[1] for el in ["migrat", "backup_db"])
 
 config = getconf.ConfigGetter(
     "demometre",
@@ -221,6 +221,7 @@ BACKUP_ACCESS = config.getstr("backup.backup_access", None)
 BACKUP_SECRET = config.getstr("backup.backup_secret", None)
 BACKUP_BUCKET = config.getstr("backup.backup_bucket", None)
 BACKUP_REGION = config.getstr("backup.backup_region", None)
+BACKUP_USE_AWS = True
 
 
 REST_FRAMEWORK = {

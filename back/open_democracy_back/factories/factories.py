@@ -27,6 +27,10 @@ from open_democracy_back.models import (
     ClosedWithScaleCategoryResponse,
     NumberRange,
     Survey,
+    AssessmentRepresentativity,
+    RepresentativityCriteria,
+    AssessmentRepresentativityCriteriaRule,
+    RepresentativityCriteriaRule,
 )
 from open_democracy_back.utils import (
     QuestionObjectivity,
@@ -34,7 +38,7 @@ from open_democracy_back.utils import (
     InitiatorType,
     ManagedAssessmentType,
     QuestionType,
-    SurveyLocality,
+    Locality,
 )
 
 
@@ -61,7 +65,7 @@ class SurveyFactory(factory.django.DjangoModelFactory):
     name: str = factory.Faker("name")
     name_fr: str = factory.LazyAttribute(lambda a: a.name)
     description: str = factory.Faker("text")
-    survey_locality: str = SurveyLocality.CITY
+    survey_locality: str = Locality.CITY
 
     class Meta:
         model = Survey
@@ -217,6 +221,7 @@ class ScoreFactory(factory.django.DjangoModelFactory):
         model = Score
 
     associated_score = factory.Faker("random_int", min=1, max=4)
+    linearized_score = factory.LazyAttribute(lambda o: (o.associated_score - 1) / 3)
 
 
 class PercentageRangeFactory(ScoreFactory):
@@ -353,6 +358,60 @@ class ClosedWithScaleQuestionFactory(ChoiceQuestionFactory):
                 CategoryFactory.create_batch(4, question=self)
             else:
                 self.categories.set(extracted)
+
+
+class RepresentativityCriteriaFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = RepresentativityCriteria
+
+    survey_locality = Locality.CITY
+    name = factory.Faker("name")
+    profiling_question = factory.SubFactory(QuestionFactory)
+    min_rate = factory.Faker("random_int", min=0, max=100)
+    explanation = factory.Faker("text")
+
+
+class QuestionFactoryFromCriteria(QuestionFactory):
+    profiling_question = True
+    representativity_criteria = factory.RelatedFactory(
+        RepresentativityCriteriaFactory, factory_related_name="profiling_question"
+    )
+
+
+class ResponseChoiceFromCriteria(ResponseChoiceFactory):
+    question = factory.SubFactory(QuestionFactoryFromCriteria)
+
+
+class AssessmentRepresentativityFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = AssessmentRepresentativity
+
+    assessment = factory.SubFactory(AssessmentFactory)
+    representativity_criteria = factory.SubFactory(RepresentativityCriteriaFactory)
+
+
+class AssessmentRepresentativityCriteriaRuleFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = AssessmentRepresentativityCriteriaRule
+
+    assessment_representativity = factory.SubFactory(AssessmentRepresentativityFactory)
+    response_choice = factory.SubFactory(
+        ResponseChoiceFromCriteria,
+        question=factory.SelfAttribute(
+            "..assessment_representativity.representativity_criteria.profiling_question"
+        ),
+    )
+    acceptability_threshold = factory.Faker("random_int", min=0, max=100)
+
+
+class RepresentativityCriteriaRuleFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = RepresentativityCriteriaRule
+
+    representativity_criteria = factory.SubFactory(RepresentativityCriteriaFactory)
+    response_choice = factory.SubFactory(ResponseChoiceFactory)
+    ignore_for_acceptability_threshold = False
+    totally_ignore = False
 
 
 ALL_FACTORY_QUESTION_CLASSES = [

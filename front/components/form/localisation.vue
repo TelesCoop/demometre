@@ -37,7 +37,6 @@
             :value="localityType.key"
             class="custom-hidden white-on-black-input-checked"
             name="localityType"
-            required
           >
           <label
             :for="localityType.key"
@@ -163,8 +162,8 @@ const localityTypeSelected = ref<LocalityTypes>()
 const localityId = ref<number>()
 const localities = ref<Localities>({
   department: [],
-  intercommunality: [],
-  municipality: [],
+  epci: [],
+  city: [],
   region: [],
 })
 const searched = ref<number>(0)
@@ -187,8 +186,8 @@ const localityOfSurveys = computed(() => {
 
 const localityTypeToShow = computed(() => {
   const valueToPick = [
-    "MUNICIPALITY",
-    "INTERCOMMUNALITY",
+    "CITY",
+    "EPCI",
     localityOfSurveys.value.includes("department") ? "DEPARTMENT" : "",
     localityOfSurveys.value.includes("region") ? "REGION" : "",
   ].filter(Boolean)

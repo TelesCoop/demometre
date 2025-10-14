@@ -122,6 +122,22 @@
                   </span>
                 </a>
               </div>
+              <div v-if="assessment?.participativeProcesses.length && questionnaireStore.questionById[questionId]?.isParticipativeProcessQuestion">
+                <p> {{ $t('Sélectionnez le ou les process participatifs pour lesquels vous voulez visualiser les résultats.') }}</p>
+                <button
+                  v-for="process of assessment.participativeProcesses"
+                  :key="process.id"
+                  class="button mr-1"
+                  :class="`${
+                    selectedParticipativeProcesses[process.id]
+                      ? 'has-border-' + PillarParams[activePillar.name].color + '-dark has-text-white has-background-' + PillarParams[activePillar.name].color + '-dark'
+                      : 'is-outlined'
+                  }`"
+                  @click="toggleParticipativeProcess(process.id)"
+                >
+                  {{ process.name }}
+                </button>
+              </div>
               <p class="is-uppercase is-size-6bis mb-0_5 mt-2">
                 {{ $t("Résultat") }}
               </p>
@@ -129,6 +145,7 @@
                 :color="colorClass"
                 :assessment-id="assessmentId"
                 :question="questionnaireStore.questionById[questionId]"
+                :participative-processes="selectedParticipativeProcessIds"
               />
             </QuestionnaireQuestionStatement>
           </template>
@@ -175,10 +192,14 @@
 import { useRouter } from "vue-router"
 import { Ref, ref } from "vue"
 import { useQuestionnaireStore } from "~/stores/questionnaireStore"
-import { Marker, PillarType } from "~/composables/types"
+import {Marker, PillarParams, PillarType} from "~/composables/types"
 import { useAssessmentStore } from "~/stores/assessmentStore"
 import { getStrenghtAndImprovements, getScoreToDisplay } from "~/utils/scores"
 import { useAssessmentIsReady } from "~/composables/useAssessmentIsReady"
+import {useI18n} from "vue-i18n"
+
+const i18n = useI18n()
+const $t = i18n.t
 
 definePageMeta({
   title: "Résultats",
@@ -197,6 +218,19 @@ const questionnaireStore = useQuestionnaireStore()
 
 const activePillar = ref<PillarType>()
 const markers = ref<Marker[]>()
+const selectedParticipativeProcesses = ref<Record<number, boolean>>({})
+
+const toggleParticipativeProcess = (participativeProcessId: number) => {
+  selectedParticipativeProcesses.value = {
+    ...selectedParticipativeProcesses.value,
+    [participativeProcessId]: !selectedParticipativeProcesses.value[participativeProcessId],
+  }
+}
+const selectedParticipativeProcessIds = computed(() => {
+  return Object.entries(selectedParticipativeProcesses.value)
+    .filter(([, selected]) => selected)
+    .map(([key]) => parseInt(key))
+})
 
 const changeSelectedQuestion = ref<number>(0)
 const activeQuestionId: Ref<number> = ref(
@@ -218,6 +252,9 @@ if (!assessmentStore.assessmentById[assessmentId]?.name) {
 if (!assessmentStore.scoresByAssessmentId[assessmentId]) {
   assessmentStore.getAssessmentScores(assessmentId)
 }
+const assessment = computed(() => {
+  return assessmentStore.assessmentById[assessmentId]
+})
 
 const pillarOfQuestionId = (questionId: number) => {
   return questionnaireStore.pillarById[
@@ -240,6 +277,9 @@ watch(
 )
 watch(changeSelectedQuestion, () => {
   changeActiveQuestionId()
+})
+const question = computed(() => {
+  return questionnaireStore.questionById[activeQuestionId.value]
 })
 
 const colorClass = computed(() =>

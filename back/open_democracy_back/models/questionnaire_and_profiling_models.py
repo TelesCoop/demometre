@@ -29,7 +29,7 @@ from open_democracy_back.utils import (
     BooleanOperator,
     QuestionType,
     PillarName,
-    SurveyLocality,
+    Locality,
 )
 
 
@@ -133,8 +133,8 @@ class Survey(TimeStampedModel):
     name = models.CharField(max_length=255, verbose_name=_("Nom"), unique=True)
     survey_locality = models.CharField(
         max_length=32,
-        choices=SurveyLocality.choices,
-        default=SurveyLocality.CITY,
+        choices=Locality.choices,
+        default=Locality.CITY,
         verbose_name=_("Échelon du questionnaire"),
         unique=True,
     )
@@ -147,7 +147,7 @@ class Survey(TimeStampedModel):
         default="",
     )
     code = models.CharField(
-        max_length=10,
+        max_length=2,
         verbose_name=_("code"),
         help_text=_("Nom court du questionnaire pour les menus de l'interface admin"),
         default="",
@@ -391,9 +391,8 @@ class Criteria(index.Indexed, ClusterableModel):
     translated_fields = ["name", "description", "explanatory"]
 
     search_fields = [
-        index.SearchField(
-            "name",
-        )
+        index.SearchField("name_fr"),
+        index.SearchField("concatenated_code"),
     ]
 
     def __str__(self):
@@ -602,6 +601,10 @@ class Question(index.Indexed, TimeStampedModel, ClusterableModel):
         related_name="questions",
         blank=True,
     )
+    is_participative_process_question = models.BooleanField(
+        default=False,
+        verbose_name=_("Cette question concerne les process participatifs"),
+    )
 
     # Profiling questions fields
     profiling_question = models.BooleanField(default=False)
@@ -630,6 +633,9 @@ class Question(index.Indexed, TimeStampedModel, ClusterableModel):
         ),
         index.SearchField(
             "name",
+        ),
+        index.SearchField(
+            "concatenated_code",
         ),
     ]
 
@@ -684,7 +690,7 @@ class Question(index.Indexed, TimeStampedModel, ClusterableModel):
 
     def __str__(self):
         if self.profiling_question:
-            return f"{_('Profilage')}: {self.name_fr}"
+            return f"{_('Profilage')} {self.code}: {self.name_fr}"
         return f"{self.concatenated_code}: {self.name_fr}"
 
     def clean(self):
@@ -750,6 +756,7 @@ class QuestionnaireQuestion(Question):
         *Question.principal_panels,
         FieldPanel("profiles", widget=forms.CheckboxSelectMultiple),
         FieldPanel("assessment_types", widget=forms.CheckboxSelectMultiple),
+        FieldPanel("is_participative_process_question"),
         FieldPanel("objectivity"),
         FieldPanel("method"),
         *Question.commun_types_panels,
@@ -876,7 +883,7 @@ class ResponseChoice(TimeStampedModel, Orderable, Score):
     translated_fields = ["response_choice", "description"]
 
     def __str__(self):
-        return self.response_choice_fr
+        return f"{self.question.code} - {self.response_choice_fr}"
 
     class Meta:
         verbose_name_plural = _("Choix de réponse")

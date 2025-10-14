@@ -37,7 +37,7 @@ from open_democracy_back.models import (
 )
 from open_democracy_back.utils import (
     QuestionType,
-    SurveyLocality,
+    Locality,
     QuestionObjectivity,
     ManagedAssessmentType,
 )
@@ -92,10 +92,10 @@ class Command(BaseCommand):
 
     def create_profile_types(self):
         profile_type_1, _ = ProfileType.objects.update_or_create(
-            name="Profile 1-1",
-            defaults=dict(name_fr="Profile 1-1", rules_intersection_operator="and"),
+            name="Profile 7A-1",
+            defaults=dict(name_fr="Profile 7A-1", rules_intersection_operator="and"),
         )
-        question = Question.objects.get(code="Profile-1")
+        question = Question.objects.get(code="7A")
         definition, _ = ProfileDefinition.objects.update_or_create(
             profile_type=profile_type_1,
             defaults=dict(
@@ -134,7 +134,7 @@ class Command(BaseCommand):
         )
 
         question = self.create_question(criteria, QuestionType.UNIQUE_CHOICE)
-        question.profiles.add(ProfileType.objects.get(name="Profile 1-1"))
+        question.profiles.add(ProfileType.objects.get(name="Profile 7A-1"))
         question = self.create_question(criteria, QuestionType.MULTIPLE_CHOICE)
         question.profiles.add(ProfileType.objects.get(name="Profile 2-high"))
 
@@ -145,9 +145,9 @@ class Command(BaseCommand):
         surveys = Survey.objects.all()
         question = self.create_question(
             None,
-            QuestionType.UNIQUE_CHOICE,
+            QuestionType.MULTIPLE_CHOICE,
             profiling_question=True,
-            code="Profile-1",
+            code="7A",
             n_choices=3,
         )
         question.surveys.set(surveys)
@@ -165,6 +165,7 @@ class Command(BaseCommand):
         statement=None,
         objective=False,
         n_choices=None,
+        is_participative_process_question=False,
     ):
         self.code_per_criteria[criteria] += 1
         if code is None:
@@ -187,6 +188,7 @@ class Command(BaseCommand):
             question_statement_fr=question_statement,
             profiling_question=profiling_question,
             objectivity=objectivity,
+            is_participative_process_question=is_participative_process_question,
         )
         if question_type in [
             QuestionType.UNIQUE_CHOICE,
@@ -232,7 +234,7 @@ class Command(BaseCommand):
 
     def create_questionnaire(self):
         survey, _ = Survey.objects.update_or_create(
-            survey_locality=SurveyLocality.CITY, defaults=dict(code="M")
+            survey_locality=Locality.CITY, defaults=dict(code="M")
         )
         representation, _ = Pillar.objects.get_or_create(
             name="représentation", defaults=dict(survey=survey)
@@ -250,7 +252,11 @@ class Command(BaseCommand):
         )
 
         self.create_question(criteria, QuestionType.UNIQUE_CHOICE)
-        self.create_question(criteria, QuestionType.MULTIPLE_CHOICE)
+        self.create_question(
+            criteria,
+            QuestionType.MULTIPLE_CHOICE,
+            is_participative_process_question=True,
+        )
         self.create_question(criteria, QuestionType.CLOSED_WITH_SCALE)
         self.create_question(criteria, QuestionType.BOOLEAN)
         self.create_question(criteria, QuestionType.PERCENTAGE)
@@ -331,6 +337,7 @@ class Command(BaseCommand):
             democracy_models.EvaluationQuestionnairePage,
             democracy_models.AnimatorPage,
             democracy_models.ContentPage,
+            democracy_models.ParticipativeProcessPage,
         ]
         root = Page.objects.get(pk=1)
         n_added = 0
@@ -399,8 +406,8 @@ class Command(BaseCommand):
         repr_criteria, _ = RepresentativityCriteria.objects.update_or_create(
             name="Représentativité 1",
             defaults=dict(
-                survey_locality=SurveyLocality.CITY,
-                profiling_question=Question.objects.get(code="Profile-1"),
+                survey_locality=Locality.CITY,
+                profiling_question=Question.objects.get(code="7A"),
                 min_rate=25,
                 name_fr="Représentativité 1",
                 explanation_fr="Représentativité 1 explication",

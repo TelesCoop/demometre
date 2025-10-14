@@ -2,7 +2,7 @@ import datetime
 
 from rest_framework import serializers
 
-from open_democracy_back.models import Survey
+from open_democracy_back.models import Survey, ParticipativeProcess
 from open_democracy_back.models.assessment_models import AssessmentType
 from open_democracy_back.models.questionnaire_and_profiling_models import (
     Criteria,
@@ -225,6 +225,7 @@ class QuestionnaireQuestionSerializer(QuestionSerializer):
             "profile_ids",
             "survey_id",
             "survey_locality",
+            "is_participative_process_question",
         ] + QUESTION_FIELDS
         read_only_fields = fields
 
@@ -356,3 +357,9 @@ class FullSurveySerializer(SerializerWithTranslatedFields):
         model = Survey
         fields = ["id", "name", "description", "code", "survey_locality", "pillars"]
         read_only_fields = fields
+
+
+class ParticipativeProcessSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ParticipativeProcess
+        fields = "__all__"

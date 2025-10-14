@@ -33,6 +33,7 @@ from open_democracy_back.models import (
     AssessmentDocument,
     Training,
     Survey,
+    ParticipativeProcess,
 )
 from open_democracy_back.models.assessment_models import AssessmentType
 from open_democracy_back.models.contents_models import (
@@ -303,6 +304,7 @@ class QuestionnaireQuestionModelAdmin(ModelAdmin):
         "criteria__marker__pillar__survey__name",
         "criteria__marker__pillar__name",
         "objectivity",
+        "is_participative_process_question",
         "roles",
         "profiles",
         "type",
@@ -424,6 +426,12 @@ class AssessmentDocumentModelAdmin(ModelAdmin):
     model = AssessmentDocument
     menu_label = "Document d'évaluation"
     menu_icon = "doc-full"
+    add_to_settings_menu = False
+
+
+class ParticipativeProcessModelAdmin(ModelAdmin):
+    model = ParticipativeProcess
+    menu_label = "Process participatif"
     add_to_settings_menu = False
 
 

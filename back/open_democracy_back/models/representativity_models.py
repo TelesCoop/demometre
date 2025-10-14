@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Count, F, Q
+from django.db.models import Count, F, Q, Subquery, OuterRef
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils import translation
 from django.utils.translation import gettext_lazy as _
@@ -8,7 +8,6 @@ from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 from wagtail.fields import RichTextField
 
-
 from open_democracy_back.models.assessment_models import Assessment
 
 from open_democracy_back.models.questionnaire_and_profiling_models import (
@@ -16,15 +15,15 @@ from open_democracy_back.models.questionnaire_and_profiling_models import (
     QuestionType,
     ResponseChoice,
 )
-from open_democracy_back.utils import SIMPLE_RICH_TEXT_FIELD_FEATURE, SurveyLocality
+from open_democracy_back.utils import SIMPLE_RICH_TEXT_FIELD_FEATURE, Locality
 
 
 @register_snippet
 class RepresentativityCriteria(index.Indexed, models.Model):
     survey_locality = models.CharField(
         max_length=32,
-        choices=SurveyLocality.choices,
-        default=SurveyLocality.CITY,
+        choices=Locality.choices,
+        default=Locality.CITY,
         verbose_name=_("Échelon questionnaire"),
     )
     name = models.CharField(max_length=64, verbose_name="Nom")
@@ -33,7 +32,9 @@ class RepresentativityCriteria(index.Indexed, models.Model):
         on_delete=models.CASCADE,
         verbose_name=_("Question de profilage reliée"),
         related_name="representativity_criteria",
-        limit_choices_to={"type": QuestionType.UNIQUE_CHOICE},
+        limit_choices_to={
+            "type__in": [QuestionType.UNIQUE_CHOICE, QuestionType.MULTIPLE_CHOICE]
+        },
     )
     min_rate = models.IntegerField(
         default=0,
@@ -110,11 +111,14 @@ class RepresentativityCriteriaRule(models.Model):
         related_name="representativity_criteria_rule",
     )
 
+    # accept any proportion
     ignore_for_acceptability_threshold = models.BooleanField(
         default=False,
         verbose_name=_("Ne pas compter pour le seuil d'acceptabilité minimal"),
         help_text=_("Ex: binaire pour la parité"),
     )
+
+    # do not even show in participation board
     totally_ignore = models.BooleanField(
         default=False,
         verbose_name=_("Ignorer totalement"),
@@ -136,12 +140,6 @@ class AssessmentRepresentativity(models.Model):
         on_delete=models.CASCADE,
         related_name="representativities",
     )
-    acceptability_threshold = models.IntegerField(
-        blank=True,
-        null=True,
-        validators=[MinValueValidator(1), MaxValueValidator(100)],
-        verbose_name=_("Seuil d'acceptabilité"),
-    )
 
     @property
     def count_by_response_choice(self):
@@ -149,6 +147,26 @@ class AssessmentRepresentativity(models.Model):
         # values() : specifies which columns are going to be used to "group by"
         # annotate() : specifies an operation over the grouped values
         locale = translation.get_language()
+        question_type = self.representativity_criteria.profiling_question.type
+
+        # Build the filter condition based on question type
+        if question_type == QuestionType.UNIQUE_CHOICE:
+            count_filter = Q(
+                unique_choice_participationresponses__participation__assessment_id=self.assessment_id,
+                unique_choice_participationresponses__participation__user__is_unknown_user=False,
+            )
+            count_field = "unique_choice_participationresponses"
+        elif question_type == QuestionType.MULTIPLE_CHOICE:
+            count_filter = Q(
+                multiple_choice_participationresponses__participation__assessment_id=self.assessment_id,
+                multiple_choice_participationresponses__participation__user__is_unknown_user=False,
+            )
+            count_field = "multiple_choice_participationresponses"
+        else:
+            # Fallback for unsupported question types
+            count_filter = Q()
+            count_field = "unique_choice_participationresponses"
+
         return (
             self.representativity_criteria.profiling_question.response_choices.all()
             .exclude(representativity_criteria_rule__totally_ignore=True)
@@ -158,20 +176,29 @@ class AssessmentRepresentativity(models.Model):
                 ignore_for_acceptability_threshold=F(
                     "representativity_criteria_rule__ignore_for_acceptability_threshold"
                 ),
+                acceptability_threshold=Subquery(
+                    self.response_choice_rules.filter(
+                        response_choice_id=OuterRef("id")
+                    )[:1].values("acceptability_threshold")
+                ),
+                rule_id=Subquery(
+                    self.response_choice_rules.filter(
+                        response_choice_id=OuterRef("id")
+                    )[:1].values("pk")
+                ),
             )
             .values(
                 "response_choice_id",
                 "response_choice_name",
                 "ignore_for_acceptability_threshold",
                 "sort_order",
+                "acceptability_threshold",
+                "rule_id",
             )
             .annotate(
                 total=Count(
-                    "unique_choice_participationresponses",
-                    filter=Q(
-                        unique_choice_participationresponses__participation__assessment_id=self.assessment_id,
-                        unique_choice_participationresponses__participation__user__is_unknown_user=False,
-                    ),
+                    count_field,
+                    filter=count_filter,
                 )
             )
             .order_by("sort_order")
@@ -179,23 +206,35 @@ class AssessmentRepresentativity(models.Model):
 
     @property
     def total_responses(self):
-        return (
-            self.representativity_criteria.profiling_question.participationresponses.filter(
-                participation__assessment_id=self.assessment_id,
-                participation__user__is_unknown_user=False,
-            )
-            .exclude(unique_choice_response=None)
-            .count()
+        question_type = self.representativity_criteria.profiling_question.type
+
+        base_queryset = self.representativity_criteria.profiling_question.participationresponses.filter(
+            participation__assessment_id=self.assessment_id,
+            participation__user__is_unknown_user=False,
         )
 
-    @property
-    def acceptability_threshold_considered(self):
-        if self.acceptability_threshold and (
-            self.acceptability_threshold > self.representativity_criteria.min_rate
-        ):
-            return self.acceptability_threshold
+        if question_type == QuestionType.UNIQUE_CHOICE:
+            return base_queryset.filter(unique_choice_response__isnull=False).count()
+        elif question_type == QuestionType.MULTIPLE_CHOICE:
+            # For multiple choice, count responses that have at least one choice selected
+            return (
+                base_queryset.filter(multiple_choice_response__isnull=False)
+                .distinct()
+                .count()
+            )
         else:
-            return self.representativity_criteria.min_rate
+            # Fallback for other question types
+            return base_queryset.filter(
+                Q(unique_choice_response__isnull=False)
+                | Q(multiple_choice_response__isnull=False)
+            ).count()
+
+    def acceptability_threshold_considered(self, response_choice_threshold=None):
+        return (
+            self.representativity_criteria.min_rate
+            if response_choice_threshold is None
+            else response_choice_threshold
+        )
 
     @property
     def respected(self):
@@ -207,7 +246,9 @@ class AssessmentRepresentativity(models.Model):
                 (
                     (
                         (response_choice_count["total"] / total_response) * 100
-                        >= self.acceptability_threshold_considered
+                        >= self.acceptability_threshold_considered(
+                            response_choice_count["acceptability_threshold"]
+                        )
                     )
                     if not response_choice_count["ignore_for_acceptability_threshold"]
                     else True
@@ -215,3 +256,32 @@ class AssessmentRepresentativity(models.Model):
                 for response_choice_count in self.count_by_response_choice
             ]
         )
+
+
+class AssessmentRepresentativityCriteriaRule(models.Model):
+    class Meta:
+        unique_together = ["assessment_representativity", "response_choice"]
+
+    assessment_representativity = models.ForeignKey(
+        AssessmentRepresentativity,
+        on_delete=models.CASCADE,
+        related_name="response_choice_rules",
+    )
+
+    response_choice = models.ForeignKey(
+        ResponseChoice,
+        on_delete=models.CASCADE,
+        verbose_name=_("Réponse"),
+        related_name="assessment_representativity_criteria_rules",
+    )
+
+    acceptability_threshold = models.IntegerField(
+        blank=True,
+        null=True,
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        verbose_name=_("Seuil d'acceptabilité"),
+    )
+
+    @property
+    def assessment_id(self):
+        return self.assessment_representativity.assessment_id
