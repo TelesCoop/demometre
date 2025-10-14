@@ -52,6 +52,9 @@ export const getAnswerKey = (questionId: number, participativeProcessId: number|
 }
 
 export const foreignInstanceName = (): string|null => {
+  if (process.server) {
+    return null
+  }
   if (window.location.host.includes('belgique')) {
     return 'belgique'
   }
