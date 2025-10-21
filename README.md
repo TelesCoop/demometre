@@ -14,7 +14,26 @@
 
 ### Cycle de vie d'une évaluation et évaluations multiples par ville
 
+Il existe trois types d'évalution :
 
+- évaluation participative, avec ou sans expert
+- évaluation rapide
+
+Pour les évaluations participatives, une seule évaluation peut être fait par collectivité en même temps.
+Concrètement, si l'utilisateur U1 initie une évaluation sur la ville de Paris, un utilisateur U2 ne peut
+que rejoindre l'évaluation initiée par U1.
+
+Les évaluations rapides sont faites par et pour un utilisateur uniquement. Elles n'impactent donc pas
+les autres évaluations d'autres utilisateurs.
+
+Attention tout de même : si une évaluation participative est en cours pour une ville,
+il n'est plus possible d'y lancer une évaluation rapide.
+Dans l'autre sens, il est donc par contre possible de lancer une évalution participative pour une
+collectivité qui a déjà une ou plusieurs évaluations rapides effectuées.
+
+Une évaluation est considérée en cours jusqu'à ce qu'elle soit cloturée.
+
+Une évaluation peut être cloturée par un expert ou par l'initiateur.
 
 ### Process participatifs
 
