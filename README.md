@@ -14,26 +14,24 @@
 
 ### Cycle de vie d'une évaluation et évaluations multiples par ville
 
-Il existe trois types d'évalution :
+Il existe trois types d'évaluation :
 
 - évaluation participative, avec ou sans expert
 - évaluation rapide
 
 Pour les évaluations participatives, une seule évaluation peut être fait par collectivité en même temps.
-Concrètement, si l'utilisateur U1 initie une évaluation sur la ville de Paris, un utilisateur U2 ne peut
-que rejoindre l'évaluation initiée par U1.
+Concrètement, si l'utilisateur U1 initie une évaluation sur la ville de Paris, un utilisateur U2 ne peut que rejoindre l'évaluation initiée par U1.
 
 Les évaluations rapides sont faites par et pour un utilisateur uniquement. Elles n'impactent donc pas
 les autres évaluations d'autres utilisateurs.
 
-Attention tout de même : si une évaluation participative est en cours pour une ville,
-il n'est plus possible d'y lancer une évaluation rapide.
-Dans l'autre sens, il est donc par contre possible de lancer une évalution participative pour une
+Attention tout de même : si une évaluation participative est en cours pour une ville, il n'est plus possible d'y lancer une évaluation rapide.
+Dans l'autre sens, il est donc par contre possible de lancer une évaluation participative pour une
 collectivité qui a déjà une ou plusieurs évaluations rapides effectuées.
 
-Une évaluation est considérée en cours jusqu'à ce qu'elle soit cloturée.
+Une évaluation est considérée en cours jusqu'à ce qu'elle soit clôturée.
 
-Une évaluation peut être cloturée par un expert ou par l'initiateur.
+Une évaluation peut être clôturée par un expert ou par l'initiateur.
 
 ### Process participatifs
 
@@ -45,9 +43,7 @@ d'interpréter les réponses s'il y avait plusieurs process participatifs pour l
 si j'ai été écouté lors des process participatifs si j'ai participé à plusieurs et que j'ai
 des avis différents ?
 
-Lors de l'initiation d'une évalution (et uniquement lors de l'évaluation), il est maintenant possible de
-définir des process participatifs pour la collectivité évaluée. Les process participatifs sont associées
-à des catégories process participatifs, qui sont les réponses possibles à la Question dont le code est
+Lors de l'initiation d'une évaluation (et uniquement lors de l'évaluation), il est maintenant possible de définir des process participatifs pour la collectivité évaluée. Les process participatifs sont associées à des catégories process participatifs, qui sont les réponses possibles à la Question dont le code est
 "7A".
 
 Si des process participatifs sont définis pour une évaluation, les participants peuvent indiquer les
@@ -69,12 +65,9 @@ lesquels je souhaite visualiser les résultats.
 
 ### Seuils de représentativité
 
-Les seuils de représentativité servent à déterminer quand une évaluation peut être publiée : c'est le cas
-lorsque tous les seuils de représentativité sont respéctés.
+Les seuils de représentativité servent à déterminer quand une évaluation peut être publiée : c'est le cas lorsque tous les seuils de représentativité sont respectés.
 
-Par exemple, si j'ai configuré pour le seuil de représentativité "Genre" 35% pour Femme et 35% pour Homme,
-l'évaluation ne peut être publiée que si au moins 35% des participants ont répondu Femme à la question de
-profilage ET que au moins 35% des participants ont répondu Homme à la question de profilage.
+Par exemple, si j'ai configuré pour le seuil de représentativité "Genre" 35% pour Femme et 35% pour Homme, l'évaluation ne peut être publiée que si au moins 35% des participants ont répondu Femme à la question de profilage ET que au moins 35% des participants ont répondu Homme à la question de profilage.
 
 #### Modifier les seuils pour une évaluation
 
@@ -93,12 +86,9 @@ Dans l'interface admin, les seuils peuvent être modifié en cliquant depuis le 
 
 ![Critères de représentativité](docs-images/criteres-representativite.png)
 
-De manière globale, on ne peut définir qu'un seuil par question de profilage, sans pouvoir différencier.
-Par exemple pour les catégories socio-professionnelles, la même valeur choisie s'appliquera à chacune des catégories
-socio-professionnelle définie. Comme décrit plus haut, cela peut cependant être affiné par évaluation.
+De manière globale, on ne peut définir qu'un seuil par question de profilage, sans pouvoir différencier. Par exemple pour les catégories socio-professionnelles, la même valeur choisie s'appliquera à chacune des catégories socio-professionnelle définie. Comme décrit plus haut, cela peut cependant être affiné par évaluation.
 
-Si certains réponses sont peu courantes, on peut toutefois les exclure des critères de représentativité. Sur
-l'image plus haut, cliquer sur le bouton "Affiner le critère de représentativité".
+Si certains réponses sont peu courantes, on peut toutefois les exclure des critères de représentativité. Sur l'image plus haut, cliquer sur le bouton "Affiner le critère de représentativité".
 
 ![Affiner les critères de représentativité](docs-images/affiner-critere-representativite.png)
 

@@ -2,30 +2,32 @@
 
 ## Vocabulaire
 
-- Assessment : une évaluation, il y en a une par ville. Elles peuvent être de trois
-types (AssessmentType) : Diagnostic rapide, Evaluation participative, Evaluation avec
+- `Assessment` : une évaluation, il y en a une par ville. Elles peuvent être de trois
+types (`AssessmentType`) : Diagnostic rapide, Evaluation participative, Evaluation avec
 expert
-- Participation : une participation d'un utilisateur à une évaluation. Toutes les
+- `Participation` : une participation d'un utilisateur à une évaluation. Toutes les
 réponses sont liées à une participation.
-- ParticipationResponse : la réponse d'un utilisateur à une question. Comprend donc un
+- `ParticipationResponse` : la réponse d'un utilisateur à une question. Comprend donc un
 couple (réponse, participation).
-- AssessmentResponse : une réponse à une question objective, qui est donc unique pour
+- `AssessmentResponse` : une réponse à une question objective, qui est donc unique pour
 une évaluation
-- Question, Response : Question, Réponse, qui sont les questions du questionnaires et
+- `Question`, `Response` : Ce sont les questions du questionnaires et
 les réponses possibles pour chaque question
   - une Question a un booléen `profiling_question` pour indiquer si c'est une question
   de profilage
-  - QuestionnaireQuestion : ??
-  - ProfilingQuestion : pourquoi à la fois ce modèle là et le booléen
+  - `QuestionnaireQuestion` : ??
+  - `ProfilingQuestion` : pourquoi à la fois ce modèle là et le booléen
   `profiling_question` ?
-  - ResponseChoice : une réponse possible à une question
+  - `ResponseChoice` : une réponse possible à une question
 - Score : `associated_score` (pour l'affichage) entre 1 et 4 et `linearized_score`
 (pour le calcul) entre 0 et 1.
 
 ## Calcul des scores
 
 Les questions de profilage n'ont bien sûr pas de score.
-Les scores sont compris entre 1 et 4 (sauf question booléenne). Ce score de 1 à 4 est converti entre 0 et 4 pour les calculs, avec des valeurs de 0, ⅓, ⅔ et 1\)
+
+Les scores sont compris entre 1 et 4 (sauf question booléenne). Ce score de 1 à 4 est converti entre 0 et 1 pour les calculs, avec des valeurs de 0, ⅓, ⅔ et 1.
+
 Les scores sont définis par type de question :
 
 * Question booléenne : 0 si majoritairement non, \+1 point si majoritairement oui. Contrairement aux autres questions, c’est un point bonus.
@@ -122,7 +124,7 @@ Le score de ce marqueur sera de (1 \+ 3 \+ 4 \+ 4\) / 3 \= 4\. Sans la question 
 
 ## Configuration du site
 
-La configuration se fait depuis l'interface d'aministration, accessible à l'adresse :
+La configuration se fait depuis l'interface d'administration, accessible à l'adresse :
 `/admin/`.
 
 ### Catégorie des process participatifs
@@ -134,21 +136,21 @@ code est `7A`. Il est possible de les modifier depuis l'interface d'administrati
 ### Pages
 
 ### Questions
-Les questions ne sont pas configurés comme des pages
+Les questions ne sont pas configurées comme des pages.
 
 ### Partie expert
 Afin de pouvoir la tester il y a plusieurs étapes (en effet seulement les experts associés à une évaluation doivent pouvoir avoir accès à cette partie là):
-- Dans le backoffice : Paramètres > Utilisateurs > Rechercher l'utilisateur que l'on veut déclarer en tant qu'expert. Aller dans l'onglet Rôles et sélectionner la case Experts puis enregistrer. La personne est alors enregistrée comme étant un expert
+- Dans l'administration : Paramètres > Utilisateurs > Rechercher l'utilisateur que l'on veut déclarer en tant qu'expert. Aller dans l'onglet Rôles et sélectionner la case Experts puis enregistrer. La personne est alors enregistrée comme étant un expert
 
-![](readme-images/expert-role.png)
+![](./readme-images/expert-role.png)
 
-- Dans le backoffice: Evaluations > Evaluation > Selectionner l'évaluation pour laquelle vous souhaitez ajouter un expert > Indiquez que c'est une évaluation avec experts + Selectionner l'expert dans la liste + indiquer que la redevance a été payée (sinon l'expert n'aura pas accès à cette évaluation) (NB : depuis le parcours utilisateur de la plateforme il est possible d'ajouter un expert, cependant il est possible de déclarer que la redevance a été payée seulement depuis l'admin wagtail)
+- Dans l'administration: Evaluations > Evaluation > Sélectionner l'évaluation pour laquelle vous souhaitez ajouter un expert > Indiquez que c'est une évaluation avec experts + Sélectionner l'expert dans la liste + indiquer que la redevance a été payée (sinon l'expert n'aura pas accès à cette évaluation) (NB : depuis le parcours utilisateur de la plateforme il est possible d'ajouter un expert, cependant il est possible de déclarer que la redevance a été payée seulement depuis l'admin wagtail)
 
 ![](readme-images/assessment-experts.png)
 
 Pour terminer : connectez-vous à la plateforme du DémoMètre avec le compte que vous avez déclaré comme étant expert, depuis la page du profile il y aura un bouton qui permet d'accéder à l'espace expert "Espace animateur".
 
-## Pour les développeurs
+## Pour les développeur·euses
 
 ### Lancer les tests E2E
 
