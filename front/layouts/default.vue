@@ -22,6 +22,7 @@
       <Toast
         v-if="messageStore.message"
         :message="messageStore.message"
+        :type="messageStore.type"
       />
     </div>
 
