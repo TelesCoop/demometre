@@ -5,6 +5,7 @@
 
 import csv
 from pathlib import Path
+from collections import defaultdict
 
 DEPARTMENT_NAME_TO_CODE = {
     "Province du Luxembourg": "80000",
@@ -27,19 +28,22 @@ def get_province_code(province_partial_name):
 
 
 script_dir = Path(__file__).parent
-file_path = script_dir / "be_communes.csv"
+file_path = script_dir / "be_communes_communautes.csv"
 
 COMMUNES = []
+EPCI = defaultdict(lambda: {"membres": []})
 
 with open(file_path, newline="", encoding="utf-8") as csvfile:
     reader = csv.DictReader(csvfile, delimiter=",")
     for row in reader:
         COMMUNES.append(
             {
-                "code": row["Code Postal"].strip(),
+                "code": (code := row["Code Postal"].strip()),
                 "nom": row["NOM"].strip(),
                 "population": row["POPULATION"],
                 "departement": get_province_code(row["PROVINCE"].strip()),
                 "codesPostaux": [row["Code Postal"].strip()],
             }
         )
+        EPCI[row["COMMUNAUTE"]]["membres"].append({"code": code})
+EPCI = [{"nom": key, "membres": value["membres"]} for key, value in EPCI.items()]
