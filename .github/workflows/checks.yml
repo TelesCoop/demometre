@@ -180,4 +180,3 @@ jobs:
           path: |
             front/cypress/screenshots
           retention-days: 10
-
