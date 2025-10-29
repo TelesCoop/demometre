@@ -101,12 +101,8 @@ const deleteProcess = (categoryId: number, processName: string) => {
 const confirm = async () => {
   isLoading.value = true
   const processes: ParticipativeProcess[] = Object.values(processesPerCategory.value).flat().filter(process => process.name !== '')
-  const {data} = await questionnaireStore.addParticipativeProcesses(assessmentId, processes)
+  await questionnaireStore.addParticipativeProcesses(assessmentId, processes)
   isLoading.value = false
-  const journey = useInitializationJourney()
-  journey.goToNextQuestion(undefined)
-}
-const skip = () => {
   const journey = useInitializationJourney()
   journey.goToNextQuestion(undefined)
 }

@@ -1,6 +1,6 @@
 // cypress/support/component.ts
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-namespace */
+
+
 import './commands'
 import {mount} from 'cypress/vue'
 import {h, Suspense} from 'vue'

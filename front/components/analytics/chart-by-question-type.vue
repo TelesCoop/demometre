@@ -55,7 +55,7 @@ import { PropType } from "vue"
 const props = defineProps({
   assessmentId: { type: Number, required: true },
   question: { type: Object as PropType<Question>, required: true },
-  participativeProcesses: { type: Object as PropType<number[]>, required: false, default: [] },
+  participativeProcesses: { type: Array as PropType<number[]>, required: false, default: () => [] },
   color: { type: String, required: true },
 })
 

@@ -67,10 +67,9 @@ import {
 import { computed, PropType, watch } from "vue"
 import { ref } from "vue"
 import { useParticipationStore } from "~/stores/participationStore"
-import {getQuestionResponseValue, toQuestionResponseValue} from "~/utils/question-response"
+import {getQuestionResponseValue} from "~/utils/question-response"
 import { useAssessmentStore } from "~/stores/assessmentStore"
 import { usePressEnter } from "~/composables/pressEnter"
-import {ONE_MILLION} from "~/utils/constants"
 import {getAnswerKey} from "~/utils/util"
 
 const props = defineProps({

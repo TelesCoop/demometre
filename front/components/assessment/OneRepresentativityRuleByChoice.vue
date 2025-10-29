@@ -14,10 +14,12 @@
         >
       </div>
       <div class="control">
-        <button class="button full-height"
-                v-show="!props.choice?.ignoreForAcceptabilityThreshold && props.choice?.acceptabilityThreshold != undefined"
-                :disabled="props.choice?.ignoreForAcceptabilityThreshold || props.choice?.acceptabilityThreshold == undefined"
-                @click="onReinitilize">
+        <button
+          v-show="!props.choice?.ignoreForAcceptabilityThreshold && props.choice?.acceptabilityThreshold != undefined"
+          class="button full-height"
+          :disabled="props.choice?.ignoreForAcceptabilityThreshold || props.choice?.acceptabilityThreshold == undefined"
+          @click="onReinitilize"
+        >
           <span class="icon">
             <icon
               name="close"
@@ -29,7 +31,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script setup lang="ts">
@@ -37,7 +38,7 @@ import {useAssessmentStore} from "~/stores/assessmentStore"
 import {PropType} from "vue"
 import {AssessmentRepresentativity, CountByResponseChoice} from "~/composables/types"
 import { i18n } from "~/utils/i18n-util"
-import {useMessageStore} from "~/stores/messageStore";
+import {useMessageStore} from "~/stores/messageStore"
 
 const $t = i18n.global.t
 

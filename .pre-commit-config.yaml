@@ -93,7 +93,7 @@ repos:
     hooks:
       - id: local eslint
         name: local eslint
-        entry: bash -c "cd front && yarn lint:fix"
+        entry: bash -c "cd front && npm run lint:fix"
         types: [file]
         types_or: [javascript, jsx, ts, tsx, vue]
         pass_filenames: false

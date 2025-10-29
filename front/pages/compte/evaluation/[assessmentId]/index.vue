@@ -61,11 +61,11 @@
             <template
               v-if="assessment.details.role! === 'initiator'"
             >{{
-                $t("Vous êtes à l'intiative de cette évaluation")
-              }}</template>
+              $t("Vous êtes à l'intiative de cette évaluation")
+            }}</template>
             <template v-if="assessment.details.role === 'expert'">{{
-                $t("Vous êtes l'expert de cette évaluation")
-              }}</template>
+              $t("Vous êtes l'expert de cette évaluation")
+            }}</template>
           </span>
         </div>
         <div
@@ -230,10 +230,10 @@
               class="button is-rounded is-dark ml-1"
             >
               <span>{{
-                  participationStore.status.participated
-                    ? $t("Reprendre l'évaluation")
-                    : $t("Participer à l'évaluation")
-                }}</span>
+                participationStore.status.participated
+                  ? $t("Reprendre l'évaluation")
+                  : $t("Participer à l'évaluation")
+              }}</span>
               <span class="icon"><icon
                 size="20"
                 name="arrow-right-line"
@@ -256,7 +256,7 @@
             v-if="participationStore.status.participated"
             class="mb-3"
           />
-          <ParticipationBoard :assessment="assessmentStore.currentAssessment"/>
+          <ParticipationBoard :assessment="assessmentStore.currentAssessment" />
         </div>
       </section>
     </div>
@@ -264,12 +264,11 @@
     <hr>
 
     <template v-if="assessment.details.hasDetailAccess">
-
-      <AssessmentRepresentativityRuleByChoice :assessment="assessmentStore.currentAssessment"/>
+      <AssessmentRepresentativityRuleByChoice :assessment="assessmentStore.currentAssessment" />
 
       <hr>
 
-      <AssessmentWorkshops :assessment="assessment"/>
+      <AssessmentWorkshops :assessment="assessment" />
 
       <div>
         <hr>

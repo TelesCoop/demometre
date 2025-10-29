@@ -215,8 +215,6 @@ if (assessmentStore.representativityCriterias.length === 0) {
 
 const expertSelected = ref<User>()
 
-const color = ref("no-pillar")
-
 enum steps {
   ASSESSMENT_TYPE = "assessment_type",
   START = "start",

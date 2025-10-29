@@ -62,7 +62,7 @@
                 <a :href="country.link" class="button is-rounded is-responsive is-dark" target="_blank">
                   <span>{{ country.buttonName }}</span>
                   <span class="ml-0_5" style="position: relative; top: 0.125rem;">
-                    <Icon size="16" name="external-link"/>
+                    <Icon size="16" name="external-link" />
                   </span>
                 </a>
               </div>
@@ -114,8 +114,8 @@
         :title="pageStore.homePage.partnerBlockTitle"
         :intro="pageStore.homePage.partnerBlockIntro"
       >
-      <PagePartnerList :partners="pageStore.homePage.partners" />
-    </PageSection>
+        <PagePartnerList :partners="pageStore.homePage.partners" />
+      </PageSection>
     </div>
 
     <!-- Resources -->
