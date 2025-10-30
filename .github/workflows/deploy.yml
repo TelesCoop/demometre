@@ -44,8 +44,8 @@ jobs:
           done
 
           # Initialize variables with default values
-          BACKEND_CHANGED="false"
-          FRONTEND_CHANGED="false"
+          BACKEND_CHANGED="true"
+          FRONTEND_CHANGED="true"
 
           # If no files were changed, assume all directories have changed to be safe
           if [ -z "$CHANGED_FILES" ]; then
