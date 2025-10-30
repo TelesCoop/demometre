@@ -9,7 +9,6 @@
 </template>
 
 <script setup lang="ts">
-// TODO : manage type, warning, error, info ...
 const props = defineProps({
   message: { type: String, required: true },
   type: { type: String, default: "error" },
