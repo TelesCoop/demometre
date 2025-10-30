@@ -143,7 +143,7 @@ jobs:
         run: E2E_TESTS=1 python manage.py e2e_populate_data
         working-directory: ./back
       - name: Run back-end server in background
-        run: python manage.py runserver localhost:8000 &
+        run: E2E_TESTS=1 python manage.py runserver localhost:8000 &
         working-directory: ./back
       - name: Set up Node.js
         uses: actions/setup-node@v4
