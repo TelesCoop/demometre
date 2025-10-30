@@ -166,7 +166,7 @@ jobs:
       - name: Run e2e tests
         uses: cypress-io/github-action@v6
         with:
-          start: npm run start
+          start: API_URL=http://localhost:8000 npm run start
           browser: chrome
           config-file: cypress.config.ts
           working-directory: ./front
