@@ -7,7 +7,7 @@ let media_base_url
 type MyHeaders = { [key: string]: string }
 
 export const useBackendUrl = (api = true) => {
-  const backendUrl = process.env.API_URL || (process.env.NODE_ENV === "production" ? `http://127.0.0.1:${useRuntimeConfig().backendPort}` : "http://localhost:8000")
+  const backendUrl = process.env.NODE_ENV === "production" ? `http://127.0.0.1:${useRuntimeConfig().backendPort}` : "http://localhost:8000"
   return api ? `${backendUrl}/api/` : backendUrl
 }
 
