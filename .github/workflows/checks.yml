@@ -160,10 +160,13 @@ jobs:
         if: steps.cache-node.outputs.cache-hit != 'true'
         run: npm install
         working-directory: ./front
+      - name: Build front
+        run: npm run build
+        working-directory: "./front"
       - name: Run e2e tests
         uses: cypress-io/github-action@v6
         with:
-          start: npm run dev
+          start: npm run start
           browser: chrome
           config-file: cypress.config.ts
           working-directory: ./front
