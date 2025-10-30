@@ -42,7 +42,6 @@
 <script setup lang="ts">
 import { useParticipationStore } from "~/stores/participationStore"
 import { useI18n } from "vue-i18n"
-import { defineEmits } from "vue"
 
 const i18n = useI18n()
 const $t = i18n.t

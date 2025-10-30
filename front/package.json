@@ -15,8 +15,8 @@
     "cypress": "^15.5.0",
     "easygettext": "^2.17.0",
     "eslint": "^8.44.0",
-    "nuxt": "^3.5.3",
-    "sass": "^1.49.3",
+    "nuxt": "3.5.3",
+    "sass": "1.49.9",
     "sass-loader": "^13.3.2",
     "vue-i18n-extract": "^2.0.7"
   },
