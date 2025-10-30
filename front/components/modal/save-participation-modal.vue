@@ -47,6 +47,7 @@ const i18n = useI18n()
 const $t = i18n.t
 const participationStore = useParticipationStore()
 const router = useRouter()
+defineEmits(['close'])
 
 const closeModal = () => {
   participationStore.setShowSaveParticipationModal(false)

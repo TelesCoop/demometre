@@ -230,7 +230,7 @@ const $t = i18n.t
 const questionnaireStore = useQuestionnaireStore()
 
 const props = defineProps({
-  assessmentType: { type: String, required: false },
+  assessmentType: { type: String, required: false, default: "" },
   pillar: { type: Object, required: true },
   color: { type: String, required: true },
   markers: {

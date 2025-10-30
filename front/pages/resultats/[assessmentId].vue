@@ -278,9 +278,6 @@ watch(
 watch(changeSelectedQuestion, () => {
   changeActiveQuestionId()
 })
-const question = computed(() => {
-  return questionnaireStore.questionById[activeQuestionId.value]
-})
 
 const colorClass = computed(() =>
   activePillar.value ? PillarParams[activePillar.value.name].color : "",
