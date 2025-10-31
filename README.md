@@ -1,16 +1,23 @@
-# Démomètre
+# 🌡️ DémoMètre
 
-## Documentation pour développeurs
+_Évaluer et améliorer ensemble la démocratie là où nous vivons_
 
-[Documentation front-end](front/README.md)
+Vous trouverez plus de détails sur le projet sur le [demometre.org](https://demometre.org/).
 
-[Documentation back-end](back/README.md)
+Outil développé par [TelesCoop](https://www.telescoop.fr/), designé par [Praticable](https://praticable.fr/) pour [Démocratie Ouverte](http://democratieouverte.org/)
 
-## Documentation pour humains
+## 🛠️ Documentation technique
 
-[Documentation des tests d'intégration](front/cypress/README.md)
 
-[Éléments de documentation technique à destination de Démocratie Ouverte](https://docs.google.com/document/d/1gxbE-jc1jgo6TjsCxgWjgNBIH2bfUEvHKVm4Xmb4Aso/edit?tab=t.0)
+👉 [Le front](front/README.md)
+
+👉 [Le back](back/README.md)
+
+## 📚 Documentation pour humains
+
+
+👉 [Les tests d'intégration](front/cypress/README.md)
+👉 [Éléments de documentation technique à destination de Démocratie Ouverte](https://docs.google.com/document/d/1gxbE-jc1jgo6TjsCxgWjgNBIH2bfUEvHKVm4Xmb4Aso/edit?tab=t.0) (⚠️ lienGoogle)
 
 ### Cycle de vie d'une évaluation et évaluations multiples par ville
 
