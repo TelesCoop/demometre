@@ -298,7 +298,7 @@ export const useAssessmentStore = defineStore("assessment", {
       )
       if (!error.value) {
         await this.getAssessment(rule!.assessmentId)
-        msgStore.setInfo($t("Valeur enregistrée avec succès"))
+        msgStore.setSuccess($t("Valeur enregistrée avec succès"))
       } else {
         msgStore.setError(error.value.data?.messageCode)
       }
@@ -311,7 +311,7 @@ export const useAssessmentStore = defineStore("assessment", {
       )
       if (!error.value) {
         await this.getAssessment(rule.assessmentId)
-        msgStore.setInfo($t("Valeur enregistrée avec succès"))
+        msgStore.setSuccess($t("Valeur enregistrée avec succès"))
       } else {
         msgStore.setError(error.value.data?.messageCode)
       }

@@ -34,5 +34,8 @@ export const useMessageStore = defineStore("toast", {
     setInfo(message: string) {
       this.setMessage(message, "info", DEFAULT_DURATION)
     },
+    setSuccess(message: string) {
+      this.setMessage(message, "success", DEFAULT_DURATION)
+    },
   },
 })

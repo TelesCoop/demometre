@@ -17,3 +17,4 @@ nuxt.d.ts
 __pycache__
 language/extraction.md
 language/extraction.md
+cypress/downloads
