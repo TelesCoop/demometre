@@ -34,6 +34,8 @@ class AssessmentRepresentativityCriteriaRuleView(
     permission_classes = [HasAssessmentWriteAccessForRepresentativityCriteriaRule]
 
     def get_queryset(self):
-        return  AssessmentRepresentativityCriteriaRule.objects.filter(
+        return AssessmentRepresentativityCriteriaRule.objects.filter(
             assessment_representativity__assessment_id__in=Subquery(
-                assessments_by_user(self.request.user).values("pk")))
+                assessments_by_user(self.request.user).values("pk")
+            )
+        )

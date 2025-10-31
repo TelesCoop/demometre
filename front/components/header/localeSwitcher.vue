@@ -5,12 +5,12 @@
   >
     <div
       class="dropdown-trigger has-text-white is-flex mt-0_5"
-      @click="isDropdownActive = !isDropdownActive"
       style="cursor: pointer"
+      @click="isDropdownActive = !isDropdownActive"
     >
       <span>{{ currentLocaleText }}</span>
       <span class="icon is-small ml-0_5">
-        <Icon name="arrow-down-s" size="20"/>
+        <Icon name="arrow-down-s" size="20" />
       </span>
     </div>
     <div

@@ -128,7 +128,7 @@ const contextFields: { label: string; field: ASSESSMENT_CONTEXT_FIELD_TYPE }[] =
   ]
 const contextValues = ref<Record<ASSESSMENT_CONTEXT_FIELD_TYPE, string>>({})
 for (const field of contextFields) {
-  contextValues.value[field.field] = props.assessment[field.field] // eslint-disable-line vue/no-setup-props-destructure
+  contextValues.value[field.field] = props.assessment[field.field]
 }
 const assessmentName = ref(props.assessment?.name)
 const initializedToTheNameOf = ref(props.assessment?.initializedToTheNameOf)

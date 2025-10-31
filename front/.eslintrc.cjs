@@ -21,5 +21,6 @@ module.exports = {
         "max": 1,
       },
     }],
+    "vue/no-v-html": "off"
   },
 }

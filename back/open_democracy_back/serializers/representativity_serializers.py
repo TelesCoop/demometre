@@ -96,9 +96,7 @@ class AssessmentRepresentativityCriteriaRuleSerializer(serializers.ModelSerializ
         response_choice = (
             data["response_choice"]
             if "response_choice" in data
-            else self.instance.response_choice
-            if self.instance is not None
-            else None
+            else self.instance.response_choice if self.instance is not None else None
         )
 
         # prevent duplicate

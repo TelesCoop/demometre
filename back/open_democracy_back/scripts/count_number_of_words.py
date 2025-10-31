@@ -1,6 +1,8 @@
-from open_democracy_back.models import *
+from open_democracy_back.models import Page
+from wagtail.fields import RichTextField, StreamField
+
 import django.apps
-from django.db import models as django_models
+from django.db.models import CharField
 from bs4 import BeautifulSoup
 
 
@@ -25,7 +27,7 @@ for model in models:
         continue
     for field in model._meta.get_fields():
         if not is_one_of_subclasses(
-            field.__class__, [StreamField, RichTextField, django_models.CharField]
+            field.__class__, [StreamField, RichTextField, CharField]
         ):
             continue
         for instance in model.objects.filter(locale=1):

@@ -1,7 +1,7 @@
 <template>
   <Transition>
     <Teleport to="body">
-      <div id="snackbar">
+      <div id="snackbar" :class="colorClass">
         {{ message }}
       </div>
     </Teleport>
@@ -9,9 +9,16 @@
 </template>
 
 <script setup lang="ts">
-// TODO : manage type, warning, error, info ...
-defineProps({
+const props = defineProps({
   message: { type: String, required: true },
+  type: { type: String, default: "error" },
+})
+
+const colorClass = computed(() => {
+  if (props.type === 'error') return 'has-background-danger'
+  if (props.type === 'info') return 'has-background-info'
+  if (props.type === 'success') return 'has-background-success'
+  if (props.type === 'warning') return 'has-background-warning'
 })
 </script>
 

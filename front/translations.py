@@ -8,7 +8,7 @@ LOCALES = ["en"]
 
 
 def read_po_file(locale) -> Catalog:
-    with open(f"./language/{locale}/app.po", "r") as f:
+    with open(f"./language/{locale}/app.po") as f:
         return read_po(f)
 
 

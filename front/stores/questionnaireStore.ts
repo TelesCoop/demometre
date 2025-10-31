@@ -4,7 +4,7 @@ import {
   Marker, ParticipativeProcess,
   PillarType,
   Question,
-  Survey, SurveyType,
+  Survey,
 } from "~/composables/types"
 import { useMessageStore } from "./messageStore"
 import { useApiGet } from "~/composables/api"

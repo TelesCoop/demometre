@@ -38,11 +38,12 @@
             class="custom-hidden white-on-black-input-checked"
             name="localityType"
           >
-            <label
-              :for="localityType.key"
-              class="button is-shade-600 is-outlined locality">
-              {{ LOCALITY_TYPE_NAME[localityType.key] }}
-            </label>
+          <label
+            :for="localityType.key"
+            class="button is-shade-600 is-outlined locality"
+          >
+            {{ LOCALITY_TYPE_NAME[localityType.key] }}
+          </label>
         </div>
       </div>
     </div>

@@ -58,39 +58,43 @@
             v-if="activeQuestion.objectivity === Objectivity.SUBJECTIVE"
             class="is-fullwidth"
           >
-            <tr :class="`is-uppercase is-size-6bis pb-0_5`">
-              <td class="pb-0_5">
-                {{ $t("Participant·e·s") }}
-              </td>
-              <td class="pb-0_5">
-                {{ $t("Réponses") }}
-              </td>
-            </tr>
-            <tr
-              v-for="participation of workshopStore.workshopParticipations(
-                props.workshopId, 'paper'
-              )"
-              :key="participation.id"
-            >
-              <td class="pb-1 pr-0_75">
-                <p
-                  :class="`has-background-${props.color}-light is-fullheight py-0_5 px-1`"
-                >
-                  {{ participation.participantName }}
-                </p>
-              </td>
-              <td class="pb-1">
-                <ResponseAnimator
-                  v-model="
-                    participation.responseByQuestionId[activeQuestion.id]
-                  "
-                  :question="activeQuestion"
-                  :participation="participation"
-                  :assessment-id="participation.assessmentId"
-                  :color="props.color"
-                />
-              </td>
-            </tr>
+            <thead>
+              <tr :class="`is-uppercase is-size-6bis pb-0_5`">
+                <td class="pb-0_5">
+                  {{ $t("Participant·e·s") }}
+                </td>
+                <td class="pb-0_5">
+                  {{ $t("Réponses") }}
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="participation of workshopStore.workshopParticipations(
+                  props.workshopId, 'paper'
+                )"
+                :key="participation.id"
+              >
+                <td class="pb-1 pr-0_75">
+                  <p
+                    :class="`has-background-${props.color}-light is-fullheight py-0_5 px-1`"
+                  >
+                    {{ participation.participantName }}
+                  </p>
+                </td>
+                <td class="pb-1">
+                  <ResponseAnimator
+                    v-model="
+                      participation.responseByQuestionId[activeQuestion.id]
+                    "
+                    :question="activeQuestion"
+                    :participation="participation"
+                    :assessment-id="participation.assessmentId"
+                    :color="props.color"
+                  />
+                </td>
+              </tr>
+            </tbody>
           </table>
           <div v-else>
             <p class="is-size-7 is-family-secondary mb-1">

@@ -167,7 +167,7 @@ const contextFields = computed<{
   ])
 const contextValues = ref<Record<WORKSHOP_CONTEXT_FIELD_TYPE, string>>({})
 for (const field of contextFields.value) {
-  contextValues.value[field.field] = props.workshop[field.field]  // eslint-disable-line vue/no-setup-props-destructure
+  contextValues.value[field.field] = props.workshop[field.field]
 }
 const workshopName = ref(props.workshop?.name)
 const place = ref(props.workshop?.place)

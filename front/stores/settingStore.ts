@@ -16,7 +16,7 @@ export const useSettingStore = defineStore("setting", {
         if (data.value.length) {
           this.rgpdSettings = data.value[0]
         } else {
-          console.error("Impossible to retrieve settings")
+          console.error("Impossible to retrieve rgpd settings")
         }
         this.rgpdSettingsLoaded = true
       } else {
@@ -32,7 +32,7 @@ export const useSettingStore = defineStore("setting", {
         if (data.value.length) {
           this.structureSettings = data.value[0]
         } else {
-          console.error("Impossible to retrieve settings")
+          console.error("Impossible to retrieve structure settings")
         }
       } else {
         const errorStore = useMessageStore()
