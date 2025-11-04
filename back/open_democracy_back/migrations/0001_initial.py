@@ -130,7 +130,7 @@ class Migration(migrations.Migration):
             name='Department',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('code', models.CharField(max_length=10, verbose_name='Code')),
+                ('code', models.CharField(max_length=3, verbose_name='Code')),
                 ('name', models.CharField(max_length=64, verbose_name='Nom')),
             ],
             options={
@@ -308,7 +308,7 @@ class Migration(migrations.Migration):
             name='Region',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('code', models.CharField(max_length=10, verbose_name='Code')),
+                ('code', models.CharField(max_length=3, verbose_name='Code')),
                 ('name', models.CharField(max_length=64, verbose_name='Nom')),
             ],
             options={
