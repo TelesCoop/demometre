@@ -23,3 +23,5 @@ public_hostnames:
 project_db_name: do
 
 environment_name: preprod
+
+country: FR

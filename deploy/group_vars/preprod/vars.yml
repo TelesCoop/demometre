@@ -22,3 +22,5 @@ public_hostnames:
 project_db_name: "{{ project_slug }}"
 
 environment_name: preprod
+
+country: FR
