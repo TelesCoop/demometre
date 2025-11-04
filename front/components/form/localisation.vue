@@ -194,6 +194,7 @@ const localityTypeToShow = computed(() => {
     localityOfSurveys.value.includes("department") ? "DEPARTMENT" : "",
     localityOfSurveys.value.includes("region") ? "REGION" : "",
   ].filter(Boolean)
+  console.log({valueToPick, localityTypeToShow: pick(LOCALITY_TYPE, valueToPick)})
   return pick(LOCALITY_TYPE, valueToPick)
 })
 

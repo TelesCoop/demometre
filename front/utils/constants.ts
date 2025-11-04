@@ -52,7 +52,7 @@ export const WORKSHOP_MEDIUM = {
   paper: $t("Sur papier"),
 }
 export let FOREIGN_INSTANCE_NAME: 'belgique'|null = null
-if (process.client && window.location.host.includes('local')) {
+if (process.client && window.location.host.includes('belgique')) {
   FOREIGN_INSTANCE_NAME = 'belgique'
 }
 
