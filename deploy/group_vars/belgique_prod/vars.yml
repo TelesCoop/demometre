@@ -1,5 +1,5 @@
 ---
-environment_suffix: "_prod"
+environment_suffix: "_belgique_prod"
 project_slug: "{{ base_project_slug }}{{ environment_suffix }}"
 
 project_dir: /{{project_base_dir}}{{ environment_suffix }}
@@ -12,16 +12,14 @@ n_workers: 4
 
 node_version: 18.18.0
 
-backend_application_port: 8046  # must be unique for each project on the same server
-frontend_application_port: 3046  # must be unique for each project on the same server
+backend_application_port: 8048  # must be unique for each project on the same server
+frontend_application_port: 3048  # must be unique for each project on the same server
 
 public_hostnames:
-  - demometre.org
-  - demometre.tlscp.fr
-  - democratieouverte.tlscp.fr
+  - belgique.demometre.tlscp.fr
 
-project_db_name: do
+project_db_name: "{{ project_slug }}"
 
-environment_name: preprod
+environment_name: belgique_prod
 
-country: FR
+country: BE

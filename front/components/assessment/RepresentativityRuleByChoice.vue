@@ -4,9 +4,11 @@
       Configuration des seuils de représentativité
     </h2>
     <p class="block mb-2">
-      {{ $t(`L'évaluation sera publique lorsque tous les seuils représentativité seront atteint, c'est à dire que pour chaque seuil, la proportion des participants ayant un profil qui correspond est supérieure au seuil.`) }}<br>
-      {{ $t(`Si vous ne configurez pas les seuils, ceux par défaut du Démomètre seront utilisés (affichés en gris).`) }}<br>
-      {{ $t(`Si vous ne voulez pas de seuil minimum pour une réponse, vous pouvez indiquer la valeur 0. Les seuils qui sont ignorés au niveau du Démomètre apparaissent en grisé et ne sont pas configurables.`) }}
+      {{ $t(`Les seuils de représentativité peuvent être ajustés afin de refléter au mieux les spécificités sociologiques de chaque territoire.`) }}<br>
+      {{ $t(`Ils servent à paramétrer le tableau de bord, dont la fonction est de garantir que les répondants au questionnaire reflètent la diversité des profils sociologiques du territoire.`) }}<br>
+      {{ $t(`Si vous ne les configurez pas, les seuils par défaut du Démomètre seront appliqués (affichés en gris).`) }}<br>
+      {{ $t(`Si vous ne souhaitez pas fixer de seuil minimum pour une réponse, vous pouvez indiquer la valeur 0.`) }}
+      {{ $t(`Les seuils qui sont ignorés au niveau du Démomètre apparaissent en grisé et ne sont pas configurables.`) }}
     </p>
     <div v-for="representativity in props.assessment.representativities" :key="representativity.id" class="mb-2">
       <h3 class="title is-4 mb-1">

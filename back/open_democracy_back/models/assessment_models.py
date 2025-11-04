@@ -27,7 +27,7 @@ from open_democracy_back.utils import (
 
 @register_snippet
 class Region(index.Indexed, models.Model):
-    code = models.CharField(max_length=3, verbose_name=_("Code"))
+    code = models.CharField(max_length=12, verbose_name=_("Code"))
     name = models.CharField(max_length=64, verbose_name=_("Nom"))
 
     locality_type = Locality.REGION
@@ -48,7 +48,7 @@ class Region(index.Indexed, models.Model):
 
 @register_snippet
 class Department(index.Indexed, models.Model):
-    code = models.CharField(max_length=3, verbose_name=_("Code"))
+    code = models.CharField(max_length=12, verbose_name=_("Code"))
     name = models.CharField(max_length=64, verbose_name=_("Nom"))
     region = models.ForeignKey(
         Region,

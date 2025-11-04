@@ -46,14 +46,14 @@
     name: psycopg2
   when: database_provider == "postgresql"
 
-- name: Create database {{ project_slug }}
+- name: "Create database {{ project_slug }}"
   community.postgresql.postgresql_db:
     name: "{{ project_slug }}"
   become: true
   become_user: postgres
   when: database_provider == "postgresql"
 
-- name: Create database user {{ project_slug }}
+- name: "Create database user {{ project_slug }}"
   community.postgresql.postgresql_user:
     db: "{{ project_slug }}"
     name: "{{ project_slug }}"

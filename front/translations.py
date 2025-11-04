@@ -1,3 +1,14 @@
+import sys
+
+# Fail if not running Python 3.10
+if sys.version_info < (3, 10) or sys.version_info >= (3, 11):
+    print("Error: This script requires Python 3.10", file=sys.stderr)
+    print(
+        f"Current Python version: {sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}",
+        file=sys.stderr,
+    )
+    sys.exit(1)
+
 import json
 from collections import defaultdict
 

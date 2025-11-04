@@ -189,10 +189,10 @@ export type Definition = {
 }
 
 // Assessment
-export const LOCALITY_TYPE: Record<string, { key: string; value: string }> = {
+export const LOCALITY_TYPE: Record<string, { key: string; value: string, value_belgique?: string }> = {
   CITY: { key: "city", value: $t("Commune") },
-  EPCI: { key: "epci", value: $t("Intercommunalité") },
-  DEPARTMENT: { key: "department", value: $t("Département") },
+  EPCI: { key: "epci", value: $t("Intercommunalité"), value_belgique: $t("Communauté") },
+  DEPARTMENT: { key: "department", value: $t("Département"), value_belgique: $t("Province") },
   REGION: { key: "region", value: $t("Région") },
 }
 export type LocalityTypes =
@@ -201,7 +201,7 @@ export type LocalityTypes =
   | "region"
   | "department"
 export const LOCALITY_TYPES = Object.values(LOCALITY_TYPE).map((localityType) => localityType.key)
-export type SurveyLocality = "city" | "epci" | "region" | "department"
+export type SurveyLocality = LocalityTypes
 export const AssessmentType = {
   QUICK: { key: "quick", value: $t("Diagnostic rapide") },
   PARTICIPATIVE: { key: "participative", value: $t("Evaluation participative") },

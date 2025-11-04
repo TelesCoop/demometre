@@ -41,7 +41,9 @@
           <label
             :for="localityType.key"
             class="button is-shade-600 is-outlined locality"
-          >{{ localityType.value }}</label>
+          >
+            {{ LOCALITY_TYPE_NAME[localityType.key] }}
+          </label>
         </div>
       </div>
     </div>
@@ -143,6 +145,7 @@ import {
   LOCALITY_TYPE,
   type LocalityTypes,
 } from "~/composables/types"
+import { LOCALITY_TYPE_NAME } from "~/utils/constants"
 import { usePageStore } from "~/stores/pageStore"
 import { usePressEnter } from "~/composables/pressEnter"
 import { useQuestionnaireStore } from "~/stores/questionnaireStore"
@@ -187,7 +190,7 @@ const localityOfSurveys = computed(() => {
 const localityTypeToShow = computed(() => {
   const valueToPick = [
     "CITY",
-    "EPCI",
+    localityOfSurveys.value.includes("epci") ? "EPCI" : "",
     localityOfSurveys.value.includes("department") ? "DEPARTMENT" : "",
     localityOfSurveys.value.includes("region") ? "REGION" : "",
   ].filter(Boolean)

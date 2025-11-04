@@ -179,6 +179,13 @@ le code de `open_democracy_back.apps.ready`)
 - redémarrer le service web (via supervisor) pour que les changements soient bien pris
 en compte
 
+### Ajouter une instance
+
+- dans `deploy/hosts`, ajouter un ou plusieurs hôtes
+- copier/coller `belgique_{prod,preprod}` avec le nom du nouvel hôte et adapter les variables
+- mettre à jour dans `constants.ts` la définition de `FOREIGN_INSTANCE_NAME` et nommer les différents
+  échelons
+
 ### Ajouter des champs à traduire
 
 - sur le modèle concerné, iniqué la liste des `translated_fields`

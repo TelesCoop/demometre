@@ -1,4 +1,5 @@
 import { i18n } from "~/utils/i18n-util"
+import { LOCALITY_TYPE } from "~/composables/types"
 
 const $t = i18n.global.t
 
@@ -50,10 +51,16 @@ export const WORKSHOP_MEDIUM = {
   online: $t("En ligne"),
   paper: $t("Sur papier"),
 }
-export const LOCALITY_TYPE_NAME = {
-  city: $t("Commune"),
-  epci: $t("Intercommunalité"),
-  department: $t("Département"),
-  region: $t("Région"),
+export let FOREIGN_INSTANCE_NAME: 'belgique'|null = null
+if (process.client && window.location.host.includes('local')) {
+  FOREIGN_INSTANCE_NAME = 'belgique'
 }
-export const ONE_MILLION = 1000000
+
+export const LOCALITY_TYPE_NAME = {
+  city: FOREIGN_INSTANCE_NAME && LOCALITY_TYPE.CITY[`value_${FOREIGN_INSTANCE_NAME}`] || LOCALITY_TYPE.CITY.value,
+  epci: FOREIGN_INSTANCE_NAME && LOCALITY_TYPE.EPCI[`value_${FOREIGN_INSTANCE_NAME}`] || LOCALITY_TYPE.EPCI.value,
+  department: FOREIGN_INSTANCE_NAME && LOCALITY_TYPE.DEPARTMENT[`value_${FOREIGN_INSTANCE_NAME}`] || LOCALITY_TYPE.DEPARTMENT.value,
+  region: FOREIGN_INSTANCE_NAME && LOCALITY_TYPE.REGION[`value_${FOREIGN_INSTANCE_NAME}`] || LOCALITY_TYPE.REGION.value,
+}
+
+export const ONE_MILLION = 1_000_000

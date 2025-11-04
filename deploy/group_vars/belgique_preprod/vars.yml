@@ -1,5 +1,5 @@
 ---
-environment_suffix: "_preprod"
+environment_suffix: "_belgique_preprod"
 project_slug: "{{ base_project_slug }}{{ environment_suffix }}"
 
 project_dir: /{{project_base_dir}}{{ environment_suffix }}
@@ -12,15 +12,14 @@ n_workers: 1
 
 node_version: 18.18.0
 
-backend_application_port: 8045  # must be unique for each project on the same server
-frontend_application_port: 3045  # must be unique for each project on the same server
+backend_application_port: 8047  # must be unique for each project on the same server
+frontend_application_port: 3047  # must be unique for each project on the same server
 
 public_hostnames:
-  - preprod.demometre.tlscp.fr
-  - preprod.demometre.org
+  - preprod.belgique.demometre.tlscp.fr
 
 project_db_name: "{{ project_slug }}"
 
-environment_name: preprod
+environment_name: belgique_preprod
 
-country: FR
+country: BE
