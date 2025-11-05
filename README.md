@@ -50,8 +50,14 @@ d'interpréter les réponses s'il y avait plusieurs process participatifs pour l
 si j'ai été écouté lors des process participatifs si j'ai participé à plusieurs et que j'ai
 des avis différents ?
 
-Lors de l'initiation d'une évaluation (et uniquement lors de l'évaluation), il est maintenant possible de définir des process participatifs pour la collectivité évaluée. Les process participatifs sont associées à des catégories process participatifs, qui sont les réponses possibles à la Question dont le code est
-"7A".
+Lors de l'initiation d'une évaluation (et uniquement lors de l'évaluation), il est maintenant possible de définir des process participatifs pour la collectivité évaluée. Les process participatifs sont associées à des catégories process participatifs, qui sont les réponses possibles à la Question de profilage dont le code est "7A". Pour les modifier, aller donc dans le back-office,
+onglet Profilage puis Questions de profilage. ⚠️ Les modifications doivent être limitées et dans la mesure du possible ne pas
+supprimer des options, il risque sinon d'y avoir une perte d'informations des process participatifs déjà reliées à des réponses.
+Un renommage d'une réponse est possible, si ça ne change pas le sens (au risque de mal interpréter les réponses).
+
+Cette étape intervient juste après avoir défini au nom de qui l'évaluation est lancée, avant les questions objectives.
+
+![process participatifs](docs-images/process-participatifs.png)
 
 Si des process participatifs sont définis pour une évaluation, les participants peuvent indiquer les
 process auxquels iels ont participé lors des questions de profilage.
