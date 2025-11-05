@@ -25,7 +25,7 @@
         <button
           class="button is-rounded mt-4"
           data-cy="skip-participative-processes"
-          @click.prevent="confirm"
+          @click.prevent="() => confirm(true)"
         >
           {{ pageStore.participativeProcessPage.skipCallToAction }}
         </button>
@@ -46,11 +46,12 @@
 import {usePageStore} from "~/stores/pageStore"
 import {useProfilingStore} from "~/stores/profilingStore"
 import {ParticipativeProcess, Question} from "~/composables/types"
-import {useRoute} from "vue-router"
+import {useRoute, useRouter} from "vue-router"
 import {useQuestionnaireStore} from "~/stores/questionnaireStore"
 
 const questionnaireStore = useQuestionnaireStore()
 const route = useRoute()
+const router = useRouter()
 const assessmentId = Number(route.params.assessmentId)
 const pageStore = usePageStore()
 const profilingStore = useProfilingStore()
@@ -70,7 +71,6 @@ const isDisabled = computed(() => {
   if (isLoading.value) {
     return true
   }
-  console.log("### is disabled ?", Object.values(processesPerCategory.value))
   for (const processes of Object.values(processesPerCategory.value)) {
     if (processes.some(process => process.name !== '')) {
       return false
@@ -81,7 +81,6 @@ const isDisabled = computed(() => {
 const isLoading = ref(false)
 
 const addParticipativeProcess = (categoryId: number) => {
-  console.log("### before", processesPerCategory.value)
   processesPerCategory.value = {
     ...processesPerCategory.value,
     [categoryId]: [
@@ -89,7 +88,6 @@ const addParticipativeProcess = (categoryId: number) => {
       { name: '', responseChoice: categoryId, assessmentId, id: generateRandomId() },
     ],
   }
-  console.log("### after", processesPerCategory.value)
 }
 const deleteProcess = (categoryId: number, processName: string) => {
   processesPerCategory.value = {
@@ -98,12 +96,13 @@ const deleteProcess = (categoryId: number, processName: string) => {
   }
 }
 
-const confirm = async () => {
-  isLoading.value = true
-  const processes: ParticipativeProcess[] = Object.values(processesPerCategory.value).flat().filter(process => process.name !== '')
-  await questionnaireStore.addParticipativeProcesses(assessmentId, processes)
-  isLoading.value = false
-  const journey = useInitializationJourney()
-  journey.goToNextQuestion(undefined)
+const confirm = async (skip = false) => {
+  if (!skip) {
+    isLoading.value = true
+    const processes: ParticipativeProcess[] = Object.values(processesPerCategory.value).flat().filter(process => process.name !== '')
+    await questionnaireStore.addParticipativeProcesses(assessmentId, processes)
+    isLoading.value = false
+  }
+  router.push(`/evaluation/initialisation/${assessmentId}/questions-objectives`)
 }
 </script>

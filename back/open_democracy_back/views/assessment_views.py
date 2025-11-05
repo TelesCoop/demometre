@@ -282,19 +282,20 @@ class ZipCodeSurveysView(mixins.ListModelMixin, viewsets.GenericViewSet):
         municipalities = self.serializer_class_municipality(
             Municipality.objects.filter(zip_codes__code=zip_code).distinct(), many=True
         )
-        epcis = self.serializer_class_epci(
-            EPCI.objects.filter(
-                related_municipalities_ordered__municipality__zip_codes__code=zip_code
-            ).distinct(),
-            many=True,
-        )
 
         to_return = {
             Locality.CITY: municipalities.data,
-            Locality.EPCI: epcis.data,
         }
 
-        # only include departements and region if corresponding surveys exist
+        # only include departements/regions/epcis if corresponding surveys exist
+        if Survey.objects.filter(survey_locality=Locality.EPCI).exists():
+            epcis = self.serializer_class_epci(
+                EPCI.objects.filter(
+                    related_municipalities_ordered__municipality__zip_codes__code=zip_code
+                ).distinct(),
+                many=True,
+            )
+            to_return[Locality.EPCI] = epcis.data
         if Survey.objects.filter(survey_locality=Locality.DEPARTMENT).exists():
             departments = DepartmentSerializer(
                 Department.objects.filter(

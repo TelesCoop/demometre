@@ -37,7 +37,7 @@ export function useUserStep() {
       !assessmentStore.currentAssessment?.isInitializationQuestionsCompleted &&
       assessmentStore.userIsAssessmentInitiator
     ) {
-      // The assessment is initialize but the objective questions are not completed
+      // The assessment is initialized but the objective questions are not completed
       return {
         step: "initialization-objectives-questions",
         url: `/evaluation/initialisation/${assessmentStore.currentAssessmentId}/questions-objectives`,
