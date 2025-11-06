@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     backendPort: process.env.NUXT_BACKEND_PORT || process.env.VITE_BACKEND_PORT,
   },
-  ssr: true,
+  ssr: false,
   i18n: {
     locales: ["fr", "en"],
     defaultLocale: "fr",
