@@ -5,7 +5,6 @@ on:
     branches:
       - dev
       - main
-      - feat-ci
 
 jobs:
   deploy-prod:
@@ -19,11 +18,9 @@ jobs:
         id: set_env
         run: |
           if [ "${{ github.ref }}" == "refs/heads/dev" ]; then
-            echo "ENVIRONMENT=preprod" >> $GITHUB_ENV
+            echo "ENVIRONMENT=preprod,belgique_preprod" >> $GITHUB_ENV
           elif [ "${{ github.ref }}" == "refs/heads/main" ]; then
-            echo "ENVIRONMENT=prod" >> $GITHUB_ENV
-          elif [ "${{ github.ref }}" == "refs/heads/feat-ci" ]; then
-            echo "ENVIRONMENT=preprod" >> $GITHUB_ENV
+            echo "ENVIRONMENT=prod,belgique_prod" >> $GITHUB_ENV
           fi
       - name: Check for changes
         id: check_changes
@@ -44,8 +41,8 @@ jobs:
           done
 
           # Initialize variables with default values
-          BACKEND_CHANGED="true"
-          FRONTEND_CHANGED="true"
+          BACKEND_CHANGED="false"
+          FRONTEND_CHANGED="false"
 
           # If no files were changed, assume all directories have changed to be safe
           if [ -z "$CHANGED_FILES" ]; then
