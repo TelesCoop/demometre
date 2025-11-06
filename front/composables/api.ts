@@ -7,8 +7,24 @@ let media_base_url
 type MyHeaders = { [key: string]: string }
 
 export const useBackendUrl = (api = true) => {
-  const backendUrl = process.env.NODE_ENV === "production" ? `http://127.0.0.1:${useRuntimeConfig().backendPort}` : "http://localhost:8000"
-  return api ? `${backendUrl}/api/` : backendUrl
+  let backendUrl = ""
+  if (process.env.NODE_ENV !== "production") {
+    backendUrl = "http://localhost:8000"
+  } else {
+    // production server
+    if (process.server) {
+      const config = useRuntimeConfig()
+
+      // server-side rendering
+      backendUrl = `http://127.0.0.1:${config.backendPort}`
+    }
+  }
+
+  if (!api) {
+    return backendUrl
+  }
+
+  return `${backendUrl}/api/`
 }
 
 const makeLoadingKey = (path: string) => {
