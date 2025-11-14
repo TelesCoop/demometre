@@ -38,6 +38,7 @@ from open_democracy_back.views.setting_views import (
     RGPDSettingsView,
     StructureSettingsView,
 )
+from open_democracy_back.views.health_check import health_check
 from .models import Training
 from .serializers.training_serializers import TrainingSerializer
 
@@ -219,5 +220,6 @@ urlpatterns = [
         ),
         name="traning-list",
     ),
+    path("health-check", health_check, name="health-check"),
     path("set-locale/<str:locale>/", set_locale, name="set-locale"),
 ]
