@@ -183,6 +183,7 @@
     <div class="container">
       <ParticipationBoard
         :assessment="assessmentStore.assessmentById[assessmentId]"
+        :show-assessment-info="true"
       />
     </div>
   </div>
