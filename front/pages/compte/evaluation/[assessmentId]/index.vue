@@ -256,7 +256,7 @@
             v-if="participationStore.status.participated"
             class="mb-3"
           />
-          <ParticipationBoard :assessment="assessmentStore.currentAssessment" />
+          <ParticipationBoard :assessment="assessmentStore.currentAssessment" :show-assessment-info="true" />
         </div>
       </section>
     </div>

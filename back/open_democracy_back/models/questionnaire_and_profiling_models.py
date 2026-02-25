@@ -55,7 +55,7 @@ class Role(TranslatableMixin, ClusterableModel):
 
     def __str__(self):
         locale = translation.get_language()
-        return getattr(self, f"name_{locale}")
+        return getattr(self, f"name_{locale}") or self.name_fr
 
     def __init__(self, *args, **kwargs):
         """Fixes a bug when trying to translate."""
@@ -397,7 +397,7 @@ class Criteria(index.Indexed, ClusterableModel):
 
     def __str__(self):
         locale = translation.get_language()
-        return f"{self.concatenated_code}: {getattr(self, f'name_{locale}')}"
+        return f"{self.concatenated_code}: {getattr(self, f'name_{locale}') or self.name_fr}"
 
     def save(self, *args, **kwargs):
         code_elements = []

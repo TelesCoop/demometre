@@ -41,5 +41,5 @@ defineProps({
 defineEmits(["remove", "update:modelValue"])
 
 const assessmentStore = useAssessmentStore()
-const selectedExpertId = useModel("modelValue")
+const selectedExpertId = defineModel({ type: Number})
 </script>

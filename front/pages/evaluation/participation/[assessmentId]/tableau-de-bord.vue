@@ -11,6 +11,7 @@
       />
       <ParticipationBoard
         :assessment="assessmentStore.currentAssessment"
+        :show-assessment-info="true"
       />
       <div class="buttons mt-4">
         <NuxtLink
