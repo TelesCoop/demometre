@@ -167,12 +167,13 @@ USE_L10N = True
 USE_TZ = True
 
 WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
-    ("fr", "FR 🇫🇷"),
-    ("en", "EN 🇬🇧"),
+    ("fr-FR", "FR 🇫🇷"),
+    ("fr-BE", "BE 🇧🇪"),
+    ("en-GB", "EN 🇬🇧"),
 ]
 # after updating this list, you need to run makemigrations
-LOCALES_FOR_TRANSLATED_FIELDS = ["fr", "en"]
-DEFAULT_LOCALE = "fr"
+LOCALES_FOR_TRANSLATED_FIELDS = ["fr-FR", "en-GB"]
+DEFAULT_LOCALE = "fr-FR"
 LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
 
