@@ -1,6 +1,6 @@
 babel==2.17.0
 bleach==6.0.0
-Django>=5.1.14
+Django>=5.0,<5.1
 django-anymail==12.0
 django-cors-headers==3.5.0
 django-debug-toolbar==4.3.0
