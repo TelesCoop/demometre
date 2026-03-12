@@ -131,7 +131,18 @@ class AssessmentsView(
 
     @action(detail=False, methods=["GET"])
     def published(self, request):
-        assessments = Assessment.objects.filter(initialization_date__lte=timezone.now())
+        assessments = (
+            Assessment.objects.filter(initialization_date__lte=timezone.now())
+            .prefetch_related("experts")
+            .prefetch_related("participations")
+            .select_related("survey")
+            .select_related("initiated_by_user")
+            .select_related("municipality")
+            .select_related("assessment_type")
+            .prefetch_related("workshops")
+            .prefetch_related("representativities")
+        )
+
         assessments = [
             assessment for assessment in assessments if assessment.published_results
         ]
