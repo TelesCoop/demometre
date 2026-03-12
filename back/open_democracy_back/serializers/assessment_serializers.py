@@ -33,6 +33,7 @@ from open_democracy_back.serializers.representativity_serializers import (
 )
 from open_democracy_back.serializers.user_serializers import (
     UserSerializer,
+    UserIdSerializer,
 )
 from open_democracy_back.serializers.utils import Base64FileField
 
@@ -192,7 +193,8 @@ class AssessmentSerializer(serializers.ModelSerializer):
     participative_processes = ParticipativeProcessSerializer(many=True, read_only=True)
     epci = EpciSerializer(many=False, read_only=True)
     experts = UserSerializer(many=True, read_only=True)
-    initiated_by_user = UserSerializer(read_only=True)
+    # Security: do not show full User Information on public API
+    initiated_by_user = UserIdSerializer(read_only=True)
     is_current = serializers.SerializerMethodField()
     municipality = MunicipalitySerializer(many=False, read_only=True)
     participation_count = serializers.SerializerMethodField()
