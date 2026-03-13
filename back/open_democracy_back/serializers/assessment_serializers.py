@@ -33,6 +33,7 @@ from open_democracy_back.serializers.representativity_serializers import (
 )
 from open_democracy_back.serializers.user_serializers import (
     UserSerializer,
+    UserIdSerializer,
 )
 from open_democracy_back.serializers.utils import Base64FileField
 
@@ -192,7 +193,8 @@ class AssessmentSerializer(serializers.ModelSerializer):
     participative_processes = ParticipativeProcessSerializer(many=True, read_only=True)
     epci = EpciSerializer(many=False, read_only=True)
     experts = UserSerializer(many=True, read_only=True)
-    initiated_by_user = UserSerializer(read_only=True)
+    # Security: do not show full User Information on public API
+    initiated_by_user = UserIdSerializer(read_only=True)
     is_current = serializers.SerializerMethodField()
     municipality = MunicipalitySerializer(many=False, read_only=True)
     participation_count = serializers.SerializerMethodField()
@@ -337,8 +339,10 @@ class AssessmentResponseSerializer(ResponseSerializer):
         user = self.context["request"].user
 
         question = data["question"]
-
-        is_initiator = assessment.initiated_by_user.id == user.id
+        is_initiator = (
+            assessment.initiated_by_user is not None
+            and assessment.initiated_by_user.id == user.id
+        )
         is_expert = assessment.experts.filter(id=user.id).exists()
 
         # Filter role and profile if the user is not an initiator or expert

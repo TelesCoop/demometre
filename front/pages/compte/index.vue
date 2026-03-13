@@ -128,7 +128,6 @@
                 </th>
                 <th>{{ $t("Échelon") }}</th>
                 <th>{{ $t("Localité") }}</th>
-                <th>{{ $t("Pays") }}</th>
                 <th>{{ $t("Actions") }}</th>
               </tr>
             </thead>
@@ -164,7 +163,6 @@
                 </td>
                 <td>{{ LOCALITY_TYPE_NAME[assessment.localityType] }}</td>
                 <td>{{ assessment.collectivityName }}</td>
-                <td>France</td>
                 <td data-cy="details">
                   <button class="button is-small is-rounded">
                     {{ $t("Détails") }}
