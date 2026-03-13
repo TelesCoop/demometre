@@ -339,8 +339,10 @@ class AssessmentResponseSerializer(ResponseSerializer):
         user = self.context["request"].user
 
         question = data["question"]
-
-        is_initiator = assessment.initiated_by_user.id == user.id
+        is_initiator = (
+            assessment.initiated_by_user is not None
+            and assessment.initiated_by_user.id == user.id
+        )
         is_expert = assessment.experts.filter(id=user.id).exists()
 
         # Filter role and profile if the user is not an initiator or expert

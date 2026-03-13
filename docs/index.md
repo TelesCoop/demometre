@@ -9,8 +9,8 @@ La plateforme du démomètre est constituée de deux logiques métiers :
 Mettons de côté la partie *blog* pour nous concentrer sur la partie *évaluation*.
 
 Les différents concepts de la plateforme sont :
-* les **évaluations** ;
-* les **participations** ;
+* les **évaluations** (`assessment`): il s'agit d'un type d'évaluation (diagnostic rapide, évaluation participative ou évaluation avec expert) réalisée pour un type de collectivité et initiée par une certaine personne ;
+* les **participations** (`participation` dans le code) correspondent à des réponses aux questionnaires pour une évaluation donnée ;
 * les **questionnaires** (incluant les questions, piliers, marqueurs et critères) : il s'agit des questions qui doivent être posées dans une évaluation. Ces questions sont structurées de manière à rendre les résultats intelligibles.
 * les **profils**
 * les **rôles** :
@@ -19,22 +19,46 @@ Tout est rendu plus clair (ou moins clair ?) par des codes.
 
 👉 Comment traduire la plateforme ? [traduction](/docs/traduction.md)
 
-### Les questionnaires
+## Les questionnaires
 
 * les **questionnaires** (`Survey` dans le code) : il s'agit de l'ensemble des piliers, marqueurs et questions qui vont être évalués pour un échelon donné. Il y donc au plus quatre questionnaires (un pour chaque échelon : ville, epci, département et région) ;
 * les **piliers** (`Pillar` dans le code) : la démocratie est évaluée sur le démomètre selon quatre piliers de « représentation », de « transparence », de « participation » et de « coopération ». Concrètement, il faut définir les quatre piliers pour chaque questionnaire.
 * les ***marqueurs** (`Marker` dans le code) : il s'agit d'un indicateur global associé à un pilier. Cet indicateur obtiendra une valeur chiffrée entre 1 et 4 qu'il convient d'expliciter. Par exemple le marqueur « Tissu associatif et militant » permet d'évaluer le pilier de la « coopération » et s'il a la valeur 1 cela signifie qu'il y  a un « faible nombre de corps intermédiaires et soutien de la collectivité ; tensions observées ».
 * les **critères** (`Criteria` dans le code) : associés à un marqueur,il s'agit de ce qu'on souhaite mesurer à l'une d'une ou plusieurs questions au sein de ce marqueur ;
 * les **questions** (`Question` dans le code) : c'est la question posée à l'utilisateur·ice. Cette dernière est associée à un critère (et dans les faits, il y a souvent une seule question par critère). Ces questions peuvent être de nombreux types différents (en particulier à choix unique, multiple, fermée à échelle, en pourcentage, etc.). On peut les restreindre à certains profils ou rôles, etc.
+* les **questions de profilage** :
 
-### Les profilages
+
+### Les questions de profilage
+
+Ces questions servent à deux choses :
+* Associer le·a répondant·e à un profil. Par exemple, savoir si la personne a un profil de "non-résident" (et donc lui montrer les questions associées)
+* Déterminer des seuils de représentativité. En l’occurrence, pour celui de DO, s’assurer qu’il y a au moins 10% de répondant·e qui ont répondu à chaque choix (sauf "affinage" de seuil)
 
 * la **représentativité** : associée à un questionnaire (exactement à un échelon) et à une unique question de profilage, elle permet de définir un seuil minimal en dessous du-quel la publication des résultats est interdite ;
 * les **types de profils** : ils permettent de classer les répondants en fonction des réponses aux questions de profilage. Par exemple on a le rôle « non résident » si on répond « je ne réside pas sur le territoire » à la question « Quartier de résidence » (en cas de questionnaire communal) ou si on répond « je ne réside pas sur le territoire » à la question « lieu de résidence REGION ».
 * les **questions de profilage** sont des **questions** *presque* comme les autres à la différence principale qu’elle n’est pas associée à un critère mais potentiellement à plusieurs questionnaires.
 
 
+### Questions objectives vs questions subjectives
+
+Une fois la question créée, on ne peut plus changer (tout changement fait dans l'interface est annulé).
+
+Les questions **subjectives**  sont liées à des participation (et non pas à des Évaluations) tandis que les questions **objectives** sont liées à des évaluations.
+
+En gros, une question **objective** est une question dont la réponse ne dépend pas de la personne qui répond à la question.
+Par ex. « Combien d'habitant·es habitent la commune ? ». À la différence d'une question **subjective** : « Combien de personnes j'apprécie dans la commune ? ».
+
+Cela signifie donc qu’il n’y a **qu’une seule réponse objective possible** par question et **cette réponse** peut être modifiée par n’importe quelle personne pour laquelle cette question s’affiche (c’est-à-dire les personnes avec les bons rôles/profils). À noter que si une réponse est déjà fournie, alors la question ne s’affiche pas d’elle-même. Si une personne re-répond à cette question, elle **modifie la réponse connue** (et la réponse précédente n’est pas sauvegardée).
+
+Le résultat affiché est donc la dernière réponse connue.
+
+
 ### Les évaluations
+
+`Assessment` dans le code
+
+Concrètement, on pourrait dire qu'il s'agit d'un couple ville/évaluation.
 
 Il existe trois types d'évaluation :
 
@@ -56,47 +80,14 @@ Une évaluation est considérée en cours jusqu'à ce qu'elle soit clôturée.
 
 Une évaluation peut être clôturée par un expert ou par l'initiateur.
 
-### Process participatifs
 
-MAQ. C’est juste un type de question je crois.
-
-#### Définir les process participatifs
-
-Auparavant, pour les questions qui concernaient les process participatifs, il était difficile d'interpréter les réponses s'il y avait plusieurs process participatifs pour la ville. Ça posait également des questions pour les participants : comment dois-je répondre à la question de savoir si j'ai été écouté lors des process participatifs si j'ai participé à plusieurs et que j'ai
-des avis différents ?
-
-Lors de l'initiation d'une évaluation (et uniquement lors de l'évaluation), il est maintenant possible de définir des process participatifs pour la collectivité évaluée. Les process participatifs sont associées à des catégories process participatifs, qui sont les réponses possibles à la Question de profilage dont le code est "7A". Pour les modifier, aller donc dans le back-office, onglet Profilage puis Questions de profilage. ⚠️ Les modifications doivent être limitées et dans la mesure du possible ne pas supprimer des options, il risque sinon d'y avoir une perte d'informations des process participatifs déjà reliées à des réponses.
-
-Un renommage d'une réponse est possible, si ça ne change pas le sens (au risque de mal interpréter les réponses).
-
-Cette étape intervient juste après avoir défini au nom de qui l'évaluation est lancée, avant les questions objectives.
-
-![process participatifs](./assets/process-participatifs.png)
-
-Si des process participatifs sont définis pour une évaluation, les participants peuvent indiquer les
-process auxquels iels ont participé lors des questions de profilage.
-
-#### Les questions qui concernent les process participatifs
-
-Dans l'admin, on peut définir les questions qui concernent les process participatifs, en cochant
-simplement la case correspondantes dans l'édition des questions.
-
-![admin process participatif](./assets/admin-process-participatif.png)
-
-En tant que participant, quand je réponds aux questions, si une questions concerne un process
-participatif et que j'ai indiqué avoir participé à plusieurs process participatifs, je réponds
-alors plusieurs fois à la question, une fois par process participatif.
-
-Lorsque je visualise les résultats, je peux sélectionner le ou les process participatifs pour
-lesquels je souhaite visualiser les résultats.
-
-### Seuils de représentativité
+#### Seuils de représentativité
 
 Les seuils de représentativité servent à déterminer quand une évaluation peut être publiée : c'est le cas lorsque tous les seuils de représentativité sont respectés.
 
 Par exemple, si j'ai configuré pour le seuil de représentativité "Genre" 35% pour Femme et 35% pour Homme, l'évaluation ne peut être publiée que si au moins 35% des participants ont répondu Femme à la question de profilage ET que au moins 35% des participants ont répondu Homme à la question de profilage.
 
-#### Modifier les seuils pour une évaluation
+##### Modifier les seuils pour une évaluation
 
 Ces seuils peuvent être configuré par l'initiateur, dans la page d'une évaluation
 (accessible depuis Mon Compte -> Mes Évaluations -> cliquer sur l'évaluation).
@@ -107,7 +98,7 @@ Les chiffres indiqués en gris sont les valeurs par défaut (configurable dans l
 Je peux modifier chacun des seuils. Un seuil est ignoré s'il est rempli à zéro.
 Pour rétablir la valeur par défaut, cliquer sur la croix à côté de celui-ci.
 
-#### Modifier globalement les seuils
+##### Modifier globalement les seuils
 
 Dans l'interface admin, les seuils peuvent être modifié en cliquant depuis le menu de gauche sur Représentativité.
 
