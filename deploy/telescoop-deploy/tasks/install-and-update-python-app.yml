@@ -1,0 +1,37 @@
+- name: Install supervisor package
+  apt:
+    name:
+      - supervisor
+
+- name: Install {{ project_slug }}-ctl
+  template:
+    src: backend-ctl.j2
+    dest: "/usr/local/bin/{{ project_slug }}-ctl"
+    mode: "0755"
+
+- name: Create backend settings to {{ backend_settings_path }}
+  template:
+    src: "{{ template_backend_settings_name|default('settings.ini.j2')}}"
+    dest: "{{ backend_settings_path }}"
+    owner: "{{ main_user }}"
+    group: devops
+    mode: 0660
+
+- name: Copy supervisord config to {{ supervisor_conf }}/{{ project_slug }}-python.conf
+  template:
+    src: python-supervisor.conf.j2
+    dest: "{{ supervisor_conf }}/{{ project_slug }}-python.conf"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install {{ project_slug }}-python supervisor
+  supervisorctl:
+    name: "{{ project_slug }}-python"
+    state: present
+
+- name: Restart {{ project_slug }}-python supervisor
+  supervisorctl:
+    name: "{{ project_slug }}-python"
+    state: restarted
+  when: clonecode.changed or force_update is defined

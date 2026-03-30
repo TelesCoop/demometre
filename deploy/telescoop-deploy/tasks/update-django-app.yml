@@ -1,0 +1,23 @@
+- name: Run migrations with conflict handling
+  shell: |
+    {{ project_slug }}-ctl migrate || {
+      echo "Migration failed, trying fake-initial"
+      {{ project_slug }}-ctl migrate --fake-initial
+      {{ project_slug }}-ctl migrate
+    }
+  become: true
+  when: backend_is_django and dedicated_database == true and (clonecode.changed or force_update is defined)
+
+- name: Collect backend static files
+  ansible.builtin.command:
+    cmd: "{{ project_slug }}-ctl collectstatic --no-input"
+  when: backend_is_django and (clonecode.changed or force_update is defined)
+
+- name: "daily database backup"
+  cron:
+    user: "{{ main_user }}"
+    name: "daily {{ project_slug }} database backup"
+    hour: "{{ database_backup.hour }}"
+    minute: "{{ database_backup.minute }}"
+    job: "{{ project_slug }}-ctl backup_db backup"
+  when: (allow_backup is defined and allow_backup == true)

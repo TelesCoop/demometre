@@ -7,7 +7,8 @@ main_user_uid: 1044
 django_project_name: open_democracy_back
 backend_repo: git@github.com:TelesCoop/demometre.git
 frontend_repo: git@github.com:TelesCoop/demometre.git
-identity_file_path: /home/{{ main_user }}/.ssh/id_ed25519_backend
+backend_identity_file_path: "/home/{{ main_user }}/.ssh/id_ed25519_backend"
+frontend_identity_file_path: "{{ backend_identity_file_path }}"
 var_log_path: /var/log/{{ organization_slug }}/{{ project_slug }}
 project_base_dir: /{{ organization_slug }}/{{ base_project_slug }}
 supervisor_conf: /etc/supervisor/conf.d
@@ -19,3 +20,12 @@ database_provider: postgresql  # sqlite or postgresql
 
 # can be SSR or static
 frontend_mode: SSR
+
+requests_timeout: 30
+server_uris_passed_to_backend:
+  - api
+  - admin
+  - django-admin
+  - documents
+  - backup
+  - hijack

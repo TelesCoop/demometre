@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance en cours - {{ base_project_slug }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 60px 40px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 200px;
+            max-height: 100px;
+            margin-bottom: 30px;
+        }
+
+        .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .info {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        .info p {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            .icon {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if maintenance_logo_source is defined %}
+        <img src="{{ maintenance_logo_source }}" alt="Logo" class="logo">
+        {% endif %}
+        <div class="icon">🔧</div>
+        <h1>Maintenance en cours</h1>
+        <p>
+            Nous effectuons actuellement une maintenance pour améliorer nos services.
+            Le site sera de nouveau accessible très prochainement.
+        </p>
+        <p>
+            Merci de votre patience et de votre compréhension.
+        </p>
+
+        {% if contact_email is defined %}
+        <div class="info">
+            <p>Pour toute urgence, contactez-nous à : <strong>{{ contact_email }}</strong></p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

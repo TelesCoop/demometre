@@ -41,10 +41,10 @@
   with_items: "{{ hba_files.files }}"
   when: database_provider == "postgresql"
 
-- name: Install psycopg2 on system
-  pip:
-    name: psycopg2
-  when: database_provider == "postgresql"
+# - name: Install psycopg2 on system
+#   pip:
+#     name: psycopg2
+#   when: database_provider == "postgresql"
 
 - name: "Create database {{ project_slug }}"
   community.postgresql.postgresql_db:

@@ -1,5 +1,62 @@
 ---
-
-- hosts: all
-  roles:
-    - backend
+- name: Setup and launch backend
+  hosts: all
+  vars:
+    backend_path: "{{ project_dir }}/backend/back"
+    venv:
+      path: /usr/local/{{ organization_slug }}/{{ project_slug }}/backend/venv
+    django_project_name: "open_democracy_back"
+    supervisor_conf: /etc/supervisor/conf.d
+  handlers:
+    - import_tasks: telescoop-deploy/handlers/nginx.yml
+  tasks:
+    - import_tasks: telescoop-deploy/tasks/create-https-certificate.yml
+    - import_tasks: telescoop-deploy/tasks/setup-user-and-directories.yml
+    - import_tasks: telescoop-deploy/tasks/setup-and-clone-git.yml
+      vars:
+        identity_file_path: "{{ frontend_identity_file_path }}"
+        repo: "{{ frontend_repo }}"
+        git_track_submodules: false
+        clone_path: "{{ backend_path }}/../"
+        branch: "{{ backend_branch }}"
+    - import_tasks: telescoop-deploy/tasks/install-python-venv.yml
+      vars:
+        requirements: "{{ backend_path }}/requirements.txt"
+    - import_tasks: telescoop-deploy/tasks/install-database.yml
+      vars:
+        database_password: "{{ vault_database_password }}"
+        database_provider: "postgresql"
+        database_name: "{{ project_slug }}"
+        database_user: "{{ project_slug }}"
+    - import_tasks: telescoop-deploy/tasks/install-and-update-python-app.yml
+      vars:
+        backend_settings_path: /etc/{{ organization_slug }}/{{ project_slug }}/settings.ini
+        backend_workers: "{{ n_workers }}"
+        dedicated_database: true
+        allow_backup: group_names[0] == "prod" or group_names[0] == "belgique_prod"
+        database_backup:
+          hour: 2
+          minute: 0
+        database_password: "{{ vault_database_password }}"
+        database_name: "{{ project_slug }}"
+        database_user: "{{ project_slug }}"
+        # If you use custom template, do not name it settings.j2
+        template_backend_settings_name: "settings-custom.ini.j2"
+    - name: "daily prod media backup"
+      cron:
+        user: "{{ main_user }}"
+        name: "daily media backup"
+        hour: '2'
+        minute: '5'
+        job: "{{ project_slug }}-ctl backup_db media"
+      when: group_names[0] == "prod"or group_names[0] == "belgique_prod"
+    - import_tasks: telescoop-deploy/tasks/update-django-app.yml
+      vars:
+        backend_is_django: true
+        dedicated_database: true
+    - import_tasks: telescoop-deploy/tasks/setup-nginx.yml
+      vars:
+        use_password: false
+        nginx_conf_filename: "{{ project_slug }}"
+        has_backend: true
+        passwd_dir: "{{ project_dir }}/"
