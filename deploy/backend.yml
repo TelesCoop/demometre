@@ -60,3 +60,4 @@
         nginx_conf_filename: "{{ project_slug }}"
         has_backend: true
         passwd_dir: "{{ project_dir }}/"
+        backend_media_path: "{{ media_static_path }}"
