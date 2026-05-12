@@ -2,6 +2,7 @@ import datetime
 
 from django.utils import translation
 from rest_framework import serializers
+from django.conf import settings
 
 from my_auth.models import User
 from open_democracy_back.exceptions import ErrorCode
@@ -236,7 +237,10 @@ class AssessmentSerializer(serializers.ModelSerializer):
 
     @staticmethod
     def get_participation_count(obj: Assessment):
-        return obj.participations.filter(user__is_unknown_user=False).count()
+        if not settings.ALLOW_ANONYMOUS_PARTICIPATION:
+            return obj.participations.filter(user__is_unknown_user=False).count()
+        else:
+            return obj.participations.count()
 
     @staticmethod
     def get_workshop_count(obj: Assessment):

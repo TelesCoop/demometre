@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from my_auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from open_democracy_back.models.animator_models import Participant, Workshop
@@ -129,12 +130,15 @@ class Response(models.Model):
 class ParticipationResponseQuerySet(models.QuerySet):
     def accounted_in_assessment(self, assessment_pk):
         # filter responses to include only those from target assessment and ignore those from anonymous users and passed responses.
+        filters = {
+            "participation__assessment_id": assessment_pk,
+            "question__profiling_question": False,
+        }
+        if not settings.ALLOW_ANONYMOUS_PARTICIPATION:
+            filters["participation__user__is_unknown_user"] = False
+
         return (
-            self.filter(
-                participation__user__is_unknown_user=False,
-                participation__assessment_id=assessment_pk,
-                question__profiling_question=False,
-            )
+            self.filter(**filters)
             .exclude(has_passed=True)
             .exclude(question__criteria=None)
         )
