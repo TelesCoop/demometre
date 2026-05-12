@@ -7,6 +7,7 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 from wagtail.fields import RichTextField
+from django.conf import settings
 
 from open_democracy_back.models.assessment_models import Assessment
 
@@ -151,16 +152,26 @@ class AssessmentRepresentativity(models.Model):
 
         # Build the filter condition based on question type
         if question_type == QuestionType.UNIQUE_CHOICE:
-            count_filter = Q(
-                unique_choice_participationresponses__participation__assessment_id=self.assessment_id,
-                unique_choice_participationresponses__participation__user__is_unknown_user=False,
-            )
+            filters = {
+                "unique_choice_participationresponses__participation__assessment_id": self.assessment_id
+            }
+            if not settings.ALLOW_ANONYMOUS_PARTICIPATION:
+                filters[
+                    "unique_choice_participationresponses__participation__user__is_unknown_user"
+                ] = False
+
+            count_filter = Q(**filters)
             count_field = "unique_choice_participationresponses"
         elif question_type == QuestionType.MULTIPLE_CHOICE:
-            count_filter = Q(
-                multiple_choice_participationresponses__participation__assessment_id=self.assessment_id,
-                multiple_choice_participationresponses__participation__user__is_unknown_user=False,
-            )
+            filters = {
+                "multiple_choice_participationresponses__participation__assessment_id": self.assessment_id
+            }
+            if not settings.ALLOW_ANONYMOUS_PARTICIPATION:
+                filters[
+                    "multiple_choice_participationresponses__participation__user__is_unknown_user"
+                ] = False
+
+            count_filter = Q(**filters)
             count_field = "multiple_choice_participationresponses"
         else:
             # Fallback for unsupported question types
@@ -208,9 +219,11 @@ class AssessmentRepresentativity(models.Model):
     def total_responses(self):
         question_type = self.representativity_criteria.profiling_question.type
 
+        filters = {"participation__assessment_id": self.assessment_id}
+        if not settings.ALLOW_ANONYMOUS_PARTICIPATION:
+            filters["participation__user__is_unknown_user"] = False
         base_queryset = self.representativity_criteria.profiling_question.participationresponses.filter(
-            participation__assessment_id=self.assessment_id,
-            participation__user__is_unknown_user=False,
+            **filters
         )
 
         if question_type == QuestionType.UNIQUE_CHOICE:

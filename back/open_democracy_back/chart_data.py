@@ -44,10 +44,12 @@ def get_chart_data_subjective_queryset(
     prefix = f"{prefix_queryset}__" if prefix_queryset else ""
 
     to_return = {
-        f"{prefix}participation__user__is_unknown_user": False,
         f"{prefix}participation__assessment_id": assessment_id,
         f"{prefix}has_passed": False,
     }
+    if not settings.ALLOW_ANONYMOUS_PARTICIPATION:
+        to_return[f"{prefix}participation__user__is_unknown_user"] = False
+
     if participative_processes:
         to_return[f"{prefix}participative_process__in"] = participative_processes
     return to_return
