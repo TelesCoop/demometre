@@ -19,7 +19,7 @@
   git:
     repo: '{{ frontend_repo }}'
     dest: "{{ frontend_path }}/.."
-    key_file: "{{ identity_file_path }}"
+    key_file: "{{ frontend_identity_file_path }}"
     accept_hostkey: true
     force: true
     version: "{{ frontend_branch }}"
@@ -42,15 +42,9 @@
     executable: /bin/bash
     creates: "{{ ansible_env.HOME }}/.nvm/{{ node_version.stdout }}_installed"
 
-- name: Install yarn globally
-  shell: "source /root/.nvm/nvm.sh && nvm exec {{ node_version.stdout }} npm install -g yarn"
-  args:
-    executable: /bin/bash
-    creates: "{{ ansible_env.HOME }}/.nvm/{{ node_version.stdout }}_yarn_installed"
-
-- name: Install project node dependencies with yarn
+- name: Install project node dependencies with npm
   # yamllint disable-line rule:line-length
-  shell: "source /root/.nvm/nvm.sh && nvm exec {{ node_version.stdout }} yarn install --frozen-lockfile"
+  ansible.builtin.shell: "source /root/.nvm/nvm.sh && nvm exec {{ node_version.stdout }} npm ci --ignore-scripts"
   args:
     chdir: "{{ frontend_path }}"
     executable: /bin/bash

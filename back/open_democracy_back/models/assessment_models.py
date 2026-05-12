@@ -2,6 +2,7 @@ from django import forms
 from django.db import models
 from django.db.models import Q
 from django.utils import timezone
+from django.conf import settings
 from model_utils.models import TimeStampedModel
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
@@ -444,10 +445,10 @@ class Assessment(TimeStampedModel, ClusterableModel):
 class AssessmentResponseQuerySet(models.QuerySet):
     def accounted_in_assessment(self, assessment_pk):
         # filter responses to include only those from target assessment and ignore those from anonymous users and passed responses
-        return self.filter(
-            answered_by__is_unknown_user=False,
-            assessment_id=assessment_pk,
-        ).exclude(has_passed=True)
+        filters = {"assessment_id": assessment_pk}
+        if not settings.ALLOW_ANONYMOUS_PARTICIPATION:
+            filters["answered_by__is_unknown_user"] = False
+        return self.filter(**filters).exclude(has_passed=True)
 
 
 # All questionnaire objective responses are assessment responses

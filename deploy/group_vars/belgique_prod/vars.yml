@@ -31,3 +31,5 @@ project_db_name: "{{ project_slug }}"
 environment_name: belgique_prod
 
 country: BE
+
+allow_anonymous_participation: true

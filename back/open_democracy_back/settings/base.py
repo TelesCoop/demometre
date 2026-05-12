@@ -245,3 +245,7 @@ LOGIN_REDIRECT_URL = "/"
 
 # Country specific settings
 COUNTRY = config.getstr("localization.country", "FR")
+
+ALLOW_ANONYMOUS_PARTICIPATION = config.getbool(
+    "params.allow_anonymous_participation", default=False
+)
