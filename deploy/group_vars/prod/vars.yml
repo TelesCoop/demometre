@@ -25,3 +25,5 @@ project_db_name: do
 environment_name: preprod
 
 country: FR
+
+allow_anonymous_participation: false

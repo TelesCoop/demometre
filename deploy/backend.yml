@@ -40,6 +40,7 @@
         database_password: "{{ vault_database_password }}"
         database_name: "{{ project_slug }}"
         database_user: "{{ project_slug }}"
+        allow_anonymous_participation: "{{ allow_anonymous_participation }}"
         # If you use custom template, do not name it settings.j2
         template_backend_settings_name: "settings-custom.ini.j2"
     - name: "daily prod media backup"

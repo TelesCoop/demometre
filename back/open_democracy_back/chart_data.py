@@ -4,6 +4,7 @@ from typing import Dict, Callable
 from django.db.models import Count, Q, F
 from django.http import Http404
 from django.utils import translation
+from django.conf import settings
 
 from open_democracy_back.models import (
     ResponseChoice,
@@ -23,9 +24,10 @@ def get_chart_data_objective_queryset(
     prefix = f"{prefix_queryset}__" if prefix_queryset else ""
 
     to_return = {
-        f"{prefix}answered_by__is_unknown_user": False,
         f"{prefix}assessment_id": assessment_id,
     }
+    if not settings.ALLOW_ANONYMOUS_PARTICIPATION:
+        to_return[f"{prefix}answered_by__is_unknown_user":False]
 
     if exclude_empty_for_question_type:
         response_name = Question.RESPONSE_NAME_BY_QUESTION_TYPE[
