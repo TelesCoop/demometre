@@ -15,8 +15,14 @@ node_version: 18.18.0
 backend_application_port: 8047  # must be unique for each project on the same server
 frontend_application_port: 3047  # must be unique for each project on the same server
 
+main_hostname: preprod.belgique.demometre.tlscp.fr
+
 public_hostnames:
-  - preprod.belgique.demometre.tlscp.fr
+  - "{{ main_hostname }}"
+redirect_hostnames: []
+
+https_hostnames: "{{ all_hostnames }}"
+all_hostnames: "{{ public_hostnames + redirect_hostnames }}"
 
 project_db_name: "{{ project_slug }}"
 
