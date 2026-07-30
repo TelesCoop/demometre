@@ -25,7 +25,7 @@
         <button
           class="button is-rounded mt-4"
           data-cy="skip-participative-processes"
-          @click.prevent="() => confirm(true)"
+          @click.prevent="skipAndContinue"
         >
           {{ pageStore.participativeProcessPage.skipCallToAction }}
         </button>
@@ -33,7 +33,7 @@
           class="button is-shade-600 is-rounded mt-4"
           data-cy="start-objective-questions"
           :disabled="isDisabled"
-          @click.prevent="confirm"
+          @click.prevent="saveAndContinue"
         >
           {{ pageStore.participativeProcessPage.confirmCallToAction }}
         </button>
@@ -96,13 +96,19 @@ const deleteProcess = (categoryId: number, processName: string) => {
   }
 }
 
-const confirm = async (skip = false) => {
-  if (!skip) {
-    isLoading.value = true
-    const processes: ParticipativeProcess[] = Object.values(processesPerCategory.value).flat().filter(process => process.name !== '')
-    await questionnaireStore.addParticipativeProcesses(assessmentId, processes)
-    isLoading.value = false
-  }
+const goToObjectiveQuestions = () => {
   router.push(`/evaluation/initialisation/${assessmentId}/questions-objectives`)
+}
+
+const saveAndContinue = async () => {
+  isLoading.value = true
+  const processes: ParticipativeProcess[] = Object.values(processesPerCategory.value).flat().filter(process => process.name !== '')
+  await questionnaireStore.addParticipativeProcesses(assessmentId, processes)
+  isLoading.value = false
+  goToObjectiveQuestions()
+}
+
+const skipAndContinue = () => {
+  goToObjectiveQuestions()
 }
 </script>
