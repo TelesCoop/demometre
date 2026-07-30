@@ -276,7 +276,7 @@ class TestAssessmentCreation(TestCase):
 class TestParticipativeProcesses(TestCase):
     @authenticate
     def test_participative_processes(self):
-        assessment = AssessmentFactory.create()
+        assessment = AssessmentFactory.create(initiated_by_user=authenticate.user)
         question = QuestionFactory.create(
             type=QuestionType.MULTIPLE_CHOICE,
             code="7A",
@@ -309,3 +309,16 @@ class TestParticipativeProcesses(TestCase):
             2,
         )
         self.assertEqual(ParticipativeProcess.objects.count(), 2)
+
+    @authenticate
+    def test_participative_processes_require_write_access(self):
+        # the authenticated user is neither initiator nor expert of this assessment
+        assessment = AssessmentFactory.create()
+        url = reverse("assessments-add-participative-processes", args=[assessment.pk])
+        res = self.client.post(
+            url,
+            {"participative_processes": []},
+            content_type="application/json",
+        )
+        self.assertEqual(res.status_code, 403)
+        self.assertEqual(ParticipativeProcess.objects.count(), 0)
