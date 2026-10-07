@@ -1,5 +1,8 @@
 ---
 
 - hosts: all
+  vars:
+    # Build the frontend on the machine launching ansible: -e frontend_local_build=true
+    frontend_local_build: false
   roles:
     - frontend

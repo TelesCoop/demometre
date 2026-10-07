@@ -70,7 +70,7 @@
   block:
     - name: Build frontend code for static rendering
       # yamllint disable-line rule:line-length
-      shell: "source /root/.nvm/nvm.sh && nvm exec {{ node_version.stdout }} yarn build"
+      shell: "source /root/.nvm/nvm.sh && NODE_OPTIONS=--max-old-space-size=1536 nvm exec {{ node_version.stdout }} yarn build"
       args:
         chdir: "{{ frontend_path }}"
         executable: /bin/bash
@@ -110,12 +110,52 @@
   block:
     - name: Build frontend code for SSR
       # yamllint disable-line rule:line-length
-      shell: "source /root/.nvm/nvm.sh && nvm exec {{ node_version.stdout }} yarn build"
+      shell: "source /root/.nvm/nvm.sh && NODE_OPTIONS=--max-old-space-size=1536 nvm exec {{ node_version.stdout }} yarn build"
       args:
         chdir: "{{ frontend_path }}"
         executable: /bin/bash
       register: build_code
-      when: clonecode.changed or force_update is defined
+      when: (clonecode.changed or force_update is defined) and not frontend_local_build | bool
+
+    # Build on the machine launching ansible, when the server lacks RAM
+    - name: Local build
+      block:
+        - name: Get frontend code locally for build
+          git:
+            repo: "{{ frontend_repo }}"
+            dest: "{{ frontend_local_build_dir }}"
+            force: true
+            version: "{{ frontend_branch }}"
+          delegate_to: localhost
+          become: false
+
+        - name: Add environment variable file for local build
+          template:
+            src: frontend.env
+            dest: "{{ frontend_local_build_dir }}/front/.env"
+          delegate_to: localhost
+          become: false
+
+        - name: Build frontend code for SSR locally
+          # yamllint disable-line rule:line-length
+          shell: "source {{ lookup('env', 'HOME') }}/.nvm/nvm.sh && nvm install && npm ci --ignore-scripts && npm run build"
+          args:
+            chdir: "{{ frontend_local_build_dir }}/front"
+            executable: /bin/bash
+          delegate_to: localhost
+          become: false
+          throttle: 1
+          register: build_code
+
+        - name: Upload built frontend to server
+          synchronize:
+            src: "{{ frontend_local_build_dir }}/front/.output/"
+            dest: "{{ frontend_path }}/.output/"
+            delete: true
+            rsync_opts:
+              - "--chown={{ main_user }}:{{ main_user }}"
+
+      when: (clonecode.changed or force_update is defined) and frontend_local_build | bool
 
     - debug: msg="{{ build_code.stdout }}"
       when: clonecode.changed or force_update is defined

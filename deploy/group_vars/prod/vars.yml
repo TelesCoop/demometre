@@ -15,14 +15,21 @@ node_version: 18.18.0
 backend_application_port: 8046  # must be unique for each project on the same server
 frontend_application_port: 3046  # must be unique for each project on the same server
 
+main_hostname: demometre.org
+
 public_hostnames:
-  - demometre.org
+  - "{{ main_hostname }}"
+
+redirect_hostnames:
   - demometre.tlscp.fr
   - democratieouverte.tlscp.fr
 
+all_hostnames: "{{ public_hostnames + redirect_hostnames }}"
+https_hostnames: "{{ all_hostnames }}"
+
 project_db_name: do
 
-environment_name: preprod
+environment_name: prod
 
 country: FR
 
