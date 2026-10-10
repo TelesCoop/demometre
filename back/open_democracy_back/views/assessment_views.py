@@ -273,9 +273,11 @@ class AssessmentsView(
         detail=True,
         methods=["POST"],
         url_path="add-participative-processes",
-        permission_classes=[IsAuthenticated],
+        permission_classes=[IsAuthenticated, HasAssessmentWriteAccessForUpdate],
     )
     def add_participative_processes(self, request, pk):
+        # triggers check_object_permissions
+        self.get_object()
         processes = request.data.get("participative_processes")
         processes = [{**process, "assessment": pk} for process in processes]
         serializer = ParticipativeProcessSerializer(data=processes, many=True)
