@@ -91,7 +91,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version-file: ./front/.nvmrc
           cache: "npm"
@@ -146,7 +146,7 @@ jobs:
   #       run: E2E_TESTS=1 python manage.py runserver localhost:8000 &
   #       working-directory: ./back
   #     - name: Set up Node.js
-  #       uses: actions/setup-node@v4
+  #       uses: actions/setup-node@v7
   #       with:
   #         node-version-file: ./front/.nvmrc
   #         cache: "npm"
