@@ -29,7 +29,7 @@
     "@tiptap/extension-link": "^2.1.7",
     "@tiptap/pm": "^2.1.7",
     "@tiptap/starter-kit": "^2.1.7",
-    "@tiptap/vue-3": "^2.1.7",
+    "@tiptap/vue-3": "^3.33.0",
     "@vueform/slider": "^2.0.9",
     "pinia": "^2.0.11",
     "prettier": "^2.5.1",
