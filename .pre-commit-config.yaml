@@ -1,12 +1,14 @@
 exclude: ^(.*\/migrations|.*package.json|.*package-lock.json|Pipfile*)
 repos:
-  - hooks:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
       - id: check-added-large-files
       - id: check-merge-conflict
       - id: forbid-new-submodules
-    repo: https://github.com/pre-commit/pre-commit-hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.2.0
-  - hooks:
+    hooks:
       - id: check-byte-order-marker
       - id: check-case-conflict
       - id: check-executables-have-shebangs
@@ -15,23 +17,23 @@ repos:
       - id: detect-private-key
       - id: end-of-file-fixer
       - id: trailing-whitespace
-    repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.2.0
-  - hooks:
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.1.9
+    hooks:
       - id: forbid-crlf
       - id: remove-crlf
       - id: forbid-tabs
       - id: remove-tabs
-    repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.1.9
-  - hooks:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
       - id: check-json
       - args:
           - --autofix
         id: pretty-format-json
-    repo: https://github.com/pre-commit/pre-commit-hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.2.0
-  - hooks:
+    hooks:
       - id: check-ast
         language_version: python3.10
       - id: check-builtin-literals
@@ -44,51 +46,49 @@ repos:
           - --remove
         id: fix-encoding-pragma
       - id: requirements-txt-fixer
-    repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.2.0
-  - hooks:
-      - id: pyupgrade
-    repo: https://github.com/asottile/pyupgrade
+  - repo: https://github.com/asottile/pyupgrade
     rev: v3.21.0
-  - hooks:
+    hooks:
+      - id: pyupgrade
+  - repo: https://github.com/psf/black
+    rev: 25.9.0
+    hooks:
       - id: black
         language_version: python3.10
-    repo: https://github.com/psf/black
-    rev: 25.9.0
-  - hooks:
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.3.0
+    hooks:
       - args:
           - --config=back/.flake8
         id: flake8
         language_version: python3.10
-    repo: https://github.com/pycqa/flake8
-    rev: 7.3.0
-  - hooks:
-      - id: python-safety-dependencies-check
-    repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
     rev: v1.4.2
-  - hooks:
-      - id: beautysh
-    repo: https://github.com/bemeurer/beautysh.git
+    hooks:
+      - id: python-safety-dependencies-check
+  - repo: https://github.com/bemeurer/beautysh.git
     rev: 6.0.1
-  - hooks:
-      - id: script-must-have-extension
-    repo: https://github.com/jumanjihouse/pre-commit-hooks
+    hooks:
+      - id: beautysh
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
     rev: 2.1.4
-  - hooks:
-      - id: check-xml
-    repo: https://github.com/pre-commit/pre-commit-hooks
+    hooks:
+      - id: script-must-have-extension
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.2.0
-  - hooks:
+    hooks:
+      - id: check-xml
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.24.2
+    hooks:
       - args:
           - "-d {rules: {line-length: {max: 999}}}"
         id: yamllint
-    repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.24.2
-  - hooks:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
       - id: check-yaml
       - id: sort-simple-yaml
-    repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.2.0
   - repo: local
     hooks:
       - id: local eslint
@@ -116,9 +116,9 @@ repos:
         types: [python] # hook only runs if a python file is staged
         pass_filenames: false
 
-  - hooks:
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.9.1
+    hooks:
       - id: commitizen
         stages:
           - manual
-    repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.9.1
